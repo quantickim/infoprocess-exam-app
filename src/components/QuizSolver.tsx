@@ -32,7 +32,6 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 		const sessions = Array.from(new Set(questions.map((q) => q.session)))
 			.sort()
 			.reverse();
-		// "전체 회차 (통합 풀이)" 옵션 제거
 		return sessions.map((s) => ({ value: s, label: s }));
 	}, [questions]);
 
@@ -47,6 +46,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 
 	const handleSessionChange = (val: string | number) => {
 		setSelectedSession(val as string);
+		setSelectedSubject(0); // 회차 변경 시 과목 선택 상태를 전체 과목(0)으로 초기화
 		setCurrentIndex(0);
 	};
 
@@ -74,22 +74,24 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 				</div>
 			</div>
 
-			{/* Subject Chips */}
-			<div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-				<button className={`nav-btn ${selectedSubject === 0 ? "active" : ""}`} onClick={() => handleSubjectChange(0)} style={{ padding: "6px 12px", fontSize: "0.85rem" }}>
-					전체 과목
-				</button>
-				{SUBJECTS.map((sub) => (
-					<button
-						key={sub.id}
-						className={`nav-btn ${selectedSubject === sub.id ? "active" : ""}`}
-						onClick={() => handleSubjectChange(sub.id)}
-						style={{ padding: "6px 12px", fontSize: "0.85rem" }}
-					>
-						{sub.id}과목
+			{/* 회차(selectedSession)가 선택되었을 때만 과목 선택 Chip 노출 */}
+			{selectedSession && (
+				<div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+					<button className={`nav-btn ${selectedSubject === 0 ? "active" : ""}`} onClick={() => handleSubjectChange(0)} style={{ padding: "6px 12px", fontSize: "0.85rem" }}>
+						전체 과목
 					</button>
-				))}
-			</div>
+					{SUBJECTS.map((sub) => (
+						<button
+							key={sub.id}
+							className={`nav-btn ${selectedSubject === sub.id ? "active" : ""}`}
+							onClick={() => handleSubjectChange(sub.id)}
+							style={{ padding: "6px 12px", fontSize: "0.85rem" }}
+						>
+							{sub.id}과목
+						</button>
+					))}
+				</div>
+			)}
 		</div>
 	);
 
@@ -124,7 +126,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 
 	return (
 		<div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-			{/* Control Bar (position 및 zIndex 부여하여 아래 카드들에 가려지지 않도록 수정) */}
+			{/* Control Bar */}
 			{controlBar}
 
 			{/* Progress Bar */}
