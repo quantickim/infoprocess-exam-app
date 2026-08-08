@@ -1,0 +1,1237 @@
+[
+	{
+		"id": "2026-1-1",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "소프트웨어 공학의 기본 원칙이라고 볼 수 없는 것은?",
+		"imgsrc": null,
+		"options": ["품질 높은 소프트웨어 상품 개발", "지속적인 검증 시행", "결과에 대한 명확한 기록 유지", "최대한 많은 인력 투입"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n인력은 최대한 많이 투입하는 것이 아니라 가능한 효율적으로 투입되어야 합니다."
+	},
+	{
+		"id": "2026-1-2",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "다음 중 CASE의 장점이 아닌 것은?",
+		"imgsrc": null,
+		"options": [
+			"자동화된 기법을 통해 소프트웨어 품질이 향상된다.",
+			"소프트웨어의 유지보수를 간편하게 수행할 수 있다.",
+			"소프트웨어의 생산성이 향상된다.",
+			"소프트웨어 모듈의 재사용성이 줄어든다."
+		],
+		"answer": 4,
+		"explanation": "💡 **해설**:\nCASE를 이용하면 소프트웨어 모듈의 재사용성이 향상됩니다."
+	},
+	{
+		"id": "2026-1-3",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "객체에게 어떤 행위를 하도록 지시하는 명령은?",
+		"imgsrc": null,
+		"options": ["Class", "Object", "Package", "Message"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n객체에게 어떤 행위를 하도록 지시하는 명령은 Message(메시지)입니다."
+	},
+	{
+		"id": "2026-1-4",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "분산 시스템에서의 미들웨어(Middleware)와 관련한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"분산 시스템에서 다양한 부분을 관리하고 통신하며 데이터를 교환하게 해주는 소프트웨어로 볼 수 있다.",
+			"위치 투명성(Location Transparency)을 제공한다.",
+			"분산 시스템의 여러 컴포넌트가 요구하는 재사용 가능한 서비스의 구현을 제공한다.",
+			"애플리케이션과 사용자 사이에서만 분산 서비스를 제공한다."
+		],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n애플리케이션과 사용자 사이뿐만 아니라 클라이언트와 서버, 운영체제와 응용 프로그램과 같이 두 시스템 사이에서 다양한 서비스를 제공하는 소프트웨어를 미들웨어(Middleware)라고 합니다."
+	},
+	{
+		"id": "2026-1-5",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "기본 유스케이스 수행 시 특별한 조건을 만족할 때 수행하는 유스케이스는?",
+		"imgsrc": null,
+		"options": ["연관", "확장", "선택", "특화"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n특별한 조건을 만족할 때 수행할 유스케이스는 <<extends>>로 연결하여 표현하는데, 이와 같이 연결되는 관계를 확장 관계라고 합니다."
+	},
+	{
+		"id": "2026-1-6",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "다음 중 소프트웨어 요구사항 분석을 위해 대상이 되는 목표 집단에 속한 사용자 유형의 대표가 되는 가상 인물에 대한 표현으로 옳은 것은?",
+		"imgsrc": null,
+		"options": ["페르소나", "진척도", "번업 차트", "스토리 맵"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n어떤 제품이나 서비스를 사용할 만한 대상 영역에 속한 다양한 사용자 유형들을 대표하는 가상의 인물을 페르소나(Persona)라고 합니다."
+	},
+	{
+		"id": "2026-1-7",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "파이프 필터 형태의 소프트웨어 아키텍처에 대한 설명으로 옳은 것은?",
+		"imgsrc": null,
+		"options": [
+			"노드와 간선으로 구성된다.",
+			"서브시스템이 입력 데이터를 받아 처리하고 결과를 다음 서브시스템으로 넘겨주는 과정을 반복한다.",
+			"계층 모델이라고도 한다.",
+			"3개의 서브시스템(모델, 뷰, 제어)으로 구성되어 있다."
+		],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n파이프 필터 패턴은 서브시스템이 입력 데이터를 받아 처리하고 결과를 다음 서브시스템으로 넘겨주는 과정을 반복합니다."
+	},
+	{
+		"id": "2026-1-8",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "분산 시스템을 위한 마스터-슬레이브(Master-Slave) 아키텍처에 대한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"일반적으로 실시간 시스템에서 사용된다.",
+			"마스터 프로세스는 일반적으로 연산, 통신, 조정을 책임진다.",
+			"슬레이브 프로세스는 데이터 수집 기능을 수행할 수 없다.",
+			"마스터 프로세스는 슬레이브 프로세스들을 제어할 수 있다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n슬레이브 프로세스에서는 마스터 프로세스에서 수행하는 연산, 통신, 제어 등의 기능을 제외하고는 별도로 제한되는 기능은 없습니다. 데이터 수집 등을 수행할 수 있습니다."
+	},
+	{
+		"id": "2026-1-9",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "소프트웨어 아키텍처 모델 중 MVC(Model-View-Controller)와 관련한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"MVC 모델은 사용자 인터페이스를 담당하는 계층의 응집도를 높일 수 있고, 여러 개의 다른 UI를 만들어 그 사이에 결합도를 낮출 수 있다.",
+			"모델(Model)은 뷰(View)와 제어(Controller) 사이에서 전달자 역할을 하며, 뷰마다 모델 서브시스템이 각각 하나씩 연결된다.",
+			"뷰(View)는 모델(Model)에 있는 데이터를 사용자 인터페이스에 보이는 역할을 담당한다.",
+			"제어(Controller)는 모델(Model)에 명령을 보냄으로써 모델의 상태를 변경할 수 있다."
+		],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n모델(Model)은 서브시스템의 핵심 기능과 데이터를 보관하는 역할을 합니다."
+	},
+	{
+		"id": "2026-1-10",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "다음 내용이 설명하는 디자인 패턴은?",
+		"imgsrc": "/img/2026-1-10.png",
+		"options": ["Singleton", "Adapter", "Prototype", "Decorator"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n문제의 지문에 제시된 내용은 싱글톤(Singleton) 패턴의 특징입니다."
+	},
+	{
+		"id": "2026-1-11",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "명백한 역할을 가지고 독립적으로 존재할 수 있는 시스템의 부분으로 넓은 의미에서는 재사용되는 모든 단위라고 볼 수 있으며, 인터페이스를 통해서만 접근할 수 있는 것은?",
+		"imgsrc": null,
+		"options": ["Model", "Component", "Sheet", "Cell"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n문제에 제시된 내용은 컴포넌트(Component)에 대한 설명입니다."
+	},
+	{
+		"id": "2026-1-12",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "아키텍처 설계 과정이 올바른 순서로 나열된 것은?",
+		"imgsrc": "/img/2026-1-12.png",
+		"options": ["가 → 나 → 다 → 라 → 마", "나 → 가 → 다 → 라 → 마", "가 → 나 → 라 → 다 → 마", "나 → 가 → 라 → 다 → 마"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n소프트웨어 아키텍처의 설계 과정은 '설계 목표 설정(가) → 시스템 타입 결정(나) → 아키텍처 패턴(스타일) 적용(다) → 서브시스템 구체화(라) → 설계 검토(마)' 순입니다."
+	},
+	{
+		"id": "2026-1-13",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "순차 다이어그램(Sequence Diagram)과 관련한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"객체들의 상호 작용을 나타내기 위해 사용한다.",
+			"시간의 흐름에 따라 객체들이 주고 받는 메시지의 전달 과정을 강조한다.",
+			"동적 다이어그램보다는 정적 다이어그램에 가깝다.",
+			"교류 다이어그램(Interaction Diagram)의 한 종류로 볼 수 있다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n순차 다이어그램(Sequence Diagram)은 시간의 흐름에 따라 상호 작용하는 개체들을 표현하는 대표적인 동적 다이어그램입니다."
+	},
+	{
+		"id": "2026-1-14",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "다음 설명에 해당하는 시스템으로 옳은 것은?",
+		"imgsrc": "/img/2026-1-14.png",
+		"options": ["연계 서버", "중계 서버", "송신 시스템", "수신 시스템"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n문제의 지문은 송신 시스템에 대한 설명입니다."
+	},
+	{
+		"id": "2026-1-15",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "통신을 위한 프로그램을 생성하여 포트를 할당하고, 클라이언트의 통신 요청 시 클라이언트와 연결하는 내·외부 송·수신 연계기술은?",
+		"imgsrc": null,
+		"options": ["DB링크 기술", "소켓 기술", "스크럼 기술", "프로토타입 기술"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n통신을 위한 프로그램을 생성하여 포트를 할당하고, 클라이언트의 통신 요청 시 클라이언트와 연결하는 기술은 소켓 기술입니다."
+	},
+	{
+		"id": "2026-1-16",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "입력되는 데이터를 컴퓨터의 프로세서가 처리하기 전에 미리 처리하여 프로세서가 처리하는 시간을 줄여주는 프로그램이나 하드웨어를 말하는 것은?",
+		"imgsrc": null,
+		"options": ["EAI", "FEP", "GPL", "Duplexing"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n문제에 제시된 내용은 전처리기(FEP: Front End Processor)의 개념입니다."
+	},
+	{
+		"id": "2026-1-17",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "다음 중 비기능 요구사항에 대한 설명으로 옳은 것은?",
+		"imgsrc": null,
+		"options": [
+			"은행의 조회, 입금, 출금, 이체 등이 어떻게 수행되는지 여부는 비기능 요구사항에 해당한다.",
+			"처리 속도 및 시간, 처리량 등의 성능에 대한 요구사항은 비기능 요구사항에 해당하지 않는다.",
+			"보안 및 접근 통제를 위한 요구사항은 비기능 요구사항에 해당하지 않는다.",
+			"\"차량 대여 시스템에서 제공하는 모든 화면은 3초 안에 사용자에게 보여야 한다\"는 것은 비기능 요구사항에 해당한다."
+		],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n성능, 보안, 품질 등에 관한 요구사항은 비기능 요구사항에 해당합니다. \"3초 안에 사용자에게 보여야 한다\"는 성능에 관한 비기능 요구사항입니다."
+	},
+	{
+		"id": "2026-1-18",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "CASE에 대한 설명으로 옳지 않은 것은?",
+		"imgsrc": null,
+		"options": [
+			"소프트웨어 모듈의 재사용성이 향상된다.",
+			"자동화된 기법을 통해 소프트웨어 품질이 향상된다.",
+			"소프트웨어 사용자들이 소프트웨어 사용 방법을 신속히 숙지할 수 있도록 개발된 자동화 패키지이다.",
+			"소프트웨어 유지보수를 간편하게 수행할 수 있다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\nCASE는 소프트웨어 개발 과정을 자동화하는 도구로, 일반 소프트웨어 사용자의 사용 방법 신속 숙지와는 무관합니다."
+	},
+	{
+		"id": "2026-1-19",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "GoF(Gangs of Four) 디자인 패턴 분류에 해당하지 않는 것은?",
+		"imgsrc": null,
+		"options": ["생성 패턴", "객체 패턴", "행위 패턴", "구조 패턴"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\nGoF의 디자인 패턴은 생성(Creational) 패턴, 구조(Structural) 패턴, 행위(Behavioral) 패턴으로 분류됩니다."
+	},
+	{
+		"id": "2026-1-20",
+		"session": "2026년 1회",
+		"subjectId": 1,
+		"subjectName": "1과목: 소프트웨어 설계",
+		"question": "캡슐화된 객체 내부의 자료 구조 또는 함수 이용이 외부에 영향을 받지 않기 위해 부작용을 최소화한 객체지향 개념은?",
+		"imgsrc": null,
+		"options": ["Finding", "Inheritance", "Information Hiding", "Polymorphism"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n문제에 제시된 내용은 정보 은닉(Information Hiding)의 개념입니다."
+	},
+	{
+		"id": "2026-1-21",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "정렬된 N개의 데이터를 처리하는데 O(Nlog2N)의 시간이 소요되는 정렬 알고리즘은?",
+		"imgsrc": null,
+		"options": ["선택 정렬", "삽입 정렬", "버블 정렬", "합병 정렬"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\nN개의 데이터를 처리하는 데 O(Nlog2N)의 시간복잡도를 가지는 대표적인 정렬 알고리즘에는 합병 정렬(Merge Sort)과 힙 정렬(Heap Sort)이 있습니다."
+	},
+	{
+		"id": "2026-1-22",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "인터페이스 구현 검증 도구 중 아래에서 설명하는 것은?",
+		"imgsrc": "/img/2026-1-22.png",
+		"options": ["xUnit", "STAF", "FitNesse", "RubyNode"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n인터페이스 구현 검증 도구 중 서비스 호출, 컴포넌트 재사용 등 다양한 환경을 지원하는 테스트 프레임워크는 STAF입니다."
+	},
+	{
+		"id": "2026-1-23",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "검증 검사 기법 중 개발자의 장소에서 사용자가 개발자 앞에서 행하는 기법이며, 일반적으로 통제된 환경에서 사용자와 개발자가 함께 확인하면서 수행되는 검사는?",
+		"imgsrc": null,
+		"options": ["동치 분할 검사", "형상 검사", "알파 검사", "베타 검사"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n개발자의 장소에서 사용자가 개발자 앞에서 수행하는 인수 테스트 기법은 알파 검사입니다."
+	},
+	{
+		"id": "2026-1-24",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "인터페이스 구현 시 사용하는 기술 중 다음 내용이 설명하는 것은?",
+		"imgsrc": "/img/2026-1-24.png",
+		"options": ["Procedure", "Trigger", "Greedy", "AJAX"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\nJavaScript를 사용한 비동기 통신기술로, 클라이언트와 서버 간에 XML 데이터를 주고받는 기술을 AJAX라고 합니다."
+	},
+	{
+		"id": "2026-1-25",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "알고리즘 설계 기법으로 거리가 먼 것은?",
+		"imgsrc": null,
+		"options": ["Divide and Conquer", "Greedy", "Static Block", "Backtracking"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\nStatic Block은 클래스가 메모리에 적재될 때 수행되는 코드 그룹을 의미하는 것으로, 알고리즘 설계 기법과는 무관합니다."
+	},
+	{
+		"id": "2026-1-26",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "블랙박스 테스트의 유형으로 틀린 것은?",
+		"imgsrc": null,
+		"options": ["경계값 분석", "오류 예측", "동등 분할 기법", "조건, 루프 검사"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n조건 검사 및 루프 검사는 화이트박스 테스트(White-box Test)의 종류입니다."
+	},
+	{
+		"id": "2026-1-27",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "다음에서 설명하는 클린 코드 작성 원칙은?",
+		"imgsrc": "/img/2026-1-27.png",
+		"options": ["다형성", "단순성", "추상화", "의존성"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n한 번에 한 가지를 처리하도록 코드를 작성하고 클래스/메소드/함수 등을 최소 단위로 분리하는 작성 원칙은 단순성(Simplicity)입니다."
+	},
+	{
+		"id": "2026-1-28",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "n개의 노드로 구성된 무방향 그래프의 최대 간선 수는?",
+		"imgsrc": null,
+		"options": ["n - 1", "2n / 2", "n(n - 1) / 2", "n(n + 1)"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\nn개의 정점으로 구성된 무방향 그래프에서 최대 간선 수는 n(n-1)/2이고, 방향 그래프에서 최대 간선 수는 n(n-1)입니다."
+	},
+	{
+		"id": "2026-1-29",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "다음 초기 자료에 대하여 삽입 정렬(Insertion Sort)을 이용하여 오름차순 정렬할 경우 1회전 후의 결과는?",
+		"imgsrc": "/img/2026-1-29.png",
+		"options": ["3, 4, 8, 7, 9", "3, 4, 9, 7, 8", "3, 8, 3, 4, 9", "3, 8, 4, 9, 7"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n삽입 정렬 1회전 시 두 번째 자료인 3을 첫 번째 자료 8과 비교하여 적절한 위치(첫 번째 자리)에 삽입하므로 결과는 3, 8, 4, 9, 7이 됩니다."
+	},
+	{
+		"id": "2026-1-30",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "소프트웨어 패키징 도구 활용 시 고려사항으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"반드시 내부 콘텐츠에 대한 암호화 및 보안을 고려한다.",
+			"보안을 위하여 이기종 연동을 고려하지 않아도 된다.",
+			"사용자 편의성을 위한 복잡성 및 비효율성 문제를 고려한다.",
+			"제품 소프트웨어 종류에 적합한 암호화 알고리즘을 적용한다."
+		],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n패키징 도구 활용 시에는 다양한 사용자 환경 및 이기종 간 연동성을 고려해야 합니다."
+	},
+	{
+		"id": "2026-1-31",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "하향식 통합 시험을 위해 일시적으로 필요한 조건만을 가지고 임시로 제공되는 시험용 모듈은?",
+		"imgsrc": null,
+		"options": ["Stub", "Driver", "Procedure", "Function"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n하향식 통합 테스트에서 하위 모듈 대신 사용하는 임시 시험용 모듈은 스텁(Stub)입니다."
+	},
+	{
+		"id": "2026-1-32",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "소프트웨어 형상 관리(Configuration Management)에 관한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"소프트웨어에서 일어나는 수정이나 변경을 알아내고 제어하는 것을 의미한다.",
+			"소프트웨어 개발의 전체 비용을 줄이고, 개발 과정의 여러 방해 요인이 최소화되도록 보증하는 것을 목적으로 한다.",
+			"형상 관리를 위하여 구성된 팀을 \"chief programmer team\"이라고 한다.",
+			"형상 관리의 기능 중 하나는 버전 제어 기술이다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\nChief Programmer Team(수석 프로그래머 팀)은 프로젝트 개발 팀 조직 구조 중 하나이며 형상 관리 조직과는 직접적 연관이 없습니다."
+	},
+	{
+		"id": "2026-1-33",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "소프트웨어 품질 목표 중 쉽게 배우고 사용할 수 있는 정도를 나타내는 것은?",
+		"imgsrc": null,
+		"options": ["Correctness", "Reliability", "Usability", "Integrity"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n쉽게 배우고 사용할 수 있는 정도를 나타내는 품질 특성은 사용성(Usability)입니다."
+	},
+	{
+		"id": "2026-1-34",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "공학적으로 잘된 소프트웨어(Well Engineered Software)의 설명 중 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"소프트웨어는 유지보수가 용이해야 한다.",
+			"소프트웨어는 신뢰성이 높아야 한다.",
+			"소프트웨어는 사용자 수준에 무관하게 일관된 인터페이스를 제공해야 한다.",
+			"소프트웨어는 충분한 테스팅을 거쳐야 한다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n공학적으로 잘 작성을 소프트웨어는 사용자의 수준과 특성에 맞춘 사용자 친화적 인터페이스를 제공해야 합니다."
+	},
+	{
+		"id": "2026-1-35",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "다음 설명의 소프트웨어 테스트의 기본 원칙은?",
+		"imgsrc": "/img/2026-1-35.png",
+		"options": ["살충제 패러독스", "결함 집중", "오류 부재의 궤변", "완벽한 테스팅은 불가능"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n대부분의 결함이 소수의 특정 모듈에 집중해서 발생하는 현상을 결함 집중(Defect Clustering)이라고 합니다."
+	},
+	{
+		"id": "2026-1-36",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "저작권 관리 구성 요소 중 패키저(Packager)의 주요 역할로 옳은 것은?",
+		"imgsrc": null,
+		"options": ["콘텐츠를 제공하는 저작권자를 의미한다.", "콘텐츠를 메타 데이터와 함께 배포 가능한 단위로 묶는다.", "라이선스를 발급하고 관리한다.", "배포된 콘텐츠의 이용 권한을 통제한다."],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n패키저(Packager)는 콘텐츠를 메타데이터와 함께 배포 가능한 형태로 묶고 암호화하는 역할을 수행합니다."
+	},
+	{
+		"id": "2026-1-37",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "데이터베이스 성능에 많은 영향을 주는 DBMS의 구성 요소로 테이블과 클러스터에 연관되어 독립적인 저장 공간을 보유하며, 데이터베이스에 저장된 자료를 더욱 빠르게 조회하기 위하여 사용되는 것은?",
+		"imgsrc": null,
+		"options": ["인덱스(Index)", "트랜잭션(Transaction)", "역정규화(Denormalization)", "트리거(Trigger)"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n자료를 빠르게 검색하고 조회를 향상시키기 위해 구성되는 독립적 저장 구조는 인덱스(Index)입니다."
+	},
+	{
+		"id": "2026-1-38",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "다음 설명에 부합하는 용어로 옳은 것은?",
+		"imgsrc": "/img/2026-1-38.png",
+		"options": ["통합 프로그램", "저장소", "모듈", "데이터"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n독립적인 기능을 가지고 단위로 분리되는 소프트웨어 구조 요소를 모듈(Module)이라고 합니다."
+	},
+	{
+		"id": "2026-1-39",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "소프트웨어 품질 관련 국제 표준인 ISO/IEC 25000에 관한 설명으로 옳지 않은 것은?",
+		"imgsrc": null,
+		"options": [
+			"소프트웨어 품질 평가를 위한 소프트웨어 품질평가 통합 모델 표준이다.",
+			"System and Software Quality Requirements and Evaluation으로 줄여서 SQuaRE라고도 한다.",
+			"ISO/IEC 2501n에서는 소프트웨어의 내부 측정, 외부 측정, 사용 품질 측정, 품질 측정 요소 등을 다룬다.",
+			"기존 소프트웨어 품질 평가 모델과 소프트웨어 평가 절차 모델인 ISO/IEC 9126과 ISO/IEC 14598을 통합하였다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\nISO/IEC 2501n은 품질 모델(Quality Model)을 다루며, 측정/측정 요소 부분을 다루는 것은 ISO/IEC 2502n입니다."
+	},
+	{
+		"id": "2026-1-40",
+		"session": "2026년 1회",
+		"subjectId": 2,
+		"subjectName": "2과목: 소프트웨어 개발",
+		"question": "스택(Stack)에 대한 옳은 내용으로만 나열된 것은?",
+		"imgsrc": "/img/2026-1-40.png",
+		"options": ["ㄱ, ㄴ", "ㄴ, ㄷ", "ㄹ", "ㄱ, ㄹ"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n스택은 LIFO(후입선출) 구조로, 인터럽트 처리 및 서브루틴 호출 등에 응용됩니다. (ㄱ: LIFO 설명, ㄴ: Queue 설명, ㄷ: Deque 설명)"
+	},
+	{
+		"id": "2026-1-41",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "분산 데이터베이스 목표 중 \"데이터베이스의 분산된 물리적 환경에서 특정 지역의 컴퓨터 시스템이나 네트워크에 장애가 발생해도 데이터 무결성이 보장된다.\"는 것과 관계있는 것은?",
+		"imgsrc": null,
+		"options": ["장애 투명성", "병행 투명성", "위치 투명성", "중복 투명성"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n특정 노드나 네트워크에 장애가 발생해도 시스템이 올바르게 동작하는 목표는 장애 투명성(Failure Transparency)입니다."
+	},
+	{
+		"id": "2026-1-42",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "정규화 과정 중 1NF에서 2NF가 되기 위한 조건은?",
+		"imgsrc": null,
+		"options": [
+			"1NF를 만족하고 모든 도메인이 원자값이어야 한다.",
+			"1NF를 만족하고, 키가 아닌 모든 애트리뷰트들이 기본키에 이행적으로 함수 종속되지 않아야 한다.",
+			"1NF를 만족하고 다치 종속이 제거되어야 한다.",
+			"1NF를 만족하고 키가 아닌 모든 속성이 기본키에 대하여 완전 함수적 종속 관계를 만족해야 한다."
+		],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n제2정규형(2NF)은 제1정규형을 만족하고, 기본키가 아닌 모든 속성이 기본키에 대해 완전 함수 종속(부분 함수 종속 제거)을 만족해야 합니다."
+	},
+	{
+		"id": "2026-1-43",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "뷰(VIEW)에 대한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"뷰 위에 또 다른 뷰를 정의할 수 있다.",
+			"뷰에 대한 조작에서 삽입, 갱신, 삭제 연산은 제약이 따른다.",
+			"뷰의 정의는 기본 테이블과 같이 ALTER문을 이용하여 변경한다.",
+			"뷰가 정의된 기본 테이블이 제거되면 뷰도 자동적으로 제거된다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n뷰는 가상 테이블이므로 ALTER 문으로 변경할 수 없습니다. (필요 시 DROP 후 CREATE를 수행합니다.)"
+	},
+	{
+		"id": "2026-1-44",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "다음 R과 S 두 릴레이션에 대한 Division 연산의 수행 결과는?",
+		"imgsrc": "/img/2026-1-44.png",
+		"options": ["D3: A, B", "D2: 2, 2", "D3: A", "D1: a, b"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n릴레이션 R에서 릴레이션 S의 (D2, D3) = (1, A) 속성값을 가진 튜플은 a와 b입니다. 따라서 결과는 D1: a, b 가 됩니다."
+	},
+	{
+		"id": "2026-1-45",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "데이터웨어하우스의 기본적인 OLAP (On-Line Analytical Processing) 연산이 아닌 것은?",
+		"imgsrc": null,
+		"options": ["Translate", "Roll-Up", "Dicing", "Drill-Down"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\nOLAP의 주요 연산에는 Roll-up, Drill-down, Slicing, Dicing, Pivoting 등이 있으며 Translate는 해당하지 않습니다."
+	},
+	{
+		"id": "2026-1-46",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "다음 중 SQL의 집계 함수(Aggregation Function)가 아닌 것은?",
+		"imgsrc": null,
+		"options": ["AVG", "SUM", "COUNT", "CREATE"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\nCREATE는 데이터 정의어(DDL)이며, 집계 함수는 COUNT, SUM, AVG, MAX, MIN 등입니다."
+	},
+	{
+		"id": "2026-1-47",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "학생 테이블을 생성한 후, 성별 필드가 누락되어 이를 추가하려고 한다. 이에 적합한 SQL 명령어는?",
+		"imgsrc": null,
+		"options": ["INSERT", "ALTER", "DROP", "MODIFY"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n테이블의 구조(컬럼 추가/변경/삭제)를 변경하는 DDL 명령어는 ALTER입니다."
+	},
+	{
+		"id": "2026-1-48",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "다음 설명과 관련 있는 트랜잭션의 특징은?",
+		"imgsrc": "/img/2026-1-48.png",
+		"options": ["Durability", "Isolation", "Consistency", "Atomicity"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n트랜잭션의 연산은 모두 반영되거나 완전히 전혀 반영되지 않아야 하는 특성은 원자성(Atomicity)입니다."
+	},
+	{
+		"id": "2026-1-49",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "병행제어의 로킹(Locking) 단위에 대한 설명으로 옳지 않은 것은?",
+		"imgsrc": null,
+		"options": [
+			"데이터베이스, 파일, 레코드 등은 로킹 단위가 될 수 있다.",
+			"로킹 단위가 작아지면 로킹 오버헤드가 증가한다.",
+			"한꺼번에 로킹할 수 있는 단위를 로킹 단위라고 한다.",
+			"로킹 단위가 작아지면 병행성 수준이 낮아진다."
+		],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n로킹 단위가 작아지면 병행성(공유도) 수준이 높아지며, 로킹 오버헤드는 증가합니다."
+	},
+	{
+		"id": "2026-1-50",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "관계 데이터 모델에서 릴레이션(relation)에 관한 설명으로 옳은 것은?",
+		"imgsrc": null,
+		"options": [
+			"릴레이션의 각 행을 스키마(Schema)라 하며, 예로 도서 릴레이션을 구성하는 스키마에는 도서번호, 도서명, 저자, 가격 등이 있다.",
+			"릴레이션의 각 열을 튜플(Tuple)이라 하며, 하나의 튜플은 각 속성에서 정의된 값을 이용하여 구성된다.",
+			"도메인(Domain)은 하나의 속성이 가질 수 있는 같은 타입의 모든 값의 집합으로 각 속성의 도메인은 원자값을 갖는다.",
+			"속성(Attribute)은 한 개의 릴레이션의 논리적인 구조를 정의한 것으로 릴레이션의 이름과 릴레이션에 포함된 속성들의 집합을 의미한다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n행은 튜플(Tuple), 열은 속성(Attribute)이라 하며, 도메인(Domain)은 속성이 취할 수 있는 원자값들의 집합입니다."
+	},
+	{
+		"id": "2026-1-51",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "소프트웨어 개발 활동을 수행함에 있어서 시스템이 고장(Failure)을 일으키게 하며, 오류(Error)가 있는 경우 발생하는 것은?",
+		"imgsrc": null,
+		"options": ["Fault", "Mistake", "Testcase", "Inspection"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n소프트웨어가 예상과 다르게 동작하게 만드는 결함은 Fault입니다."
+	},
+	{
+		"id": "2026-1-52",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "병렬 데이터베이스 환경 중 수평 분할에서 활용되는 분할 기법이 아닌 것은?",
+		"imgsrc": null,
+		"options": ["라운드-로빈", "범위 분할", "예측 분할", "해시 분할"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n수평 분할 기법에는 라운드-로빈, 범위 분할, 해시 분할, 목록 분할 등이 있으며 예측 분할은 해당하지 않습니다."
+	},
+	{
+		"id": "2026-1-53",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "SQL 문에서 SELECT에 대한 설명으로 옳지 않은 것은?",
+		"imgsrc": null,
+		"options": [
+			"FROM 절에는 질의에 의해 검색될 데이터들을 포함하는 테이블명을 기술한다.",
+			"검색결과에 중복되는 레코드를 없애기 위해서는 WHERE 절에 'DISTINCT' 키워드를 사용한다.",
+			"HAVING 절은 GROUP BY 절과 함께 사용되며, 그룹에 대한 조건을 지정한다.",
+			"ORDER BY 절은 특정 속성을 기준으로 정렬하여 검색할 때 사용한다."
+		],
+		"answer": 2,
+		"explanation": "💡 **해설**:\nDISTINCT 키워드는 WHERE 절이 아니라 SELECT 절의 속성명 앞에 지정합니다."
+	},
+	{
+		"id": "2026-1-54",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "어떤 릴레이션 R에서 X와 Y를 각각 R의 애트리뷰트 집합의 부분집합이라고 할 경우 애트리뷰트 X의 값 각각에 대해 시간에 관계없이 항상 애트리뷰트 Y의 값이 오직 하나만 연관되어 있을 때 Y는 X에 함수 종속이라고 한다. 이 함수 종속의 표기로 옳은 것은?",
+		"imgsrc": null,
+		"options": ["Y -> X", "X -> Y", "Y ⊂ X", "X ⊂ Y"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\nX의 값에 따라 Y가 결정되는 함수 종속 관계의 표기는 X -> Y 입니다."
+	},
+	{
+		"id": "2026-1-55",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "데이터의 중복으로 인하여 관계 연산을 처리할 때 예기치 못한 곤란한 현상이 발생하는 것을 무엇이라 하는가?",
+		"imgsrc": null,
+		"options": ["이상(Anomaly)", "제한(Restriction)", "종속성(Dependency)", "변환(Translation)"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n데이터 중복 등으로 인해 발생하는 불필요한 부작용을 이상(Anomaly) 현상이라고 합니다."
+	},
+	{
+		"id": "2026-1-56",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "학적 테이블에서 전화번호가 Null 값이 아닌 학생명을 모두 검색할 때, SQL 구문으로 옳은 것은?",
+		"imgsrc": null,
+		"options": [
+			"SELECT 학생명 FROM 학적 WHERE 전화번호 DON'T NULL;",
+			"SELECT 학생명 FROM 학적 WHERE 전화번호 != NOT NULL;",
+			"SELECT 학생명 FROM 학적 WHERE 전화번호 IS NOT NULL;",
+			"SELECT 학생명 FROM 학적 WHERE 전화번호 IS NULL;"
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\nNULL 검사는 `IS NULL` 또는 `IS NOT NULL` 구문을 사용합니다."
+	},
+	{
+		"id": "2026-1-57",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "다음 중 기본키는 NULL 값을 가져서는 안되며, 릴레이션 내에 오직 하나의 값만 존재해야 한다는 조건을 무엇이라 하는가?",
+		"imgsrc": null,
+		"options": ["개체 무결성 제약 조건", "참조 무결성 제약 조건", "도메인 무결성 제약 조건", "속성 무결성 제약 조건"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n기본키는 NULL이 될 수 없으며 고유해야 한다는 규칙은 개체 무결성 제약 조건입니다."
+	},
+	{
+		"id": "2026-1-58",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "데이터 제어어(DCL)에 대한 설명으로 옳은 것은?",
+		"imgsrc": null,
+		"options": [
+			"ROLLBACK: 데이터의 보안과 무결성을 정의한다.",
+			"COMMIT: 데이터베이스 사용자의 사용 권한을 취소한다.",
+			"GRANT: 데이터베이스 사용자의 사용 권한을 부여한다.",
+			"REVOKE: 데이터베이스 조작 작업이 비정상적으로 종료되었을 때 원래 상태로 복구한다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\nGRANT는 사용자에게 접근 권한을 부여하는 DCL 명령어입니다."
+	},
+	{
+		"id": "2026-1-59",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "정규화 과정에서 함수 종속이 A → B이고 B → C일 때 A → C인 관계를 제거하는 단계는?",
+		"imgsrc": null,
+		"options": ["1NF → 2NF", "2NF → 3NF", "3NF → BCNF", "BCNF → 4NF"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n이행적 함수 종속(A → B, B → C => A → C)을 제거하는 단계는 2NF에서 3NF로 가는 정규화 단계입니다."
+	},
+	{
+		"id": "2026-1-60",
+		"session": "2026년 1회",
+		"subjectId": 3,
+		"subjectName": "3과목: 데이터베이스 구축",
+		"question": "데이터베이스 설계 단계 중 물리적 설계 시 고려 사항으로 적절하지 않은 것은?",
+		"imgsrc": null,
+		"options": ["스키마의 평가 및 정제", "응답 시간", "저장 공간의 효율화", "트랜잭션 처리량"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n스키마의 평가 및 정제는 논리적 설계 단계의 고려 사항입니다."
+	},
+	{
+		"id": "2026-1-61",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "OSI 7계층에서 물리적 연결을 이용해 신뢰성 있는 정보를 전송하려고 동기화, 오류 제어, 흐름 제어 등의 전송 에러를 제어하는 계층은?",
+		"imgsrc": null,
+		"options": ["데이터 링크 계층", "물리 계층", "응용 계층", "표현 계층"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n동기화, 오류 제어, 흐름 제어 등을 통해 인접 시스템 간 신뢰성 있는 전송을 보장하는 곳은 데이터 링크 계층입니다."
+	},
+	{
+		"id": "2026-1-62",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 중 소프트웨어 개발 지원 도구에 대한 설명으로 옳지 않은 것은?",
+		"imgsrc": null,
+		"options": [
+			"성능이나 편의성뿐만 아니라 범용성도 고려하여 개발 도구를 선정해야 한다.",
+			"IDE는 개발자가 편리하게 컴파일 및 디버깅할 수 있도록 지원하는 도구이다.",
+			"외부의 플러그인을 쉽게 검색하고 적용할 수 있는 IDE를 선정해야 한다.",
+			"코드 품질 및 인터페이스 검사 도구는 모든 코딩을 완료한 후에 실행하는 것이 좋다."
+		],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n코드 품질 검사 및 테스트 도구는 코딩 완료 후 한 번에 돌리기보다 단위별로 지속적이고 수시로 수행하는 것이 좋습니다."
+	},
+	{
+		"id": "2026-1-63",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "UNIX에서 새로운 프로세스를 생성하는 명령어는?",
+		"imgsrc": null,
+		"options": ["ls", "cat", "fork", "chmod"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\nUNIX/Linux에서 새로운 자식 프로세스를 생성하는 시스템 호출 명령어는 fork입니다."
+	},
+	{
+		"id": "2026-1-64",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 C언어 프로그램이 실행되었을 때의 결과는?",
+		"imgsrc": "/img/2026-1-64.png",
+		"options": ["20", "25", "30", "55"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n0부터 10까지 짝수(i % 2 == 0)는 continue로 건너뛰고 홀수인 1, 3, 5, 7, 9의 합을 누적하므로 sum = 25가 됩니다."
+	},
+	{
+		"id": "2026-1-65",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 중 프로세스에 대한 설명 중 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"프로세서가 할당되는 실체로, 디스패치가 가능한 단위이다.",
+			"프로세스는 비동기적 행위를 일으키는 주체이다.",
+			"프로세스는 스레드 내의 작업단위를 의미하며, 경량 스레드라고도 불린다.",
+			"PCB를 가지며 PCB에는 프로세스의 현재상태, 고유식별자를 가지고 있다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n스레드(Thread)가 프로세스 내에서의 실행 작업 단위이며 경량 프로세스(LWP)라고 불립니다. 설명이 반대로 되어 있습니다."
+	},
+	{
+		"id": "2026-1-66",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "소프트웨어 개발에서 모듈(Module)이 되기 위한 주요 특징에 해당하지 않는 것은?",
+		"imgsrc": null,
+		"options": ["다른 것들과 구별될 수 있는 독립적인 기능을 가진 단위(Unit)이다.", "독립적인 컴파일이 가능하다.", "유일한 이름을 가져야 한다.", "다른 모듈에서의 접근이 불가능해야 한다."],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n모듈들은 서로 연동하여 전체 시스템을 이루므로 인터페이스를 통해 타 모듈의 접근이 가능해야 합니다."
+	},
+	{
+		"id": "2026-1-67",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "UDP 프로토콜의 특징이 아닌 것은?",
+		"imgsrc": null,
+		"options": ["비연결형 서비스를 제공한다.", "단순한 헤더 구조로 오버헤드가 적다.", "주로 주소를 지정하고, 경로를 설정하는 기능을 한다.", "TCP와 같이 트랜스포트 계층에 존재한다."],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n주소 지정 및 경로 설정(라우팅)을 수행하는 것은 네트워크 계층의 IP(Internet Protocol) 프로토콜입니다."
+	},
+	{
+		"id": "2026-1-68",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 C언어 프로그램이 실행되었을 때의 결과는?",
+		"imgsrc": "/img/2026-1-68.png",
+		"options": ["0", "4", "8", "12"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n`&n`과 `pt`는 같은 주소값이므로 `&n - *&pt` 연산 부분에서 상쇄(0)되며, `*pt`(=4)와 `n`(=4)의 합에 의해 8이 출력됩니다."
+	},
+	{
+		"id": "2026-1-69",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "프로세스 적재 정책과 관련한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"반복, 스택, 부프로그램은 시간 지역성(Temporal Locality)과 관련이 있다.",
+			"공간 지역성(Spatial Locality)은 프로세스가 어떤 페이지를 참조했다면 이후 가상주소 공간상 그 페이지와 인접한 페이지들을 참조할 가능성이 높음을 의미한다.",
+			"일반적으로 페이지 교환에 보내는 시간보다 프로세스 수행에 보내는 시간이 더 크면 스레싱(Thrashing)이 발생한다.",
+			"스레싱(Thrashing) 현상을 방지하기 위해서는 각 프로세스가 필요로 하는 프레임을 제공할 수 있어야 한다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n스레싱(Thrashing)은 프로세스 실행 시간보다 페이지 교체에 소비되는 시간이 더 커지는 현상입니다."
+	},
+	{
+		"id": "2026-1-70",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 중 응집도가 가장 높은 것은?",
+		"imgsrc": null,
+		"options": ["절차적 응집도", "순차적 응집도", "우연적 응집도", "논리적 응집도"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n응집도가 높은 순서: 기능적 > 순차적 > 교환적 > 절차적 > 시간적 > 논리적 > 우연적 응집도. 주어진 옵션 중 순차적 응집도가 가장 높습니다."
+	},
+	{
+		"id": "2026-1-71",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "C언어에서 malloc() 함수에 대한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"원하는 시점에 원하는 만큼 메모리를 동적으로 할당한다.",
+			"사용자가 입력한 bit만큼 메모리를 할당한다.",
+			"free 명령어로 할당된 메모리를 해제한다.",
+			"메모리 할당이 불가능할 경우 NULL이 반환된다."
+		],
+		"answer": 2,
+		"explanation": "💡 **해설**:\nmalloc() 함수는 bit가 아닌 Byte 단위로 동적 메모리를 할당합니다."
+	},
+	{
+		"id": "2026-1-72",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 JAVA 프로그램이 실행되었을 때, 실행 결과는?",
+		"imgsrc": "/img/2026-1-72.png",
+		"options": ["BCDABCA", "BCDABCC", "CDDACCA", "CDDACCC"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n문자 배열 변환 로직 추적 시 `rs()` 메서드 수행 후 최종 문자 배열은 `['B', 'C', 'D', 'A', 'B', 'C', 'C']`가 출력됩니다."
+	},
+	{
+		"id": "2026-1-73",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 JAVA 프로그램이 실행되었을 때의 결과는?",
+		"imgsrc": "/img/2026-1-73.png",
+		"options": ["5, 5, 5", "5, 6, 5", "6, 5, 5", "5, 6, 4"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n`y = x++` 연산에 의해 y=5, x=6이 되고, `z = --x` 연산에 의해 x=5, z=5가 되므로, 최종 x, y, z 출력값은 5, 5, 5 입니다."
+	},
+	{
+		"id": "2026-1-74",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "빈 기억공간의 크기가 20KB, 16KB, 8KB, 40KB 일 때 기억장치 배치 전략으로 \"Best Fit\"을 사용하여 17KB의 프로그램을 적재할 경우 내부 단편화의 크기는 얼마인가?",
+		"imgsrc": null,
+		"options": ["3KB", "23KB", "64KB", "67KB"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\nBest Fit(최적 적합)은 들어갈 수 있는 공간 중 단편화가 가장 적게 생기는 20KB에 할당됩니다. 따라서 내부 단편화는 20KB - 17KB = 3KB 입니다."
+	},
+	{
+		"id": "2026-1-75",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "TCP/IP에서 사용되는 논리 주소를 물리 주소로 변환시켜 주는 프로토콜은?",
+		"imgsrc": null,
+		"options": ["TCP", "ARP", "FTP", "IP"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\nIP 주소(논리 주소)를 MAC 주소(물리 주소)로 변환해주는 프로토콜은 ARP(Address Resolution Protocol)입니다."
+	},
+	{
+		"id": "2026-1-76",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 C언어 프로그램 실행 후, 'c'를 입력하였을 때 출력 결과는?",
+		"imgsrc": "/img/2026-1-76.png",
+		"options": ["one", "one two", "three ", "one two three four"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n입력값이 'c'이므로 `case 'c':`로 건너뛰어 `printf(\"three \");`를 실행한 뒤 `break;`를 만나 switch 문을 빠져나옵니다."
+	},
+	{
+		"id": "2026-1-77",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "OSI 7계층 중 다음 설명에 해당하는 계층은?",
+		"imgsrc": "/img/2026-1-77.png",
+		"options": ["데이터 링크 계층", "네트워크 계층", "전송 계층", "표현 계층"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n네트워크 연결 관리 및 경로 설정, 패킷 교환 및 중계 기능을 수행하는 곳은 네트워크 계층(Network Layer)입니다."
+	},
+	{
+		"id": "2026-1-78",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "C언어의 자료형 중 논리형에 해당하는 것은?",
+		"imgsrc": null,
+		"options": ["short", "int", "char", "bool"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\nC99 이상 표준에서 지원되는 논리 자료형 키워드는 bool입니다."
+	},
+	{
+		"id": "2026-1-79",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "C언어에서 산술 연산자가 아닌 것은?",
+		"imgsrc": null,
+		"options": ["%", "*", "<<", "/"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n`<<` 연산자는 비트 이동(쉬프트) 연산자입니다."
+	},
+	{
+		"id": "2026-1-80",
+		"session": "2026년 1회",
+		"subjectId": 4,
+		"subjectName": "4과목: 프로그래밍 언어 활용",
+		"question": "다음 파이썬 코드에서 '53t44'를 입력했을 때 출력 결과는?",
+		"imgsrc": "/img/2026-1-80.png",
+		"options": ["53 t 44", "53t44", "53 44", "53, 44"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n구분자 't'를 기준으로 53과 44로 분리되어 각각 a, b에 입력되고, print(a, b) 실행 시 공백을 두고 출력되어 `53 44`가 됩니다."
+	},
+	{
+		"id": "2026-1-81",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "취약점 관리를 위한 응용 프로그램의 보안 설정과 가장 거리가 먼 것은?",
+		"imgsrc": null,
+		"options": ["서버 관리실 출입 통제", "실행 프로세스 권한 설정", "운영체제의 접근 제한", "운영체제의 정보 수집 제한"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n서버 관리실 출입 통제는 물리적 보안 조치에 해당합니다."
+	},
+	{
+		"id": "2026-1-82",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "취약점 관리를 위해 일반적으로 수행하는 작업이 아닌 것은?",
+		"imgsrc": null,
+		"options": ["무결성 검사", "응용 프로그램의 보안 설정 및 패치(Patch) 적용", "중단 프로세스 및 닫힌 포트 위주로 확인", "불필요한 서비스 및 악성 프로그램의 확인과 제거"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n취약점 관리를 위해서는 현재 실행 중인 프로세스와 열려 있는 포트(Port) 위주로 점검해야 합니다."
+	},
+	{
+		"id": "2026-1-83",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "소프트웨어 개발 프레임워크와 관련한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"반제품 상태의 제품을 토대로 도메인별로 필요한 서비스 컴포넌트를 사용하여 재사용성 확대와 성능을 보장 받을 수 있게 하는 개발 소프트웨어이다.",
+			"개발해야 할 애플리케이션의 일부분이 이미 구현되어 있어 동일한 로직 반복을 줄일 수 있다.",
+			"라이브러리와 달리 사용자 코드가 직접 호출하여 사용하기 때문에 소프트웨어 개발 프레임워크가 직접 코드의 흐름을 제어할 수 없다.",
+			"생산성 향상과 유지보수성 향상 등의 장점이 있다."
+		],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n프레임워크는 제어의 역전(Inversion of Control) 특성을 지니고 있어 프레임워크 자체가 전체적인 프로그램 흐름을 제어합니다."
+	},
+	{
+		"id": "2026-1-84",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "다음 내용이 설명하는 접근 제어 모델은?",
+		"imgsrc": "/img/2026-1-84.png",
+		"options": ["Clark-Wilson Integrity Model", "PDCA Model", "Bell-Lapadula Model", "Chinese Wall Model"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n기밀성 중심의 상하 보안 레벨 제어를 규정하는 모델은 벨 라파듈라(Bell-LaPadula) 모델입니다."
+	},
+	{
+		"id": "2026-1-85",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "정보보호를 위한 암호화에 대한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": ["평문 - 암호화되기 전의 원본 메시지", "암호문 - 암호화가 적용된 메시지", "복호화 - 평문을 암호문으로 바꾸는 작업", "키(Key) - 적절한 암호화를 위하여 사용하는 값"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n평문을 암호문으로 바꾸는 작업은 '암호화(Encryption)'이며, 복호화(Decryption)는 암호문을 평문으로 되돌리는 작업입니다."
+	},
+	{
+		"id": "2026-1-86",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "소프트웨어 프로젝트 관리를 효율적으로 수행하기 위한 3P 중 소프트웨어 프로젝트를 수행하기 위한 Task Framework의 고려와 가장 연관되는 것은?",
+		"imgsrc": null,
+		"options": ["People", "Problem", "Product", "Process"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n프로젝트 3P 중 작업 프레임워크 및 개발 절차와 관련된 요소는 Process(프로세스)입니다."
+	},
+	{
+		"id": "2026-1-87",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "DoS(Denial of Service) 공격과 관련한 내용으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"Ping of Death 공격은 정상 크기보다 큰 ICMP 패킷을 작은 조각(Fragment)으로 쪼개어 공격 대상이 조각화된 패킷을 처리하게 만드는 공격 방법이다.",
+			"Smurf 공격은 멀티캐스트(Multicast)를 활용하여 공격 대상이 네트워크의 임의의 시스템에 패킷을 보내게 만드는 공격이다.",
+			"SYN Flooding은 존재하지 않는 클라이언트가 서버별로 한정된 접속 가능 공간에 접속한 것처럼 속여 다른 사용자가 서비스를 이용하지 못하게 하는 것이다.",
+			"Land 공격은 패킷 전송 시 출발지 IP 주소와 목적지 IP 주소 값을 똑같이 만들어서 공격 대상에게 보내는 공격 방법이다."
+		],
+		"answer": 2,
+		"explanation": "💡 **해설**:\nSmurf 공격은 멀티캐스트가 아닌 브로드캐스트(Broadcast) 주소를 오용하여 대량의 패킷을 유도하는 공격입니다."
+	},
+	{
+		"id": "2026-1-88",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "다음 암호 알고리즘 중 성격이 다른 하나는?",
+		"imgsrc": null,
+		"options": ["MD4", "MD5", "SHA-1", "AES"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\nMD4, MD5, SHA-1은 해시(Hash) 알고리즘이고, AES는 대칭키(블록) 암호화 알고리즘입니다."
+	},
+	{
+		"id": "2026-1-89",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "시스템이 몇 대가 되어도 하나의 시스템에서 인증에 성공하면 다른 시스템에 대한 접근 권한도 얻는 시스템을 의미하는 것은?",
+		"imgsrc": null,
+		"options": ["SOS", "SBO", "SSO", "SOA"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n단 한 번의 로그인으로 연동된 여러 시스템에 접근 가능하도록 하는 기술은 SSO(Single Sign-On)입니다."
+	},
+	{
+		"id": "2026-1-90",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "악성코드의 유형 중 다른 컴퓨터의 취약점을 이용하여 스스로 전파하거나 메일로 전파되며 스스로를 증식하는 것은?",
+		"imgsrc": null,
+		"options": ["Worm", "Adware", "Rogue Ware", "Reflection Attack"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n네트워크나 취약점을 이용해 독자적으로 스스로를 복제하며 증식/전파되는 악성코드는 웜(Worm)입니다."
+	},
+	{
+		"id": "2026-1-91",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "Python 기반의 웹 크롤링(Web Crawling) 프레임워크로 옳은 것은?",
+		"imgsrc": null,
+		"options": ["Li-fi", "Scrapy", "CrawlCat", "SBAS"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n파이썬 기반의 대표적인 웹 스크레이핑/크롤링 프레임워크는 Scrapy입니다."
+	},
+	{
+		"id": "2026-1-92",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "다음이 설명하는 서비스 공격 유형은?",
+		"imgsrc": "/img/2026-1-92.png",
+		"options": ["SYN Flooding", "Land", "SMURFING", "TearDrop"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\nTCP 연결 시 Handshake 과정을 의도적으로 완결짓지 않고 서버의 대기 리소스를 고갈시키는 공격은 SYN Flooding입니다."
+	},
+	{
+		"id": "2026-1-93",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "합법적으로 소유하고 있던 사용자의 도메인을 탈취하거나 DNS 이름을 속여 사용자들이 진짜 사이트로 오인하도록 유도하여 개인정보를 훔치는 공격 기법은?",
+		"imgsrc": null,
+		"options": ["Ransomware", "Pharming", "Phishing", "XSS"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\nDNS 주소 변조 등으로 사용자가 정상 주소를 입력해도 위장 사이트로 연결되도록 탈취하는 공격은 파밍(Pharming)입니다."
+	},
+	{
+		"id": "2026-1-94",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "공격자가 패킷의 출발지 주소를 변경하여 출발지와 목적지 주소(또는 포트)를 동일하게 하는 공격 유형은?",
+		"imgsrc": null,
+		"options": ["SYN Flooding", "Land", "TearDrop", "Key Logger Attack"],
+		"answer": 2,
+		"explanation": "💡 **해설**:\n출발지 IP 주소와 목적지 IP 주소를 동일하게 조작하여 대상 시스템이 자기 자신에게 응답을 계속 보내 루프에 빠지게 만드는 공격은 Land Attack입니다."
+	},
+	{
+		"id": "2026-1-95",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "기존 무선 랜의 한계 극복을 위해 등장하였으며, 대규모 디바이스의 네트워크 생성에 최적화되어 차세대 이동통신, 홈네트워킹, 공공안전 등의 특수목적에 사용되는 새로운 방식의 네트워크 기술을 의미하는 것은?",
+		"imgsrc": null,
+		"options": ["Software Defined Perimeter", "Virtual Private Network", "Local Area Network", "Mesh Network"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n대규모 디바이스 및 그물망처럼 연결되어 자율적 네트워크를 구축할 수 있는 기술은 매시 네트워크(Mesh Network)입니다."
+	},
+	{
+		"id": "2026-1-96",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "다음에서 설명하는 IT 기술은?",
+		"imgsrc": "/img/2026-1-96.png",
+		"options": ["SDN(Software Defined Networking)", "NFS(Network File System)", "Network Mapper", "AOE Network"],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n네트워크의 제어부와 데이터 전달부를 분리하여 소프트웨어로 중앙 제어 및 관리할 수 있는 기술은 SDN입니다."
+	},
+	{
+		"id": "2026-1-97",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "소프트웨어 개발 방법론의 테일러링(Tailoring)과 관련한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"프로젝트 수행 시 예상되는 변화를 배제하고 신속히 진행하여야 한다.",
+			"프로젝트에 최적화된 개발 방법론을 적용하기 위해 절차, 산출물 등을 적절히 변경하는 활동이다.",
+			"관리 측면에서의 목적 중 하나는 최단기간에 안정적인 프로젝트 진행을 위한 사전 위험을 식별하고 제거하는 것이다.",
+			"기술적 측면에서의 목적 중 하나는 프로젝트에 최적화된 기술 요소를 도입하여 프로젝트 특성에 맞는 최적의 기법과 도구를 사용하는 것이다."
+		],
+		"answer": 1,
+		"explanation": "💡 **해설**:\n테일러링 활동 시 프로젝트 특성과 예상되는 변경 요소를 충분히 반영하고 고려하여 진행해야 합니다."
+	},
+	{
+		"id": "2026-1-98",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "침입 탐지 시스템(IDS; Intrusion Detection System)과 관련한 설명으로 틀린 것은?",
+		"imgsrc": null,
+		"options": [
+			"이상 탐지 기법(Anomaly Detection)은 Signature Base나 Knowledge Base라고도 불리며 이미 발견되고 정립된 공격 패턴을 입력해두었다가 탐지 및 차단한다.",
+			"HIDS(Host-Based Intrusion Detection)는 운영체제에 설정된 사용자 계정에 따라 어떤 사용자가 어떤 접근을 시도하고 어떤 작업을 했는지에 대한 기록을 남기고 추적한다.",
+			"NIDS(Network-Based Intrusion Detection System)로는 대표적으로 Snort가 있다.",
+			"외부 인터넷에 서비스를 제공하는 서버가 위치하는 네트워크인 DMZ(Demilitarized Zone)에는 IDS가 설치될 수 있다."
+		],
+		"answer": 1,
+		"explanation": "💡 **해설**:\nSignature Base / Knowledge Base 공격 패턴 비교 방식은 오용 탐지 기법(Misuse Detection)에 대한 설명입니다."
+	},
+	{
+		"id": "2026-1-99",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "침입 차단 시스템(방화벽) 중 다음과 같은 형태의 구축 유형은?",
+		"imgsrc": "/img/2026-1-99.png",
+		"options": ["Block Host", "Tree Host", "Screened Subnet", "Ring Homed"],
+		"answer": 3,
+		"explanation": "💡 **해설**:\n인터넷과 내부망 사이에 라우터와 Bastion Host, 그리고 서브넷(DMZ 영역)을 구축하는 형태는 Screened Subnet 방화벽 형태입니다."
+	},
+	{
+		"id": "2026-1-100",
+		"session": "2026년 1회",
+		"subjectId": 5,
+		"subjectName": "5과목: 정보시스템 구축 관리",
+		"question": "LOC 기법에 의하여 예측된 총 라인수가 36,000라인, 개발에 참여할 프로그래머가 6명, 프로그래머들의 평균 생산성이 월간 300라인일 때 개발에 소요되는 기간은?",
+		"imgsrc": null,
+		"options": ["5개월", "10개월", "15개월", "20개월"],
+		"answer": 4,
+		"explanation": "💡 **해설**:\n6명의 프로그래머가 월 300라인씩 작성 시 월 총 1,800라인을 작성합니다. 총 36,000 / 1,800 = 20개월 소요됩니다."
+	}
+]
