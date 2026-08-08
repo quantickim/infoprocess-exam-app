@@ -44,10 +44,31 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 		});
 	}, [questions, selectedSession, selectedSubject]);
 
+	// 회차 변경 시 마지막으로 풀었던 바로 다음 문제 위치 계산 후 이동
 	const handleSessionChange = (val: string | number) => {
-		setSelectedSession(val as string);
+		const sessionStr = val as string;
+		setSelectedSession(sessionStr);
 		setSelectedSubject(0); // 회차 변경 시 과목 선택 상태를 전체 과목(0)으로 초기화
-		setCurrentIndex(0);
+
+		if (sessionStr) {
+			// 선택한 회차의 전체 문제 목록
+			const sessionQuestions = questions.filter((q) => q.session === sessionStr);
+
+			// 해당 회차에서 풀었던 문제 중 가장 뒤쪽 문제의 인덱스 찾기
+			let lastAnsweredIndex = -1;
+			for (let i = sessionQuestions.length - 1; i >= 0; i--) {
+				if (userAnswers[sessionQuestions[i].id]) {
+					lastAnsweredIndex = i;
+					break;
+				}
+			}
+
+			// 풀었던 마지막 문제의 다음 문제 인덱스로 설정 (모두 풀었을 경우 마지막 문제에 위치)
+			const nextIndex = lastAnsweredIndex >= 0 ? Math.min(lastAnsweredIndex + 1, sessionQuestions.length - 1) : 0;
+			setCurrentIndex(nextIndex);
+		} else {
+			setCurrentIndex(0);
+		}
 	};
 
 	const handleSubjectChange = (subjectId: number) => {
@@ -67,7 +88,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 			className="glass-card"
 			style={{ padding: "18px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", position: "relative", zIndex: 50 }}
 		>
-			<div style={{ display: "flex", alignItems: "center", gap: "12px", width: "260px" }}>
+			<div style={{ display: "flex", alignItems: "center", gap: "12px", flex: "1" }}>
 				<label style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--text-muted)", whiteSpace: "nowrap" }}>회차 선택:</label>
 				<div style={{ width: "100%" }}>
 					<CustomSelect options={sessionOptions} value={selectedSession} onChange={handleSessionChange} placeholder="회차를 선택해주세요" />
@@ -171,14 +192,12 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 						disabled={currentIndex === 0}
 						style={{ opacity: currentIndex === 0 ? 0.5 : 1, cursor: currentIndex === 0 ? "not-allowed" : "pointer" }}
 					>
-						<ChevronLeft size={18} />
 						이전문제
 					</button>
 
 					{currentIndex < filteredQuestions.length - 1 ? (
 						<button className="btn-primary" onClick={() => setCurrentIndex((prev) => Math.min(filteredQuestions.length - 1, prev + 1))}>
 							다음문제
-							<ChevronRight size={18} />
 						</button>
 					) : (
 						<button className="btn-primary" style={{ background: "linear-gradient(135deg, #10b981, #059669)" }} onClick={() => onFinishQuiz(filteredQuestions)}>

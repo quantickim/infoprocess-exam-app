@@ -18,9 +18,9 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 	const hasAnswered = userAnswer !== undefined && userAnswer !== null;
 	const isCorrect = hasAnswered && userAnswer.selectedOption === question.answer;
 
-	// question.id (예: "2025-1-21")의 마지막 숫자를 실제 문제 번호로 사용
-	// 파싱에 실패할 경우에는 목록 내 순번(currentIndex + 1)으로 대체
-	const idParts = question.id.split("-");
+	// question.id가 숫자일 경우를 대비해 String으로 명시적 변환
+	const idStr = String(question.id);
+	const idParts = idStr.split("-");
 	const parsedNumber = parseInt(idParts[idParts.length - 1], 10);
 	const displayNumber = !isNaN(parsedNumber) ? parsedNumber : currentIndex + 1;
 
@@ -36,17 +36,17 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 					</span>
 				</div>
 
-				{/* 북마크 버튼 영역 (크기 확대 및 시인성 개선) */}
+				{/* 북마크 버튼 영역 (String 타입으로 일치시켜 핸들러 호출) */}
 				<button
 					className={`btn-icon ${isBookmarked ? "active-bookmark" : ""}`}
-					onClick={() => onToggleBookmark(question.id)}
+					onClick={() => onToggleBookmark(idStr)}
 					title={isBookmarked ? "북마크 해제" : "북마크 추가"}
 					style={{
 						background: isBookmarked ? "rgba(234, 179, 8, 0.15)" : "rgba(255, 255, 255, 0.05)",
 						border: "1px solid",
 						borderColor: isBookmarked ? "rgba(234, 179, 8, 0.4)" : "var(--border-color)",
 						borderRadius: "var(--radius-sm)",
-						padding: "8px 12px",
+						padding: "8px",
 						cursor: "pointer",
 						display: "flex",
 						alignItems: "center",
@@ -85,7 +85,7 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 				</div>
 			)}
 
-			{/* Optional Image (imgsrc가 존재할 경우 질문과 보기 사이에 표시) */}
+			{/* Optional Image */}
 			{question.imgsrc && (
 				<div style={{ marginBottom: "24px", textAlign: "center" }}>
 					<img

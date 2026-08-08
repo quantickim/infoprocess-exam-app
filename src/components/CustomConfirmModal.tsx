@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AlertTriangle } from "lucide-react";
 
 interface CustomConfirmModalProps {
@@ -12,10 +12,22 @@ interface CustomConfirmModalProps {
 }
 
 export default function CustomConfirmModal({ isOpen, title, message, confirmText = "확인", cancelText = "취소", onConfirm, onClose }: CustomConfirmModalProps) {
+	// ESC 키 누를 때 모달 닫기
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape" && isOpen) {
+				onClose();
+			}
+		};
+		window.addEventListener("keydown", handleKeyDown);
+		return () => window.removeEventListener("keydown", handleKeyDown);
+	}, [isOpen, onClose]);
+
 	if (!isOpen) return null;
 
 	return (
 		<div
+			onClick={onClose} // 배경 클릭 시 닫기
 			style={{
 				position: "fixed",
 				top: 0,
@@ -35,6 +47,7 @@ export default function CustomConfirmModal({ isOpen, title, message, confirmText
 		>
 			<div
 				className="glass-card"
+				onClick={(e) => e.stopPropagation()} // 모달 내부 클릭 시 닫힘 방지
 				style={{
 					width: "100%",
 					maxWidth: "380px",

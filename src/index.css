@@ -215,7 +215,7 @@ body {
 	align-items: center;
 	padding: 2px 8px;
 	border-radius: 9999px;
-	font-size: 0.75rem;
+	font-size: 0.8rem;
 	font-weight: 600;
 }
 
@@ -420,7 +420,7 @@ body {
 		justify-content: center !important;
 		align-items: center !important;
 		padding: 8px 4px !important;
-		font-size: 0.75rem !important;
+		font-size: 0.9rem !important;
 		gap: 4px !important;
 		text-align: center;
 		border-radius: var(--radius-sm) !important;
@@ -516,5 +516,10 @@ body {
 	.option-item {
 		padding: 12px 14px;
 		font-size: 0.9rem;
+	}
+}
+@media (max-width: 640px) {
+	.subject-prefix {
+		display: none !important;
 	}
 }

@@ -1,6 +1,8 @@
-import React from "react";
-import { BookOpen, Award, Bookmark, XCircle, ArrowRight, Layers, Shuffle, Sparkles } from "lucide-react";
+import React, { useState } from "react";
+import { BookOpen, Award, Bookmark, XCircle, ArrowRight, Layers, Shuffle, Sparkles, RotateCcw } from "lucide-react";
 import { UserAnswersMap, Question } from "../types";
+import { DailyStats } from "../utils/storage";
+import CustomConfirmModal from "./CustomConfirmModal";
 
 export type TabType = "home" | "random" | "quiz" | "subject" | "wrong" | "bookmark" | "result";
 
@@ -9,6 +11,9 @@ interface HomeProps {
 	questions: Question[];
 	userAnswers: UserAnswersMap;
 	bookmarkCount: number;
+	wrongAnswers: string[];
+	dailyStats: DailyStats;
+	onResetDailyStats: () => void;
 }
 
 interface MenuCard {
@@ -21,16 +26,18 @@ interface MenuCard {
 	stat?: string;
 }
 
-export default function Home({ setActiveTab, questions, userAnswers, bookmarkCount }: HomeProps) {
+export default function Home({ setActiveTab, questions, userAnswers, bookmarkCount, wrongAnswers, dailyStats, onResetDailyStats }: HomeProps) {
+	const [isResetModalOpen, setIsResetModalOpen] = useState<boolean>(false);
+
 	const answeredCount = Object.keys(userAnswers).length;
 	const correctCount = Object.values(userAnswers).filter((a) => a.isCorrect).length;
-	const wrongCount = answeredCount - correctCount;
+	const totalWrongCount = wrongAnswers.length;
 
 	const cards: MenuCard[] = [
 		{
 			tab: "random",
 			icon: <Shuffle size={32} />,
-			title: "랜덤문제 풀이",
+			title: "랜덤 문제풀이",
 			description: "전체 기출문제 중에서 무작위로 추출하여 실전을 대비합니다.",
 			color: "linear-gradient(135deg, #a855f7, #7e22ce)",
 			glow: "rgba(168, 85, 247, 0.35)",
@@ -61,7 +68,7 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 			description: "풀었던 문제 중 틀린 문제만 모아 집중 복습할 수 있습니다.",
 			color: "linear-gradient(135deg, #f43f5e, #e11d48)",
 			glow: "rgba(244, 63, 94, 0.35)",
-			stat: wrongCount > 0 ? `${wrongCount}문제 오답` : "오답 없음",
+			stat: totalWrongCount > 0 ? `${totalWrongCount}문제 오답` : "오답 없음",
 		},
 		{
 			tab: "bookmark",
@@ -70,7 +77,7 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 			description: "중요하거나 헷갈려서 저장해둔 문제를 따로 집중 점검하세요.",
 			color: "linear-gradient(135deg, #eab308, #ca8a04)",
 			glow: "rgba(234, 179, 8, 0.35)",
-			stat: `${bookmarkCount}문제 저장됨`,
+			stat: bookmarkCount > 0 ? `${bookmarkCount}문제 저장됨` : "저장된 문제 없음",
 		},
 		{
 			tab: "result",
@@ -103,37 +110,90 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 						}}
 					>
 						<BookOpen size={15} />
-						2026 정보처리기사 필기 합격 솔루션
+						2025년 1회 필기 - 2026년 2회 필기 CBT 기출문제
 					</div>
 				</div>
 
-				{/* 빠른 현황 요약 (항상 노출) */}
+				{/* 당일 통계 카드 (카드 영역 내부 상단 배치) */}
 				<div
+					className="glass-card"
 					style={{
-						display: "inline-flex",
-						gap: "20px",
-						background: "rgba(30, 41, 59, 0.8)",
-						border: "1px solid var(--border-color)",
+						marginTop: "20px",
+						padding: "16px 24px",
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+						gap: "12px",
+						maxWidth: "420px",
+						width: "100%",
 						borderRadius: "var(--radius-lg)",
-						padding: "14px 24px",
-						marginTop: "16px",
-						flexWrap: "wrap",
-						justifyContent: "center",
+						border: "1px solid var(--border-color)",
+						background: "rgba(30, 41, 59, 0.8)",
 					}}
 				>
-					<div style={{ textAlign: "center" }}>
-						<div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#a5b4fc" }}>{answeredCount}</div>
-						<div style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>풀이 문제</div>
-					</div>
-					<div style={{ width: "1px", background: "var(--border-color)" }} />
-					<div style={{ textAlign: "center" }}>
-						<div style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--correct)" }}>{correctCount}</div>
-						<div style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>정답</div>
-					</div>
-					<div style={{ width: "1px", background: "var(--border-color)" }} />
-					<div style={{ textAlign: "center" }}>
-						<div style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--wrong)" }}>{wrongCount}</div>
-						<div style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>오답</div>
+					{/* 카드 상단 제목 */}
+					<div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--text-muted)", letterSpacing: "0.05em" }}>오늘의 학습 성과</div>
+
+					{/* 카드 내부 스탯 수치 영역 */}
+					<div
+						style={{
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+							gap: "20px",
+							width: "100%",
+						}}
+					>
+						<div style={{ textAlign: "center", flex: 1 }}>
+							<div style={{ fontSize: "1.4rem", fontWeight: 800, color: "#a5b4fc" }}>{dailyStats.total}</div>
+							<div style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>풀이</div>
+						</div>
+
+						<div style={{ width: "1px", height: "30px", background: "var(--border-color)" }} />
+
+						<div style={{ textAlign: "center", flex: 1 }}>
+							<div style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--correct)" }}>{dailyStats.correct}</div>
+							<div style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>정답</div>
+						</div>
+
+						<div style={{ width: "1px", height: "30px", background: "var(--border-color)" }} />
+
+						<div style={{ textAlign: "center", flex: 1 }}>
+							<div style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--wrong)" }}>{dailyStats.wrong}</div>
+							<div style={{ fontSize: "0.78rem", color: "var(--text-muted)" }}>오답</div>
+						</div>
+
+						<div style={{ width: "1px", height: "30px", background: "var(--border-color)" }} />
+
+						{/* 아이콘 전용 당일 측정 초기화 버튼 */}
+						<button
+							onClick={() => setIsResetModalOpen(true)}
+							title="오늘 측정 데이터 초기화"
+							style={{
+								background: "rgba(255, 255, 255, 0.05)",
+								border: "1px solid var(--border-color)",
+								color: "var(--text-muted)",
+								padding: "8px",
+								borderRadius: "var(--radius-sm)",
+								cursor: "pointer",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								transition: "all 0.2s",
+							}}
+							onMouseEnter={(e) => {
+								e.currentTarget.style.background = "rgba(244, 63, 94, 0.15)";
+								e.currentTarget.style.color = "#f43f5e";
+								e.currentTarget.style.borderColor = "rgba(244, 63, 94, 0.4)";
+							}}
+							onMouseLeave={(e) => {
+								e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
+								e.currentTarget.style.color = "var(--text-muted)";
+								e.currentTarget.style.borderColor = "var(--border-color)";
+							}}
+						>
+							<RotateCcw size={16} />
+						</button>
 					</div>
 				</div>
 			</div>
@@ -188,6 +248,20 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 					</button>
 				))}
 			</div>
+
+			{/* 당일 측정 초기화 확인 모달 */}
+			<CustomConfirmModal
+				isOpen={isResetModalOpen}
+				title="당일 통계 초기화"
+				message="오늘 기록된 풀이, 정답, 오답 수량이 모두 0으로 초기화됩니다. 진행하시겠습니까?"
+				confirmText="초기화"
+				cancelText="취소"
+				onConfirm={() => {
+					onResetDailyStats();
+					setIsResetModalOpen(false);
+				}}
+				onClose={() => setIsResetModalOpen(false)}
+			/>
 		</div>
 	);
 }

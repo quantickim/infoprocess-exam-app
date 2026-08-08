@@ -5,10 +5,9 @@ import { TabType } from "./Home";
 interface NavbarProps {
 	activeTab: TabType;
 	setActiveTab: (tab: TabType) => void;
-	bookmarkCount: number;
 }
 
-export default function Navbar({ activeTab, setActiveTab, bookmarkCount }: NavbarProps) {
+export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	const handleNavClick = (tab: TabType) => {

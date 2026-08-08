@@ -70,7 +70,7 @@ export default function CustomSelect({ options, value, onChange, placeholder = "
 	}, [isOpen]);
 
 	return (
-		<div ref={containerRef} style={{ position: "relative", width: "100%", minWidth: "160px" }}>
+		<div ref={containerRef} style={{ position: "relative", width: "100%" }}>
 			<div
 				onClick={handleToggle}
 				style={{
