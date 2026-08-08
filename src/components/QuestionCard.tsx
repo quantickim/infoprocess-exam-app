@@ -89,8 +89,8 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 			{question.imgsrc && (
 				<div style={{ marginBottom: "24px", textAlign: "center" }}>
 					<img
-						src={question.imgsrc}
-						alt="문제 관련 이미지"
+						src={`${import.meta.env.BASE_URL}${question.imgsrc.replace(/^\//, "")}`}
+						alt="문제 이미지"
 						style={{
 							maxWidth: "100%",
 							maxHeight: "350px",
