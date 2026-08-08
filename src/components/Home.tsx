@@ -110,7 +110,7 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 						}}
 					>
 						<BookOpen size={15} />
-						2025년 1회 필기 - 2026년 2회 필기 CBT 기출문제
+						2025년 1회 - 2026년 2회 CBT 정처기 필기 기출문제
 					</div>
 				</div>
 

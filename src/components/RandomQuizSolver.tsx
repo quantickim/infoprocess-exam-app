@@ -77,7 +77,7 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 	};
 
 	return (
-		<div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+		<div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
 			{/* Header Bar */}
 			<div className="glass-card" style={{ padding: "16px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
 				<div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -130,16 +130,6 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 
 			{/* Footer Controls */}
 			<div className="footer-controls">
-				<button
-					className="btn-secondary"
-					onClick={handleLocalResetAnswer}
-					disabled={!currentLocalAnswer}
-					style={{ opacity: currentLocalAnswer ? 1 : 0.5, cursor: currentLocalAnswer ? "pointer" : "not-allowed" }}
-				>
-					<RotateCcw size={18} />
-					다시풀기
-				</button>
-
 				<div style={{ display: "flex", gap: "12px" }}>
 					<button
 						className="btn-secondary"
@@ -165,6 +155,15 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 						</button>
 					)}
 				</div>
+				<button
+					className="btn-secondary"
+					onClick={handleLocalResetAnswer}
+					disabled={!currentLocalAnswer}
+					style={{ opacity: currentLocalAnswer ? 1 : 0.5, cursor: currentLocalAnswer ? "pointer" : "not-allowed" }}
+				>
+					<RotateCcw size={18} />
+					다시풀기
+				</button>
 			</div>
 		</div>
 	);

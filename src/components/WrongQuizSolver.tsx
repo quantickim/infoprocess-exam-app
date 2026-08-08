@@ -180,7 +180,7 @@ export default function WrongQuizSolver({
 
 	if (!filteredWrongQuestions.length) {
 		return (
-			<div style={{ display: "flex", flexDirection: "column", gap: "20px" }} className="animate-fade-in">
+			<div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="animate-fade-in">
 				{controlBar}
 
 				<div className="glass-card" style={{ padding: "60px", textAlign: "center" }}>
@@ -193,7 +193,7 @@ export default function WrongQuizSolver({
 	}
 
 	return (
-		<div style={{ display: "flex", flexDirection: "column", gap: "20px" }} className="animate-fade-in">
+		<div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="animate-fade-in">
 			{controlBar}
 
 			<div style={{ background: "rgba(255, 255, 255, 0.05)", height: "6px", borderRadius: "3px", overflow: "hidden" }}>
@@ -218,6 +218,31 @@ export default function WrongQuizSolver({
 			/>
 
 			<div className="footer-controls" style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "space-between" }}>
+				<div style={{ display: "flex", gap: "12px" }}>
+					<button
+						className="btn-secondary"
+						onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
+						disabled={currentIndex === 0}
+						style={{ opacity: currentIndex === 0 ? 0.5 : 1, cursor: currentIndex === 0 ? "not-allowed" : "pointer" }}
+					>
+						<ChevronLeft size={18} />
+						이전문제
+					</button>
+
+					<button
+						className="btn-primary"
+						onClick={() => setCurrentIndex((prev) => Math.min(filteredWrongQuestions.length - 1, prev + 1))}
+						disabled={currentIndex === filteredWrongQuestions.length - 1}
+						style={{
+							opacity: currentIndex === filteredWrongQuestions.length - 1 ? 0.5 : 1,
+							cursor: currentIndex === filteredWrongQuestions.length - 1 ? "not-allowed" : "pointer",
+							background: "linear-gradient(135deg, #f43f5e, #e11d48)",
+						}}
+					>
+						다음문제
+						<ChevronRight size={18} />
+					</button>
+				</div>
 				<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
 					<button
 						className="btn-secondary"
@@ -243,32 +268,6 @@ export default function WrongQuizSolver({
 					>
 						<Trash2 size={18} />
 						오답 제외하기
-					</button>
-				</div>
-
-				<div style={{ display: "flex", gap: "12px" }}>
-					<button
-						className="btn-secondary"
-						onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
-						disabled={currentIndex === 0}
-						style={{ opacity: currentIndex === 0 ? 0.5 : 1, cursor: currentIndex === 0 ? "not-allowed" : "pointer" }}
-					>
-						<ChevronLeft size={18} />
-						이전문제
-					</button>
-
-					<button
-						className="btn-primary"
-						onClick={() => setCurrentIndex((prev) => Math.min(filteredWrongQuestions.length - 1, prev + 1))}
-						disabled={currentIndex === filteredWrongQuestions.length - 1}
-						style={{
-							opacity: currentIndex === filteredWrongQuestions.length - 1 ? 0.5 : 1,
-							cursor: currentIndex === filteredWrongQuestions.length - 1 ? "not-allowed" : "pointer",
-							background: "linear-gradient(135deg, #f43f5e, #e11d48)",
-						}}
-					>
-						다음문제
-						<ChevronRight size={18} />
 					</button>
 				</div>
 			</div>

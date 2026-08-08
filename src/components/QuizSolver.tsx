@@ -119,7 +119,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 	// 아직 회차를 선택하지 않은 경우 안내 메시지 표시
 	if (!selectedSession) {
 		return (
-			<div style={{ display: "flex", flexDirection: "column", gap: "20px" }} className="animate-fade-in">
+			<div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="animate-fade-in">
 				{controlBar}
 
 				<div className="glass-card" style={{ padding: "60px", textAlign: "center" }}>
@@ -133,7 +133,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 
 	if (!filteredQuestions.length) {
 		return (
-			<div style={{ display: "flex", flexDirection: "column", gap: "20px" }} className="animate-fade-in">
+			<div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="animate-fade-in">
 				{controlBar}
 
 				<div className="glass-card" style={{ padding: "60px", textAlign: "center" }}>
@@ -146,7 +146,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 	}
 
 	return (
-		<div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+		<div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
 			{/* Control Bar */}
 			{controlBar}
 
@@ -175,16 +175,6 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 
 			{/* Bottom Footer Controls */}
 			<div className="footer-controls">
-				<button
-					className="btn-secondary"
-					onClick={() => onResetAnswer(currentQuestion.id)}
-					disabled={!currentAnswer}
-					style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
-				>
-					<RotateCcw size={18} />
-					다시풀기
-				</button>
-
 				<div style={{ display: "flex", gap: "12px" }}>
 					<button
 						className="btn-secondary"
@@ -206,6 +196,15 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 						</button>
 					)}
 				</div>
+				<button
+					className="btn-secondary"
+					onClick={() => onResetAnswer(currentQuestion.id)}
+					disabled={!currentAnswer}
+					style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
+				>
+					<RotateCcw size={18} />
+					다시풀기
+				</button>
 			</div>
 		</div>
 	);

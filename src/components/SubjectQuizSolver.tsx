@@ -194,7 +194,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 	// ─────────────────────────────────────────
 	if (selectedSubjectId === null) {
 		return (
-			<div style={{ display: "flex", flexDirection: "column", gap: "20px" }} className="animate-fade-in">
+			<div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="animate-fade-in">
 				<div className="glass-card" style={{ padding: "24px 28px" }}>
 					<div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "6px" }}>
 						<div
@@ -402,7 +402,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 	}
 
 	return (
-		<div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+		<div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
 			{/* 상단 헤더 */}
 			<div className="glass-card" style={{ padding: "16px 24px", display: "flex", alignItems: "center", gap: "12px" }}>
 				<button
@@ -477,16 +477,6 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 
 			{/* 하단 컨트롤 */}
 			<div className="footer-controls">
-				<button
-					className="btn-secondary"
-					onClick={() => handleResetAnswerLocal(currentQuestion.id)}
-					disabled={!currentAnswer}
-					style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
-				>
-					<RotateCcw size={18} />
-					다시풀기
-				</button>
-
 				<div style={{ display: "flex", gap: "12px" }}>
 					<button
 						className="btn-secondary"
@@ -510,6 +500,15 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 						</button>
 					)}
 				</div>
+				<button
+					className="btn-secondary"
+					onClick={() => handleResetAnswerLocal(currentQuestion.id)}
+					disabled={!currentAnswer}
+					style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
+				>
+					<RotateCcw size={18} />
+					다시풀기
+				</button>
 			</div>
 		</div>
 	);

@@ -58,7 +58,7 @@ export default function BookmarkList({ questions, bookmarks, userAnswers, onSele
 	const progressPercent = filteredBookmarked.length > 0 ? Math.round(((currentIndex + 1) / filteredBookmarked.length) * 100) : 0;
 
 	return (
-		<div style={{ display: "flex", flexDirection: "column", gap: "20px" }} className="animate-fade-in">
+		<div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="animate-fade-in">
 			{/* Header Bar */}
 			<div className="glass-card" style={{ padding: "20px 28px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px" }}>
 				<div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -116,16 +116,6 @@ export default function BookmarkList({ questions, bookmarks, userAnswers, onSele
 
 					{/* Footer Controls */}
 					<div className="footer-controls">
-						<button
-							className="btn-secondary"
-							onClick={() => onResetAnswer(String(currentQuestion.id))}
-							disabled={!currentAnswer}
-							style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
-						>
-							<RotateCcw size={18} />
-							다시풀기
-						</button>
-
 						<div style={{ display: "flex", gap: "12px" }}>
 							<button
 								className="btn-secondary"
@@ -151,6 +141,15 @@ export default function BookmarkList({ questions, bookmarks, userAnswers, onSele
 								<ChevronRight size={18} />
 							</button>
 						</div>
+						<button
+							className="btn-secondary"
+							onClick={() => onResetAnswer(String(currentQuestion.id))}
+							disabled={!currentAnswer}
+							style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
+						>
+							<RotateCcw size={18} />
+							다시풀기
+						</button>
 					</div>
 				</>
 			)}
