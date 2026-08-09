@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
 import Home, { TabType } from "./components/Home";
 import RandomQuizSolver from "./components/RandomQuizSolver";
@@ -7,20 +7,9 @@ import SubjectQuizSolver from "./components/SubjectQuizSolver";
 import QuizResult from "./components/QuizResult";
 import BookmarkList from "./components/BookmarkList";
 import WrongQuizSolver from "./components/WrongQuizSolver";
+import CustomConfirmModal from "./components/CustomConfirmModal";
 import { Question, UserAnswersMap } from "./types";
-import {
-	getQuestions,
-	getBookmarks,
-	toggleBookmark,
-	getUserAnswers,
-	saveUserAnswer,
-	resetUserAnswer,
-	clearAllUserAnswers,
-	getDailyStats,
-	recordDailyAnswer,
-	resetDailyStats,
-	DailyStats,
-} from "./utils/storage";
+import { getQuestions, getBookmarks, toggleBookmark, getUserAnswers, saveUserAnswer, resetUserAnswer, getDailyStats, recordDailyAnswer, resetDailyStats, DailyStats } from "./utils/storage";
 
 export default function App() {
 	const [questions, setQuestions] = useState<Question[]>([]);
@@ -29,9 +18,13 @@ export default function App() {
 	const [wrongAnswers, setWrongAnswers] = useState<string[]>([]);
 	const [activeTab, setActiveTab] = useState<TabType>("home");
 	const [wrongQuizSession, setWrongQuizSession] = useState<string>("all");
-
-	// 💡 당일 측정 데이터 상태
 	const [dailyStats, setDailyStats] = useState<DailyStats>({ date: "", total: 0, correct: 0, wrong: 0 });
+
+	// 제작자 정보 이스터에그 모달 상태
+	const [isCreatorModalOpen, setIsCreatorModalOpen] = useState<boolean>(false);
+
+	// 푸터 연타 감지용 타임스탬프 Ref
+	const clickTimestampsRef = useRef<number[]>([]);
 
 	useEffect(() => {
 		const loadedQuestions = getQuestions();
@@ -55,7 +48,7 @@ export default function App() {
 			}
 		} else {
 			savedWrong = Object.entries(loadedUserAnswers)
-				.filter(([id, ans]) => !ans.isCorrect)
+				.filter(([_, ans]) => !ans.isCorrect)
 				.map(([id]) => String(id));
 			localStorage.setItem("wrong_answers", JSON.stringify(savedWrong));
 		}
@@ -67,28 +60,35 @@ export default function App() {
 		localStorage.setItem("wrong_answers", JSON.stringify(updated));
 	};
 
-	const handleSelectOption = (questionId: string, selectedOption: number, session: string) => {
+	const handleQuizSelectOption = (questionId: string, selectedOption: number, session: string) => {
 		const question = questions.find((q) => q.id === questionId);
 		if (!question) return;
 		const isCorrect = selectedOption === question.answer;
 
-		// 1. 회차 풀이 기록 저장
 		const updatedAnswers = saveUserAnswer(questionId, selectedOption, isCorrect, session);
 		setUserAnswers({ ...updatedAnswers });
 
-		// 2. 💡 당일 풀이 측정 데이터 집계
 		const updatedDaily = recordDailyAnswer(isCorrect);
 		setDailyStats(updatedDaily);
 
-		// 3. 틀린 경우 독립된 오답노트 목록에 추가
-		if (!isCorrect) {
-			if (!wrongAnswers.includes(String(questionId))) {
-				saveWrongAnswersToStorage([...wrongAnswers, String(questionId)]);
-			}
+		if (!isCorrect && !wrongAnswers.includes(String(questionId))) {
+			saveWrongAnswersToStorage([...wrongAnswers, String(questionId)]);
 		}
 	};
 
-	// 💡 당일 측정 데이터 초기화 버튼 핸들러
+	const handleOtherSelectOption = (questionId: string, selectedOption: number, session: string) => {
+		const question = questions.find((q) => q.id === questionId);
+		if (!question) return;
+		const isCorrect = selectedOption === question.answer;
+
+		const updatedDaily = recordDailyAnswer(isCorrect);
+		setDailyStats(updatedDaily);
+
+		if (!isCorrect && !wrongAnswers.includes(String(questionId))) {
+			saveWrongAnswersToStorage([...wrongAnswers, String(questionId)]);
+		}
+	};
+
 	const handleResetDailyStats = () => {
 		const reset = resetDailyStats();
 		setDailyStats(reset);
@@ -102,11 +102,6 @@ export default function App() {
 	const handleResetAnswer = (questionId: string) => {
 		const updatedAnswers = resetUserAnswer(questionId);
 		setUserAnswers({ ...updatedAnswers });
-	};
-
-	const handleResetAllAnswers = () => {
-		const emptyAnswers = clearAllUserAnswers();
-		setUserAnswers(emptyAnswers);
 	};
 
 	const handleResetSessionAnswers = (sessionName: string) => {
@@ -131,6 +126,19 @@ export default function App() {
 	const handleRetryWrongQuestions = (sessionName?: string) => {
 		setWrongQuizSession(sessionName || "all");
 		setActiveTab("wrong");
+	};
+
+	// 푸터 연타 핸들러 (5초 이내 50회 클릭 시 이스터에그 모달 오픈)
+	const handleFooterClick = () => {
+		const now = Date.now();
+		const recentClicks = clickTimestampsRef.current.filter((timestamp) => now - timestamp <= 5000);
+		recentClicks.push(now);
+		clickTimestampsRef.current = recentClicks;
+
+		if (recentClicks.length >= 30) {
+			setIsCreatorModalOpen(true);
+			clickTimestampsRef.current = [];
+		}
 	};
 
 	const pageTitle: Record<TabType, string> = {
@@ -183,17 +191,8 @@ export default function App() {
 					/>
 				)}
 
-				{/* ... 다른 solver 태그들은 기존과 동일 */}
 				{activeTab === "random" && (
-					<RandomQuizSolver
-						questions={questions}
-						userAnswers={userAnswers}
-						bookmarks={bookmarks}
-						onSelectOption={handleSelectOption}
-						onResetAnswer={handleResetAnswer}
-						onToggleBookmark={handleToggleBookmark}
-						onFinishQuiz={handleFinishQuiz}
-					/>
+					<RandomQuizSolver questions={questions} bookmarks={bookmarks} onSelectOption={handleOtherSelectOption} onToggleBookmark={handleToggleBookmark} onFinishQuiz={handleFinishQuiz} />
 				)}
 
 				{activeTab === "quiz" && (
@@ -201,7 +200,7 @@ export default function App() {
 						questions={questions}
 						userAnswers={userAnswers}
 						bookmarks={bookmarks}
-						onSelectOption={handleSelectOption}
+						onSelectOption={handleQuizSelectOption}
 						onResetAnswer={handleResetAnswer}
 						onToggleBookmark={handleToggleBookmark}
 						onFinishQuiz={handleFinishQuiz}
@@ -209,15 +208,7 @@ export default function App() {
 				)}
 
 				{activeTab === "subject" && (
-					<SubjectQuizSolver
-						questions={questions}
-						userAnswers={userAnswers}
-						bookmarks={bookmarks}
-						onSelectOption={handleSelectOption}
-						onResetAnswer={handleResetAnswer}
-						onToggleBookmark={handleToggleBookmark}
-						onFinishQuiz={handleFinishQuiz}
-					/>
+					<SubjectQuizSolver questions={questions} bookmarks={bookmarks} onSelectOption={handleOtherSelectOption} onToggleBookmark={handleToggleBookmark} onFinishQuiz={handleFinishQuiz} />
 				)}
 
 				{activeTab === "wrong" && (
@@ -226,7 +217,6 @@ export default function App() {
 						wrongAnswers={wrongAnswers}
 						bookmarks={bookmarks}
 						initialSession={wrongQuizSession}
-						onSelectOption={handleSelectOption}
 						onRemoveWrongAnswer={handleRemoveWrongAnswer}
 						onToggleBookmark={handleToggleBookmark}
 					/>
@@ -242,19 +232,59 @@ export default function App() {
 					/>
 				)}
 
-				{activeTab === "bookmark" && (
-					<BookmarkList
-						questions={questions}
-						bookmarks={bookmarks}
-						userAnswers={userAnswers}
-						onSelectOption={handleSelectOption}
-						onResetAnswer={handleResetAnswer}
-						onToggleBookmark={handleToggleBookmark}
-					/>
-				)}
+				{activeTab === "bookmark" && <BookmarkList questions={questions} bookmarks={bookmarks} onSelectOption={handleOtherSelectOption} onToggleBookmark={handleToggleBookmark} />}
 			</main>
 
-			<footer style={{ padding: "70px 0", textAlign: "center", color: "var(--text-dim)", fontSize: "0.85rem" }}>정보처리기사 필기 마스터 • TypeScript + Vite + React</footer>
+			<footer
+				onClick={handleFooterClick}
+				style={{
+					padding: "70px 0",
+					textAlign: "center",
+					color: "var(--text-dim)",
+					fontSize: "0.85rem",
+					cursor: "pointer",
+					userSelect: "none",
+					WebkitUserSelect: "none",
+					WebkitTapHighlightColor: "transparent",
+				}}
+			>
+				정보처리기사 필기 마스터 • TypeScript + Vite + React
+			</footer>
+
+			{/* 제작자 정보 이스터에그 모달 */}
+			<CustomConfirmModal
+				isOpen={isCreatorModalOpen}
+				type="info"
+				title="개발자 정보 🚀"
+				confirmText="확인"
+				showCancel={false}
+				onConfirm={() => setIsCreatorModalOpen(false)}
+				onClose={() => setIsCreatorModalOpen(false)}
+			>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						gap: "12px",
+						background: "rgba(15, 23, 42, 0.6)",
+						padding: "16px",
+						borderRadius: "var(--radius-md)",
+						border: "1px solid var(--border-color)",
+					}}
+				>
+					<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+						<span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: 600 }}>만든이</span>
+						<span style={{ fontSize: "1rem", color: "var(--text-main)", fontWeight: 700 }}>김형태</span>
+					</div>
+					<div style={{ height: "1px", background: "var(--border-color)" }} />
+					<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+						<span style={{ fontSize: "0.85rem", color: "var(--text-muted)", fontWeight: 600 }}>Email</span>
+						<a href="mailto:quantickim@gmail.com" style={{ fontSize: "0.9rem", color: "#38bdf8", textDecoration: "none", fontWeight: 600 }}>
+							quantickim@gmail.com
+						</a>
+					</div>
+				</div>
+			</CustomConfirmModal>
 		</div>
 	);
 }

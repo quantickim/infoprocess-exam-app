@@ -1,17 +1,33 @@
 import React, { useEffect } from "react";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, Sparkles } from "lucide-react";
 
 interface CustomConfirmModalProps {
 	isOpen: boolean;
 	title: string;
-	message: string;
+	message?: string;
 	confirmText?: string;
 	cancelText?: string;
+	type?: "danger" | "info"; // 모달 테마 (기본값: danger)
+	icon?: React.ReactNode;
+	showCancel?: boolean; // 취소 버튼 노출 여부 (기본값: true)
+	children?: React.ReactNode; // 커스텀 본문 요소
 	onConfirm: () => void;
 	onClose: () => void;
 }
 
-export default function CustomConfirmModal({ isOpen, title, message, confirmText = "확인", cancelText = "취소", onConfirm, onClose }: CustomConfirmModalProps) {
+export default function CustomConfirmModal({
+	isOpen,
+	title,
+	message,
+	confirmText = "확인",
+	cancelText = "취소",
+	type = "danger",
+	icon,
+	showCancel = true,
+	children,
+	onConfirm,
+	onClose,
+}: CustomConfirmModalProps) {
 	// ESC 키 누를 때 모달 닫기
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -24,6 +40,8 @@ export default function CustomConfirmModal({ isOpen, title, message, confirmText
 	}, [isOpen, onClose]);
 
 	if (!isOpen) return null;
+
+	const isInfo = type === "info";
 
 	return (
 		<div
@@ -55,7 +73,8 @@ export default function CustomConfirmModal({ isOpen, title, message, confirmText
 					display: "flex",
 					flexDirection: "column",
 					gap: "16px",
-					boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5)",
+					boxShadow: isInfo ? "0 20px 25px -5px rgba(99, 102, 241, 0.3)" : "0 20px 25px -5px rgba(244, 63, 94, 0.3)",
+					border: isInfo ? "1px solid rgba(99, 102, 241, 0.3)" : "1px solid rgba(244, 63, 94, 0.3)",
 				}}
 			>
 				<div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -63,33 +82,41 @@ export default function CustomConfirmModal({ isOpen, title, message, confirmText
 						style={{
 							width: "40px",
 							height: "40px",
-							background: "rgba(244, 63, 94, 0.15)",
+							background: isInfo ? "rgba(99, 102, 241, 0.15)" : "rgba(244, 63, 94, 0.15)",
 							borderRadius: "50%",
 							display: "flex",
 							alignItems: "center",
 							justifyContent: "center",
-							color: "var(--wrong)",
+							color: isInfo ? "var(--primary)" : "var(--wrong)",
 							flexShrink: 0,
 						}}
 					>
-						<AlertTriangle size={22} />
+						{icon ? icon : isInfo ? <Sparkles size={22} /> : <AlertTriangle size={22} />}
 					</div>
 					<h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--text-main)" }}>{title}</h3>
 				</div>
 
-				<p style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: "1.5" }}>{message}</p>
+				{message && <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: "1.5" }}>{message}</p>}
+
+				{children}
 
 				<div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
-					<button className="btn-secondary" onClick={onClose} style={{ flex: 1, justifyContent: "center" }}>
-						{cancelText}
-					</button>
+					{showCancel && (
+						<button className="btn-secondary" onClick={onClose} style={{ flex: 1, justifyContent: "center" }}>
+							{cancelText}
+						</button>
+					)}
 					<button
 						className="btn-primary"
 						onClick={() => {
 							onConfirm();
 							onClose();
 						}}
-						style={{ flex: 1, justifyContent: "center", background: "linear-gradient(135deg, #f43f5e, #e11d48)" }}
+						style={{
+							flex: 1,
+							justifyContent: "center",
+							background: isInfo ? "linear-gradient(135deg, var(--primary), var(--primary-hover))" : "linear-gradient(135deg, #f43f5e, #e11d48)",
+						}}
 					>
 						{confirmText}
 					</button>

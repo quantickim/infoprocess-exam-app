@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
 import { RotateCcw, ChevronLeft, ChevronRight, Shuffle, Award } from "lucide-react";
-import { Question, UserAnswersMap, UserAnswerRecord } from "../types";
+import { Question, UserAnswerRecord } from "../types";
 
 interface RandomQuizSolverProps {
 	questions: Question[];
-	userAnswers: UserAnswersMap;
 	bookmarks: string[];
 	onSelectOption: (questionId: string, selectedOption: number, session: string) => void;
-	onResetAnswer: (questionId: string) => void;
 	onToggleBookmark: (questionId: string) => void;
 	onFinishQuiz: () => void;
 }
@@ -16,14 +14,12 @@ interface RandomQuizSolverProps {
 export default function RandomQuizSolver({ questions, bookmarks, onSelectOption, onToggleBookmark, onFinishQuiz }: RandomQuizSolverProps) {
 	const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-	// 전역 저장소(userAnswers)와 분리된 랜덤 문제풀이 전용 로컬 풀이 상태 (진입 시 항상 빈 상태)
 	const [localAnswers, setLocalAnswers] = useState<Record<string, UserAnswerRecord>>({});
 
 	const handleReshuffle = () => {
 		const shuffled = [...questions].sort(() => Math.random() - 0.5);
 		setShuffledQuestions(shuffled);
-		setLocalAnswers({}); // 다시 섞을 때 로컬 풀이 기록도 초기화
+		setLocalAnswers({});
 		setCurrentIndex(0);
 	};
 
@@ -34,20 +30,14 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 	if (shuffledQuestions.length === 0) return null;
 
 	const currentQuestion = shuffledQuestions[currentIndex];
-	// 전역 답안 대신 랜덤 세션용 로컬 답안 조회 (이전에 풀었어도 안 푼 것처럼 표시됨)
 	const currentLocalAnswer = currentQuestion ? localAnswers[currentQuestion.id] : undefined;
-
-	// ID 타입을 String으로 통일하여 비교
 	const isBookmarked = currentQuestion ? bookmarks.map(String).includes(String(currentQuestion.id)) : false;
-
 	const progressPercent = Math.round(((currentIndex + 1) / shuffledQuestions.length) * 100);
 
-	// 답안 선택 처리 (맞추면 전역 영향 없음, 틀리면 오답노트 등록)
 	const handleLocalSelectOption = (optionNum: number) => {
 		if (!currentQuestion) return;
 		const isCorrect = optionNum === currentQuestion.answer;
 
-		// 1. 현재 랜덤 세션 화면에 결과 표시를 위해 localAnswers에 저장
 		setLocalAnswers((prev) => ({
 			...prev,
 			[currentQuestion.id]: {
@@ -59,14 +49,10 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 			},
 		}));
 
-		// 2. 틀렸을 때만 전역 저장소에 오답으로 등록 (오답노트 반영)
-		// 맞았을 때는 전역 저장소에 아무런 영향을 주지 않음
-		if (!isCorrect) {
-			onSelectOption(String(currentQuestion.id), optionNum, currentQuestion.session);
-		}
+		// 당일 통계 집계 및 오답노트 추가 처리 (userAnswers 성적에는 미영향)
+		onSelectOption(String(currentQuestion.id), optionNum, currentQuestion.session);
 	};
 
-	// 현재 문제의 로컬 풀이 기록만 초기화 (다시 풀 수 있게 함)
 	const handleLocalResetAnswer = () => {
 		if (!currentQuestion) return;
 		setLocalAnswers((prev) => {
@@ -137,6 +123,7 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 						disabled={currentIndex === 0}
 						style={{ opacity: currentIndex === 0 ? 0.5 : 1, cursor: currentIndex === 0 ? "not-allowed" : "pointer" }}
 					>
+						<ChevronLeft size={18} />
 						이전문제
 					</button>
 
@@ -147,6 +134,7 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 							onClick={() => setCurrentIndex((prev) => Math.min(shuffledQuestions.length - 1, prev + 1))}
 						>
 							다음문제
+							<ChevronRight size={18} />
 						</button>
 					) : (
 						<button className="btn-primary" style={{ background: "linear-gradient(135deg, #10b981, #059669)" }} onClick={onFinishQuiz}>

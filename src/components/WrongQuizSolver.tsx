@@ -10,25 +10,16 @@ interface WrongQuizSolverProps {
 	wrongAnswers: string[]; // 독립된 오답 ID 목록
 	bookmarks: string[];
 	initialSession?: string;
-	onSelectOption: (questionId: string, selectedOption: number, session: string) => void;
 	onRemoveWrongAnswer: (questionId: string) => void; // 오답 제외 핸들러
 	onToggleBookmark: (questionId: string) => void;
 }
 
-export default function WrongQuizSolver({
-	questions,
-	wrongAnswers,
-	bookmarks,
-	initialSession,
-	onSelectOption, // 👈 Props 수신 추가
-	onRemoveWrongAnswer,
-	onToggleBookmark,
-}: WrongQuizSolverProps) {
+export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, initialSession, onRemoveWrongAnswer, onToggleBookmark }: WrongQuizSolverProps) {
 	const [selectedSession, setSelectedSession] = useState<string>(initialSession || "all");
 	const [selectedSubject, setSelectedSubject] = useState<number>(0);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-	// 오답노트 전용 로컬 풀이 상태
+	// 오답노트 전용 독립 로컬 풀이 상태 (회차별 전역 userAnswers와 완전히 격리됨)
 	const [localAnswers, setLocalAnswers] = useState<Record<string, UserAnswerRecord>>({});
 
 	useEffect(() => {
@@ -103,7 +94,7 @@ export default function WrongQuizSolver({
 
 	const progressPercent = filteredWrongQuestions.length > 0 ? Math.round(((currentIndex + 1) / filteredWrongQuestions.length) * 100) : 0;
 
-	// 로컬 답안 선택 처리 (오답노트 화면 내 채점 표시 및 당일 측정 데이터 연동)
+	// 로컬 답안 선택 처리 (💡 전역 회차 풀이 기록에 영향을 주지 않음)
 	const handleLocalSelectOption = (optionNum: number) => {
 		if (!currentQuestion) return;
 		const isCorrect = optionNum === currentQuestion.answer;
@@ -117,9 +108,6 @@ export default function WrongQuizSolver({
 				timestamp: new Date().toISOString(),
 			},
 		}));
-
-		// 💡 오답노트 풀이 내역을 당일 측정 통계에 상위 전달
-		onSelectOption(String(currentQuestion.id), optionNum, currentQuestion.session);
 	};
 
 	// 다시풀기 (로컬 선택 초기화)

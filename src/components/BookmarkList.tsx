@@ -1,41 +1,36 @@
 import React, { useState, useMemo, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
 import { Bookmark, RotateCcw, ChevronLeft, ChevronRight } from "lucide-react";
-import { Question, UserAnswersMap } from "../types";
+import { Question, UserAnswerRecord } from "../types";
 import { SUBJECTS } from "../utils/storage";
 
 interface BookmarkListProps {
 	questions: Question[];
 	bookmarks: string[];
-	userAnswers: UserAnswersMap;
 	onSelectOption: (questionId: string, selectedOption: number, session: string) => void;
-	onResetAnswer: (questionId: string) => void;
 	onToggleBookmark: (questionId: string) => void;
 }
 
-export default function BookmarkList({ questions, bookmarks, userAnswers, onSelectOption, onResetAnswer, onToggleBookmark }: BookmarkListProps) {
+export default function BookmarkList({ questions, bookmarks, onSelectOption, onToggleBookmark }: BookmarkListProps) {
 	const [selectedSubject, setSelectedSubject] = useState<number>(0);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
+	const [localAnswers, setLocalAnswers] = useState<Record<string, UserAnswerRecord>>({});
 
-	// String 타입으로 통일하여 북마크 문제 추출
 	const bookmarkedQuestions = useMemo(() => {
 		const strBookmarks = bookmarks.map(String);
 		return questions.filter((q) => strBookmarks.includes(String(q.id)));
 	}, [questions, bookmarks]);
 
-	// 과목 필터링
 	const filteredBookmarked = useMemo(() => {
 		if (selectedSubject === 0) return bookmarkedQuestions;
 		return bookmarkedQuestions.filter((q) => q.subjectId === selectedSubject);
 	}, [bookmarkedQuestions, selectedSubject]);
 
-	// 과목 변경 시 첫 번째 문제로 이동
 	const handleSubjectChange = (subjectId: number) => {
 		setSelectedSubject(subjectId);
 		setCurrentIndex(0);
 	};
 
-	// 북마크 해제 등으로 현재 인덱스가 범위를 벗어날 때 자동 조정
 	useEffect(() => {
 		if (currentIndex >= filteredBookmarked.length && filteredBookmarked.length > 0) {
 			setCurrentIndex(filteredBookmarked.length - 1);
@@ -53,9 +48,36 @@ export default function BookmarkList({ questions, bookmarks, userAnswers, onSele
 	}
 
 	const currentQuestion = filteredBookmarked[currentIndex];
-	const currentAnswer = currentQuestion ? userAnswers[currentQuestion.id] : undefined;
+	const currentLocalAnswer = currentQuestion ? localAnswers[currentQuestion.id] : undefined;
 	const isBookmarked = currentQuestion ? bookmarks.map(String).includes(String(currentQuestion.id)) : false;
 	const progressPercent = filteredBookmarked.length > 0 ? Math.round(((currentIndex + 1) / filteredBookmarked.length) * 100) : 0;
+
+	const handleLocalSelectOption = (optionNum: number) => {
+		if (!currentQuestion) return;
+		const isCorrect = optionNum === currentQuestion.answer;
+
+		setLocalAnswers((prev) => ({
+			...prev,
+			[currentQuestion.id]: {
+				questionId: String(currentQuestion.id),
+				selectedOption: optionNum,
+				isCorrect,
+				session: currentQuestion.session,
+				timestamp: new Date().toISOString(),
+			},
+		}));
+
+		onSelectOption(String(currentQuestion.id), optionNum, currentQuestion.session);
+	};
+
+	const handleLocalResetAnswer = () => {
+		if (!currentQuestion) return;
+		setLocalAnswers((prev) => {
+			const updated = { ...prev };
+			delete updated[currentQuestion.id];
+			return updated;
+		});
+	};
 
 	return (
 		<div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="animate-fade-in">
@@ -108,9 +130,9 @@ export default function BookmarkList({ questions, bookmarks, userAnswers, onSele
 						question={currentQuestion}
 						currentIndex={currentIndex}
 						totalCount={filteredBookmarked.length}
-						userAnswer={currentAnswer}
+						userAnswer={currentLocalAnswer}
 						isBookmarked={isBookmarked}
-						onSelectOption={(optNum) => onSelectOption(String(currentQuestion.id), optNum, currentQuestion.session)}
+						onSelectOption={handleLocalSelectOption}
 						onToggleBookmark={() => onToggleBookmark(String(currentQuestion.id))}
 					/>
 
@@ -138,14 +160,16 @@ export default function BookmarkList({ questions, bookmarks, userAnswers, onSele
 								}}
 							>
 								다음문제
+								<ChevronRight size={18} />
 							</button>
 						</div>
 						<button
 							className="btn-secondary"
-							onClick={() => onResetAnswer(String(currentQuestion.id))}
-							disabled={!currentAnswer}
-							style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
+							onClick={handleLocalResetAnswer}
+							disabled={!currentLocalAnswer}
+							style={{ opacity: currentLocalAnswer ? 1 : 0.5, cursor: currentLocalAnswer ? "pointer" : "not-allowed" }}
 						>
+							<RotateCcw size={18} />
 							다시풀기
 						</button>
 					</div>

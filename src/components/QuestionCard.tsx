@@ -58,8 +58,8 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 				</button>
 			</div>
 
-			{/* Question Text */}
-			<h2 style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--text-main)", lineHeight: "1.6", marginBottom: "16px" }}>
+			{/* Question Text (💡 whiteSpace: "pre-line" 적용) */}
+			<h2 style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--text-main)", lineHeight: "1.6", marginBottom: "16px", whiteSpace: "pre-line" }}>
 				{displayNumber}. {question.question}
 			</h2>
 
@@ -129,7 +129,8 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 							}}
 						>
 							<div className="option-number">{optionNum}</div>
-							<div style={{ flex: 1, fontSize: "0.98rem", paddingTop: "2px", color: "var(--text-main)" }}>{optText}</div>
+							{/* 💡 보기 텍스트에 whiteSpace: "pre-line" 및 행간 적용 */}
+							<div style={{ flex: 1, fontSize: "0.98rem", paddingTop: "2px", color: "var(--text-main)", whiteSpace: "pre-line", lineHeight: "1.5" }}>{optText}</div>
 
 							{/* Correct / Wrong Indicators */}
 							{hasAnswered && optionNum === question.answer && (
@@ -158,7 +159,7 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 						</span>
 					</div>
 
-					<div style={{ marginBottom: "8px", fontSize: "0.95rem", fontWeight: 600, color: "var(--correct)" }}>
+					<div style={{ marginBottom: "8px", fontSize: "0.95rem", fontWeight: 600, color: "var(--correct)", whiteSpace: "pre-line" }}>
 						정답: {question.answer}번 ({question.options[question.answer - 1]})
 					</div>
 

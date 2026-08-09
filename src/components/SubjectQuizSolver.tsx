@@ -1,16 +1,14 @@
 import React, { useState, useMemo, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
-import { RotateCcw, ChevronLeft, ChevronRight, Layers, Award, Shrink } from "lucide-react";
+import { RotateCcw, ChevronLeft, ChevronRight, Layers, Award } from "lucide-react";
 import { Question, UserAnswersMap, UserAnswerRecord } from "../types";
 import { SUBJECTS } from "../utils/storage";
 import CustomConfirmModal from "./CustomConfirmModal";
 
 interface SubjectQuizSolverProps {
 	questions: Question[];
-	userAnswers?: UserAnswersMap; // 추가
 	bookmarks: string[];
 	onSelectOption: (questionId: string, selectedOption: number, session: string) => void;
-	onResetAnswer: (questionId: string) => void;
 	onToggleBookmark: (questionId: string) => void;
 	onFinishQuiz: () => void;
 }
@@ -26,7 +24,7 @@ const SUBJECT_COLORS: Record<number, { gradient: string; glow: string }> = {
 	5: { gradient: "linear-gradient(135deg, #8b5cf6, #7c3aed)", glow: "rgba(139,92,246,0.35)" },
 };
 
-export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption, onResetAnswer, onToggleBookmark, onFinishQuiz }: SubjectQuizSolverProps) {
+export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption, onToggleBookmark, onFinishQuiz }: SubjectQuizSolverProps) {
 	const [selectedSubjectId, setSelectedSubjectId] = useState<number | null>(null);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 	const [resetTargetSubjectId, setResetTargetSubjectId] = useState<number | null>(null);
@@ -53,7 +51,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		}
 	});
 
-	// 상태 변경 시 localStorage 자동 저장
+	// 답안 변경 시 localStorage 저장
 	useEffect(() => {
 		try {
 			localStorage.setItem(STORAGE_KEY_SUBJECT_ANSWERS, JSON.stringify(subjectAnswers));
@@ -62,6 +60,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		}
 	}, [subjectAnswers]);
 
+	// 학습 위치 변경 시 localStorage 및 state 실시간 저장
 	useEffect(() => {
 		try {
 			localStorage.setItem(STORAGE_KEY_LAST_INDEX, JSON.stringify(lastIndexes));
@@ -69,6 +68,16 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 			console.error("Failed to save last indexes to localStorage", e);
 		}
 	}, [lastIndexes]);
+
+	// 문제 이동 시 현재 위치 기록
+	useEffect(() => {
+		if (selectedSubjectId !== null) {
+			setLastIndexes((prev) => ({
+				...prev,
+				[selectedSubjectId]: currentIndex,
+			}));
+		}
+	}, [currentIndex, selectedSubjectId]);
 
 	// 과목별 통계 계산
 	const subjectStats = useMemo(() => {
@@ -95,7 +104,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		return questions.filter((q) => q.subjectId === selectedSubjectId);
 	}, [questions, selectedSubjectId]);
 
-	// 과목 선택 처리
+	// 과목 선택 처리 (이어서 풀기 위치 계산)
 	const handleSelectSubject = (subjectId: number) => {
 		const subQuestions = questions.filter((q) => q.subjectId === subjectId);
 		if (subQuestions.length === 0) return;
@@ -105,12 +114,17 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		const savedIndex = lastIndexes[subjectId] ?? 0;
 		const targetIndex = Math.min(Math.max(0, savedIndex), subQuestions.length - 1);
 
-		let startIndex = targetIndex;
-		if (subjectAnswers[subQuestions[startIndex]?.id]) {
-			const nextUnansweredIndex = subQuestions.findIndex((q, idx) => idx >= targetIndex && !subjectAnswers[q.id]);
-			if (nextUnansweredIndex !== -1) {
-				startIndex = nextUnansweredIndex;
-			}
+		// 1. 마지막 멈췄던 위치부터 아직 안 푼 문제 탐색
+		let startIndex = subQuestions.findIndex((q, idx) => idx >= targetIndex && !subjectAnswers[q.id]);
+
+		// 2. 뒤쪽에 안 푼 문제가 없다면 처음(0번)부터 풀지 않은 문제 탐색
+		if (startIndex === -1) {
+			startIndex = subQuestions.findIndex((q) => !subjectAnswers[q.id]);
+		}
+
+		// 3. 모든 문제를 다 풀었다면 이전에 멈췄던 위치로 이동
+		if (startIndex === -1) {
+			startIndex = targetIndex;
 		}
 
 		setCurrentIndex(startIndex);
@@ -119,16 +133,6 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 	const handleBack = () => {
 		setSelectedSubjectId(null);
 		setCurrentIndex(0);
-	};
-
-	const handleSetIndex = (newIndex: number) => {
-		setCurrentIndex(newIndex);
-		if (selectedSubjectId !== null) {
-			setLastIndexes((prev) => ({
-				...prev,
-				[selectedSubjectId]: newIndex,
-			}));
-		}
 	};
 
 	// 단일 과목 상태 초기화 처리
@@ -155,7 +159,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		setResetTargetSubjectId(null);
 	};
 
-	// 보기 선택 (독립 답안 저장 + 오답노트 연동)
+	// 보기 선택
 	const handleSelectOptionLocal = (questionId: string, selectedOption: number, session: string) => {
 		const question = questions.find((q) => q.id === questionId);
 		if (!question) return;
@@ -185,8 +189,6 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 			delete next[questionId];
 			return next;
 		});
-
-		onResetAnswer(questionId);
 	};
 
 	// ─────────────────────────────────────────
@@ -258,7 +260,6 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 									el.style.borderColor = "var(--border-color)";
 								}}
 							>
-								{/* Background Glow */}
 								<div
 									style={{
 										position: "absolute",
@@ -274,7 +275,6 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 									}}
 								/>
 
-								{/* 과목 헤더 */}
 								<div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px", width: "100%" }}>
 									<div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
 										<div
@@ -303,7 +303,6 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 										</div>
 									</div>
 
-									{/* 회색계열 아이콘 전용 초기화 버튼 */}
 									{hasHistory && (
 										<div
 											onClick={(e) => {
@@ -339,14 +338,12 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 									)}
 								</div>
 
-								{/* 통계 정보 (점수 제거 및 풀이 / 정답 / 오답 형식) */}
 								<div style={{ marginTop: "auto" }}>
 									<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px", fontSize: "0.85rem" }}>
 										<span style={{ color: "var(--text-muted)" }}>{sub.total > 0 ? `풀이 ${sub.answered} / 정답 ${sub.correct} / 오답 ${sub.wrong}` : "문제 없음"}</span>
 										{sub.total > 0 && <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", opacity: 0.8 }}>총 {sub.total}문제</span>}
 									</div>
 
-									{/* 진행 바 */}
 									{sub.total > 0 && (
 										<div style={{ background: "rgba(255,255,255,0.08)", height: "6px", borderRadius: "3px", overflow: "hidden" }}>
 											<div
@@ -365,7 +362,6 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 					})}
 				</div>
 
-				{/* 과목별 초기화 확인 모달 */}
 				<CustomConfirmModal
 					isOpen={resetTargetSubjectId !== null}
 					title={`${resetTargetSubjectId}과목 풀이 기록 초기화`}
@@ -384,7 +380,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 	// ─────────────────────────────────────────
 	const currentQuestion = filteredQuestions[currentIndex];
 	const currentAnswer = currentQuestion ? subjectAnswers[currentQuestion.id] : undefined;
-	const isBookmarked = currentQuestion ? bookmarks.includes(currentQuestion.id) : false;
+	const isBookmarked = currentQuestion ? bookmarks.map(String).includes(String(currentQuestion.id)) : false;
 	const progressPercent = filteredQuestions.length > 0 ? Math.round(((currentIndex + 1) / filteredQuestions.length) * 100) : 0;
 	const selectedSubject = SUBJECTS.find((s) => s.id === selectedSubjectId)!;
 	const colors = SUBJECT_COLORS[selectedSubjectId];
@@ -423,7 +419,6 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 					← 과목 선택
 				</button>
 
-				{/* 과목 번호 뱃지 */}
 				<div
 					style={{
 						width: "36px",
@@ -471,7 +466,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 				totalCount={filteredQuestions.length}
 				userAnswer={currentAnswer}
 				isBookmarked={isBookmarked}
-				onSelectOption={(optNum) => handleSelectOptionLocal(currentQuestion.id, optNum, currentQuestion.session)}
+				onSelectOption={(optNum) => handleSelectOptionLocal(String(currentQuestion.id), optNum, currentQuestion.session)}
 				onToggleBookmark={onToggleBookmark}
 			/>
 
@@ -480,16 +475,18 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 				<div style={{ display: "flex", gap: "12px" }}>
 					<button
 						className="btn-secondary"
-						onClick={() => handleSetIndex(Math.max(0, currentIndex - 1))}
+						onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
 						disabled={currentIndex === 0}
 						style={{ opacity: currentIndex === 0 ? 0.5 : 1, cursor: currentIndex === 0 ? "not-allowed" : "pointer" }}
 					>
+						<ChevronLeft size={18} />
 						이전문제
 					</button>
 
 					{currentIndex < filteredQuestions.length - 1 ? (
-						<button className="btn-primary" style={{ background: colors.gradient }} onClick={() => handleSetIndex(Math.min(filteredQuestions.length - 1, currentIndex + 1))}>
+						<button className="btn-primary" style={{ background: colors.gradient }} onClick={() => setCurrentIndex((prev) => Math.min(filteredQuestions.length - 1, prev + 1))}>
 							다음문제
+							<ChevronRight size={18} />
 						</button>
 					) : (
 						<button className="btn-primary" style={{ background: "linear-gradient(135deg, #10b981, #059669)" }} onClick={onFinishQuiz}>
@@ -498,9 +495,10 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 						</button>
 					)}
 				</div>
+
 				<button
 					className="btn-secondary"
-					onClick={() => handleResetAnswerLocal(currentQuestion.id)}
+					onClick={() => handleResetAnswerLocal(String(currentQuestion.id))}
 					disabled={!currentAnswer}
 					style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
 				>

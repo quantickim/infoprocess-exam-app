@@ -867,7 +867,7 @@
 		"subjectName": "4과목: 프로그래밍 언어 활용",
 		"question": "다음 C 언어 프로그램이 실행 결과와 같이 출력될 수 있도록 코드의 ㉠, ㉡에 들어갈 예약어로 알맞은 것은?",
 		"imgsrc": "/img/2026-2-72.png",
-		"options": ["short, char", "char, short", "char, double", "double, char"],
+		"options": ["short, char", "char, short", "double, char", "char, double"],
 		"answer": 4,
 		"explanation": "💡 **해설**:\n문자 배열인 str에는 char, 실수 배열인 n에는 double 자료형이 적합합니다."
 	},
