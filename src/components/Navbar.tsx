@@ -15,10 +15,15 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 		setIsMobileMenuOpen(false);
 	};
 
+	// 브랜드 클릭 시 항상 캐시 무시/강제 새로고침만 수행
+	const handleBrandClick = () => {
+		window.location.reload();
+	};
+
 	return (
 		<header className="site-header">
 			<div className="header-top-row">
-				<div className="logo-wrapper" onClick={() => handleNavClick("home")}>
+				<div className="logo-wrapper" onClick={handleBrandClick} style={{ cursor: "pointer" }}>
 					<div className="logo-icon">
 						<BookOpen size={20} />
 					</div>

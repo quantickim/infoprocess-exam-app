@@ -254,7 +254,7 @@ export default function App() {
 				)}
 			</main>
 
-			<footer style={{ marginTop: "40px", padding: "20px 0", textAlign: "center", color: "var(--text-dim)", fontSize: "0.85rem" }}>정보처리기사 필기 마스터 • TypeScript + Vite + React</footer>
+			<footer style={{ padding: "70px 0", textAlign: "center", color: "var(--text-dim)", fontSize: "0.85rem" }}>정보처리기사 필기 마스터 • TypeScript + Vite + React</footer>
 		</div>
 	);
 }

@@ -225,7 +225,6 @@ export default function WrongQuizSolver({
 						disabled={currentIndex === 0}
 						style={{ opacity: currentIndex === 0 ? 0.5 : 1, cursor: currentIndex === 0 ? "not-allowed" : "pointer" }}
 					>
-						<ChevronLeft size={18} />
 						이전문제
 					</button>
 
@@ -240,7 +239,6 @@ export default function WrongQuizSolver({
 						}}
 					>
 						다음문제
-						<ChevronRight size={18} />
 					</button>
 				</div>
 				<div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>

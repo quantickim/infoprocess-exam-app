@@ -138,7 +138,6 @@ export default function BookmarkList({ questions, bookmarks, userAnswers, onSele
 								}}
 							>
 								다음문제
-								<ChevronRight size={18} />
 							</button>
 						</div>
 						<button
@@ -147,7 +146,6 @@ export default function BookmarkList({ questions, bookmarks, userAnswers, onSele
 							disabled={!currentAnswer}
 							style={{ opacity: currentAnswer ? 1 : 0.5, cursor: currentAnswer ? "pointer" : "not-allowed" }}
 						>
-							<RotateCcw size={18} />
 							다시풀기
 						</button>
 					</div>

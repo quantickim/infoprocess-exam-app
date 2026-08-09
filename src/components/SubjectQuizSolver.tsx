@@ -484,14 +484,12 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 						disabled={currentIndex === 0}
 						style={{ opacity: currentIndex === 0 ? 0.5 : 1, cursor: currentIndex === 0 ? "not-allowed" : "pointer" }}
 					>
-						<ChevronLeft size={18} />
 						이전문제
 					</button>
 
 					{currentIndex < filteredQuestions.length - 1 ? (
 						<button className="btn-primary" style={{ background: colors.gradient }} onClick={() => handleSetIndex(Math.min(filteredQuestions.length - 1, currentIndex + 1))}>
 							다음문제
-							<ChevronRight size={18} />
 						</button>
 					) : (
 						<button className="btn-primary" style={{ background: "linear-gradient(135deg, #10b981, #059669)" }} onClick={onFinishQuiz}>
