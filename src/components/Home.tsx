@@ -50,7 +50,7 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 			description: "연도 및 회차별 기출문제를 선택하여 차례대로 풀어보세요.",
 			color: "linear-gradient(135deg, #6366f1, #4f46e5)",
 			glow: "rgba(99, 102, 241, 0.35)",
-			stat: "회차별 완벽 지원",
+			stat: "회차별 기출문제",
 		},
 		{
 			tab: "subject",

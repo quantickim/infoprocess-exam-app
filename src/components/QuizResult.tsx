@@ -194,7 +194,7 @@ export default function QuizResult({ questions, userAnswers, wrongAnswers, onRet
 								? "아직 풀이를 시작하지 않은 회차입니다"
 								: `📝 풀이가 진행 중인 회차입니다 (${currentSessionData.answeredCount}/${currentSessionData.totalQuestions}문제)`
 							: currentSessionData.isPassed
-								? "🎉 해당 회차 합격 기준 달성!"
+								? "🎉 합격 기준 달성!"
 								: "💔 아쉽습니다. 불합격입니다."}
 					</h2>
 
@@ -213,7 +213,7 @@ export default function QuizResult({ questions, userAnswers, wrongAnswers, onRet
 
 					<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px", maxWidth: "700px", margin: "0 auto 24px auto" }}>
 						<div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "16px", borderRadius: "var(--radius-md)", border: "1px solid var(--border-color)" }}>
-							<div style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginBottom: "4px" }}>현재 점수</div>
+							<div style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginBottom: "4px" }}>점수</div>
 							<div
 								style={{
 									fontSize: "2rem",
@@ -222,13 +222,6 @@ export default function QuizResult({ questions, userAnswers, wrongAnswers, onRet
 								}}
 							>
 								{currentSessionData.score}점
-							</div>
-						</div>
-
-						<div style={{ background: "rgba(15, 23, 42, 0.6)", padding: "16px", borderRadius: "var(--radius-md)", border: "1px solid var(--border-color)" }}>
-							<div style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginBottom: "4px" }}>맞은 문제</div>
-							<div style={{ fontSize: "2rem", fontWeight: 800, color: "var(--correct)" }}>
-								{currentSessionData.correctCount} / {currentSessionData.totalQuestions}
 							</div>
 						</div>
 
