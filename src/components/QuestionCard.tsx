@@ -134,12 +134,12 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 							{/* Correct / Wrong Indicators */}
 							{hasAnswered && optionNum === question.answer && (
 								<div style={{ color: "var(--correct)", display: "flex", alignItems: "center", gap: "4px", fontWeight: 600, fontSize: "0.88rem" }}>
-									<CheckCircle2 size={20} /> 정답
+									<CheckCircle2 size={20} />
 								</div>
 							)}
 							{hasAnswered && userAnswer.selectedOption === optionNum && optionNum !== question.answer && (
 								<div style={{ color: "var(--wrong)", display: "flex", alignItems: "center", gap: "4px", fontWeight: 600, fontSize: "0.88rem" }}>
-									<XCircle size={20} /> 내가 선택한 오답
+									<XCircle size={20} />
 								</div>
 							)}
 						</div>

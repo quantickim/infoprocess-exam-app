@@ -86,7 +86,7 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 			description: "전체 점수, 과목별 성적 및 과락(40점 미만) 여부를 확인하세요.",
 			color: "linear-gradient(135deg, #10b981, #059669)",
 			glow: "rgba(16, 185, 129, 0.35)",
-			stat: answeredCount > 0 ? `${Math.round((correctCount / answeredCount) * 100)}점 평균` : "미풀이",
+			stat: "회차별 풀이 점수",
 		},
 	];
 
