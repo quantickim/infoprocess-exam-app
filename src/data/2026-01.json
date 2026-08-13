@@ -550,7 +550,7 @@
 		"question": "다음 R과 S 두 릴레이션에 대한 Division 연산의 수행 결과는?",
 		"imgsrc": "/img/2026-1-44.png",
 		"options": ["D3: A, B", "D2: 2, 2", "D3: A", "D1: a, b"],
-		"answer": 3,
+		"answer": 4,
 		"explanation": "💡 **해설**:\n릴레이션 R에서 릴레이션 S의 (D2, D3) = (1, A) 속성값을 가진 튜플은 a와 b입니다. 따라서 결과는 D1: a, b 가 됩니다."
 	},
 	{
