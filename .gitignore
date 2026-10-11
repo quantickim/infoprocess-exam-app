@@ -45,3 +45,5 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+# 문제 원본 자료(PDF) - 저작권 자료이므로 저장소에 올리지 않음
+/data/

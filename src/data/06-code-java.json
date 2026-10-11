@@ -1,0 +1,200 @@
+[
+	{
+		"id": "java-01",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "class Test {\n    public static void main(String args[]) {\n        cond obj = new cond(3);\n        obj.a = 5;\n        int b = obj.func();\n        System.out.print(obj.a + b);\n    }\n}\nclass cond {\n    int a;\n    public cond(int a) {\n        this.a = a;\n    }\n    public int func() {\n        int b = 1;\n        for (int i = 1; i < a; i++)\n            b += a * i;\n        return a + b;\n    }\n}",
+		"language": "java",
+		"choices": [
+			"16",
+			"56",
+			"61",
+			"66"
+		],
+		"blanks": [
+			{
+				"answer": "61"
+			}
+		],
+		"explanation": "생성자로 a = 3이 되지만 바로 obj.a = 5로 바뀐다.\nfunc()에서 b = 1에 a × i (i = 1~4)를 더하면 1 + 5 + 10 + 15 + 20 = 51이고, a + b = 56을 반환한다.\n출력은 obj.a + b = 5 + 56 = 61이다."
+	},
+	{
+		"id": "java-02",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "class A {\n    int a;\n    int b;\n}\npublic class Test {\n    static void func1(A m) {\n        m.a *= 10;\n    }\n    static void func2(A m) {\n        m.a += m.b;\n    }\n    public static void main(String args[]) {\n        A m = new A();\n        m.a = 100;\n        func1(m);\n        m.b = m.a;\n        func2(m);\n        System.out.printf(\"%d\", m.a);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"200",
+			"1000",
+			"1100",
+			"2000"
+		],
+		"blanks": [
+			{
+				"answer": "2000"
+			}
+		],
+		"explanation": "객체를 인수로 넘기면 참조(주소)가 전달되므로, 메소드 안에서 바꾼 값이 원래 객체에 그대로 반영된다.\nm.a = 100 → func1: m.a = 1000 → m.b = 1000 → func2: m.a = 1000 + 1000 = 2000"
+	},
+	{
+		"id": "java-03",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class ovr1 {\n    public static void main(String[] args) {\n        ovr1 a1 = new ovr1();\n        ovr2 a2 = new ovr2();\n        System.out.println(a1.sun(3,2) + a2.sun(3,2));\n    }\n    int sun(int x, int y) {\n        return x + y;\n    }\n}\nclass ovr2 extends ovr1 {\n    int sun(int x, int y) {\n        return x - y + super.sun(x, y);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"5",
+			"6",
+			"10",
+			"11"
+		],
+		"blanks": [
+			{
+				"answer": "11"
+			}
+		],
+		"explanation": "• a1.sun(3, 2): ovr1의 sun → 3 + 2 = 5\n• a2.sun(3, 2): 오버라이딩된 ovr2의 sun → 3 - 2 + super.sun(3, 2) = 1 + 5 = 6\n5 + 6 = 11이 출력된다."
+	},
+	{
+		"id": "java-04",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "class A {\n    int a;\n    public A(int a) { this.a = a; }\n    void display() { System.out.println(\"a=\" + a); }\n}\nclass B extends A {\n    public B(int a) {\n        super(a);\n        super.display();\n    }\n}\npublic class Test {\n    public static void main(String[] args) {\n        B obj = new B(10);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"10",
+			"a=0",
+			"a=10\na=10",
+			"a=10"
+		],
+		"blanks": [
+			{
+				"answer": "a=10"
+			}
+		],
+		"explanation": "new B(10)으로 B의 생성자가 실행되고, super(a)로 부모 A의 생성자를 호출해 a = 10이 된다.\n이어서 super.display()로 부모의 display()를 호출하므로 a=10이 출력된다."
+	},
+	{
+		"id": "java-05",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 괄호에 들어갈 알맞은 답을 쓰시오.",
+		"codeSnippet": "class Car implements Runnable {\n    int a;\n    public void run() {\n        try {\n            while(++a < 100) {\n                System.out.println(\"miles traveled : \" + a);\n                Thread.sleep(100);\n            }\n        } catch(Exception E) { }\n    }\n}\npublic class Test {\n    public static void main(String args[]) {\n        Thread t1 = new Thread(new (        )());\n        t1.start();\n    }\n}",
+		"language": "java",
+		"choices": [
+			"Object",
+			"Test",
+			"Car",
+			"Runnable"
+		],
+		"blanks": [
+			{
+				"answer": "Car"
+			}
+		],
+		"explanation": "Thread 생성자에는 Runnable 인터페이스를 구현한 객체를 넘겨야 한다. Runnable을 구현한 클래스는 Car이므로 new Car()가 들어간다.\nt1.start()를 호출하면 Car의 run() 메소드가 새로운 스레드에서 실행된다."
+	},
+	{
+		"id": "java-06",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "class Connection {\n    private static Connection _inst = null;\n    private int count = 0;\n    static public Connection get() {\n        if(_inst == null) {\n            _inst = new Connection();\n            return _inst;\n        }\n        return _inst;\n    }\n    public void count() { count++; }\n    public int getCount() { return count; }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Connection conn1 = Connection.get();\n        conn1.count();\n        Connection conn2 = Connection.get();\n        conn2.count();\n        Connection conn3 = Connection.get();\n        conn3.count();\n        System.out.print(conn1.getCount());\n    }\n}",
+		"language": "java",
+		"choices": [
+			"0",
+			"1",
+			"2",
+			"3"
+		],
+		"blanks": [
+			{
+				"answer": "3"
+			}
+		],
+		"explanation": "싱글톤(Singleton) 패턴이다. get()은 _inst가 null일 때 한 번만 객체를 만들고, 이후에는 같은 객체를 반환한다.\nconn1, conn2, conn3은 모두 같은 객체이므로 count()가 세 번 호출되어 3이 출력된다."
+	},
+	{
+		"id": "java-07",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 괄호에 들어갈 알맞은 답을 쓰시오.",
+		"codeSnippet": "class Parent {\n    void show() { System.out.println(\"parent\"); }\n}\nclass Child extends Parent {\n    void show() { System.out.println(\"child\"); }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Parent pa = (        ) Child();\n        pa.show();\n    }\n}",
+		"language": "java",
+		"choices": [
+			"super",
+			"new",
+			"class",
+			"this"
+		],
+		"blanks": [
+			{
+				"answer": "new"
+			}
+		],
+		"explanation": "객체를 생성하는 예약어는 new이다.\n부모 타입 변수 pa에 자식 객체를 대입(업캐스팅)했고 show()는 Child에서 오버라이딩했으므로, pa.show()를 실행하면 child가 출력된다."
+	},
+	{
+		"id": "java-08",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "class Parent {\n    int compute(int num) {\n        if(num <= 1) return num;\n        return compute(num - 1) + compute(num - 2);\n    }\n}\nclass Child extends Parent {\n    int compute(int num) {\n        if(num <= 1) return num;\n        return compute(num - 1) + compute(num - 3);\n    }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Parent obj = new Child();\n        System.out.print(obj.compute(4));\n    }\n}",
+		"language": "java",
+		"choices": [
+			"0",
+			"1",
+			"2",
+			"3"
+		],
+		"blanks": [
+			{
+				"answer": "1"
+			}
+		],
+		"explanation": "obj는 Child 객체이므로 오버라이딩된 Child의 compute()가 재귀 호출된다. (num ≤ 1이면 num을 반환)\n• compute(2) = compute(1) + compute(-1) = 1 + (-1) = 0\n• compute(3) = compute(2) + compute(0) = 0 + 0 = 0\n• compute(4) = compute(3) + compute(1) = 0 + 1 = 1"
+	},
+	{
+		"id": "java-09",
+		"session": "코드 · Java 활용",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "abstract class Vehicle {\n    String name;\n    abstract public String getName(String val);\n    public String getName() {\n        return \"Vehicle name : \" + name;\n    }\n}\nclass Car extends Vehicle {\n    private String name;\n    public Car(String val) {\n        name = super.name = val;\n    }\n    public String getName(String val) {\n        return \"Car name : \" + val;\n    }\n    public String getName(byte[] val) {\n        return \"Car name : \" + val;\n    }\n}\npublic class Test {\n    public static void main(String[] args) {\n        Vehicle obj = new Car(\"Spark\");\n        System.out.print(obj.getName());\n    }\n}",
+		"language": "java",
+		"choices": [
+			"Vehicle name : null",
+			"Vehicle name : Spark",
+			"Car name : Spark",
+			"Car name : null"
+		],
+		"blanks": [
+			{
+				"answer": "Vehicle name : Spark"
+			}
+		],
+		"explanation": "Car 생성자에서 Car의 name과 부모의 name(super.name)이 모두 \"Spark\"가 된다.\nobj.getName()은 인수가 없는 메소드인데, Car는 인수가 있는 getName만 정의(오버로딩)했으므로 Vehicle의 getName()이 실행된다.\nVehicle의 name은 \"Spark\"이므로 Vehicle name : Spark가 출력된다."
+	}
+]

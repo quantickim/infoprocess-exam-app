@@ -1,0 +1,68 @@
+[
+	{
+		"id": "st-01",
+		"session": "코드 · 구조체",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nstruct A {\n    int n;\n    int g;\n};\nmain() {\n    struct A st[2];\n    for (int i = 0; i < 2; i++) {\n        st[i].n = i;\n        st[i].g = i + 1;\n    }\n    printf(\"%d\", st[0].n + st[1].g);\n}",
+		"language": "c",
+		"choices": [
+			"0",
+			"1",
+			"2",
+			"3"
+		],
+		"blanks": [
+			{
+				"answer": "2"
+			}
+		],
+		"explanation": "반복문을 실행하면 st[0] = {n: 0, g: 1}, st[1] = {n: 1, g: 2}가 된다.\nst[0].n + st[1].g = 0 + 2 = 2이다."
+	},
+	{
+		"id": "st-02",
+		"session": "코드 · 구조체",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nmain() {\n    struct insa {\n        char name[10];\n        int age;\n    } a[] = { \"Kim\", 28, \"Lee\", 38, \"Park\", 42, \"Choi\", 31 };\n    struct insa* p;\n    p = a;\n    p++;\n    printf(\"%s\\n\", p->name);\n    printf(\"%d\\n\", p->age);\n}",
+		"language": "c",
+		"choices": [
+			"Lee\n28",
+			"Park\n42",
+			"Lee\n38",
+			"Kim\n28"
+		],
+		"blanks": [
+			{
+				"answer": "Lee\n38"
+			}
+		],
+		"explanation": "p = a로 p는 a[0]을 가리키고, p++로 다음 구조체인 a[1]을 가리킨다. (포인터에 1을 더하면 자료형 크기만큼 이동)\n포인터로 멤버에 접근할 때는 -> 를 사용하므로 a[1]의 name(Lee)과 age(38)가 출력된다."
+	},
+	{
+		"id": "st-03",
+		"session": "코드 · 구조체",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nstruct jsu {\n    char nae[12];\n    int os, db, hab, hhab;\n};\n\nint main() {\n    struct jsu st[3] = { {\"데이터1\", 95, 88}, {\"데이터2\", 84, 91}, {\"데이터3\", 86, 75} };\n    struct jsu* p;\n    p = &st[0];\n    (p + 1)->hab = (p + 1)->os + (p + 2)->db;\n    (p + 1)->hhab = (p + 1)->hab + p->os + p->db;\n    printf(\"%d\", (p + 1)->hab + (p + 1)->hhab);\n}",
+		"language": "c",
+		"choices": [
+			"159",
+			"342",
+			"488",
+			"501"
+		],
+		"blanks": [
+			{
+				"answer": "501"
+			}
+		],
+		"explanation": "p는 st[0], p + 1은 st[1], p + 2는 st[2]를 가리킨다.\n• st[1].hab = st[1].os + st[2].db = 84 + 75 = 159\n• st[1].hhab = st[1].hab + st[0].os + st[0].db = 159 + 95 + 88 = 342\n• 출력: 159 + 342 = 501"
+	}
+]

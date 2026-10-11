@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BookOpen, Award, Bookmark, XCircle, ArrowRight, Layers, Shuffle, Sparkles, RotateCcw } from "lucide-react";
 import { UserAnswersMap, Question } from "../types";
-import { DailyStats } from "../utils/storage";
+import { DailyStats, SUBJECTS } from "../utils/storage";
 import CustomConfirmModal from "./CustomConfirmModal";
 
 export type TabType = "home" | "random" | "quiz" | "subject" | "wrong" | "bookmark" | "result";
@@ -32,13 +32,14 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 	const answeredCount = Object.keys(userAnswers).length;
 	const correctCount = Object.values(userAnswers).filter((a) => a.isCorrect).length;
 	const totalWrongCount = wrongAnswers.length;
+	const sessionCount = new Set(questions.map((q) => q.session)).size;
 
 	const cards: MenuCard[] = [
 		{
 			tab: "random",
 			icon: <Shuffle size={32} />,
 			title: "랜덤 문제풀이",
-			description: "전체 기출문제 중에서 무작위로 추출하여 실전을 대비합니다.",
+			description: "키워드·코드 문제를 무작위로 섞어 실전처럼 풀어봅니다.",
 			color: "linear-gradient(135deg, #a855f7, #7e22ce)",
 			glow: "rgba(168, 85, 247, 0.35)",
 			stat: `전체 ${questions.length}문제`,
@@ -46,20 +47,20 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 		{
 			tab: "quiz",
 			icon: <Sparkles size={32} />,
-			title: "회차별 문제풀이",
-			description: "연도 및 회차별 기출문제를 선택하여 차례대로 풀어보세요.",
+			title: "유형별 문제풀이",
+			description: "키워드, 제어문, 포인터, Java, Python 등 유형을 골라 차례대로 풀어보세요.",
 			color: "linear-gradient(135deg, #6366f1, #4f46e5)",
 			glow: "rgba(99, 102, 241, 0.35)",
-			stat: "회차별 기출문제",
+			stat: `${sessionCount}개 유형`,
 		},
 		{
 			tab: "subject",
 			icon: <Layers size={32} />,
-			title: "과목별 문제풀이",
-			description: "1~5과목 중 원하는 과목을 선택하여 취약 과목을 집중 학습하세요.",
+			title: "주제별 문제풀이",
+			description: "데이터베이스, 보안, 네트워크, C·Java·Python 등 취약한 주제를 집중 학습하세요.",
 			color: "linear-gradient(135deg, #06b6d4, #0891b2)",
 			glow: "rgba(6, 182, 212, 0.35)",
-			stat: "5개 과목 지원",
+			stat: `${SUBJECTS.length}개 주제 지원`,
 		},
 		{
 			tab: "wrong",
@@ -83,10 +84,10 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 			tab: "result",
 			icon: <Award size={32} />,
 			title: "풀이결과",
-			description: "전체 점수, 과목별 성적 및 과락(40점 미만) 여부를 확인하세요.",
+			description: "유형별 점수와 주제별 정답률로 부족한 부분을 확인하세요.",
 			color: "linear-gradient(135deg, #10b981, #059669)",
 			glow: "rgba(16, 185, 129, 0.35)",
-			stat: "회차별 풀이 점수",
+			stat: "유형별 풀이 점수",
 		},
 	];
 
@@ -110,7 +111,7 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 						}}
 					>
 						<BookOpen size={15} />
-						2025년 1회 - 2026년 2회 CBT 정처기 필기 기출문제
+						정보처리기사 실기 유형별 기출 {questions.length}문제
 					</div>
 				</div>
 

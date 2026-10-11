@@ -19,7 +19,7 @@ export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, in
 	const [selectedSubject, setSelectedSubject] = useState<number>(0);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-	// 오답노트 전용 독립 로컬 풀이 상태 (회차별 전역 userAnswers와 완전히 격리됨)
+	// 오답노트 전용 독립 로컬 풀이 상태 (유형별 전역 userAnswers와 완전히 격리됨)
 	const [localAnswers, setLocalAnswers] = useState<Record<string, UserAnswerRecord>>({});
 
 	useEffect(() => {
@@ -33,14 +33,12 @@ export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, in
 		return questions.filter((q) => wrongAnswers.includes(String(q.id)));
 	}, [questions, wrongAnswers]);
 
-	// 2. CustomSelect용 회차 옵션 목록
+	// 2. CustomSelect용 유형 옵션 목록 (데이터 파일 순서 유지)
 	const sessionOptions = useMemo(() => {
-		const sessions = Array.from(new Set(allWrongQuestions.map((q) => q.session)))
-			.sort()
-			.reverse();
+		const sessions = Array.from(new Set(allWrongQuestions.map((q) => q.session)));
 
 		return [
-			{ value: "all", label: `전체 회차 (${allWrongQuestions.length}개)` },
+			{ value: "all", label: `전체 유형 (${allWrongQuestions.length}개)` },
 			...sessions.map((s) => {
 				const count = allWrongQuestions.filter((q) => q.session === s).length;
 				return { value: s, label: `${s} (${count}개)` };
@@ -48,7 +46,13 @@ export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, in
 		];
 	}, [allWrongQuestions]);
 
-	// 3. 선택한 회차 및 과목 조건으로 필터링
+	// 선택한 유형의 오답에 포함된 주제만 필터 칩으로 노출
+	const sessionSubjects = useMemo(() => {
+		const ids = new Set(allWrongQuestions.filter((q) => selectedSession === "all" || q.session === selectedSession).map((q) => q.subjectId));
+		return SUBJECTS.filter((sub) => ids.has(sub.id));
+	}, [allWrongQuestions, selectedSession]);
+
+	// 3. 선택한 유형 및 주제 조건으로 필터링
 	const filteredWrongQuestions = useMemo(() => {
 		return allWrongQuestions.filter((q) => {
 			const matchSession = selectedSession === "all" || q.session === selectedSession;
@@ -82,7 +86,7 @@ export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, in
 				<p style={{ color: "var(--text-muted)", lineHeight: "1.6" }}>
 					아직 등록된 오답 문제가 없거나, 오답노트에서 모두 제외하셨습니다.
 					<br />
-					회차별 문제풀이 메뉴에서 문제를 먼저 풀어보세요.
+					문제풀이 메뉴에서 문제를 먼저 풀어보세요.
 				</p>
 			</div>
 		);
@@ -94,20 +98,24 @@ export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, in
 
 	const progressPercent = filteredWrongQuestions.length > 0 ? Math.round(((currentIndex + 1) / filteredWrongQuestions.length) * 100) : 0;
 
-	// 로컬 답안 선택 처리 (💡 전역 회차 풀이 기록에 영향을 주지 않음)
-	const handleLocalSelectOption = (optionNum: number) => {
+	// 로컬 답안 제출 처리 (💡 전역 유형별 풀이 기록에 영향을 주지 않음)
+	const handleLocalSubmitAnswer = (inputs: string[], isCorrect: boolean, manual: boolean) => {
 		if (!currentQuestion) return;
-		const isCorrect = optionNum === currentQuestion.answer;
 		setLocalAnswers((prev) => ({
 			...prev,
 			[currentQuestion.id]: {
-				questionId: String(currentQuestion.id),
-				selectedOption: optionNum,
+				inputs,
 				isCorrect,
+				manual,
 				session: currentQuestion.session,
 				timestamp: new Date().toISOString(),
 			},
 		}));
+	};
+
+	const handleLocalMarkCorrect = () => {
+		if (!currentQuestion || !currentLocalAnswer) return;
+		setLocalAnswers((prev) => ({ ...prev, [currentQuestion.id]: { ...currentLocalAnswer, isCorrect: true, manual: true } }));
 	};
 
 	// 다시풀기 (로컬 선택 초기화)
@@ -142,24 +150,24 @@ export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, in
 			}}
 		>
 			<div style={{ display: "flex", alignItems: "center", gap: "12px", flex: "1" }}>
-				<label style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--text-muted)", whiteSpace: "nowrap" }}>회차 선택:</label>
+				<label style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--text-muted)", whiteSpace: "nowrap" }}>유형 선택:</label>
 				<div style={{ width: "100%", maxWidth: "300px" }}>
-					<CustomSelect options={sessionOptions} value={selectedSession} onChange={handleSessionChange} placeholder="회차를 선택해주세요" />
+					<CustomSelect options={sessionOptions} value={selectedSession} onChange={handleSessionChange} placeholder="문제 유형을 선택해주세요" />
 				</div>
 			</div>
 
 			<div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
 				<button className={`nav-btn ${selectedSubject === 0 ? "active" : ""}`} onClick={() => handleSubjectChange(0)} style={{ padding: "6px 12px", fontSize: "0.85rem" }}>
-					전체 과목
+					전체 주제
 				</button>
-				{SUBJECTS.map((sub) => (
+				{sessionSubjects.map((sub) => (
 					<button
 						key={sub.id}
 						className={`nav-btn ${selectedSubject === sub.id ? "active" : ""}`}
 						onClick={() => handleSubjectChange(sub.id)}
 						style={{ padding: "6px 12px", fontSize: "0.85rem" }}
 					>
-						{sub.id}과목
+						{sub.name}
 					</button>
 				))}
 			</div>
@@ -174,7 +182,7 @@ export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, in
 				<div className="glass-card" style={{ padding: "60px", textAlign: "center" }}>
 					<Filter size={48} style={{ color: "var(--text-muted)", marginBottom: "16px" }} />
 					<h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>해당 조건의 오답 문제가 없습니다.</h3>
-					<p style={{ color: "var(--text-muted)" }}>다른 회차나 과목 필터를 선택해 주세요.</p>
+					<p style={{ color: "var(--text-muted)" }}>다른 유형이나 주제 필터를 선택해 주세요.</p>
 				</div>
 			</div>
 		);
@@ -196,12 +204,14 @@ export default function WrongQuizSolver({ questions, wrongAnswers, bookmarks, in
 			</div>
 
 			<QuestionCard
+				key={currentQuestion.id}
 				question={currentQuestion}
 				currentIndex={currentIndex}
 				totalCount={filteredWrongQuestions.length}
 				userAnswer={currentLocalAnswer}
 				isBookmarked={isBookmarked}
-				onSelectOption={handleLocalSelectOption}
+				onSubmitAnswer={handleLocalSubmitAnswer}
+				onMarkCorrect={handleLocalMarkCorrect}
 				onToggleBookmark={() => onToggleBookmark(String(currentQuestion.id))}
 			/>
 

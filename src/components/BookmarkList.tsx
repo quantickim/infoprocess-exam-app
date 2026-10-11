@@ -7,11 +7,12 @@ import { SUBJECTS } from "../utils/storage";
 interface BookmarkListProps {
 	questions: Question[];
 	bookmarks: string[];
-	onSelectOption: (questionId: string, selectedOption: number, session: string) => void;
+	onSubmitAnswer: (questionId: string, isCorrect: boolean) => void;
+	onMarkCorrect: (questionId: string) => void;
 	onToggleBookmark: (questionId: string) => void;
 }
 
-export default function BookmarkList({ questions, bookmarks, onSelectOption, onToggleBookmark }: BookmarkListProps) {
+export default function BookmarkList({ questions, bookmarks, onSubmitAnswer, onMarkCorrect, onToggleBookmark }: BookmarkListProps) {
 	const [selectedSubject, setSelectedSubject] = useState<number>(0);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 	const [localAnswers, setLocalAnswers] = useState<Record<string, UserAnswerRecord>>({});
@@ -20,6 +21,12 @@ export default function BookmarkList({ questions, bookmarks, onSelectOption, onT
 		const strBookmarks = bookmarks.map(String);
 		return questions.filter((q) => strBookmarks.includes(String(q.id)));
 	}, [questions, bookmarks]);
+
+	// 북마크한 문제에 포함된 주제만 필터 칩으로 노출
+	const bookmarkedSubjects = useMemo(() => {
+		const ids = new Set(bookmarkedQuestions.map((q) => q.subjectId));
+		return SUBJECTS.filter((sub) => ids.has(sub.id));
+	}, [bookmarkedQuestions]);
 
 	const filteredBookmarked = useMemo(() => {
 		if (selectedSubject === 0) return bookmarkedQuestions;
@@ -52,22 +59,28 @@ export default function BookmarkList({ questions, bookmarks, onSelectOption, onT
 	const isBookmarked = currentQuestion ? bookmarks.map(String).includes(String(currentQuestion.id)) : false;
 	const progressPercent = filteredBookmarked.length > 0 ? Math.round(((currentIndex + 1) / filteredBookmarked.length) * 100) : 0;
 
-	const handleLocalSelectOption = (optionNum: number) => {
+	const handleLocalSubmitAnswer = (inputs: string[], isCorrect: boolean, manual: boolean) => {
 		if (!currentQuestion) return;
-		const isCorrect = optionNum === currentQuestion.answer;
 
 		setLocalAnswers((prev) => ({
 			...prev,
 			[currentQuestion.id]: {
-				questionId: String(currentQuestion.id),
-				selectedOption: optionNum,
+				inputs,
 				isCorrect,
+				manual,
 				session: currentQuestion.session,
 				timestamp: new Date().toISOString(),
 			},
 		}));
 
-		onSelectOption(String(currentQuestion.id), optionNum, currentQuestion.session);
+		// 당일 통계 집계 및 오답노트 추가 처리 (유형별 풀이 기록에는 미영향)
+		onSubmitAnswer(String(currentQuestion.id), isCorrect);
+	};
+
+	const handleLocalMarkCorrect = () => {
+		if (!currentQuestion || !currentLocalAnswer) return;
+		setLocalAnswers((prev) => ({ ...prev, [currentQuestion.id]: { ...currentLocalAnswer, isCorrect: true, manual: true } }));
+		onMarkCorrect(String(currentQuestion.id));
 	};
 
 	const handleLocalResetAnswer = () => {
@@ -93,14 +106,14 @@ export default function BookmarkList({ questions, bookmarks, onSelectOption, onT
 					<button className={`nav-btn ${selectedSubject === 0 ? "active" : ""}`} onClick={() => handleSubjectChange(0)} style={{ padding: "6px 12px", fontSize: "0.85rem" }}>
 						전체
 					</button>
-					{SUBJECTS.map((sub) => (
+					{bookmarkedSubjects.map((sub) => (
 						<button
 							key={sub.id}
 							className={`nav-btn ${selectedSubject === sub.id ? "active" : ""}`}
 							onClick={() => handleSubjectChange(sub.id)}
 							style={{ padding: "6px 12px", fontSize: "0.85rem" }}
 						>
-							{sub.id}과목
+							{sub.name}
 						</button>
 					))}
 				</div>
@@ -108,8 +121,8 @@ export default function BookmarkList({ questions, bookmarks, onSelectOption, onT
 
 			{filteredBookmarked.length === 0 ? (
 				<div className="glass-card" style={{ padding: "60px", textAlign: "center" }}>
-					<h3 style={{ fontSize: "1.2rem", marginBottom: "8px" }}>선택한 과목에 저장된 북마크 문제가 없습니다.</h3>
-					<p style={{ color: "var(--text-muted)" }}>다른 과목 필터를 선택해 주세요.</p>
+					<h3 style={{ fontSize: "1.2rem", marginBottom: "8px" }}>선택한 주제에 저장된 북마크 문제가 없습니다.</h3>
+					<p style={{ color: "var(--text-muted)" }}>다른 주제 필터를 선택해 주세요.</p>
 				</div>
 			) : (
 				<>
@@ -127,12 +140,14 @@ export default function BookmarkList({ questions, bookmarks, onSelectOption, onT
 
 					{/* Current Question Card */}
 					<QuestionCard
+						key={currentQuestion.id}
 						question={currentQuestion}
 						currentIndex={currentIndex}
 						totalCount={filteredBookmarked.length}
 						userAnswer={currentLocalAnswer}
 						isBookmarked={isBookmarked}
-						onSelectOption={handleLocalSelectOption}
+						onSubmitAnswer={handleLocalSubmitAnswer}
+						onMarkCorrect={handleLocalMarkCorrect}
 						onToggleBookmark={() => onToggleBookmark(String(currentQuestion.id))}
 					/>
 

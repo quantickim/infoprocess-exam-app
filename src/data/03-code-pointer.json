@@ -1,0 +1,112 @@
+[
+	{
+		"id": "ptr-01",
+		"session": "코드 · 포인터",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nint len(char* p);\nint main() {\n    char* p1 = \"2022\";\n    char* p2 = \"202207\";\n    int a = len(p1);\n    int b = len(p2);\n    printf(\"%d\", a + b);\n}\nint len(char* p) {\n    int r = 0;\n    while (*p != '\\0') {\n        p++;\n        r++;\n    }\n    return r;\n}",
+		"language": "c",
+		"choices": [
+			"4",
+			"6",
+			"10",
+			"12"
+		],
+		"blanks": [
+			{
+				"answer": "10"
+			}
+		],
+		"explanation": "len 함수는 포인터 p가 널 문자('\\0')를 만날 때까지 한 칸씩 이동하며 글자 수를 센다(문자열 길이).\nlen(\"2022\") = 4, len(\"202207\") = 6이므로 4 + 6 = 10이 출력된다."
+	},
+	{
+		"id": "ptr-02",
+		"session": "코드 · 포인터",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    int a[4] = { 0, 2, 4, 8 };\n    int b[3];\n    int* p;\n    int sum = 0;\n    for (int i = 1; i < 4; i++) {\n        p = a + i;\n        b[i - 1] = *p - a[i - 1];\n        sum = sum + b[i - 1] + a[i];\n    }\n    printf(\"%d\", sum);\n}",
+		"language": "c",
+		"choices": [
+			"8",
+			"14",
+			"22",
+			"24"
+		],
+		"blanks": [
+			{
+				"answer": "22"
+			}
+		],
+		"explanation": "p = a + i는 a[i]의 주소이므로 *p는 a[i]이다. b[i-1]은 이웃한 두 값의 차이(a[i] - a[i-1])가 된다.\n• i = 1: b[0] = 2 - 0 = 2, sum = 0 + 2 + 2 = 4\n• i = 2: b[1] = 4 - 2 = 2, sum = 4 + 2 + 4 = 10\n• i = 3: b[2] = 8 - 4 = 4, sum = 10 + 4 + 8 = 22"
+	},
+	{
+		"id": "ptr-03",
+		"session": "코드 · 포인터",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    int* array[3];\n    int a = 12, b = 24, c = 36;\n    array[0] = &a;\n    array[1] = &b;\n    array[2] = &c;\n    printf(\"%d\", *array[1] + **array + 1);\n}",
+		"language": "c",
+		"choices": [
+			"25",
+			"37",
+			"49",
+			"61"
+		],
+		"blanks": [
+			{
+				"answer": "37"
+			}
+		],
+		"explanation": "array는 정수형 포인터 3개를 저장하는 포인터 배열이다.\n• *array[1]: array[1]이 가리키는 b의 값 24\n• **array: *array는 array[0](a의 주소)이고, 한 번 더 참조하면 a의 값 12\n따라서 24 + 12 + 1 = 37이 출력된다."
+	},
+	{
+		"id": "ptr-04",
+		"session": "코드 · 포인터",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    int ary[3];\n    int s = 0;\n    *(ary + 0) = 1;\n    ary[1] = *(ary + 0) + 2;\n    ary[2] = *ary + 3;\n    for (int i = 0; i < 3; i++)\n        s = s + ary[i];\n    printf(\"%d\", s);\n}",
+		"language": "c",
+		"choices": [
+			"4",
+			"6",
+			"8",
+			"9"
+		],
+		"blanks": [
+			{
+				"answer": "8"
+			}
+		],
+		"explanation": "*(ary + 0), *ary는 모두 ary[0]과 같다.\nary[0] = 1, ary[1] = 1 + 2 = 3, ary[2] = 1 + 3 = 4이므로 합계 s = 1 + 3 + 4 = 8이다."
+	},
+	{
+		"id": "ptr-05",
+		"session": "코드 · 포인터",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nmain() {\n    char* p = \"KOREA\";\n    printf(\"%s\\n\", p);\n    printf(\"%s\\n\", p + 3);\n    printf(\"%c\\n\", *p);\n    printf(\"%c\\n\", *(p + 3));\n    printf(\"%c\\n\", *p + 2);\n}",
+		"language": "c",
+		"choices": [
+			"KOREA\nEA\nK\nR\nM",
+			"KOREA\nREA\nK\nE\nM",
+			"KOREA\nEA\nK\nE\nL",
+			"KOREA\nEA\nK\nE\nM"
+		],
+		"blanks": [
+			{
+				"answer": "KOREA\nEA\nK\nE\nM"
+			}
+		],
+		"explanation": "• %s, p: p가 가리키는 곳부터 문자열 전체 → KOREA\n• %s, p + 3: 3번째 글자부터 문자열 → EA\n• %c, *p: 첫 글자 → K\n• %c, *(p + 3): 3번째 글자 → E\n• %c, *p + 2: 'K'의 아스키 코드에 2를 더한 문자 → M"
+	}
+]

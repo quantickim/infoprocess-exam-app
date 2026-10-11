@@ -27,7 +27,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 					<div className="logo-icon">
 						<BookOpen size={20} />
 					</div>
-					<span className="logo-text">정처기 마스터</span>
+					<span className="logo-text">정처기 실기 마스터</span>
 				</div>
 
 				{/* 모바일 드롭다운 토글 버튼 */}
@@ -49,7 +49,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 
 				<button className={`nav-btn ${activeTab === "quiz" ? "active" : ""}`} onClick={() => handleNavClick("quiz")}>
 					<Sparkles size={18} />
-					<span>회차별</span>
+					<span>유형별</span>
 				</button>
 
 				<button
@@ -58,7 +58,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 					style={activeTab === "subject" ? { background: "linear-gradient(135deg, #06b6d4, #0891b2)" } : {}}
 				>
 					<Layers size={18} />
-					<span>과목별</span>
+					<span>주제별</span>
 				</button>
 
 				<button

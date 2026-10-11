@@ -1,0 +1,341 @@
+[
+	{
+		"id": "ctrl-01",
+		"session": "코드 · 제어문",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nmain() {\n    int s, el = 0;\n    for (int i = 6; i <= 30; i++) {\n        s = 0;\n        for (int j = 1; j <= i / 2; j++)\n            if (i % j == 0)\n                s = s + j;\n        if (s == i)\n            el++;\n    }\n    printf(\"%d\", el);\n}",
+		"language": "c",
+		"choices": [
+			"0",
+			"1",
+			"2",
+			"3"
+		],
+		"blanks": [
+			{
+				"answer": "2"
+			}
+		],
+		"explanation": "i를 6부터 30까지 바꿔 가며, 자기 자신을 제외한 약수(1 ~ i/2 중 i를 나누어떨어지게 하는 j)의 합 s를 구한다.\ns와 i가 같은 수(완전수)를 만날 때마다 el을 1 증가시킨다.\n6 = 1 + 2 + 3, 28 = 1 + 2 + 4 + 7 + 14 두 개뿐이므로 2가 출력된다."
+	},
+	{
+		"id": "ctrl-02",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int r = 0;\n        for (int i = 1; i < 999; i++) {\n            if (i % 3 == 0 && i % 2 == 0)\n                r = i;\n        }\n        System.out.print(r);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"6",
+			"990",
+			"996",
+			"998"
+		],
+		"blanks": [
+			{
+				"answer": "996"
+			}
+		],
+		"explanation": "i가 1부터 998까지 증가하면서 3과 2로 모두 나누어떨어지는 수(6의 배수)를 만날 때마다 r에 덮어쓴다.\n반복이 끝나면 r에는 998 이하의 6의 배수 중 가장 큰 996이 남는다."
+	},
+	{
+		"id": "ctrl-03",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int i = 3, k = 1;\n        switch(i) {\n            case 1: k++;\n            case 2: k -= 3;\n            case 3: k = 0;\n            case 4: k += 3;\n            case 5: k -= 10;\n            default: k--;\n        }\n        System.out.print(k);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"3",
+			"-8",
+			"0",
+			"-7"
+		],
+		"blanks": [
+			{
+				"answer": "-8"
+			}
+		],
+		"explanation": "i가 3이므로 case 3부터 실행한다. break가 없으므로 아래의 case와 default까지 모두 이어서 실행된다.\nk = 0 → k += 3 (3) → k -= 10 (-7) → k-- (-8)"
+	},
+	{
+		"id": "ctrl-04",
+		"session": "코드 · 제어문",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음은 정수를 역순으로 출력하는 C언어 프로그램이다. 예를 들어 1234의 역순은 4321이다. 단, 1230처럼 0으로 끝나는 정수는 고려하지 않는다. 프로그램을 분석하여 괄호(①~③)에 들어갈 알맞은 연산자를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    int number = 1234;\n    int div = 10, result = 0;\n    while (number ( ① ) 0) {\n        result = result * div;\n        result = result + number ( ② ) div;\n        number = number ( ③ ) div;\n    }\n    printf(\"%d\", result);\n}",
+		"language": "c",
+		"choices": [
+			"!=",
+			"/",
+			"==",
+			"*",
+			"%",
+			"<"
+		],
+		"blanks": [
+			{
+				"label": "①",
+				"answer": "!= 또는 >",
+				"accepts": [
+					"!=",
+					">"
+				]
+			},
+			{
+				"label": "②",
+				"answer": "%"
+			},
+			{
+				"label": "③",
+				"answer": "/"
+			}
+		],
+		"explanation": "number가 0이 될 때까지(① != 또는 >) 반복한다.\n• result에 10을 곱해 자릿수를 한 칸 올린 뒤, number의 마지막 자리(② number % 10)를 더한다.\n• number를 10으로 나눠(③ number / 10) 마지막 자리를 없앤다.\nresult의 변화: 4 → 43 → 432 → 4321"
+	},
+	{
+		"id": "ctrl-05",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int w = 3, x = 4, y = 3, z = 5;\n        if((w == 2 | w == y) & !(y > z) & (1 == x ^ y != z)) {\n            w = x + y;\n            if(7 == x ^ y != w)\n                System.out.println(w);\n            else\n                System.out.println(x);\n        }\n        else {\n            w = y + z;\n            if(7 == y ^ z != w)\n                System.out.println(w);\n            else\n                System.out.println(z);\n        }\n    }\n}",
+		"language": "java",
+		"choices": [
+			"4",
+			"5",
+			"7",
+			"8"
+		],
+		"blanks": [
+			{
+				"answer": "7"
+			}
+		],
+		"explanation": "비교 연산자(==, !=, >)가 비트 연산자(&, ^, |)보다 우선순위가 높으므로 비교 결과를 먼저 구한다.\n• 첫 번째 if: (false | true) & !(false) & (false ^ true) → true & true & true → true\n• w = x + y = 7\n• 두 번째 if: (7 == 4) ^ (3 != 7) → false ^ true → true이므로 w의 값 7을 출력한다."
+	},
+	{
+		"id": "ctrl-06",
+		"session": "코드 · 제어문",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "code",
+		"question": "다음 Python로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "a = 100\nresult = 0\nfor i in range(1,3):\n    result = a >> i\n    result = result + 1\nprint(result)",
+		"language": "python",
+		"choices": [
+			"25",
+			"26",
+			"51",
+			"77"
+		],
+		"blanks": [
+			{
+				"answer": "26"
+			}
+		],
+		"explanation": "range(1,3)이므로 i는 1, 2이다. result는 누적되지 않고 반복마다 새 값으로 바뀐다.\n• i = 1: 100 >> 1 = 50, result = 51\n• i = 2: 100 >> 2 = 25, result = 26\n오른쪽으로 n비트 시프트하면 2ⁿ으로 나눈 몫과 같다. 마지막 값 26이 출력된다."
+	},
+	{
+		"id": "ctrl-07",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int j, i;\n        for (j = 0, i = 0; i <= 5; i++) {\n            j += i;\n            System.out.print(i);\n            if (i == 5) {\n                System.out.print(\"=\");\n                System.out.print(j);\n            }\n            else\n                System.out.print(\"+\");\n        }\n    }\n}",
+		"language": "java",
+		"choices": [
+			"1+2+3+4+5=15",
+			"0+1+2+3+4=10",
+			"0+1+2+3+4+5+=15",
+			"0+1+2+3+4+5=15"
+		],
+		"blanks": [
+			{
+				"answer": "0+1+2+3+4+5=15"
+			}
+		],
+		"explanation": "i를 0부터 5까지 j에 누적하면서 i를 출력하고, i가 5가 아니면 +를, 5이면 =와 누적 합 j(15)를 출력한다."
+	},
+	{
+		"id": "ctrl-08",
+		"session": "코드 · 제어문",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "code",
+		"question": "다음 Python로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "lol = [[1, 2, 3], [4, 5], [6, 7, 8, 9]]\nprint(lol[0])\nprint(lol[2][1])\nfor sub in lol:\n    for item in sub:\n        print(item, end=' ')\n    print()",
+		"language": "python",
+		"choices": [
+			"[1, 2, 3]\n7\n1 2 3\n4 5\n6 7 8 9",
+			"1 2 3\n7\n1 2 3\n4 5\n6 7 8 9",
+			"[1, 2, 3]\n8\n1 2 3\n4 5\n6 7 8 9",
+			"[1, 2, 3]\n7\n1 2 3 4 5 6 7 8 9"
+		],
+		"blanks": [
+			{
+				"answer": "[1, 2, 3]\n7\n1 2 3\n4 5\n6 7 8 9"
+			}
+		],
+		"explanation": "• print(lol[0]): 0번째 행을 리스트 형태 그대로 출력 → [1, 2, 3]\n• print(lol[2][1]): 2번째 행의 1번째 요소 → 7\n• 바깥 for는 각 행을 sub에, 안쪽 for는 행의 요소를 item에 담아 공백으로 이어 출력하고, 행이 끝날 때마다 print()로 줄을 바꾼다."
+	},
+	{
+		"id": "ctrl-09",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음은 변수 n에 저장된 10진수를 2진수로 변환하여 출력하는 Java 프로그램이다. 프로그램을 분석하여 괄호(①, ②)에 들어갈 알맞은 답을 쓰시오.",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int a[] = new int[8];\n        int i = 0;\n        int n = 10;\n        while( ( ① ) ) {\n            a[i++] = ( ② );\n            n /= 2;\n        }\n        for(i = 7; i >= 0; i--)\n            System.out.print(a[i]);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"n % 2",
+			"n * 2",
+			"n == 0",
+			"n > 0",
+			"n / 2"
+		],
+		"blanks": [
+			{
+				"label": "①",
+				"answer": "n > 0",
+				"accepts": [
+					"n != 0",
+					"n >= 1",
+					"0 < n"
+				]
+			},
+			{
+				"label": "②",
+				"answer": "n % 2"
+			}
+		],
+		"explanation": "10진수를 2진수로 바꾸려면 n이 0보다 큰 동안(① n > 0) n을 2로 나눈 나머지(② n % 2)를 차례로 저장하고 n을 2로 나눈다.\n나머지를 역순으로 출력하면 2진수가 되므로 10은 00001010으로 출력된다."
+	},
+	{
+		"id": "ctrl-10",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 괄호(①, ②)에 들어갈 알맞은 답을 쓰시오.",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int ary[][] = new int[( ① )][( ② )];\n        int n = 1;\n        for(int i = 0; i < 3; i++) {\n            for(int j = 0; j < 5; j++) {\n                ary[i][j] = j * 3 + i + 1;\n                System.out.print(ary[i][j] + \" \");\n            }\n            System.out.println();\n        }\n    }\n}",
+		"language": "java",
+		"choices": [
+			"1",
+			"2",
+			"3",
+			"5"
+		],
+		"blanks": [
+			{
+				"label": "①",
+				"answer": "3"
+			},
+			{
+				"label": "②",
+				"answer": "5"
+			}
+		],
+		"explanation": "반복문에서 i는 0~2(3회), j는 0~4(5회) 사용되므로 배열 ary는 3행 5열이어야 한다. 따라서 new int[3][5]이다.\n(①에 5처럼 더 큰 값을 넣어도 실행은 되지만, 반복 횟수에 딱 맞는 3행 5열이 정답이다.)\n실행 결과는 다음과 같다.\n1 4 7 10 13\n2 5 8 11 14\n3 6 9 12 15"
+	},
+	{
+		"id": "ctrl-11",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int i = 0, c = 0;\n        while (i < 10) {\n            i++;\n            c *= i;\n        }\n        System.out.println(c);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"0",
+			"10",
+			"55",
+			"3628800"
+		],
+		"blanks": [
+			{
+				"answer": "0"
+			}
+		],
+		"explanation": "c가 0으로 시작하므로 c *= i를 몇 번 반복해도 c는 계속 0이다."
+	},
+	{
+		"id": "ctrl-12",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int a = 0, sum = 0;\n        while (a < 10) {\n            a++;\n            if (a % 2 == 1)\n                continue;\n            sum += a;\n        }\n        System.out.println(sum);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"20",
+			"25",
+			"30",
+			"55"
+		],
+		"blanks": [
+			{
+				"answer": "30"
+			}
+		],
+		"explanation": "a를 1부터 10까지 증가시키며, 홀수이면 continue로 누적을 건너뛴다.\n짝수만 더해지므로 sum = 2 + 4 + 6 + 8 + 10 = 30이다."
+	},
+	{
+		"id": "ctrl-13",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int result[] = new int[5];\n        int arr[] = { 77, 32, 10, 99, 50 };\n        for(int i = 0; i < 5; i++) {\n            result[i] = 1;\n            for(int j = 0; j < 5; j++)\n                if(arr[i] < arr[j])\n                    result[i]++;\n        }\n        for(int k = 0; k < 5; k++)\n            System.out.print(result[k]);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"13524",
+			"21543",
+			"24513",
+			"42153"
+		],
+		"blanks": [
+			{
+				"answer": "24513"
+			}
+		],
+		"explanation": "result[i]는 1에서 시작해 arr[i]보다 큰 값이 있을 때마다 1씩 증가하므로, 큰 값부터 매긴 순위가 된다.\n77은 2위, 32는 4위, 10은 5위, 99는 1위, 50은 3위이므로 24513이 출력된다."
+	},
+	{
+		"id": "ctrl-14",
+		"session": "코드 · 제어문",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        int aa[][] = { {45, 50, 75},\n                       {89} };\n        System.out.println(aa[0].length);\n        System.out.println(aa[1].length);\n        System.out.println(aa[0][0]);\n        System.out.println(aa[0][1]);\n        System.out.println(aa[1][0]);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"2\n1\n45\n50\n89",
+			"3\n3\n45\n50\n89",
+			"3\n1\n45\n89\n50",
+			"3\n1\n45\n50\n89"
+		],
+		"blanks": [
+			{
+				"answer": "3\n1\n45\n50\n89"
+			}
+		],
+		"explanation": "Java의 2차원 배열은 행마다 길이가 다를 수 있다.\naa[0]은 {45, 50, 75}로 길이 3, aa[1]은 {89}로 길이 1이다. 나머지는 각 위치의 값 45, 50, 89를 출력한다."
+	}
+]

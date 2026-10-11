@@ -2,19 +2,20 @@ import React, { useState, useMemo, useEffect } from "react";
 import QuestionCard from "./QuestionCard";
 import { RotateCcw, ChevronLeft, ChevronRight, Layers, Award } from "lucide-react";
 import { Question, UserAnswersMap, UserAnswerRecord } from "../types";
-import { SUBJECTS } from "../utils/storage";
+import { SUBJECTS, STORAGE_KEYS } from "../utils/storage";
 import CustomConfirmModal from "./CustomConfirmModal";
 
 interface SubjectQuizSolverProps {
 	questions: Question[];
 	bookmarks: string[];
-	onSelectOption: (questionId: string, selectedOption: number, session: string) => void;
+	onSubmitAnswer: (questionId: string, isCorrect: boolean) => void;
+	onMarkCorrect: (questionId: string) => void;
 	onToggleBookmark: (questionId: string) => void;
 	onFinishQuiz: () => void;
 }
 
-const STORAGE_KEY_SUBJECT_ANSWERS = "subject_quiz_answers_v1";
-const STORAGE_KEY_LAST_INDEX = "subject_quiz_last_index_v1";
+const STORAGE_KEY_SUBJECT_ANSWERS = STORAGE_KEYS.SUBJECT_ANSWERS;
+const STORAGE_KEY_LAST_INDEX = STORAGE_KEYS.SUBJECT_LAST_INDEX;
 
 const SUBJECT_COLORS: Record<number, { gradient: string; glow: string }> = {
 	1: { gradient: "linear-gradient(135deg, #6366f1, #4f46e5)", glow: "rgba(99,102,241,0.35)" },
@@ -22,14 +23,18 @@ const SUBJECT_COLORS: Record<number, { gradient: string; glow: string }> = {
 	3: { gradient: "linear-gradient(135deg, #f59e0b, #d97706)", glow: "rgba(245,158,11,0.35)" },
 	4: { gradient: "linear-gradient(135deg, #f43f5e, #e11d48)", glow: "rgba(244,63,94,0.35)" },
 	5: { gradient: "linear-gradient(135deg, #8b5cf6, #7c3aed)", glow: "rgba(139,92,246,0.35)" },
+	6: { gradient: "linear-gradient(135deg, #06b6d4, #0891b2)", glow: "rgba(6,182,212,0.35)" },
+	7: { gradient: "linear-gradient(135deg, #64748b, #475569)", glow: "rgba(100,116,139,0.35)" },
+	8: { gradient: "linear-gradient(135deg, #f97316, #ea580c)", glow: "rgba(249,115,22,0.35)" },
+	9: { gradient: "linear-gradient(135deg, #3b82f6, #2563eb)", glow: "rgba(59,130,246,0.35)" },
 };
 
-export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption, onToggleBookmark, onFinishQuiz }: SubjectQuizSolverProps) {
+export default function SubjectQuizSolver({ questions, bookmarks, onSubmitAnswer, onMarkCorrect, onToggleBookmark, onFinishQuiz }: SubjectQuizSolverProps) {
 	const [selectedSubjectId, setSelectedSubjectId] = useState<number | null>(null);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 	const [resetTargetSubjectId, setResetTargetSubjectId] = useState<number | null>(null);
 
-	// 과목별 문제풀이 전용 독립 답안 상태 (localStorage)
+	// 주제별 문제풀이 전용 독립 답안 상태 (localStorage)
 	const [subjectAnswers, setSubjectAnswers] = useState<UserAnswersMap>(() => {
 		try {
 			const saved = localStorage.getItem(STORAGE_KEY_SUBJECT_ANSWERS);
@@ -40,7 +45,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		}
 	});
 
-	// 과목별 마지막 풀이 위치 (localStorage)
+	// 주제별 마지막 풀이 위치 (localStorage)
 	const [lastIndexes, setLastIndexes] = useState<Record<number, number>>(() => {
 		try {
 			const saved = localStorage.getItem(STORAGE_KEY_LAST_INDEX);
@@ -79,7 +84,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		}
 	}, [currentIndex, selectedSubjectId]);
 
-	// 과목별 통계 계산
+	// 주제별 통계 계산
 	const subjectStats = useMemo(() => {
 		return SUBJECTS.map((sub) => {
 			const subQuestions = questions.filter((q) => q.subjectId === sub.id);
@@ -90,6 +95,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 
 			return {
 				...sub,
+				kind: subQuestions.some((q) => q.language) ? "코드" : "키워드",
 				total: subQuestions.length,
 				answered,
 				correct,
@@ -98,13 +104,13 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		});
 	}, [questions, subjectAnswers]);
 
-	// 선택된 과목의 문제 리스트
+	// 선택된 주제의 문제 리스트
 	const filteredQuestions = useMemo(() => {
 		if (selectedSubjectId === null) return [];
 		return questions.filter((q) => q.subjectId === selectedSubjectId);
 	}, [questions, selectedSubjectId]);
 
-	// 과목 선택 처리 (이어서 풀기 위치 계산)
+	// 주제 선택 처리 (이어서 풀기 위치 계산)
 	const handleSelectSubject = (subjectId: number) => {
 		const subQuestions = questions.filter((q) => q.subjectId === subjectId);
 		if (subQuestions.length === 0) return;
@@ -135,7 +141,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		setCurrentIndex(0);
 	};
 
-	// 단일 과목 상태 초기화 처리
+	// 단일 주제 상태 초기화 처리
 	const handleConfirmResetSubject = () => {
 		if (resetTargetSubjectId === null) return;
 
@@ -159,17 +165,12 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		setResetTargetSubjectId(null);
 	};
 
-	// 보기 선택
-	const handleSelectOptionLocal = (questionId: string, selectedOption: number, session: string) => {
-		const question = questions.find((q) => q.id === questionId);
-		if (!question) return;
-
-		const correctAnswer = question.answer ?? (question as any).correctOption ?? (question as any).correctAnswer;
-		const isCorrect = correctAnswer === selectedOption;
-
+	// 답안 제출
+	const handleSubmitAnswerLocal = (questionId: string, inputs: string[], isCorrect: boolean, manual: boolean, session: string) => {
 		const newAnswer: UserAnswerRecord = {
-			selectedOption,
+			inputs,
 			isCorrect,
+			manual,
 			session,
 			timestamp: new Date().toISOString(),
 		};
@@ -179,7 +180,13 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 			[questionId]: newAnswer,
 		}));
 
-		onSelectOption(questionId, selectedOption, session);
+		onSubmitAnswer(questionId, isCorrect);
+	};
+
+	// 정답으로 인정하기
+	const handleMarkCorrectLocal = (questionId: string) => {
+		setSubjectAnswers((prev) => (prev[questionId] ? { ...prev, [questionId]: { ...prev[questionId], isCorrect: true, manual: true } } : prev));
+		onMarkCorrect(questionId);
 	};
 
 	// 다시풀기 처리
@@ -192,7 +199,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 	};
 
 	// ─────────────────────────────────────────
-	// 과목 선택 화면
+	// 주제 선택 화면
 	// ─────────────────────────────────────────
 	if (selectedSubjectId === null) {
 		return (
@@ -214,13 +221,13 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 							<Layers size={22} color="#fff" />
 						</div>
 						<div>
-							<div style={{ fontWeight: 700, fontSize: "1.1rem" }}>과목별 문제풀이</div>
-							<div style={{ color: "var(--text-muted)", fontSize: "0.88rem" }}>원하는 과목을 선택해 집중 학습하세요 (이전 학습 위치부터 이어서 풀어볼 수 있습니다)</div>
+							<div style={{ fontWeight: 700, fontSize: "1.1rem" }}>주제별 문제풀이</div>
+							<div style={{ color: "var(--text-muted)", fontSize: "0.88rem" }}>원하는 주제를 선택해 집중 학습하세요 (이전 학습 위치부터 이어서 풀어볼 수 있습니다)</div>
 						</div>
 					</div>
 				</div>
 
-				{/* 과목 선택 카드 그리드 */}
+				{/* 주제 선택 카드 그리드 */}
 				<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
 					{subjectStats.map((sub) => {
 						const colors = SUBJECT_COLORS[sub.id];
@@ -296,9 +303,9 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 											{sub.id}
 										</div>
 										<div>
-											<div style={{ fontWeight: 700, fontSize: "1rem", color: "var(--text-main)" }}>{sub.name.replace(/^\d과목:\s*/, "")}</div>
+											<div style={{ fontWeight: 700, fontSize: "1rem", color: "var(--text-main)" }}>{sub.name}</div>
 											<div style={{ fontSize: "0.82rem", color: "var(--text-muted)", marginTop: "2px" }}>
-												{sub.id}과목 {hasHistory && <span style={{ color: "#06b6d4", fontWeight: 600 }}> · 학습 진행 중</span>}
+												{sub.kind} {hasHistory && <span style={{ color: "#06b6d4", fontWeight: 600 }}> · 학습 진행 중</span>}
 											</div>
 										</div>
 									</div>
@@ -309,7 +316,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 												e.stopPropagation();
 												setResetTargetSubjectId(sub.id);
 											}}
-											title="이 과목 풀이 기록 및 진행 위치 초기화"
+											title="이 주제 풀이 기록 및 진행 위치 초기화"
 											style={{
 												display: "inline-flex",
 												alignItems: "center",
@@ -364,8 +371,8 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 
 				<CustomConfirmModal
 					isOpen={resetTargetSubjectId !== null}
-					title={`${resetTargetSubjectId}과목 풀이 기록 초기화`}
-					message={`선택하신 ${resetTargetSubjectId}과목의 모든 풀이 기록과 학습 위치가 초기화됩니다. 계속 진행하시겠습니까?`}
+					title={`${SUBJECTS.find((sub) => sub.id === resetTargetSubjectId)?.name ?? ""} 풀이 기록 초기화`}
+					message={`선택하신 주제의 모든 풀이 기록과 학습 위치가 초기화됩니다. 계속 진행하시겠습니까?`}
 					confirmText="초기화"
 					cancelText="취소"
 					onConfirm={handleConfirmResetSubject}
@@ -389,9 +396,9 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 		return (
 			<div className="glass-card animate-fade-in" style={{ padding: "60px", textAlign: "center" }}>
 				<Layers size={48} style={{ color: "var(--text-muted)", marginBottom: "16px" }} />
-				<h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>해당 과목에 문제가 없습니다.</h3>
+				<h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>해당 주제에 문제가 없습니다.</h3>
 				<button className="btn-secondary" onClick={handleBack} style={{ marginTop: "16px" }}>
-					← 과목 선택으로 돌아가기
+					← 주제 선택으로 돌아가기
 				</button>
 			</div>
 		);
@@ -416,7 +423,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 						gap: "6px",
 					}}
 				>
-					← 과목 선택
+					← 주제 선택
 				</button>
 
 				<div
@@ -437,10 +444,7 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 				</div>
 
 				<div>
-					<div style={{ fontWeight: 700 }}>
-						<span className="subject-prefix">{selectedSubject.name.match(/^\d과목:\s*/)?.[0]}</span>
-						{selectedSubject.name.replace(/^\d과목:\s*/, "")}
-					</div>
+					<div style={{ fontWeight: 700 }}>{selectedSubject.name}</div>
 					<div style={{ fontSize: "0.82rem", color: "var(--text-muted)" }}>
 						{currentIndex + 1} / {filteredQuestions.length} 문제
 					</div>
@@ -461,12 +465,14 @@ export default function SubjectQuizSolver({ questions, bookmarks, onSelectOption
 
 			{/* 문제 카드 */}
 			<QuestionCard
+				key={currentQuestion.id}
 				question={currentQuestion}
 				currentIndex={currentIndex}
 				totalCount={filteredQuestions.length}
 				userAnswer={currentAnswer}
 				isBookmarked={isBookmarked}
-				onSelectOption={(optNum) => handleSelectOptionLocal(String(currentQuestion.id), optNum, currentQuestion.session)}
+				onSubmitAnswer={(inputs, isCorrect, manual) => handleSubmitAnswerLocal(String(currentQuestion.id), inputs, isCorrect, manual, currentQuestion.session)}
+				onMarkCorrect={() => handleMarkCorrectLocal(String(currentQuestion.id))}
 				onToggleBookmark={onToggleBookmark}
 			/>
 

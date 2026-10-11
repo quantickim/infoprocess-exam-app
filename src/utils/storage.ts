@@ -1,18 +1,27 @@
 import { Question, Subject, UserAnswersMap } from "../types";
 
+// 실기 문제 주제 (1~6: 키워드, 7~9: 코드 언어별)
 export const SUBJECTS: Subject[] = [
-	{ id: 1, name: "1과목: 소프트웨어 설계" },
-	{ id: 2, name: "2과목: 소프트웨어 개발" },
-	{ id: 3, name: "3과목: 데이터베이스 구축" },
-	{ id: 4, name: "4과목: 프로그래밍 언어 활용" },
-	{ id: 5, name: "5과목: 정보시스템 구축 관리" },
+	{ id: 1, name: "소프트웨어 설계" },
+	{ id: 2, name: "데이터베이스" },
+	{ id: 3, name: "인터페이스·UI" },
+	{ id: 4, name: "애플리케이션 테스트" },
+	{ id: 5, name: "정보 보안" },
+	{ id: 6, name: "OS·네트워크·신기술" },
+	{ id: 7, name: "C 언어" },
+	{ id: 8, name: "Java" },
+	{ id: 9, name: "Python" },
 ];
 
-const STORAGE_KEYS = {
-	BOOKMARKS: "bookmarks",
-	USER_ANSWERS: "infoprocess_user_answers_v1",
-	WRONG_ANSWERS: "wrong_answers",
-	RESULTS_HISTORY: "infoprocess_results_history_v1",
+// 필기 앱과 같은 도메인에 배포되어도 기록이 섞이지 않도록 실기 전용 키 사용
+export const STORAGE_KEYS = {
+	BOOKMARKS: "practical_bookmarks_v1",
+	USER_ANSWERS: "practical_user_answers_v1",
+	WRONG_ANSWERS: "practical_wrong_answers_v1",
+	DAILY_STATS: "practical_daily_stats_v1",
+	SUBJECT_ANSWERS: "practical_subject_answers_v1",
+	SUBJECT_LAST_INDEX: "practical_subject_last_index_v1",
+	RESULTS_HISTORY: "practical_results_history_v1",
 };
 
 // Vite의 import.meta.glob을 이용해 src/data/*.json 파일들을 동적으로 전부 불러옴
@@ -79,7 +88,7 @@ export const toggleBookmark = (id: string | number): string[] => {
 	return updated;
 };
 
-// 3. 사용자 정답 기록 관리 (회차/일반 풀이 기록)
+// 3. 사용자 정답 기록 관리 (유형별 풀이 기록)
 export const getUserAnswers = (): UserAnswersMap => {
 	try {
 		const data = localStorage.getItem(STORAGE_KEYS.USER_ANSWERS);
@@ -89,11 +98,12 @@ export const getUserAnswers = (): UserAnswersMap => {
 	}
 };
 
-export const saveUserAnswer = (questionId: string, selectedOption: number, isCorrect: boolean, session: string): UserAnswersMap => {
+export const saveUserAnswer = (questionId: string, inputs: string[], isCorrect: boolean, session: string, manual = false): UserAnswersMap => {
 	const answers = getUserAnswers();
 	answers[questionId] = {
-		selectedOption,
+		inputs,
 		isCorrect,
+		manual,
 		session,
 		timestamp: new Date().toISOString(),
 	};
@@ -101,7 +111,17 @@ export const saveUserAnswer = (questionId: string, selectedOption: number, isCor
 	return answers;
 };
 
-// 회차 풀이 답안 초기화 (💡 독립된 오답노트 'wrong_answers'는 절대 영향을 받지 않습니다)
+// 자동 채점에서 오답 처리된 답안을 사용자가 정답으로 인정
+export const markUserAnswerCorrect = (questionId: string): UserAnswersMap => {
+	const answers = getUserAnswers();
+	if (answers[questionId]) {
+		answers[questionId] = { ...answers[questionId], isCorrect: true, manual: true };
+		localStorage.setItem(STORAGE_KEYS.USER_ANSWERS, JSON.stringify(answers));
+	}
+	return answers;
+};
+
+// 유형별 풀이 답안 초기화 (💡 독립된 오답노트 'wrong_answers'는 절대 영향을 받지 않습니다)
 export const resetUserAnswer = (questionId: string): UserAnswersMap => {
 	const answers = getUserAnswers();
 	delete answers[questionId];
@@ -109,7 +129,7 @@ export const resetUserAnswer = (questionId: string): UserAnswersMap => {
 	return answers;
 };
 
-// 4. 전체 회차 풀이 기록 초기화 (💡 독립된 오답노트 'wrong_answers'는 안전하게 보존됩니다)
+// 4. 전체 유형별 풀이 기록 초기화 (💡 독립된 오답노트 'wrong_answers'는 안전하게 보존됩니다)
 export const clearAllUserAnswers = (): UserAnswersMap => {
 	localStorage.removeItem(STORAGE_KEYS.USER_ANSWERS);
 	return {};
@@ -171,7 +191,7 @@ const getTodayString = (): string => {
 export const getDailyStats = (): DailyStats => {
 	const today = getTodayString();
 	try {
-		const data = localStorage.getItem("infoprocess_daily_stats_v1");
+		const data = localStorage.getItem(STORAGE_KEYS.DAILY_STATS);
 		if (data) {
 			const parsed: DailyStats = JSON.parse(data);
 			if (parsed.date === today) {
@@ -193,7 +213,16 @@ export const recordDailyAnswer = (isCorrect: boolean): DailyStats => {
 		correct: isCorrect ? current.correct + 1 : current.correct,
 		wrong: isCorrect ? current.wrong : current.wrong + 1,
 	};
-	localStorage.setItem("infoprocess_daily_stats_v1", JSON.stringify(updated));
+	localStorage.setItem(STORAGE_KEYS.DAILY_STATS, JSON.stringify(updated));
+	return updated;
+};
+
+// '정답으로 인정'한 답안을 당일 통계에서 오답 → 정답으로 옮김
+export const reviseDailyAnswerToCorrect = (): DailyStats => {
+	const current = getDailyStats();
+	if (current.wrong === 0) return current;
+	const updated: DailyStats = { ...current, correct: current.correct + 1, wrong: current.wrong - 1 };
+	localStorage.setItem(STORAGE_KEYS.DAILY_STATS, JSON.stringify(updated));
 	return updated;
 };
 
@@ -201,6 +230,6 @@ export const recordDailyAnswer = (isCorrect: boolean): DailyStats => {
 export const resetDailyStats = (): DailyStats => {
 	const today = getTodayString();
 	const reset: DailyStats = { date: today, total: 0, correct: 0, wrong: 0 };
-	localStorage.setItem("infoprocess_daily_stats_v1", JSON.stringify(reset));
+	localStorage.setItem(STORAGE_KEYS.DAILY_STATS, JSON.stringify(reset));
 	return reset;
 };

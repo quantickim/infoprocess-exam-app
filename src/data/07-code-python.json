@@ -1,0 +1,134 @@
+[
+	{
+		"id": "py-01",
+		"session": "코드 · Python 활용",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "code",
+		"question": "다음 Python로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "x, y = 100, 200\nprint(x==y)",
+		"language": "python",
+		"choices": [
+			"True",
+			"false",
+			"0",
+			"False"
+		],
+		"blanks": [
+			{
+				"answer": "False"
+			}
+		],
+		"explanation": "x에 100, y에 200이 저장된다. 두 값이 다르므로 x==y의 결과인 False가 출력된다. (Python의 논리값은 True / False로 첫 글자가 대문자이다.)"
+	},
+	{
+		"id": "py-02",
+		"session": "코드 · Python 활용",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "code",
+		"question": "다음 Python로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "a = \"REMEMBER NOVEMBER\"\nb = a[0:3] + a[12:16]\nc = \"R AND %s\" % \"STR\"\nprint(b + c)",
+		"language": "python",
+		"choices": [
+			"REMEMBER AND STR",
+			"REMEMBER AND %s",
+			"REMNOVEMBER AND STR",
+			"REMEMBERR AND STR"
+		],
+		"blanks": [
+			{
+				"answer": "REMEMBER AND STR"
+			}
+		],
+		"explanation": "• a[0:3]: 0~2번째 글자 'REM', a[12:16]: 12~15번째 글자 'EMBE' → b = 'REMEMBE'\n• c: %s 자리에 'STR'이 들어가 'R AND STR'\n• b + c = 'REMEMBER AND STR'"
+	},
+	{
+		"id": "py-03",
+		"session": "코드 · Python 활용",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "essay",
+		"question": "다음 Python로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "asia = {'한국', '중국', '일본'}\nasia.add('베트남')\nasia.add('중국')\nasia.remove('일본')\nasia.update({'한국', '홍콩', '태국'})\nprint(asia)",
+		"language": "python",
+		"choices": [
+			"{'한국', '중국', '일본', '베트남', '홍콩', '태국'}",
+			"{'한국', '중국', '베트남', '중국', '한국', '홍콩', '태국'}",
+			"{'한국', '중국', '베트남', '홍콩', '태국'}",
+			"{'한국', '베트남', '홍콩', '태국'}"
+		],
+		"blanks": [
+			{
+				"answer": "{'한국', '중국', '베트남', '홍콩', '태국'}"
+			}
+		],
+		"explanation": "세트(set)는 중복을 허용하지 않고 순서가 없는 자료형이다.\n• add('베트남') → 추가 / add('중국') → 이미 있으므로 무시\n• remove('일본') → 삭제\n• update({'한국', '홍콩', '태국'}) → '홍콩', '태국'만 추가('한국'은 중복)\n세트는 순서가 없어 출력 순서가 달라질 수 있으므로, 다섯 요소가 모두 맞으면 정답이다."
+	},
+	{
+		"id": "py-04",
+		"session": "코드 · Python 활용",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "code",
+		"question": "다음 Python로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "a = [1, 2, 3, 4, 5]\na = list(map(lambda num : num + 100, a))\nprint(a)",
+		"language": "python",
+		"choices": [
+			"[100, 101, 102, 103, 104]",
+			"[101, 102, 103, 104, 105]",
+			"[101]",
+			"[1, 2, 3, 4, 5]"
+		],
+		"blanks": [
+			{
+				"answer": "[101, 102, 103, 104, 105]"
+			}
+		],
+		"explanation": "map(함수, 리스트)는 리스트의 각 요소에 함수를 적용한다. lambda num : num + 100은 인수에 100을 더해 반환하는 람다 식이다.\n각 요소에 100을 더한 결과를 list()로 다시 리스트로 만들어 출력한다."
+	},
+	{
+		"id": "py-05",
+		"session": "코드 · Python 활용",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "code",
+		"question": "다음 Python로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "def func(num1, num2 = 2):\n    print('a =', num1, 'b =', num2)\nfunc(20)",
+		"language": "python",
+		"choices": [
+			"a = 20 b = 2",
+			"a = 20 b = None",
+			"a = 20 b = 20",
+			"a = 2 b = 20"
+		],
+		"blanks": [
+			{
+				"answer": "a = 20 b = 2"
+			}
+		],
+		"explanation": "num2는 기본값이 2인 매개변수이므로 func(20)처럼 인수를 하나만 넘기면 num1 = 20, num2 = 2가 된다.\nprint는 쉼표로 나열한 값들을 공백 한 칸으로 구분해 출력하므로 a = 20 b = 2가 출력된다."
+	},
+	{
+		"id": "py-06",
+		"session": "코드 · Python 활용",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "code",
+		"question": "다음 Python로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "class CharClass:\n    a = ['Seoul', 'Kyeongi', 'Inchon', 'Daejeon', 'Daegu', 'Pusan'];\n\nmyVar = CharClass()\nstr01 = ''\nfor i in myVar.a:\n    str01 = str01 + i[0]\nprint(str01)",
+		"language": "python",
+		"choices": [
+			"Seoul",
+			"linnun",
+			"SKIDP",
+			"SKIDDP"
+		],
+		"blanks": [
+			{
+				"answer": "SKIDDP"
+			}
+		],
+		"explanation": "for문은 리스트 a의 각 문자열을 i에 담아 반복하고, i[0](첫 글자)을 str01 뒤에 이어 붙인다.\nSeoul, Kyeongi, Inchon, Daejeon, Daegu, Pusan의 첫 글자를 이으면 SKIDDP가 된다."
+	}
+]

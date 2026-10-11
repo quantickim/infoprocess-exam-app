@@ -6,12 +6,13 @@ import { Question, UserAnswerRecord } from "../types";
 interface RandomQuizSolverProps {
 	questions: Question[];
 	bookmarks: string[];
-	onSelectOption: (questionId: string, selectedOption: number, session: string) => void;
+	onSubmitAnswer: (questionId: string, isCorrect: boolean) => void;
+	onMarkCorrect: (questionId: string) => void;
 	onToggleBookmark: (questionId: string) => void;
 	onFinishQuiz: () => void;
 }
 
-export default function RandomQuizSolver({ questions, bookmarks, onSelectOption, onToggleBookmark, onFinishQuiz }: RandomQuizSolverProps) {
+export default function RandomQuizSolver({ questions, bookmarks, onSubmitAnswer, onMarkCorrect, onToggleBookmark, onFinishQuiz }: RandomQuizSolverProps) {
 	const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 	const [localAnswers, setLocalAnswers] = useState<Record<string, UserAnswerRecord>>({});
@@ -34,23 +35,28 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 	const isBookmarked = currentQuestion ? bookmarks.map(String).includes(String(currentQuestion.id)) : false;
 	const progressPercent = Math.round(((currentIndex + 1) / shuffledQuestions.length) * 100);
 
-	const handleLocalSelectOption = (optionNum: number) => {
+	const handleLocalSubmitAnswer = (inputs: string[], isCorrect: boolean, manual: boolean) => {
 		if (!currentQuestion) return;
-		const isCorrect = optionNum === currentQuestion.answer;
 
 		setLocalAnswers((prev) => ({
 			...prev,
 			[currentQuestion.id]: {
-				questionId: String(currentQuestion.id),
-				selectedOption: optionNum,
+				inputs,
 				isCorrect,
+				manual,
 				session: currentQuestion.session,
 				timestamp: new Date().toISOString(),
 			},
 		}));
 
-		// 당일 통계 집계 및 오답노트 추가 처리 (userAnswers 성적에는 미영향)
-		onSelectOption(String(currentQuestion.id), optionNum, currentQuestion.session);
+		// 당일 통계 집계 및 오답노트 추가 처리 (유형별 풀이 기록에는 미영향)
+		onSubmitAnswer(String(currentQuestion.id), isCorrect);
+	};
+
+	const handleLocalMarkCorrect = () => {
+		if (!currentQuestion || !currentLocalAnswer) return;
+		setLocalAnswers((prev) => ({ ...prev, [currentQuestion.id]: { ...currentLocalAnswer, isCorrect: true, manual: true } }));
+		onMarkCorrect(String(currentQuestion.id));
 	};
 
 	const handleLocalResetAnswer = () => {
@@ -105,12 +111,14 @@ export default function RandomQuizSolver({ questions, bookmarks, onSelectOption,
 
 			{/* Question Card */}
 			<QuestionCard
+				key={currentQuestion.id}
 				question={currentQuestion}
 				currentIndex={currentIndex}
 				totalCount={shuffledQuestions.length}
 				userAnswer={currentLocalAnswer}
 				isBookmarked={isBookmarked}
-				onSelectOption={handleLocalSelectOption}
+				onSubmitAnswer={handleLocalSubmitAnswer}
+				onMarkCorrect={handleLocalMarkCorrect}
 				onToggleBookmark={() => onToggleBookmark(String(currentQuestion.id))}
 			/>
 

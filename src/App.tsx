@@ -9,7 +9,22 @@ import BookmarkList from "./components/BookmarkList";
 import WrongQuizSolver from "./components/WrongQuizSolver";
 import CustomConfirmModal from "./components/CustomConfirmModal";
 import { Question, UserAnswersMap } from "./types";
-import { getQuestions, getBookmarks, toggleBookmark, getUserAnswers, saveUserAnswer, resetUserAnswer, getDailyStats, recordDailyAnswer, resetDailyStats, DailyStats } from "./utils/storage";
+import {
+	getQuestions,
+	getBookmarks,
+	toggleBookmark,
+	getUserAnswers,
+	saveUserAnswer,
+	markUserAnswerCorrect,
+	resetUserAnswer,
+	getWrongAnswers,
+	saveWrongAnswers,
+	getDailyStats,
+	recordDailyAnswer,
+	reviseDailyAnswerToCorrect,
+	resetDailyStats,
+	DailyStats,
+} from "./utils/storage";
 
 export default function App() {
 	const [questions, setQuestions] = useState<Question[]>([]);
@@ -36,38 +51,23 @@ export default function App() {
 		setBookmarks(loadedBookmarks);
 		setUserAnswers(loadedUserAnswers);
 		setDailyStats(loadedDailyStats);
-
-		let savedWrong: string[] = [];
-		const storedWrong = localStorage.getItem("wrong_answers");
-
-		if (storedWrong) {
-			try {
-				savedWrong = JSON.parse(storedWrong);
-			} catch (e) {
-				savedWrong = [];
-			}
-		} else {
-			savedWrong = Object.entries(loadedUserAnswers)
-				.filter(([_, ans]) => !ans.isCorrect)
-				.map(([id]) => String(id));
-			localStorage.setItem("wrong_answers", JSON.stringify(savedWrong));
-		}
-		setWrongAnswers(savedWrong);
+		setWrongAnswers(getWrongAnswers());
 	}, []);
 
 	const saveWrongAnswersToStorage = (updated: string[]) => {
 		setWrongAnswers(updated);
-		localStorage.setItem("wrong_answers", JSON.stringify(updated));
+		saveWrongAnswers(updated);
 	};
 
-	const handleQuizSelectOption = (questionId: string, selectedOption: number, session: string) => {
-		const question = questions.find((q) => q.id === questionId);
-		if (!question) return;
-		const isCorrect = selectedOption === question.answer;
-
-		const updatedAnswers = saveUserAnswer(questionId, selectedOption, isCorrect, session);
+	// 유형별 풀이: 답안을 기록으로 저장 + 당일 통계 + 오답노트
+	const handleQuizSubmitAnswer = (questionId: string, inputs: string[], isCorrect: boolean, session: string, manual: boolean) => {
+		const updatedAnswers = saveUserAnswer(questionId, inputs, isCorrect, session, manual);
 		setUserAnswers({ ...updatedAnswers });
+		handleOtherSubmitAnswer(questionId, isCorrect);
+	};
 
+	// 그 외 풀이(랜덤, 주제별, 북마크): 당일 통계 + 오답노트만 반영
+	const handleOtherSubmitAnswer = (questionId: string, isCorrect: boolean) => {
 		const updatedDaily = recordDailyAnswer(isCorrect);
 		setDailyStats(updatedDaily);
 
@@ -76,17 +76,17 @@ export default function App() {
 		}
 	};
 
-	const handleOtherSelectOption = (questionId: string, selectedOption: number, session: string) => {
-		const question = questions.find((q) => q.id === questionId);
-		if (!question) return;
-		const isCorrect = selectedOption === question.answer;
-
-		const updatedDaily = recordDailyAnswer(isCorrect);
-		setDailyStats(updatedDaily);
-
-		if (!isCorrect && !wrongAnswers.includes(String(questionId))) {
-			saveWrongAnswersToStorage([...wrongAnswers, String(questionId)]);
+	// '정답으로 인정하기': 당일 통계를 정답으로 옮기고 오답노트에서 제외
+	const handleOtherMarkCorrect = (questionId: string) => {
+		setDailyStats(reviseDailyAnswerToCorrect());
+		if (wrongAnswers.includes(String(questionId))) {
+			saveWrongAnswersToStorage(wrongAnswers.filter((id) => id !== String(questionId)));
 		}
+	};
+
+	const handleQuizMarkCorrect = (questionId: string) => {
+		setUserAnswers({ ...markUserAnswerCorrect(questionId) });
+		handleOtherMarkCorrect(questionId);
 	};
 
 	const handleResetDailyStats = () => {
@@ -144,8 +144,8 @@ export default function App() {
 	const pageTitle: Record<TabType, string> = {
 		home: "메인 홈",
 		random: "랜덤문제 풀이",
-		quiz: "회차별 문제풀이",
-		subject: "과목별 문제풀이",
+		quiz: "유형별 문제풀이",
+		subject: "주제별 문제풀이",
 		wrong: "오답노트",
 		bookmark: "북마크 문제풀이",
 		result: "풀이결과",
@@ -192,7 +192,14 @@ export default function App() {
 				)}
 
 				{activeTab === "random" && (
-					<RandomQuizSolver questions={questions} bookmarks={bookmarks} onSelectOption={handleOtherSelectOption} onToggleBookmark={handleToggleBookmark} onFinishQuiz={handleFinishQuiz} />
+					<RandomQuizSolver
+						questions={questions}
+						bookmarks={bookmarks}
+						onSubmitAnswer={handleOtherSubmitAnswer}
+						onMarkCorrect={handleOtherMarkCorrect}
+						onToggleBookmark={handleToggleBookmark}
+						onFinishQuiz={handleFinishQuiz}
+					/>
 				)}
 
 				{activeTab === "quiz" && (
@@ -200,7 +207,8 @@ export default function App() {
 						questions={questions}
 						userAnswers={userAnswers}
 						bookmarks={bookmarks}
-						onSelectOption={handleQuizSelectOption}
+						onSubmitAnswer={handleQuizSubmitAnswer}
+						onMarkCorrect={handleQuizMarkCorrect}
 						onResetAnswer={handleResetAnswer}
 						onToggleBookmark={handleToggleBookmark}
 						onFinishQuiz={handleFinishQuiz}
@@ -208,7 +216,14 @@ export default function App() {
 				)}
 
 				{activeTab === "subject" && (
-					<SubjectQuizSolver questions={questions} bookmarks={bookmarks} onSelectOption={handleOtherSelectOption} onToggleBookmark={handleToggleBookmark} onFinishQuiz={handleFinishQuiz} />
+					<SubjectQuizSolver
+						questions={questions}
+						bookmarks={bookmarks}
+						onSubmitAnswer={handleOtherSubmitAnswer}
+						onMarkCorrect={handleOtherMarkCorrect}
+						onToggleBookmark={handleToggleBookmark}
+						onFinishQuiz={handleFinishQuiz}
+					/>
 				)}
 
 				{activeTab === "wrong" && (
@@ -232,7 +247,15 @@ export default function App() {
 					/>
 				)}
 
-				{activeTab === "bookmark" && <BookmarkList questions={questions} bookmarks={bookmarks} onSelectOption={handleOtherSelectOption} onToggleBookmark={handleToggleBookmark} />}
+				{activeTab === "bookmark" && (
+					<BookmarkList
+						questions={questions}
+						bookmarks={bookmarks}
+						onSubmitAnswer={handleOtherSubmitAnswer}
+						onMarkCorrect={handleOtherMarkCorrect}
+						onToggleBookmark={handleToggleBookmark}
+					/>
+				)}
 			</main>
 
 			<footer
@@ -248,7 +271,7 @@ export default function App() {
 					WebkitTapHighlightColor: "transparent",
 				}}
 			>
-				정보처리기사 필기 마스터 • TypeScript + Vite + React
+				정보처리기사 실기 마스터 • TypeScript + Vite + React
 			</footer>
 
 			{/* 제작자 정보 이스터에그 모달 */}

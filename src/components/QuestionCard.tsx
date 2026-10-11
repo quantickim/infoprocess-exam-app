@@ -1,6 +1,8 @@
-import React from "react";
-import { Bookmark, CheckCircle2, XCircle, HelpCircle, Code2 } from "lucide-react";
-import { Question, UserAnswerRecord } from "../types";
+import React, { useEffect, useRef, useState } from "react";
+import { Bookmark, CheckCircle2, XCircle, HelpCircle, Code2, PenLine, ThumbsUp, ThumbsDown, BadgeCheck } from "lucide-react";
+import { ContentBlock, Question, UserAnswerRecord } from "../types";
+import { gradeAnswer } from "../utils/grading";
+import ChoiceAnswer, { choiceText } from "./ChoiceAnswer";
 
 interface QuestionCardProps {
 	question: Question;
@@ -8,21 +10,164 @@ interface QuestionCardProps {
 	totalCount: number;
 	userAnswer?: UserAnswerRecord;
 	isBookmarked: boolean;
-	onSelectOption: (optionNum: number) => void;
+	onSubmitAnswer: (inputs: string[], isCorrect: boolean, manual: boolean) => void;
+	onMarkCorrect: () => void;
 	onToggleBookmark: (questionId: string) => void;
 }
 
-export default function QuestionCard({ question, currentIndex, totalCount, userAnswer, isBookmarked, onSelectOption, onToggleBookmark }: QuestionCardProps) {
-	if (!question) return null;
+const LANGUAGE_LABEL: Record<string, string> = { c: "C", java: "Java", python: "Python" };
+
+function renderBlock(block: ContentBlock, idx: number) {
+	if (block.type === "text") {
+		return (
+			<div key={idx} className="passage-box">
+				{block.text}
+			</div>
+		);
+	}
+
+	if (block.type === "table") {
+		return (
+			<div key={idx} className="q-table-wrap">
+				<table className={`q-table${block.headers ? "" : " desc"}`}>
+					{block.caption && <caption>{block.caption}</caption>}
+					{block.headers && (
+						<thead>
+							<tr>
+								{block.headers.map((h, i) => (
+									<th key={i}>{h}</th>
+								))}
+							</tr>
+						</thead>
+					)}
+					<tbody>
+						{block.rows.map((row, r) => (
+							<tr key={r}>
+								{row.map((cell, c) => (
+									<td key={c}>{cell}</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		);
+	}
+
+	return (
+		<div key={idx} style={{ marginBottom: "16px", textAlign: "center" }}>
+			<img src={`${import.meta.env.BASE_URL}${block.src.replace(/^\//, "")}`} alt={block.alt ?? "문제 이미지"} className="q-image" />
+		</div>
+	);
+}
+
+export default function QuestionCard({ question, currentIndex, totalCount, userAnswer, isBookmarked, onSubmitAnswer, onMarkCorrect, onToggleBookmark }: QuestionCardProps) {
+	const [inputs, setInputs] = useState<string[]>(() => question.blanks.map((_, i) => userAnswer?.inputs[i] ?? ""));
+	// 서술형: 정답을 확인했지만 아직 스스로 채점하지 않은 상태
+	const [revealed, setRevealed] = useState<boolean>(false);
+	const inputRefs = useRef<(HTMLInputElement | HTMLTextAreaElement | null)[]>([]);
+	const resultRef = useRef<HTMLDivElement>(null);
 
 	const hasAnswered = userAnswer !== undefined && userAnswer !== null;
-	const isCorrect = hasAnswered && userAnswer.selectedOption === question.answer;
+	const showResult = hasAnswered || revealed;
+	const prevShowResultRef = useRef<boolean>(showResult);
+
+	// 문제가 바뀌거나 다시풀기로 기록이 지워지면 입력값 초기화
+	useEffect(() => {
+		setInputs(question.blanks.map((_, i) => userAnswer?.inputs[i] ?? ""));
+		setRevealed(false);
+	}, [question.id, userAnswer]);
+
+	// 채점 직후: 모바일 키보드를 닫고 정답·해설이 보이도록 스크롤
+	useEffect(() => {
+		if (showResult && !prevShowResultRef.current) {
+			(document.activeElement as HTMLElement | null)?.blur();
+			resultRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+		}
+		prevShowResultRef.current = showResult;
+	}, [showResult]);
+
+	if (!question) return null;
+
+	const isEssay = question.type === "essay";
+	// 보기가 있는 문제는 보기를 터치해서 고르는 선택형으로 풀이
+	const isChoice = !!question.choices?.length;
+	const isMultiline = question.type !== "text";
+	const isLocked = hasAnswered || revealed;
+
+	// 자동 채점된 답안은 빈칸별 정오를 다시 계산해서 표시
+	const grade = hasAnswered && !userAnswer.manual && !isEssay ? gradeAnswer(question, userAnswer.inputs) : null;
 
 	// question.id가 숫자일 경우를 대비해 String으로 명시적 변환
 	const idStr = String(question.id);
 	const idParts = idStr.split("-");
 	const parsedNumber = parseInt(idParts[idParts.length - 1], 10);
 	const displayNumber = !isNaN(parsedNumber) ? parsedNumber : currentIndex + 1;
+
+	const blankLabel = (i: number) => question.blanks[i].label ?? (question.blanks.length > 1 ? String(i + 1) : "");
+	const isAllEmpty = inputs.every((v) => v.trim() === "");
+
+	const handleChange = (idx: number, value: string) => {
+		setInputs((prev) => prev.map((v, i) => (i === idx ? value : v)));
+	};
+
+	const handleSubmit = () => {
+		if (isLocked) return;
+		if (isEssay) {
+			setRevealed(true);
+			return;
+		}
+		onSubmitAnswer(inputs, gradeAnswer(question, inputs).isCorrect, false);
+	};
+
+	// 한글 조합 중 Enter는 무시 (조합 확정용 Enter로 채점되는 것 방지)
+	const isComposingEnter = (e: React.KeyboardEvent) => e.nativeEvent.isComposing || e.keyCode === 229;
+
+	const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, idx: number) => {
+		if (e.key !== "Enter" || isComposingEnter(e)) return;
+		e.preventDefault();
+		if (idx < question.blanks.length - 1) {
+			inputRefs.current[idx + 1]?.focus();
+		} else {
+			handleSubmit();
+		}
+	};
+
+	const handleTextareaKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+		if (e.key === "Enter" && (e.ctrlKey || e.metaKey) && !isComposingEnter(e)) {
+			e.preventDefault();
+			handleSubmit();
+		}
+	};
+
+	const renderAnswer = () => {
+		const answer = question.blanks[0].answer;
+		if (question.type === "code" || (isEssay && question.language)) {
+			return <pre className="answer-pre">{answer}</pre>;
+		}
+		if (isEssay) {
+			return <div className="answer-text">{answer}</div>;
+		}
+		return (
+			<ul className="answer-list">
+				{question.blanks.map((blank, i) => (
+					<li key={i}>
+						{blankLabel(i) && <span className="blank-label">{blankLabel(i)}</span>}
+						<span>{choiceText(question, blank.answer)}</span>
+					</li>
+				))}
+			</ul>
+		);
+	};
+
+	let resultBadge: React.ReactNode = <span className="badge badge-session" style={{ marginLeft: "auto" }}>✍️ 스스로 채점해 보세요</span>;
+	if (hasAnswered) {
+		resultBadge = (
+			<span className={`badge ${userAnswer.isCorrect ? "badge-subject" : "badge-session"}`} style={{ marginLeft: "auto" }}>
+				{userAnswer.isCorrect ? (userAnswer.manual ? "⭕ 정답 처리" : "⭕ 정답입니다!") : "❌ 틀렸습니다"}
+			</span>
+		);
+	}
 
 	return (
 		<div className="glass-card animate-fade-in" style={{ padding: "32px", position: "relative" }}>
@@ -63,105 +208,140 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 				{displayNumber}. {question.question}
 			</h2>
 
+			{/* 지문, 표, 그림 */}
+			{question.blocks?.map(renderBlock)}
+
 			{/* Optional Code Snippet */}
 			{question.codeSnippet && (
-				<div
-					style={{
-						background: "rgba(15, 23, 42, 0.95)",
-						border: "1px solid rgba(255, 255, 255, 0.1)",
-						borderRadius: "var(--radius-md)",
-						padding: "16px 20px",
-						marginBottom: "24px",
-						fontFamily: "var(--font-mono)",
-						fontSize: "0.9rem",
-						color: "#38bdf8",
-						overflowX: "auto",
-					}}
-				>
-					<div style={{ display: "flex", alignItems: "center", gap: "6px", color: "var(--text-muted)", marginBottom: "8px", fontSize: "0.8rem" }}>
-						<Code2 size={14} /> 코드 예시
+				<div className="code-box">
+					<div className="code-box-header">
+						<Code2 size={14} /> {question.language ? LANGUAGE_LABEL[question.language] : "코드"}
 					</div>
-					<pre style={{ margin: 0, whiteSpace: "pre-wrap" }}>{question.codeSnippet}</pre>
+					<pre>{question.codeSnippet}</pre>
 				</div>
 			)}
 
-			{/* Optional Image */}
-			{question.imgsrc && (
-				<div style={{ marginBottom: "24px", textAlign: "center" }}>
-					<img
-						src={`${import.meta.env.BASE_URL}${question.imgsrc.replace(/^\//, "")}`}
-						alt="문제 이미지"
-						style={{
-							maxWidth: "100%",
-							maxHeight: "350px",
-							borderRadius: "var(--radius-md)",
-							border: "1px solid var(--border-color)",
-							background: "rgba(255, 255, 255, 0.02)",
-							padding: "8px",
-						}}
-					/>
+			{/* <보기> (선택형 문제는 아래 답안 영역에서 보기를 직접 터치하므로 표시하지 않음) */}
+			{question.choices && !isChoice && (
+				<div className="choices-box">
+					<div className="choices-title">&lt;보기&gt;</div>
+					<div className="choices-list">
+						{question.choices.map((choice, i) => (
+							<span key={i} className="choice-chip">
+								{choice}
+							</span>
+						))}
+					</div>
 				</div>
 			)}
 
-			{/* 4 Options */}
-			<div style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "20px" }}>
-				{question.options.map((optText, idx) => {
-					const optionNum = idx + 1;
-					let optionClass = "option-item";
+			{/* 답안 입력 영역 */}
+			{isChoice ? (
+				<ChoiceAnswer question={question} userAnswer={userAnswer} onSubmitAnswer={onSubmitAnswer} />
+			) : (
+				<div className="answer-area">
+					<div className="answer-area-title">
+						<PenLine size={16} />
+						{isEssay ? "답안 작성 (서술형 · 스스로 채점)" : question.type === "code" ? "실행 결과 입력" : "답안 입력"}
+						{question.unordered && <span className="answer-hint">순서는 상관없습니다</span>}
+					</div>
 
-					if (hasAnswered) {
-						optionClass += " disabled";
-						if (optionNum === question.answer) {
-							optionClass += " correct-answer";
-						} else if (userAnswer.selectedOption === optionNum) {
-							optionClass += " wrong-answer";
-						}
-					}
+					{question.blanks.map((_, i) => {
+						const label = blankLabel(i);
+						const blankResult = grade?.blankResults[i];
+						const stateClass = blankResult === undefined ? "" : blankResult ? " correct" : " wrong";
+						const commonProps = {
+							value: inputs[i] ?? "",
+							disabled: isLocked,
+							autoComplete: "off",
+							autoCapitalize: "off",
+							autoCorrect: "off",
+							spellCheck: false,
+						};
 
-					return (
-						<div
-							key={idx}
-							className={optionClass}
-							onClick={() => {
-								if (!hasAnswered) {
-									onSelectOption(optionNum);
-								}
-							}}
-						>
-							<div className="option-number">{optionNum}</div>
-							{/* 💡 보기 텍스트에 whiteSpace: "pre-line" 및 행간 적용 */}
-							<div style={{ flex: 1, fontSize: "0.98rem", paddingTop: "2px", color: "var(--text-main)", whiteSpace: "pre-line", lineHeight: "1.5" }}>{optText}</div>
+						return (
+							<div key={i} className="blank-row">
+								{label && <span className="blank-label">{label}</span>}
+								{isMultiline ? (
+									<textarea
+										{...commonProps}
+										ref={(el) => (inputRefs.current[i] = el)}
+										className={`answer-input${question.type === "code" ? " mono" : ""}${stateClass}`}
+										rows={question.type === "code" ? 4 : 3}
+										placeholder={question.type === "code" ? "실행 결과를 입력하세요 (여러 줄이면 줄을 바꿔 입력)" : "답안을 작성해 보세요 (비워 두고 정답을 확인해도 됩니다)"}
+										onChange={(e) => handleChange(i, e.target.value)}
+										onKeyDown={handleTextareaKeyDown}
+									/>
+								) : (
+									<input
+										{...commonProps}
+										ref={(el) => (inputRefs.current[i] = el)}
+										type="text"
+										enterKeyHint={i < question.blanks.length - 1 ? "next" : "done"}
+										className={`answer-input${question.language ? " mono" : ""}${stateClass}`}
+										placeholder="정답 입력"
+										onChange={(e) => handleChange(i, e.target.value)}
+										onKeyDown={(e) => handleInputKeyDown(e, i)}
+									/>
+								)}
+								{blankResult !== undefined && (
+									<span className="blank-result" style={{ color: blankResult ? "var(--correct)" : "var(--wrong)" }}>
+										{blankResult ? <CheckCircle2 size={22} /> : <XCircle size={22} />}
+									</span>
+								)}
+							</div>
+						);
+					})}
 
-							{/* Correct / Wrong Indicators */}
-							{hasAnswered && optionNum === question.answer && (
-								<div style={{ color: "var(--correct)", display: "flex", alignItems: "center", gap: "4px", fontWeight: 600, fontSize: "0.88rem" }}>
-									<CheckCircle2 size={20} />
-								</div>
-							)}
-							{hasAnswered && userAnswer.selectedOption === optionNum && optionNum !== question.answer && (
-								<div style={{ color: "var(--wrong)", display: "flex", alignItems: "center", gap: "4px", fontWeight: 600, fontSize: "0.88rem" }}>
-									<XCircle size={20} />
-								</div>
+					{!isLocked && (
+						<div className="answer-actions">
+							<button className="btn-primary answer-submit" onClick={handleSubmit}>
+								{isEssay ? "정답 확인" : isAllEmpty ? "정답 보기" : "채점하기"}
+							</button>
+							{!isEssay && (
+								<span className="answer-hint answer-key-hint">{isMultiline ? "Ctrl(⌘) + Enter로 채점" : question.blanks.length > 1 ? "Enter로 다음 칸 이동 · 마지막 칸에서 채점" : "Enter로 채점"}</span>
 							)}
 						</div>
-					);
-				})}
-			</div>
+					)}
+				</div>
+			)}
 
-			{/* Immediate Explanation Box */}
-			{hasAnswered && (
-				<div className="explanation-box animate-fade-in">
+			{/* 정답 및 해설 */}
+			{showResult && (
+				<div ref={resultRef} className="explanation-box animate-fade-in" style={{ scrollMarginBottom: "16px" }}>
 					<div className="explanation-header">
 						<HelpCircle size={20} />
 						<span>정답 및 해설</span>
-						<span className={`badge ${isCorrect ? "badge-subject" : "badge-session"}`} style={{ marginLeft: "auto" }}>
-							{isCorrect ? "⭕ 정답입니다!" : "❌ 틀렸습니다"}
-						</span>
+						{resultBadge}
 					</div>
 
-					<div style={{ marginBottom: "8px", fontSize: "0.95rem", fontWeight: 600, color: "var(--correct)", whiteSpace: "pre-line" }}>
-						정답: {question.answer}번 ({question.options[question.answer - 1]})
-					</div>
+					<div style={{ marginBottom: "8px", fontSize: "0.88rem", fontWeight: 700, color: "var(--text-muted)" }}>{isEssay ? "모범 답안" : "정답"}</div>
+					{renderAnswer()}
+
+					{/* 서술형: 정답 확인 후 스스로 채점 */}
+					{!hasAnswered && revealed && (
+						<div className="answer-actions" style={{ marginBottom: "16px" }}>
+							<button className="btn-primary answer-submit" style={{ background: "linear-gradient(135deg, #10b981, #059669)" }} onClick={() => onSubmitAnswer(inputs, true, true)}>
+								<ThumbsUp size={18} />
+								맞았어요
+							</button>
+							<button className="btn-secondary answer-submit" style={{ color: "var(--wrong)", borderColor: "var(--wrong-border)" }} onClick={() => onSubmitAnswer(inputs, false, true)}>
+								<ThumbsDown size={18} />
+								틀렸어요
+							</button>
+						</div>
+					)}
+
+					{/* 자동 채점 오답: 표현 차이로 틀린 경우 직접 정답 처리 (선택형은 표현 차이가 없으므로 제외) */}
+					{hasAnswered && !userAnswer.isCorrect && !isEssay && !isChoice && (
+						<div className="answer-actions" style={{ marginBottom: "16px" }}>
+							<button className="btn-secondary answer-submit" onClick={onMarkCorrect}>
+								<BadgeCheck size={18} />
+								정답으로 인정하기
+							</button>
+							<span className="answer-hint">같은 뜻인데 표현이 달라 오답 처리되었다면 눌러 주세요</span>
+						</div>
+					)}
 
 					<div className="explanation-content">{question.explanation}</div>
 				</div>

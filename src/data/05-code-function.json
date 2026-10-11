@@ -1,0 +1,236 @@
+[
+	{
+		"id": "fn-01",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 배열 <mines>의 각 칸에 들어갈 값을 쓰시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "배열 <field>",
+				"rows": [
+					[
+						"0",
+						"1",
+						"0",
+						"1"
+					],
+					[
+						"0",
+						"0",
+						"0",
+						"1"
+					],
+					[
+						"1",
+						"1",
+						"1",
+						"0"
+					],
+					[
+						"0",
+						"1",
+						"1",
+						"1"
+					]
+				]
+			},
+			{
+				"type": "text",
+				"text": "※ 앱에서는 배열 <mines>의 한 행을 한 줄에 쓰고, 각 값은 공백으로 구분해 입력하세요. (예: 0 0 0 0)"
+			}
+		],
+		"codeSnippet": "#include <stdio.h>\nmain() {\n    int field[4][4] = { {0,1,0,1}, {0,0,0,1}, {1,1,1,0}, {0,1,1,1} };\n    int mines[4][4] = { {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0} };\n    int w = 4, h = 4;\n    for (int y = 0; y < h; y++) {\n        for (int x = 0; x < w; x++) {\n            if (field[y][x] == 0) continue;\n            for (int j = y - 1; j <= y + 1; j++) {\n                for (int i = x - 1; i <= x + 1; i++) {\n                    if (chkover(w, h, j, i) == 1)\n                        mines[j][i] += 1;\n                }\n            }\n        }\n    }\n}\n\nint chkover(int w, int h, int j, int i) {\n    if (i >= 0 && i < w && j >= 0 && j < h) return 1;\n    return 0;\n}",
+		"language": "c",
+		"choices": [
+			"1 0 3 1\n3 4 5 2\n2 4 5 4\n3 4 4 2",
+			"0 1 0 1\n0 0 0 1\n1 1 1 0\n0 1 1 1",
+			"1 3 3 3\n1 4 5 5\n3 5 6 5\n2 3 4 3",
+			"1 1 3 2\n3 4 5 3\n3 5 6 4\n3 5 5 3"
+		],
+		"blanks": [
+			{
+				"answer": "1 1 3 2\n3 4 5 3\n3 5 6 4\n3 5 5 3"
+			}
+		],
+		"explanation": "field의 값이 1인 칸을 만날 때마다, 그 칸을 중심으로 한 3×3 범위의 mines 값을 1씩 증가시킨다. chkover는 좌표가 배열 범위 안에 있는지 확인한다.\n결국 mines의 각 칸은 '자기 자신을 포함한 주변 3×3 범위에 있는 1의 개수'가 된다.\n예) mines[0][0]: field[0][0], [0][1], [1][0], [1][1] 중 1은 field[0][1] 하나 → 1"
+	},
+	{
+		"id": "fn-02",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    static int[] mkarr() {\n        int[] tmpArr = new int[4];\n        for (int i = 0; i < tmpArr.length; i++)\n            tmpArr[i] = i;\n        return tmpArr;\n    }\n    public static void main(String[] args) {\n        int[] arr;\n        arr = mkarr();\n        for (int i = 0; i < arr.length; i++)\n            System.out.print(arr[i]);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"0123",
+			"0 1 2 3",
+			"1234",
+			"0000"
+		],
+		"blanks": [
+			{
+				"answer": "0123"
+			}
+		],
+		"explanation": "mkarr()은 길이 4인 배열에 0, 1, 2, 3을 저장해 반환한다.\nmain에서 배열 요소를 공백 없이 이어서 출력하므로 0123이 출력된다."
+	},
+	{
+		"id": "fn-03",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nint isPrime(int number) {\n    for (int i = 2; i < number; i++)\n        if (number % i == 0) return 0;\n    return 1;\n}\nint main() {\n    int number = 13195;\n    int max_div = 0;\n    for (int i = 2; i < number; i++)\n        if (isPrime(i) == 1 && number % i == 0) max_div = i;\n    printf(\"%d\", max_div);\n}",
+		"language": "c",
+		"choices": [
+			"5",
+			"13",
+			"29",
+			"35"
+		],
+		"blanks": [
+			{
+				"answer": "29"
+			}
+		],
+		"explanation": "isPrime(n)은 n이 소수이면 1을 반환한다.\nmain은 2부터 13194까지의 수 중 13195의 약수이면서 소수인 수를 찾을 때마다 max_div에 덮어쓴다.\n13195 = 5 × 7 × 13 × 29이므로 가장 큰 소인수 29가 출력된다."
+	},
+	{
+		"id": "fn-04",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nmain() {\n    int res = mp(2, 10);\n    printf(\"%d\", res);\n}\nint mp(int base, int exp) {\n    int res = 1;\n    for (int i = 0; i < exp; i++)\n        res *= base;\n    return res;\n}",
+		"language": "c",
+		"choices": [
+			"20",
+			"100",
+			"512",
+			"1024"
+		],
+		"blanks": [
+			{
+				"answer": "1024"
+			}
+		],
+		"explanation": "mp(base, exp)는 base를 exp번 곱한 값(거듭제곱)을 반환한다. mp(2, 10) = 2¹⁰ = 1024이다."
+	},
+	{
+		"id": "fn-05",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 괄호에 들어갈 알맞은 예약어를 쓰시오.",
+		"codeSnippet": "public class Test {\n    public static void main(String[] args) {\n        System.out.print(Test.check(1));\n    }\n    (        ) String check(int num) {\n        return (num >= 0) ? \"positive\" : \"negative\";\n    }\n}",
+		"language": "java",
+		"choices": [
+			"public",
+			"static",
+			"private",
+			"final"
+		],
+		"blanks": [
+			{
+				"answer": "static"
+			}
+		],
+		"explanation": "main은 객체를 만들지 않고 클래스 이름으로 Test.check(1)을 호출한다. 객체 생성 없이 호출하려면 check가 클래스 메소드여야 하므로 static을 붙인다.\n실행하면 1 >= 0이므로 positive가 출력된다."
+	},
+	{
+		"id": "fn-06",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nint r1() {\n    return 4;\n}\nint r10() {\n    return (30 + r1());\n}\nint r100() {\n    return (200 + r10());\n}\nint main() {\n    printf(\"%d\\n\", r100());\n    return 0;\n}",
+		"language": "c",
+		"choices": [
+			"4",
+			"34",
+			"234",
+			"432"
+		],
+		"blanks": [
+			{
+				"answer": "234"
+			}
+		],
+		"explanation": "r100()은 200 + r10(), r10()은 30 + r1(), r1()은 4를 반환한다.\n따라서 200 + 30 + 4 = 234가 출력된다."
+	},
+	{
+		"id": "fn-07",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "public class Test {\n    static int[] arr() {\n        int a[] = new int[4];\n        int b = a.length;\n        for(int i = 0; i < b; i++)\n            a[i] = i;\n        return a;\n    }\n    public static void main(String[] args) {\n        int a[] = arr();\n        for(int i = 0; i < a.length; i++)\n            System.out.print(a[i] + \" \");\n    }\n}",
+		"language": "java",
+		"choices": [
+			"0 1 2 3 4",
+			"1 2 3 4",
+			"0 1 2 3",
+			"0123"
+		],
+		"blanks": [
+			{
+				"answer": "0 1 2 3"
+			}
+		],
+		"explanation": "arr()은 0, 1, 2, 3이 저장된 배열을 반환한다. main에서 각 요소 뒤에 공백을 붙여 출력하므로 0 1 2 3이 출력된다."
+	},
+	{
+		"id": "fn-08",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nvoid align(int a[]) {\n    int temp;\n    for (int i = 0; i < 4; i++)\n        for (int j = 0; j < 4 - i; j++)\n            if (a[j] > a[j+1]) {\n                temp = a[j];\n                a[j] = a[j+1];\n                a[j+1] = temp;\n            }\n}\nmain() {\n    int a[] = { 85, 75, 50, 100, 95 };\n    align(a);\n    for (int i = 0; i < 5; i++)\n        printf(\"%d \", a[i]);\n}",
+		"language": "c",
+		"choices": [
+			"100 95 85 75 50",
+			"85 75 50 100 95",
+			"50 75 85 95 100",
+			"50 75 85 100 95"
+		],
+		"blanks": [
+			{
+				"answer": "50 75 85 95 100"
+			}
+		],
+		"explanation": "align은 이웃한 두 값을 비교해 앞의 값이 크면 교환하는 버블 정렬(오름차순)이다.\n배열은 주소가 전달되므로 align에서 정렬한 결과가 main의 배열에 그대로 반영된다."
+	},
+	{
+		"id": "fn-09",
+		"session": "코드 · 사용자 정의 함수",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C언어로 구현된 프로그램을 분석하여 5를 입력했을 때 그 실행 결과를 쓰시오. (단, 출력문의 출력 서식을 준수하시오.)",
+		"codeSnippet": "#include <stdio.h>\nint func(int a) {\n    if (a <= 1) return 1;\n    return a * func(a - 1);\n}\nint main() {\n    int a;\n    scanf(\"%d\", &a);\n    printf(\"%d\", func(a));\n}",
+		"language": "c",
+		"choices": [
+			"5",
+			"15",
+			"24",
+			"120"
+		],
+		"blanks": [
+			{
+				"answer": "120"
+			}
+		],
+		"explanation": "func는 재귀 호출로 팩토리얼을 구한다. func(5) = 5 × 4 × 3 × 2 × 1 = 120"
+	}
+]

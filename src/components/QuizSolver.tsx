@@ -3,37 +3,36 @@ import QuestionCard from "./QuestionCard";
 import { RotateCcw, ChevronLeft, ChevronRight, Award, Filter, ListChecks } from "lucide-react";
 import { Question, UserAnswersMap } from "../types";
 import CustomSelect from "./CustomSelect";
-
-const SUBJECTS = [
-	{ id: 1, name: "소프트웨어 설계" },
-	{ id: 2, name: "소프트웨어 개발" },
-	{ id: 3, name: "데이터베이스 구축" },
-	{ id: 4, name: "프로그래밍 언어 활용" },
-	{ id: 5, name: "정보시스템 구축 관리" },
-];
+import { SUBJECTS } from "../utils/storage";
 
 interface QuizSolverProps {
 	questions: Question[];
 	userAnswers: UserAnswersMap;
 	bookmarks: string[];
-	onSelectOption: (questionId: string, selectedOption: number, session: string) => void;
+	onSubmitAnswer: (questionId: string, inputs: string[], isCorrect: boolean, session: string, manual: boolean) => void;
+	onMarkCorrect: (questionId: string) => void;
 	onResetAnswer: (questionId: string) => void;
 	onToggleBookmark: (questionId: string) => void;
 	onFinishQuiz: (filteredQuestions: Question[]) => void;
 }
 
-export default function QuizSolver({ questions, userAnswers, bookmarks, onSelectOption, onResetAnswer, onToggleBookmark, onFinishQuiz }: QuizSolverProps) {
-	// 기본값을 빈 문자열("")로 두어 아무 회차도 선택되지 않은 상태로 시작
+export default function QuizSolver({ questions, userAnswers, bookmarks, onSubmitAnswer, onMarkCorrect, onResetAnswer, onToggleBookmark, onFinishQuiz }: QuizSolverProps) {
+	// 기본값을 빈 문자열("")로 두어 아무 유형도 선택되지 않은 상태로 시작
 	const [selectedSession, setSelectedSession] = useState<string>("");
 	const [selectedSubject, setSelectedSubject] = useState<number>(0);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
+	// 유형 목록은 데이터 파일 순서(키워드 → 코드 유형들)를 그대로 사용
 	const sessionOptions = useMemo(() => {
-		const sessions = Array.from(new Set(questions.map((q) => q.session)))
-			.sort()
-			.reverse();
-		return sessions.map((s) => ({ value: s, label: s }));
+		const sessions = Array.from(new Set(questions.map((q) => q.session)));
+		return sessions.map((s) => ({ value: s, label: `${s} (${questions.filter((q) => q.session === s).length}문제)` }));
 	}, [questions]);
+
+	// 선택한 유형에 포함된 주제만 필터 칩으로 노출
+	const sessionSubjects = useMemo(() => {
+		const ids = new Set(questions.filter((q) => q.session === selectedSession).map((q) => q.subjectId));
+		return SUBJECTS.filter((sub) => ids.has(sub.id));
+	}, [questions, selectedSession]);
 
 	const filteredQuestions = useMemo(() => {
 		if (!selectedSession) return [];
@@ -44,17 +43,17 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 		});
 	}, [questions, selectedSession, selectedSubject]);
 
-	// 회차 변경 시 마지막으로 풀었던 바로 다음 문제 위치 계산 후 이동
+	// 유형 변경 시 마지막으로 풀었던 바로 다음 문제 위치 계산 후 이동
 	const handleSessionChange = (val: string | number) => {
 		const sessionStr = val as string;
 		setSelectedSession(sessionStr);
-		setSelectedSubject(0); // 회차 변경 시 과목 선택 상태를 전체 과목(0)으로 초기화
+		setSelectedSubject(0); // 유형 변경 시 주제 선택 상태를 전체(0)로 초기화
 
 		if (sessionStr) {
-			// 선택한 회차의 전체 문제 목록
+			// 선택한 유형의 전체 문제 목록
 			const sessionQuestions = questions.filter((q) => q.session === sessionStr);
 
-			// 해당 회차에서 풀었던 문제 중 가장 뒤쪽 문제의 인덱스 찾기
+			// 해당 유형에서 풀었던 문제 중 가장 뒤쪽 문제의 인덱스 찾기
 			let lastAnsweredIndex = -1;
 			for (let i = sessionQuestions.length - 1; i >= 0; i--) {
 				if (userAnswers[sessionQuestions[i].id]) {
@@ -82,33 +81,33 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 
 	const progressPercent = filteredQuestions.length > 0 ? Math.round(((currentIndex + 1) / filteredQuestions.length) * 100) : 0;
 
-	// 회차 선택 컨트롤 바 (항상 상단에 노출)
+	// 유형 선택 컨트롤 바 (항상 상단에 노출)
 	const controlBar = (
 		<div
 			className="glass-card"
 			style={{ padding: "18px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "16px", position: "relative", zIndex: 50 }}
 		>
 			<div style={{ display: "flex", alignItems: "center", gap: "12px", flex: "1" }}>
-				<label style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--text-muted)", whiteSpace: "nowrap" }}>회차 선택:</label>
+				<label style={{ fontSize: "0.9rem", fontWeight: 600, color: "var(--text-muted)", whiteSpace: "nowrap" }}>유형 선택:</label>
 				<div style={{ width: "100%" }}>
-					<CustomSelect options={sessionOptions} value={selectedSession} onChange={handleSessionChange} placeholder="회차를 선택해주세요" />
+					<CustomSelect options={sessionOptions} value={selectedSession} onChange={handleSessionChange} placeholder="문제 유형을 선택해주세요" />
 				</div>
 			</div>
 
-			{/* 회차(selectedSession)가 선택되었을 때만 과목 선택 Chip 노출 */}
-			{selectedSession && (
+			{/* 유형(selectedSession)에 주제가 여러 개일 때만 주제 선택 Chip 노출 */}
+			{selectedSession && sessionSubjects.length > 1 && (
 				<div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
 					<button className={`nav-btn ${selectedSubject === 0 ? "active" : ""}`} onClick={() => handleSubjectChange(0)} style={{ padding: "6px 12px", fontSize: "0.85rem" }}>
-						전체 과목
+						전체 주제
 					</button>
-					{SUBJECTS.map((sub) => (
+					{sessionSubjects.map((sub) => (
 						<button
 							key={sub.id}
 							className={`nav-btn ${selectedSubject === sub.id ? "active" : ""}`}
 							onClick={() => handleSubjectChange(sub.id)}
 							style={{ padding: "6px 12px", fontSize: "0.85rem" }}
 						>
-							{sub.id}과목
+							{sub.name}
 						</button>
 					))}
 				</div>
@@ -116,7 +115,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 		</div>
 	);
 
-	// 아직 회차를 선택하지 않은 경우 안내 메시지 표시
+	// 아직 유형을 선택하지 않은 경우 안내 메시지 표시
 	if (!selectedSession) {
 		return (
 			<div style={{ display: "flex", flexDirection: "column", gap: "10px" }} className="animate-fade-in">
@@ -124,8 +123,8 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 
 				<div className="glass-card" style={{ padding: "60px", textAlign: "center" }}>
 					<ListChecks size={48} style={{ color: "var(--text-muted)", marginBottom: "16px" }} />
-					<h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>회차를 선택해주세요</h3>
-					<p style={{ color: "var(--text-muted)" }}>상단에서 풀고 싶은 회차를 선택하면 문제풀이가 시작됩니다.</p>
+					<h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>문제 유형을 선택해주세요</h3>
+					<p style={{ color: "var(--text-muted)" }}>상단에서 키워드 또는 코드 유형을 선택하면 문제풀이가 시작됩니다.</p>
 				</div>
 			</div>
 		);
@@ -139,7 +138,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 				<div className="glass-card" style={{ padding: "60px", textAlign: "center" }}>
 					<Filter size={48} style={{ color: "var(--text-muted)", marginBottom: "16px" }} />
 					<h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>해당 조건의 문제가 없습니다.</h3>
-					<p style={{ color: "var(--text-muted)" }}>다른 회차나 과목 필터를 선택해 주세요.</p>
+					<p style={{ color: "var(--text-muted)" }}>다른 유형이나 주제 필터를 선택해 주세요.</p>
 				</div>
 			</div>
 		);
@@ -164,12 +163,14 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSelect
 
 			{/* Current Question Card */}
 			<QuestionCard
+				key={currentQuestion.id}
 				question={currentQuestion}
 				currentIndex={currentIndex}
 				totalCount={filteredQuestions.length}
 				userAnswer={currentAnswer}
 				isBookmarked={isBookmarked}
-				onSelectOption={(optNum) => onSelectOption(currentQuestion.id, optNum, currentQuestion.session)}
+				onSubmitAnswer={(inputs, isCorrect, manual) => onSubmitAnswer(currentQuestion.id, inputs, isCorrect, currentQuestion.session, manual)}
+				onMarkCorrect={() => onMarkCorrect(currentQuestion.id)}
 				onToggleBookmark={onToggleBookmark}
 			/>
 
