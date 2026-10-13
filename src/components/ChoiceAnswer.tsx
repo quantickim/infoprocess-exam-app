@@ -37,7 +37,6 @@ export default function ChoiceAnswer({ question, userAnswer, onSubmitAnswer }: C
 	}, [question.id, userAnswer]);
 
 	const answerValues = question.blanks.flatMap((b) => [b.answer, ...(b.accepts ?? [])]);
-	const slotResults = hasAnswered && !isMultiSelect ? gradeChoice(question, userAnswer.inputs).blankResults : null;
 	const slotLabel = (i: number) => question.blanks[i].label ?? String(i + 1);
 
 	const handleChoice = (value: string) => {
@@ -85,19 +84,13 @@ export default function ChoiceAnswer({ question, userAnswer, onSubmitAnswer }: C
 			{!isSingle && !isMultiSelect && (
 				<div className="choice-slots">
 					{question.blanks.map((_, i) => {
-						const result = slotResults?.[i];
-						let stateClass = !hasAnswered && i === activeSlot ? " active" : "";
-						if (result !== undefined) stateClass = result ? " correct" : " wrong";
+						// 내가 고른 칸에는 정답/오답 색을 칠하지 않음 (정답은 아래 보기와 해설에서 표시)
+						const stateClass = !hasAnswered && i === activeSlot ? " active" : "";
 
 						return (
 							<button key={i} type="button" className={`choice-slot${stateClass}`} disabled={hasAnswered} onClick={() => setActiveSlot(i)}>
 								<span className="blank-label">{slotLabel(i)}</span>
 								<span className={userValues[i] ? "" : "choice-slot-empty"}>{userValues[i] ? choiceText(question, userValues[i]) : "선택"}</span>
-								{result !== undefined && (
-									<span className="blank-result" style={{ marginLeft: "auto", color: result ? "var(--correct)" : "var(--wrong)" }}>
-										{result ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
-									</span>
-								)}
 							</button>
 						);
 					})}
