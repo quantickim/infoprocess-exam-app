@@ -20,6 +20,7 @@ export default function ChoiceAnswer({ question, userAnswer, onSubmitAnswer }: C
 	const choices = question.choices ?? [];
 	const isMultiSelect = question.unordered === true;
 	const isSingle = !isMultiSelect && question.blanks.length === 1;
+	const isSlotMode = !isSingle && !isMultiSelect;
 	const isCodeOutput = question.type !== "text" && question.language !== undefined;
 	// 문장이나 줄이 긴 코드 출력은 한 줄에 하나씩, 짧은 보기는 2열로 표시
 	const longestLine = Math.max(...choices.flatMap((c) => c.split("\n").map((line) => line.length)));
@@ -37,6 +38,7 @@ export default function ChoiceAnswer({ question, userAnswer, onSubmitAnswer }: C
 	}, [question.id, userAnswer]);
 
 	const answerValues = question.blanks.flatMap((b) => [b.answer, ...(b.accepts ?? [])]);
+	const slotResults = hasAnswered && !isMultiSelect ? gradeChoice(question, userAnswer.inputs).blankResults : null;
 	const slotLabel = (i: number) => question.blanks[i].label ?? String(i + 1);
 
 	const handleChoice = (value: string) => {
@@ -84,13 +86,19 @@ export default function ChoiceAnswer({ question, userAnswer, onSubmitAnswer }: C
 			{!isSingle && !isMultiSelect && (
 				<div className="choice-slots">
 					{question.blanks.map((_, i) => {
-						// 내가 고른 칸에는 정답/오답 색을 칠하지 않음 (정답은 아래 보기와 해설에서 표시)
-						const stateClass = !hasAnswered && i === activeSlot ? " active" : "";
+						const result = slotResults?.[i];
+						let stateClass = !hasAnswered && i === activeSlot ? " active" : "";
+						if (result !== undefined) stateClass = result ? " correct" : " wrong";
 
 						return (
 							<button key={i} type="button" className={`choice-slot${stateClass}`} disabled={hasAnswered} onClick={() => setActiveSlot(i)}>
 								<span className="blank-label">{slotLabel(i)}</span>
 								<span className={userValues[i] ? "" : "choice-slot-empty"}>{userValues[i] ? choiceText(question, userValues[i]) : "선택"}</span>
+								{result !== undefined && (
+									<span className="blank-result" style={{ marginLeft: "auto", color: result ? "var(--correct)" : "var(--wrong)" }}>
+										{result ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
+									</span>
+								)}
 							</button>
 						);
 					})}
@@ -102,35 +110,30 @@ export default function ChoiceAnswer({ question, userAnswer, onSubmitAnswer }: C
 					const value = choiceValue(choice);
 					const isPicked = userValues.includes(value);
 					const isAnswer = answerValues.includes(value);
+					// 빈칸 여러 개: 정오는 위쪽 ①② 칸에만 표시하고 보기 목록에는 색을 칠하지 않음
+					const showResultOnOption = hasAnswered && !isSlotMode;
 
 					let stateClass = "";
-					if (hasAnswered) {
+					if (showResultOnOption) {
 						if (isAnswer) stateClass = " correct-answer";
 						else if (isPicked) stateClass = " wrong-answer";
 						else stateClass = " dimmed";
-					} else if (isPicked) {
+					} else if (isPicked && !hasAnswered) {
 						stateClass = " selected";
 					}
 
-					// 빈칸 여러 개: 선택 중에는 내가 채운 칸, 채점 후에는 정답 칸 번호를 표시
-					const tags = isSingle || isMultiSelect
-						? []
-						: question.blanks
-								.map((b, i) => {
-									const filled = hasAnswered ? [b.answer, ...(b.accepts ?? [])] : [userValues[i]];
-									return filled.includes(value) ? slotLabel(i) : "";
-								})
-								.filter(Boolean);
+					// 빈칸 여러 개: 선택 중에만 내가 채운 칸 번호를 표시
+					const tags = isSlotMode && !hasAnswered ? question.blanks.map((_, i) => (userValues[i] === value ? slotLabel(i) : "")).filter(Boolean) : [];
 
 					return (
 						<button key={choice} type="button" className={`choice-option${stateClass}`} disabled={hasAnswered} onClick={() => handleChoice(value)}>
 							{isCodeOutput ? <pre className="choice-option-text choice-pre">{choice}</pre> : <span className={`choice-option-text${question.language ? " choice-mono" : ""}`}>{choice}</span>}
 							{/* 칸 번호와 정오 아이콘은 모서리 배지로 표시해 좁은 화면에서도 보기 글자 폭을 확보 */}
-							{(tags.length > 0 || (hasAnswered && (isAnswer || isPicked))) && (
+							{(tags.length > 0 || (showResultOnOption && (isAnswer || isPicked))) && (
 								<span className="choice-corner">
 									{tags.length > 0 && <span className="choice-tags">{tags.join(" ")}</span>}
-									{hasAnswered && isAnswer && <CheckCircle2 size={18} color="var(--correct)" className="choice-corner-icon" />}
-									{hasAnswered && !isAnswer && isPicked && <XCircle size={18} color="var(--wrong)" className="choice-corner-icon" />}
+									{showResultOnOption && isAnswer && <CheckCircle2 size={18} color="var(--correct)" className="choice-corner-icon" />}
+									{showResultOnOption && !isAnswer && isPicked && <XCircle size={18} color="var(--wrong)" className="choice-corner-icon" />}
 								</span>
 							)}
 						</button>

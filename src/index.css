@@ -402,6 +402,16 @@ body {
 	box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.35);
 }
 
+.choice-slot.correct {
+	background: var(--correct-bg);
+	border-color: var(--correct-border);
+}
+
+.choice-slot.wrong {
+	background: var(--wrong-bg);
+	border-color: var(--wrong-border);
+}
+
 .choice-slot:disabled {
 	cursor: default;
 }
