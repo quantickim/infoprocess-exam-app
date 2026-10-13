@@ -118,20 +118,17 @@ export default function ChoiceAnswer({ question, userAnswer, onSubmitAnswer }: C
 						if (isAnswer) stateClass = " correct-answer";
 						else if (isPicked) stateClass = " wrong-answer";
 						else stateClass = " dimmed";
-					} else if (isPicked && !hasAnswered) {
+					} else if (isPicked && !hasAnswered && !isSlotMode) {
+						// 빈칸 여러 개는 위쪽 ①② 칸에 고른 값이 보이므로 보기 목록에는 선택 색을 칠하지 않음
 						stateClass = " selected";
 					}
-
-					// 빈칸 여러 개: 선택 중에만 내가 채운 칸 번호를 표시
-					const tags = isSlotMode && !hasAnswered ? question.blanks.map((_, i) => (userValues[i] === value ? slotLabel(i) : "")).filter(Boolean) : [];
 
 					return (
 						<button key={choice} type="button" className={`choice-option${stateClass}`} disabled={hasAnswered} onClick={() => handleChoice(value)}>
 							{isCodeOutput ? <pre className="choice-option-text choice-pre">{choice}</pre> : <span className={`choice-option-text${question.language ? " choice-mono" : ""}`}>{choice}</span>}
-							{/* 칸 번호와 정오 아이콘은 모서리 배지로 표시해 좁은 화면에서도 보기 글자 폭을 확보 */}
-							{(tags.length > 0 || (showResultOnOption && (isAnswer || isPicked))) && (
+							{/* 정오 아이콘은 모서리 배지로 표시해 좁은 화면에서도 보기 글자 폭을 확보 */}
+							{showResultOnOption && (isAnswer || isPicked) && (
 								<span className="choice-corner">
-									{tags.length > 0 && <span className="choice-tags">{tags.join(" ")}</span>}
 									{showResultOnOption && isAnswer && <CheckCircle2 size={18} color="var(--correct)" className="choice-corner-icon" />}
 									{showResultOnOption && !isAnswer && isPicked && <XCircle size={18} color="var(--wrong)" className="choice-corner-icon" />}
 								</span>

@@ -508,20 +508,6 @@ body {
 	border-radius: 50%;
 }
 
-.choice-tags {
-	flex-shrink: 0;
-	padding: 1px 8px;
-	border-radius: 9999px;
-	background: var(--primary);
-	color: #fff;
-	font-size: 0.85rem;
-	font-weight: 700;
-}
-
-.choice-option.correct-answer .choice-tags {
-	background: var(--correct);
-}
-
 /* Answer Input */
 .answer-area {
 	display: flex;
