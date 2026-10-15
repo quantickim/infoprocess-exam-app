@@ -28,7 +28,7 @@ export interface Question {
 	blocks?: ContentBlock[];
 	choices?: string[]; // <보기>
 	codeSnippet?: string;
-	language?: "c" | "java" | "python";
+	language?: "c" | "java" | "python" | "sql";
 	blanks: AnswerBlank[];
 	unordered?: boolean; // 빈칸 순서와 상관없이 채점
 	explanation: string;

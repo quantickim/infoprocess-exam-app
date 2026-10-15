@@ -5,7 +5,13 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "키와 레코드 위치 포인터의 쌍으로 빠른 검색을 돕는 파일 접근 방식을 무엇이라 하는가?",
+		"question": "다음 설명에 해당하는 파일 접근 방식을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• <키, 레코드 위치(주소)> 쌍으로 구성된 별도의 표를 이용한다.\n• 표에서 키를 먼저 찾은 뒤 해당 위치의 레코드로 바로 접근한다.\n• 처음부터 차례대로 읽는 순차 접근보다 검색이 빠르다."
+			}
+		],
 		"choices": [
 			"클러스터(Cluster) 접근",
 			"순차(Sequential) 접근",
@@ -25,7 +31,7 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "관계형 데이터베이스에서 한 열이 나타내는 데이터 항목의 성질을 영어로 쓰시오.",
+		"question": "관계형 데이터베이스에서 테이블의 열(Column)에 해당하며, 데이터 항목의 성질을 나타내는 용어를 영어로 쓰시오.",
 		"choices": [
 			"Tuple",
 			"Attribute",
@@ -45,7 +51,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "암호화된 원격 셸 접근을 제공하고 기본 TCP 포트가 22인 프로토콜은?",
+		"question": "다음 설명에 해당하는 프로토콜을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 원격지 컴퓨터에 접속해 명령을 실행할 수 있다.\n• 명령, 인증 정보, 데이터를 모두 암호화해서 전송한다.\n• 기본 포트 번호는 TCP 22번이다."
+			}
+		],
 		"choices": [
 			"SSL",
 			"Telnet",
@@ -65,7 +77,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "실행 시간이 가장 짧은 작업을 먼저 선택하는 비선점 스케줄링과, 남은 실행 시간이 더 짧은 작업이 오면 선점하는 방식은?",
+		"question": "다음 설명에 해당하는 CPU 스케줄링 기법을 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 실행 시간이 가장 짧은 작업을 먼저 실행하는 비선점 방식\n② 남은 실행 시간이 더 짧은 작업이 도착하면 CPU를 빼앗아 실행하는 선점 방식"
+			}
+		],
 		"choices": [
 			"SJF",
 			"SRT",
@@ -75,11 +93,11 @@
 		],
 		"blanks": [
 			{
-				"label": "비선점",
+				"label": "①",
 				"answer": "SJF"
 			},
 			{
-				"label": "선점",
+				"label": "②",
 				"answer": "SRT"
 			}
 		],
@@ -91,7 +109,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java에서 배열 data[0]과 문자열 지역변수 s가 각각 \"B\"다. 메서드가 data[0]=s 후 지역 매개변수 s=\"Z\"로 바꿀 때 data[0]+호출자 s의 출력은?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "public class Main {\n    static void change(String[] data, String s) {\n        data[0] = s;\n        s = \"Z\";\n    }\n    public static void main(String[] args) {\n        String[] data = {\"A\"};\n        String s = \"B\";\n        change(data, s);\n        System.out.print(data[0] + s);\n    }\n}",
+		"language": "java",
 		"choices": [
 			"BZ",
 			"ZB",
@@ -111,7 +131,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "223.13.234.132의 서브넷 마스크가 255.255.255.192일 때 네트워크 주소 마지막 옥텟과 사용 가능한 호스트 수는?",
+		"question": "IP 주소 223.13.234.132의 서브넷 마스크가 255.255.255.192일 때, 다음을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 네트워크 주소의 마지막 옥텟 (223.13.234.( ① ))\n② 이 네트워크에서 호스트에 할당할 수 있는 IP 주소의 개수"
+			}
+		],
 		"choices": [
 			"62",
 			"64",
@@ -121,11 +147,11 @@
 		],
 		"blanks": [
 			{
-				"label": "네트워크 주소 마지막 옥텟",
+				"label": "①",
 				"answer": "128"
 			},
 			{
-				"label": "호스트 수",
+				"label": "②",
 				"answer": "62"
 			}
 		],
@@ -137,7 +163,13 @@
 		"subjectId": 1,
 		"subjectName": "소프트웨어 설계",
 		"type": "text",
-		"question": "실제 객체 앞에 대리 객체를 두어 접근 제어·지연 생성·로그 기능을 붙이는 디자인 패턴은?",
+		"question": "다음 설명에 해당하는 디자인 패턴을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 실제 객체 앞에 대리 객체를 둔다.\n• 대리 객체가 요청을 받아 접근 제어, 지연 생성(필요할 때 생성), 로그 기록 등을 처리한 뒤 실제 객체에 전달한다."
+			}
+		],
 		"choices": [
 			"Adapter 패턴",
 			"Facade 패턴",
@@ -157,7 +189,13 @@
 		"subjectId": 3,
 		"subjectName": "인터페이스·UI",
 		"type": "text",
-		"question": "페이지 전체를 다시 로드하지 않고 JavaScript로 서버와 비동기 통신하여 일부분만 갱신하는 기법의 약자는?",
+		"question": "다음 설명에 해당하는 웹 기술을 영문 약자로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• JavaScript로 서버와 비동기 방식으로 통신한다.\n• 페이지 전체를 새로 고치지 않고 필요한 부분만 갱신한다."
+			}
+		],
 		"choices": [
 			"JSON",
 			"SOAP",
@@ -177,7 +215,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java 함수형 인터페이스 호출에서 첫 람다는 예외로 catch의 7을 반환하고 두 번째 람다는 3+9를 반환했다. 두 값의 합은?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "interface Calc {\n    int run();\n}\npublic class Main {\n    static int exec(Calc c) {\n        return c.run();\n    }\n    public static void main(String[] args) {\n        int r1 = exec(() -> {\n            try {\n                return 10 / 0;\n            } catch (ArithmeticException e) {\n                return 7;\n            }\n        });\n        int r2 = exec(() -> 3 + 9);\n        System.out.print(r1 + r2);\n    }\n}",
+		"language": "java",
 		"choices": [
 			"7",
 			"12",
@@ -197,12 +237,14 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java Parent형 참조가 Child 객체를 가리킨다. x(int)는 Child가 재정의해 5를 반환하고 static id()는 Parent에서 \"P\"를 반환하면 이어 붙인 출력은?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "class Parent {\n    int x(int n) { return n; }\n    static String id() { return \"P\"; }\n}\nclass Child extends Parent {\n    int x(int n) { return n + 2; }\n    static String id() { return \"C\"; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Parent p = new Child();\n        System.out.print(p.x(3) + p.id());\n    }\n}",
+		"language": "java",
 		"choices": [
 			"5P",
-			"P5",
-			"5C",
-			"PP"
+			"3C",
+			"3P",
+			"5C"
 		],
 		"blanks": [
 			{
@@ -217,7 +259,13 @@
 		"subjectId": 4,
 		"subjectName": "애플리케이션 테스트",
 		"type": "text",
-		"question": "제어 흐름 그래프에서 조건 분기가 2번(2→3/4)과 6번(6→1/7)에 있다. 결정 노드 두 개와 분기 커버리지 대상 간선 수는?",
+		"question": "다음 제어 흐름 그래프에 대해 분기(결정) 커버리지를 적용하려고 한다. 결정 노드 번호와, 반드시 지나야 하는 분기(간선)의 수를 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 2번 노드: 조건이 참이면 3번, 거짓이면 4번으로 이동\n• 6번 노드: 조건이 참이면 1번, 거짓이면 7번으로 이동\n• 그 밖의 노드는 다음 노드로 바로 이동"
+			}
+		],
 		"choices": [
 			"4개",
 			"1, 2",
@@ -244,7 +292,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "원형 큐에 1, 2를 넣고 하나를 꺼낸 뒤 3을 넣는다. 이후 연달아 두 번 꺼내면?",
+		"question": "큐에 다음 연산을 차례로 수행했을 때, 마지막에 두 번 꺼낸 값을 순서대로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 1 삽입\n② 2 삽입\n③ 하나 꺼냄\n④ 3 삽입\n⑤ 하나 꺼냄\n⑥ 하나 꺼냄"
+			}
+		],
 		"choices": [
 			"1, 2",
 			"3, 2",
@@ -264,7 +318,39 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "P1(도착0, 실행8), P2(1,4), P3(2,9), P4(3,5)를 RR 할당량 4ms로 실행할 때 평균 대기시간은?",
+		"question": "다음 프로세스들을 RR(Round Robin) 방식으로 스케줄링할 때 평균 대기 시간을 구하시오. (단, 시간 할당량은 4ms이다.)",
+		"blocks": [
+			{
+				"type": "table",
+				"headers": [
+					"프로세스",
+					"도착 시간(ms)",
+					"실행 시간(ms)"
+				],
+				"rows": [
+					[
+						"P1",
+						"0",
+						"8"
+					],
+					[
+						"P2",
+						"1",
+						"4"
+					],
+					[
+						"P3",
+						"2",
+						"9"
+					],
+					[
+						"P4",
+						"3",
+						"5"
+					]
+				]
+			}
+		],
 		"choices": [
 			"6.5ms",
 			"12.5ms",
@@ -284,16 +370,18 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C 구조체 배열 a를 가리키는 이중 포인터에서 (*pptr)[1]=(*pptr)[2]를 실행했다. a[2]가 {x:5, y:6}이었다면 a[1]의 두 멤버(x, y)는?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nstruct P {\n    int x, y;\n};\nint main() {\n    struct P a[3] = { {1, 2}, {3, 4}, {5, 6} };\n    struct P *ptr = a;\n    struct P **pptr = &ptr;\n    (*pptr)[1] = (*pptr)[2];\n    printf(\"%d %d\", a[1].x, a[1].y);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
-			"5, 0",
-			"5, 6",
-			"0, 0",
-			"3, 4"
+			"5 4",
+			"5 6",
+			"1 2",
+			"3 4"
 		],
 		"blanks": [
 			{
-				"answer": "5, 6"
+				"answer": "5 6"
 			}
 		],
 		"explanation": "pptr은 배열 a를 가리키는 포인터의 주소이므로, *pptr은 배열 a(의 시작 주소)이다.\n• (*pptr)[1] = (*pptr)[2]는 a[1] = a[2]와 같다.\n• 구조체끼리 대입하면 모든 멤버 값이 복사된다 → a[1].x = 5, a[1].y = 6"
@@ -304,16 +392,18 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java 배열의 세 객체 참조 a, b, c 중 arr[0]과 arr[2]를 바꾼 뒤 arr[1].v=arr[0].v를 실행했다. 최초 값 a=1, b=2, c=3일 때 a, b, c의 v는?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "class Obj {\n    int v;\n    Obj(int v) { this.v = v; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Obj a = new Obj(1), b = new Obj(2), c = new Obj(3);\n        Obj[] arr = {a, b, c};\n        Obj t = arr[0];\n        arr[0] = arr[2];\n        arr[2] = t;\n        arr[1].v = arr[0].v;\n        System.out.print(a.v + \"a\" + b.v + \"b\" + c.v);\n    }\n}",
+		"language": "java",
 		"choices": [
-			"1, 2, 3",
-			"3, 3, 1",
-			"1, 3, 3",
-			"3, 2, 1"
+			"1a2b3",
+			"3a3b1",
+			"1a3b3",
+			"3a2b1"
 		],
 		"blanks": [
 			{
-				"answer": "1, 3, 3"
+				"answer": "1a3b3"
 			}
 		],
 		"explanation": "• 처음: arr = [a, b, c], a.v = 1, b.v = 2, c.v = 3\n• arr[0]과 arr[2] 교환 → arr = [c, b, a] (객체가 아니라 참조만 바뀜)\n• arr[1].v = arr[0].v → b.v = c.v = 3\n결과: a.v = 1, b.v = 3, c.v = 3 (복원 출력 1a3b3)"
@@ -324,7 +414,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C 노드 세 개 a(p=1), b(p=2), c(p=3)를 c→a→b로 연결하고 head=c에서 세 값을 출력하면?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nstruct node {\n    int p;\n    struct node *n;\n};\nint main() {\n    struct node a = {1, NULL}, b = {2, NULL}, c = {3, NULL};\n    c.n = &a;\n    a.n = &b;\n    struct node *head = &c;\n    for (struct node *cur = head; cur != NULL; cur = cur->n)\n        printf(\"%d \", cur->p);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"3 2 1",
 			"3 1 2",
@@ -344,7 +436,9 @@
 		"subjectId": 9,
 		"subjectName": "Python",
 		"type": "text",
-		"question": "Python에서 리스트 [1,2,3]으로 {1:2,2:4,3:6} 딕셔너리와 {2,4,6} 집합을 만들고 dict[2]=7, 집합에 99를 추가했다. 두 값 집합 교집합의 크기는?",
+		"question": "다음 Python 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "lst = [1, 2, 3]\nd = {x: x * 2 for x in lst}\ns = {x * 2 for x in lst}\nd[2] = 7\ns.add(99)\nprint(len(set(d.values()) & s))",
+		"language": "python",
 		"choices": [
 			"1",
 			"2",
@@ -364,7 +458,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "문자열 \"BEST\"를 왼쪽부터 읽어 매 문자마다 연결 리스트 머리에 새 노드를 추가한 다음 순회 출력하면?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\n#include <stdlib.h>\nstruct Node {\n    char c;\n    struct Node *next;\n};\nint main() {\n    char *str = \"BEST\";\n    struct Node *head = NULL;\n    for (int i = 0; str[i] != '\\0'; i++) {\n        struct Node *n = malloc(sizeof(struct Node));\n        n->c = str[i];\n        n->next = head;\n        head = n;\n    }\n    for (struct Node *p = head; p != NULL; p = p->next)\n        printf(\"%c\", p->c);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"TSBE",
 			"BEST",
@@ -384,7 +480,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "TCP 3-way handshake의 마지막 ACK를 보내지 않고 SYN을 대량 전송해 서버의 반열림 연결 큐를 채우는 공격은?",
+		"question": "다음 설명에 해당하는 공격 기법을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• TCP 3-way handshake 과정에서 마지막 ACK를 보내지 않는다.\n• SYN 패킷만 대량으로 보내 서버의 연결 대기 큐를 가득 채운다.\n• 정상 사용자가 접속하지 못하게 만드는 서비스 거부(DoS) 공격이다."
+			}
+		],
 		"choices": [
 			"SYN Flooding",
 			"Smurfing",
@@ -404,7 +506,39 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "직책 열의 값이 [부장, 대리, 과장, 차장, 대리]일 때 관계대수 투영 π직책(R)의 결과는?",
+		"question": "다음 릴레이션 R에 대해 관계대수 π직책(R)의 결과를 쓰시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "<R>",
+				"headers": [
+					"이름",
+					"직책"
+				],
+				"rows": [
+					[
+						"김철수",
+						"부장"
+					],
+					[
+						"이영희",
+						"대리"
+					],
+					[
+						"박민수",
+						"과장"
+					],
+					[
+						"최지훈",
+						"차장"
+					],
+					[
+						"정수진",
+						"대리"
+					]
+				]
+			}
+		],
 		"choices": [
 			"부장, 대리, 과장, 차장",
 			"부장, 대리, 과장, 차장, 대리",

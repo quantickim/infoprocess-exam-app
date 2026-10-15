@@ -15,7 +15,7 @@ interface QuestionCardProps {
 	onToggleBookmark: (questionId: string) => void;
 }
 
-const LANGUAGE_LABEL: Record<string, string> = { c: "C", java: "Java", python: "Python" };
+const LANGUAGE_LABEL: Record<string, string> = { c: "C", java: "Java", python: "Python", sql: "SQL" };
 
 function renderBlock(block: ContentBlock, idx: number) {
 	if (block.type === "text") {

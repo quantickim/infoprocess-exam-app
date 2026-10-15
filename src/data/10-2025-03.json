@@ -5,7 +5,13 @@
 		"subjectId": 1,
 		"subjectName": "소프트웨어 설계",
 		"type": "text",
-		"question": "UML에서 폴더 모양 요소로 클래스·하위 그룹을 묶고 import/access/merge 등 의존 관계를 나타내는 다이어그램은?",
+		"question": "다음 설명에 해당하는 UML 다이어그램을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 폴더 모양의 요소로 클래스나 하위 그룹을 묶는다.\n• 묶음 사이의 의존 관계를 «import», «access», «merge» 같은 표시와 함께 나타낸다.\n• 구조적(정적) 다이어그램에 속한다."
+			}
+		],
 		"choices": [
 			"패키지 다이어그램",
 			"클래스 다이어그램",
@@ -25,7 +31,13 @@
 		"subjectId": 4,
 		"subjectName": "애플리케이션 테스트",
 		"type": "text",
-		"question": "복합 조건의 각 개별 조건이 참과 거짓을 각각 한 번 이상 갖게 하는 화이트박스 커버리지 기준은?",
+		"question": "다음 설명에 해당하는 화이트박스 테스트 커버리지를 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 결정문에 포함된 개별 조건식이 각각 참과 거짓을 최소 한 번씩 갖도록 테스트한다.\n• 예) if (A > 0 && B > 0)에서 'A > 0'과 'B > 0'이 각각 참·거짓을 모두 가져 보도록 한다."
+			}
+		],
 		"choices": [
 			"조건 커버리지",
 			"구문 커버리지",
@@ -45,7 +57,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "리눅스에서 현재 경로 출력 / 목록 확인 / 디렉터리 이동 / 파일 복사 명령을 쓰시오.",
+		"question": "다음 기능을 수행하는 리눅스 명령어를 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 현재 작업 중인 디렉터리 경로 출력\n② 파일·디렉터리 목록 보기\n③ 다른 디렉터리로 이동\n④ 파일 복사"
+			}
+		],
 		"choices": [
 			"rm",
 			"ls",
@@ -57,19 +75,19 @@
 		],
 		"blanks": [
 			{
-				"label": "현재 경로 출력",
+				"label": "①",
 				"answer": "pwd"
 			},
 			{
-				"label": "목록 확인",
+				"label": "②",
 				"answer": "ls"
 			},
 			{
-				"label": "디렉터리 이동",
+				"label": "③",
 				"answer": "cd"
 			},
 			{
-				"label": "파일 복사",
+				"label": "④",
 				"answer": "cp"
 			}
 		],
@@ -81,7 +99,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "오류를 정정하는 해밍 코드, 수신측 자체 정정 방식, 재전송 요구 방식, 1비트 검사, 다항식 검사에 대응하는 용어는?",
+		"question": "데이터 전송 오류 제어에 대한 다음 설명에 해당하는 용어를 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 오류를 검출하고 스스로 정정까지 할 수 있는 코드\n② 수신 측이 재전송 요청 없이 스스로 오류를 정정하는 방식\n③ 오류를 검출하면 송신 측에 재전송을 요청하는 방식\n④ 1비트의 검사 비트를 추가해 오류를 검출하는 방식\n⑤ 생성 다항식으로 나눈 나머지를 이용해 오류를 검출하는 방식"
+			}
+		],
 		"choices": [
 			"BEC",
 			"Checksum",
@@ -93,23 +117,23 @@
 		],
 		"blanks": [
 			{
-				"label": "오류 정정 코드",
+				"label": "①",
 				"answer": "Hamming"
 			},
 			{
-				"label": "수신측 자체 정정",
+				"label": "②",
 				"answer": "FEC"
 			},
 			{
-				"label": "재전송 요구",
+				"label": "③",
 				"answer": "BEC"
 			},
 			{
-				"label": "1비트 검사",
+				"label": "④",
 				"answer": "Parity"
 			},
 			{
-				"label": "다항식 검사",
+				"label": "⑤",
 				"answer": "CRC"
 			}
 		],
@@ -121,7 +145,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C 구조체 test[1]의 i=2, 문자열 g=\"DC\"일 때 printf(\"%s\", g+(i−1))의 출력은?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nstruct test {\n    int i;\n    char *g;\n};\nint main() {\n    struct test t[2] = { {1, \"AB\"}, {2, \"DC\"} };\n    printf(\"%s\", t[1].g + (t[1].i - 1));\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"2",
 			"D",
@@ -141,7 +167,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C 문자열 \"REPUBLICOFKOREA\"의 널 종료 위치를 a=15라 할 때 str[a−2]를 putchar로 출력하면?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    char str[] = \"REPUBLICOFKOREA\";\n    int a = 0;\n    while (str[a] != '\\0')\n        a++;\n    putchar(str[a - 2]);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"E",
 			"A",
@@ -161,7 +189,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C 연결 노드 값 11→7→5를 순회하며 sum=sum*3+값을 계산한 후 결과에 42를 XOR하고 100을 더한다면?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nstruct Node {\n    int val;\n    struct Node *next;\n};\nint main() {\n    struct Node c = {5, NULL};\n    struct Node b = {7, &c};\n    struct Node a = {11, &b};\n    int sum = 0;\n    for (struct Node *p = &a; p != NULL; p = p->next)\n        sum = sum * 3 + p->val;\n    printf(\"%d\", (sum ^ 42) + 100);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"87",
 			"125",
@@ -181,7 +211,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java 클래스가 선언된 interface의 메서드를 구현한다면 class 선언에 어떤 키워드를 쓰는가?",
+		"question": "다음 Java 코드의 괄호에 들어갈 알맞은 키워드를 쓰시오.",
+		"codeSnippet": "interface Animal {\n    void sound();\n}\nclass Dog (        ) Animal {\n    public void sound() {\n        System.out.print(\"멍멍\");\n    }\n}",
+		"language": "java",
 		"choices": [
 			"interface",
 			"abstract",
@@ -201,7 +233,9 @@
 		"subjectId": 9,
 		"subjectName": "Python",
 		"type": "text",
-		"question": "Python에서 네 개의 리스트를 enumerate하며 각 리스트의 (sum, len)을 인덱스 키로 저장했다. (합, 길이)가 차례로 (15,5),(10,3),(18,5),(9,2)이면 딕셔너리는?",
+		"question": "다음 Python 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "data = [[1, 2, 3, 4, 5], [2, 3, 5], [2, 3, 4, 4, 5], [4, 5]]\nresult = {}\nfor i, lst in enumerate(data):\n    result[i] = (sum(lst), len(lst))\nprint(result)",
+		"language": "python",
 		"choices": [
 			"{1: (15, 5), 2: (10, 3), 3: (18, 5), 4: (9, 2)}",
 			"{0: 15, 1: 10, 2: 18, 3: 9}",
@@ -221,7 +255,35 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "SQL 조건값 열이 10,20,30,40,50인 다섯 행에서 BETWEEN 20 AND 50에 해당하는 COUNT(*)는?",
+		"question": "다음 테이블에 대해 SQL을 실행했을 때 출력되는 값을 쓰시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "<T>",
+				"headers": [
+					"val"
+				],
+				"rows": [
+					[
+						"10"
+					],
+					[
+						"20"
+					],
+					[
+						"30"
+					],
+					[
+						"40"
+					],
+					[
+						"50"
+					]
+				]
+			}
+		],
+		"codeSnippet": "SELECT COUNT(*)\nFROM T\nWHERE val BETWEEN 20 AND 50;",
+		"language": "sql",
 		"choices": [
 			"2",
 			"3",
@@ -241,7 +303,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "한 번 사용할 때마다 새로 발급되는 일회용 인증 코드를 뜻하는 약자는?",
+		"question": "다음 설명에 해당하는 인증 방식을 영문 약자로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 한 번 사용하면 다시 쓸 수 없는 일회용 비밀번호다.\n• 로그인할 때마다 새로운 값이 발급된다.\n• 시간 기반(TOTP)과 횟수 기반(HOTP) 방식이 있다."
+			}
+		],
 		"choices": [
 			"OTP",
 			"SSO",
@@ -261,7 +329,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java 자식 생성자에서 부모의 인자 있는 생성자를 호출할 때 쓰는 키워드는?",
+		"question": "다음 Java 코드에서 자식 생성자가 부모의 생성자를 호출하도록 괄호에 들어갈 키워드를 쓰시오.",
+		"codeSnippet": "class Parent {\n    int x;\n    Parent(int x) { this.x = x; }\n}\nclass Child extends Parent {\n    Child(int x) {\n        (        )(x);\n    }\n}",
+		"language": "java",
 		"choices": [
 			"this",
 			"super",
@@ -281,7 +351,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "비밀번호를 제3자에게 넘기지 않고 제한된 자원 접근 권한을 토큰으로 위임하는 표준 프레임워크는?",
+		"question": "다음 설명에 해당하는 표준 프레임워크를 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 사용자가 비밀번호를 제3자 서비스에 알려주지 않는다.\n• 대신 접근 토큰(Access Token)을 발급하여, 정해진 범위의 자원에만 접근할 수 있도록 권한을 위임한다.\n• 예) \"구글 계정으로 다른 앱에 캘린더 접근 허용\""
+			}
+		],
 		"choices": [
 			"OAuth",
 			"LDAP",
@@ -301,7 +377,46 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "R(A,B)={(a1,b1),(a1,b2),(a2,b1)}, S(B)={b1,b2}일 때 R÷S의 A 값은?",
+		"question": "다음 릴레이션 R, S에 대해 관계대수 R ÷ S의 결과를 쓰시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "<R>",
+				"headers": [
+					"A",
+					"B"
+				],
+				"rows": [
+					[
+						"a1",
+						"b1"
+					],
+					[
+						"a1",
+						"b2"
+					],
+					[
+						"a2",
+						"b1"
+					]
+				]
+			},
+			{
+				"type": "table",
+				"caption": "<S>",
+				"headers": [
+					"B"
+				],
+				"rows": [
+					[
+						"b1"
+					],
+					[
+						"b2"
+					]
+				]
+			}
+		],
 		"choices": [
 			"a1, a2",
 			"a1",
@@ -321,7 +436,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C에서 z=2일 때 z & (z>>1)을 계산하고 그 값에 7을 곱한다면?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    int z = 2;\n    printf(\"%d\", (z & (z >> 1)) * 7);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"0",
 			"2",
@@ -341,7 +458,13 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "관계형 DB의 한 행, 현재 저장된 실제 데이터 상태, 테이블의 행 수를 순서대로 쓰시오.",
+		"question": "관계형 데이터베이스에 대한 다음 설명에 해당하는 용어를 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 릴레이션의 한 행\n② 특정 시점에 릴레이션에 실제로 저장된 데이터 집합\n③ 릴레이션의 행(튜플) 수"
+			}
+		],
 		"choices": [
 			"튜플",
 			"카디널리티",
@@ -352,15 +475,15 @@
 		],
 		"blanks": [
 			{
-				"label": "한 행",
+				"label": "①",
 				"answer": "튜플"
 			},
 			{
-				"label": "현재 저장된 데이터 상태",
+				"label": "②",
 				"answer": "인스턴스"
 			},
 			{
-				"label": "행 수",
+				"label": "③",
 				"answer": "카디널리티"
 			}
 		],
@@ -372,7 +495,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java enum Tri의 A.name()은 \"A\"(길이 1)이고 values()[1]은 B이며 B의 code=\"AB\"다. 해당 프로그램 출력은?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "enum Tri {\n    A(\"A\"), B(\"AB\"), C(\"ABC\");\n    final String code;\n    Tri(String code) { this.code = code; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        int idx = Tri.A.name().length();\n        System.out.print(Tri.values()[idx].code);\n    }\n}",
+		"language": "java",
 		"choices": [
 			"B",
 			"1",
@@ -392,7 +517,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "중앙 정책·보안등급 기반 통제 / 직무 역할 기반 통제 / 소유자가 권한을 허용하는 통제 모델의 약자는?",
+		"question": "다음 설명에 해당하는 접근 통제 모델을 각각 영문 약자로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 주체와 객체의 보안 등급을 비교하여 시스템이 중앙에서 접근을 통제한다.\n② 사용자에게 부여된 직무 역할에 따라 접근 권한을 부여한다.\n③ 데이터의 소유자가 다른 사용자에게 접근 권한을 허용한다."
+			}
+		],
 		"choices": [
 			"DAC",
 			"RBAC",
@@ -402,15 +533,15 @@
 		],
 		"blanks": [
 			{
-				"label": "보안등급 기반",
+				"label": "①",
 				"answer": "MAC"
 			},
 			{
-				"label": "역할 기반",
+				"label": "②",
 				"answer": "RBAC"
 			},
 			{
-				"label": "소유자 허용",
+				"label": "③",
 				"answer": "DAC"
 			}
 		],
@@ -422,7 +553,13 @@
 		"subjectId": 4,
 		"subjectName": "애플리케이션 테스트",
 		"type": "text",
-		"question": "테스트케이스 문서에서 사전 조건, 사용할 구체 입력, 기대 출력에 해당하는 칸의 이름은?",
+		"question": "테스트 케이스의 구성 요소에 대한 다음 설명에 해당하는 항목명을 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 테스트를 수행하기 위해 갖춰져야 하는 사전 조건\n② 테스트에 실제로 입력하는 구체적인 값\n③ 테스트를 실행했을 때 기대하는 출력"
+			}
+		],
 		"choices": [
 			"실제 결과",
 			"테스트 데이터",
@@ -433,15 +570,15 @@
 		],
 		"blanks": [
 			{
-				"label": "사전 조건",
+				"label": "①",
 				"answer": "테스트 조건"
 			},
 			{
-				"label": "구체 입력",
+				"label": "②",
 				"answer": "테스트 데이터"
 			},
 			{
-				"label": "기대 출력",
+				"label": "③",
 				"answer": "예상 결과"
 			}
 		],
@@ -453,7 +590,41 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "col1, col2가 (1,3),(2,1),(3,2),(4,5),(2,NULL)일 때 (col1 IN (2,3) OR col2 IN (3,5))에 대한 COUNT(col2)는?",
+		"question": "다음 테이블에 대해 SQL을 실행했을 때 출력되는 값을 쓰시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "<T>",
+				"headers": [
+					"col1",
+					"col2"
+				],
+				"rows": [
+					[
+						"1",
+						"3"
+					],
+					[
+						"2",
+						"1"
+					],
+					[
+						"3",
+						"2"
+					],
+					[
+						"4",
+						"5"
+					],
+					[
+						"2",
+						"NULL"
+					]
+				]
+			}
+		],
+		"codeSnippet": "SELECT COUNT(col2)\nFROM T\nWHERE col1 IN (2, 3) OR col2 IN (3, 5);",
+		"language": "sql",
 		"choices": [
 			"2",
 			"3",

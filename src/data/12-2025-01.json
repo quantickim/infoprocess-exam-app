@@ -5,7 +5,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "인증된 사용자의 TCP 연결을 가로채 세션 번호 등을 조작하고 사용자 권한을 탈취하는 공격을 무엇이라 하는가?",
+		"question": "다음 설명에 해당하는 공격 기법을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 이미 인증을 마친 정상 사용자의 TCP 연결(세션)을 가로챈다.\n• 시퀀스 번호 등을 조작하여 그 사용자의 권한으로 시스템에 접근한다."
+			}
+		],
 		"choices": [
 			"세션 하이재킹(Session Hijacking)",
 			"파밍(Pharming)",
@@ -25,7 +31,13 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "값의 허용 범위 제한, 기본키의 NULL·중복 금지, 외래키의 참조 일관성을 각각 무슨 무결성이라고 하는가?",
+		"question": "데이터베이스 무결성에 대한 다음 설명에 해당하는 용어를 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 속성 값은 정해진 범위(도메인) 안의 값이어야 한다.\n② 기본키는 NULL 값이나 중복 값을 가질 수 없다.\n③ 외래키 값은 참조하는 테이블의 기본키 값이거나 NULL이어야 한다."
+			}
+		],
 		"choices": [
 			"참조 무결성",
 			"사용자 정의 무결성",
@@ -35,15 +47,15 @@
 		],
 		"blanks": [
 			{
-				"label": "값의 허용 범위",
+				"label": "①",
 				"answer": "도메인 무결성"
 			},
 			{
-				"label": "기본키 규칙",
+				"label": "②",
 				"answer": "개체 무결성"
 			},
 			{
-				"label": "외래키 참조",
+				"label": "③",
 				"answer": "참조 무결성"
 			}
 		],
@@ -55,7 +67,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "송수신 양측이 생성 다항식을 이용해 나눗셈의 나머지로 전송 오류를 확인하는 기법의 약자는?",
+		"question": "다음 설명에 해당하는 오류 검출 기법을 영문 약자로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 송신 측과 수신 측이 같은 생성 다항식을 사용한다.\n• 데이터를 생성 다항식으로 나눈 나머지를 검사 값으로 붙여 보낸다.\n• 수신 측은 같은 방식으로 나누어 전송 오류를 확인한다."
+			}
+		],
 		"choices": [
 			"FEC",
 			"Hamming",
@@ -75,7 +93,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "가짜 악성코드 경고를 보여 주고 불안감을 조성해 결제·설치를 유도하는 소프트웨어를 무엇이라 하는가?",
+		"question": "다음 설명에 해당하는 악성 소프트웨어를 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• \"컴퓨터가 악성코드에 감염되었습니다\" 같은 가짜 경고를 띄운다.\n• 사용자에게 불안감을 조성해 가짜 백신 결제나 프로그램 설치를 유도한다."
+			}
+		],
 		"choices": [
 			"랜섬웨어(Ransomware)",
 			"애드웨어(Adware)",
@@ -95,12 +119,14 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java에서 5/0 정수 나눗셈을 try 안에서 수행하고 ArithmeticException을 잡아 \"출력1\", finally에서 \"출력5\"를 이어서 출력한다. 결과는?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "public class Main {\n    public static void main(String[] args) {\n        try {\n            int x = 5 / 0;\n            System.out.print(\"출력2\");\n        } catch (ArithmeticException e) {\n            System.out.print(\"출력1\");\n        } finally {\n            System.out.print(\"출력5\");\n        }\n    }\n}",
+		"language": "java",
 		"choices": [
 			"출력1출력5",
 			"출력1",
-			"출력5출력1",
-			"출력5"
+			"출력2출력5",
+			"출력2출력1출력5"
 		],
 		"blanks": [
 			{
@@ -115,7 +141,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "IPv4 주소로 MAC 주소를 알아내는 기술과 MAC 주소를 통해 IPv4 주소를 구하던 옛 기술의 약자를 쓰시오.",
+		"question": "다음 설명에 해당하는 프로토콜을 각각 영문 약자로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① IP 주소를 이용해 MAC 주소를 알아내는 프로토콜\n② MAC 주소를 이용해 IP 주소를 알아내는 프로토콜"
+			}
+		],
 		"choices": [
 			"ICMP",
 			"RARP",
@@ -125,11 +157,11 @@
 		],
 		"blanks": [
 			{
-				"label": "IP → MAC",
+				"label": "①",
 				"answer": "ARP"
 			},
 			{
-				"label": "MAC → IP",
+				"label": "②",
 				"answer": "RARP"
 			}
 		],
@@ -141,7 +173,55 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "직원 (1,이순신),(2,강감찬),(3,김유신)과 수당 (1,1000),(2,300),(3,450)을 id로 INNER JOIN하고 수당 500 이상만 남긴다면?",
+		"question": "다음 두 테이블에 대해 SQL을 실행했을 때의 결과를 쓰시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "<직원>",
+				"headers": [
+					"id",
+					"이름"
+				],
+				"rows": [
+					[
+						"1",
+						"이순신"
+					],
+					[
+						"2",
+						"강감찬"
+					],
+					[
+						"3",
+						"김유신"
+					]
+				]
+			},
+			{
+				"type": "table",
+				"caption": "<수당>",
+				"headers": [
+					"id",
+					"수당"
+				],
+				"rows": [
+					[
+						"1",
+						"1000"
+					],
+					[
+						"2",
+						"300"
+					],
+					[
+						"3",
+						"450"
+					]
+				]
+			}
+		],
+		"codeSnippet": "SELECT 이름, 수당\nFROM 직원 INNER JOIN 수당 ON 직원.id = 수당.id\nWHERE 수당 >= 500;",
+		"language": "sql",
 		"choices": [
 			"이순신 1000, 김유신 450",
 			"결과 없음",
@@ -161,7 +241,13 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "릴레이션의 속성 수, 튜플 수, 다른 테이블 키를 참조하는 키, 열에서 허용되는 값의 집합을 각각 영어로 쓰시오.",
+		"question": "관계형 데이터베이스에 대한 다음 설명에 해당하는 용어를 각각 영어로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 릴레이션의 속성(열) 수\n② 릴레이션의 튜플(행) 수\n③ 다른 릴레이션의 기본키를 참조하는 키\n④ 하나의 속성이 가질 수 있는 값들의 집합"
+			}
+		],
 		"choices": [
 			"Foreign Key",
 			"Degree",
@@ -173,19 +259,19 @@
 		],
 		"blanks": [
 			{
-				"label": "속성 수",
+				"label": "①",
 				"answer": "Degree"
 			},
 			{
-				"label": "튜플 수",
+				"label": "②",
 				"answer": "Cardinality"
 			},
 			{
-				"label": "참조하는 키",
+				"label": "③",
 				"answer": "Foreign Key"
 			},
 			{
-				"label": "값의 집합",
+				"label": "④",
 				"answer": "Domain"
 			}
 		],
@@ -197,7 +283,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "호스트 192.168.35.10/22와 같은 네트워크에 속하는 주소를 고르시오: 192.168.34.1, 192.168.32.19, 192.168.35.200, 192.168.33.138, 192.168.35.50",
+		"question": "호스트 192.168.35.10/22와 같은 네트워크에 속하는 IP 주소를 다음 중에서 모두 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 192.168.34.1\n• 192.168.32.19\n• 192.168.35.200\n• 192.168.33.138\n• 192.168.35.50"
+			}
+		],
 		"choices": [
 			"192.168.34.1, 192.168.35.200, 192.168.35.50 세 개",
 			"192.168.32.19를 제외한 4개",
@@ -217,7 +309,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C에서 문자 코드 차이 'E'-'A'를 출력한 뒤 문자 배열 삽입 처리로 BACDE를 만들었다. 표시되는 두 결과는?",
+		"question": "다음 C 프로그램을 실행했을 때 출력되는 두 줄을 순서대로 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    char arr[6] = \"ACDE\";\n    printf(\"%d\\n\", 'E' - 'A');\n\n    int pos = 0;\n    for (int i = 4; i > pos; i--)\n        arr[i] = arr[i - 1];\n    arr[pos] = 'B';\n    printf(\"%s\", arr);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"ABCDE",
 			"69",
@@ -227,11 +321,11 @@
 		],
 		"blanks": [
 			{
-				"label": "'E'-'A'",
+				"label": "첫째 줄",
 				"answer": "4"
 			},
 			{
-				"label": "배열 결과",
+				"label": "둘째 줄",
 				"answer": "BACDE"
 			}
 		],
@@ -243,7 +337,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C의 3×3 배열이 행 순서대로 [9,5,2],[7,4,1],[8,3,6]일 때 왼쪽부터 순회하면서 +, -, +, -를 번갈아 적용한 합은?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    int a[3][3] = { {9, 5, 2}, {7, 4, 1}, {8, 3, 6} };\n    int sum = 0, sign = 1;\n    for (int i = 0; i < 3; i++)\n        for (int j = 0; j < 3; j++) {\n            sum += sign * a[i][j];\n            sign = -sign;\n        }\n    printf(\"%d\", sum);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"-13",
 			"7",
@@ -263,7 +359,13 @@
 		"subjectId": 1,
 		"subjectName": "소프트웨어 설계",
 		"type": "text",
-		"question": "다른 모듈 내부를 직접 접근하는 경우, 구조체를 매개변수로 넘기는 경우, 전역 변수를 공유하는 경우의 결합도 이름은?",
+		"question": "다음 설명에 해당하는 결합도를 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 한 모듈이 다른 모듈의 내부 기능이나 자료를 직접 참조·수정한다.\n② 배열이나 구조체 같은 자료구조를 매개변수로 전달한다.\n③ 여러 모듈이 같은 전역 변수를 공유한다."
+			}
+		],
 		"choices": [
 			"내용 결합도",
 			"제어 결합도",
@@ -274,15 +376,15 @@
 		],
 		"blanks": [
 			{
-				"label": "내부 직접 접근",
+				"label": "①",
 				"answer": "내용 결합도"
 			},
 			{
-				"label": "구조체 전달",
+				"label": "②",
 				"answer": "스탬프 결합도"
 			},
 			{
-				"label": "전역 변수 공유",
+				"label": "③",
 				"answer": "공통 결합도"
 			}
 		],
@@ -294,11 +396,13 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java 부모 생성자에서 자식의 오버라이딩 메서드가 호출되는 프로그램이 있다. total은 2→6→18→54로 갱신된다. 최종 출력은?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "class Parent {\n    static int total = 2;\n    Parent() { show(); }\n    void show() { total *= 2; }\n}\nclass Child extends Parent {\n    Child() {\n        show();\n        show();\n    }\n    void show() { total *= 3; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        new Child();\n        System.out.print(Parent.total);\n    }\n}",
+		"language": "java",
 		"choices": [
-			"2",
-			"6",
+			"16",
 			"18",
+			"36",
 			"54"
 		],
 		"blanks": [
@@ -306,7 +410,7 @@
 				"answer": "54"
 			}
 		],
-		"explanation": "자바에서는 부모 생성자 안에서 호출한 메서드라도, 자식이 오버라이딩했다면 자식의 메서드가 실행된다(동적 바인딩).\n• 객체 생성 순서: 부모 생성자 → 자식 필드 초기화 → 자식 생성자\n• total이 단계마다 3배씩 갱신 → 2 → 6 → 18 → 54\n최종 출력은 54이다."
+		"explanation": "자바에서는 부모 생성자 안에서 호출한 메서드라도, 자식이 오버라이딩했다면 자식의 메서드가 실행된다(동적 바인딩).\n• new Child() → 부모 생성자 Parent()가 먼저 실행되고, 그 안의 show()는 Child의 show()(× 3) → 2 × 3 = 6\n• 이어서 자식 생성자 Child()에서 show()를 두 번 호출 → 6 × 3 = 18 → 18 × 3 = 54\nParent의 show()(× 2)는 한 번도 실행되지 않으므로 최종 출력은 54이다."
 	},
 	{
 		"id": "2025-1-14",
@@ -314,7 +418,13 @@
 		"subjectId": 1,
 		"subjectName": "소프트웨어 설계",
 		"type": "text",
-		"question": "인터페이스가 다른 기존 클래스를 래핑해 클라이언트가 원하는 인터페이스처럼 쓰게 하는 디자인 패턴은?",
+		"question": "다음 설명에 해당하는 디자인 패턴을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 인터페이스가 맞지 않는 기존 클래스를 감싼다(wrapping).\n• 클라이언트가 원하는 인터페이스로 바꿔 주어 함께 사용할 수 있게 한다.\n• 구조(Structural) 패턴에 속한다."
+			}
+		],
 		"choices": [
 			"Composite(컴포지트) 패턴",
 			"Adapter(어댑터) 패턴",
@@ -334,7 +444,9 @@
 		"subjectId": 4,
 		"subjectName": "애플리케이션 테스트",
 		"type": "text",
-		"question": "흐름 그래프에서 ①초기화 → ②while 조건 → ③if 조건 → ④본문 → ⑤증가 → ②while 재검사(거짓) → ⑥종료 순서로 한 번 반복했다. 방문 문장 순서는?",
+		"question": "다음 코드의 반복문이 한 번 실행된 뒤 끝날 때, 실행되는 문장의 번호를 순서대로 고르시오.",
+		"codeSnippet": "① i = 0;\n② while (i < 1) {\n③     if (i == 0)\n④         printf(\"%d\", i);\n⑤     i++;\n   }\n⑥ printf(\"끝\");",
+		"language": "c",
 		"choices": [
 			"① → ③ → ④ → ⑤ → ② → ⑥",
 			"① → ② → ③ → ④ → ⑤ → ② → ⑥",
@@ -354,7 +466,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java 재귀 함수 func(a,0,4)에서 중간 a[2]=8을 더하고 양옆 재귀의 최댓값을 선택한다. 좌측 반환 8, 우측 반환 12면?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "public class Main {\n    static int func(int[] a, int lo, int hi) {\n        if (lo > hi) return 0;\n        int mid = (lo + hi) / 2;\n        return a[mid] + Math.max(func(a, lo, mid - 1), func(a, mid + 1, hi));\n    }\n    public static void main(String[] args) {\n        int[] a = {3, 5, 8, 4, 8};\n        System.out.print(func(a, 0, 4));\n    }\n}",
+		"language": "java",
 		"choices": [
 			"8",
 			"12",
@@ -374,7 +488,9 @@
 		"subjectId": 9,
 		"subjectName": "Python",
 		"type": "text",
-		"question": "완전이진트리를 배열로 저장했을 때 깊이가 홀수인 노드(루트 깊이 0)의 값이 5, 8이라면 그 합은?",
+		"question": "다음 Python 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "tree = [1, 5, 8, 2, 4, 6, 7]\n\ndef depth(i):\n    d = 0\n    while i > 0:\n        i = (i - 1) // 2\n        d += 1\n    return d\n\nprint(sum(v for i, v in enumerate(tree) if depth(i) % 2 == 1))",
+		"language": "python",
 		"choices": [
 			"5",
 			"8",
@@ -394,7 +510,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C 단일 연결 리스트에 1~5를 머리에 삽입한 뒤 값 3인 노드를 맨 앞으로 재연결하고 순회 출력하면?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\n#include <stdlib.h>\nstruct Node {\n    int val;\n    struct Node *next;\n};\nint main() {\n    struct Node *head = NULL;\n    for (int i = 1; i <= 5; i++) {\n        struct Node *n = malloc(sizeof(struct Node));\n        n->val = i;\n        n->next = head;\n        head = n;\n    }\n    struct Node *prev = head;\n    while (prev->next->val != 3)\n        prev = prev->next;\n    struct Node *target = prev->next;\n    prev->next = target->next;\n    target->next = head;\n    head = target;\n    for (struct Node *p = head; p != NULL; p = p->next)\n        printf(\"%d\", p->val);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"12345",
 			"35421",
@@ -414,7 +532,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C에서 {0xA0,0xA5,0xDB}와 {0xA0,0xED,0x81} 두 묶음의 각 원소에 0xA5를 비트 AND한 결과를 모두 더하면?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    unsigned char g[2][3] = { {0xA0, 0xA5, 0xDB}, {0xA0, 0xED, 0x81} };\n    int sum = 0;\n    for (int i = 0; i < 2; i++)\n        for (int j = 0; j < 3; j++)\n            sum += g[i][j] & 0xA5;\n    printf(\"%d\", sum);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"454",
 			"810",
@@ -434,7 +554,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java 오버로딩에서 문자열 \"5\"는 calc(String)을 호출한다. 이 메서드가 피보나치형 calc(int)의 calc(4)+calc(2)를 반환하며 값이 3, 1이면?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "public class Main {\n    static int calc(int n) {\n        if (n <= 2) return 1;\n        return calc(n - 1) + calc(n - 2);\n    }\n    static int calc(String s) {\n        return calc(4) + calc(2);\n    }\n    public static void main(String[] args) {\n        System.out.print(calc(\"5\"));\n    }\n}",
+		"language": "java",
 		"choices": [
 			"3",
 			"4",

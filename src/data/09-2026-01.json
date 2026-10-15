@@ -5,7 +5,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C 정수 배열 10개 합계가 530이고 이를 두 방식으로 각각 평균 내어 두 결과를 더한다. printf(\"%.2f\") 출력은?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nint main() {\n    int a[10] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 80};\n    int sum = 0;\n    for (int i = 0; i < 10; i++)\n        sum += a[i];\n    double avg1 = (double)sum / 10;\n    double avg2 = sum / 10.0;\n    printf(\"%.2f\", avg1 + avg2);\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"106",
 			"53.00",
@@ -25,7 +27,13 @@
 		"subjectId": 1,
 		"subjectName": "소프트웨어 설계",
 		"type": "text",
-		"question": "기능 추상화 계층과 구현 계층을 분리하는 패턴, 상태 변경 사실을 구독자에게 알리는 패턴은?",
+		"question": "다음 설명에 해당하는 디자인 패턴을 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 기능을 정의하는 추상 계층과 실제 구현 계층을 분리하여 각각 독립적으로 확장할 수 있게 하는 패턴\n② 한 객체의 상태가 바뀌면 그 객체를 구독하는 다른 객체들에게 변경 사실을 자동으로 알리는 패턴"
+			}
+		],
 		"choices": [
 			"Mediator",
 			"Strategy",
@@ -35,11 +43,11 @@
 		],
 		"blanks": [
 			{
-				"label": "추상·구현 분리",
+				"label": "①",
 				"answer": "Bridge"
 			},
 			{
-				"label": "변경 알림",
+				"label": "②",
 				"answer": "Observer"
 			}
 		],
@@ -51,7 +59,7 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "데이터베이스 개발을 요구 파악에서 실제 생성까지 순서대로 나열하시오.",
+		"question": "데이터베이스 설계 과정을 순서대로 올바르게 나열한 것을 고르시오.",
 		"choices": [
 			"개념적 설계 → 요구사항 분석 → 논리적 설계 → 물리적 설계 → 구현",
 			"요구사항 분석 → 논리적 설계 → 개념적 설계 → 물리적 설계 → 구현",
@@ -71,7 +79,13 @@
 		"subjectId": 1,
 		"subjectName": "소프트웨어 설계",
 		"type": "text",
-		"question": "서로 다른 운영체제 지원 / 최소 메모리·장치 확보 / 1초 이내 응답에 해당하는 비기능 요구사항 유형은?",
+		"question": "다음 비기능 요구사항이 각각 어떤 유형에 해당하는지 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 시스템은 Windows와 Linux에서 모두 동작해야 한다.\n② 시스템 실행에 필요한 최소 메모리와 장치를 확보해야 한다.\n③ 사용자의 요청에 1초 이내로 응답해야 한다."
+			}
+		],
 		"choices": [
 			"자원",
 			"가용성",
@@ -82,15 +96,15 @@
 		],
 		"blanks": [
 			{
-				"label": "서로 다른 OS 지원",
+				"label": "①",
 				"answer": "이식성"
 			},
 			{
-				"label": "최소 메모리·장치",
+				"label": "②",
 				"answer": "자원"
 			},
 			{
-				"label": "1초 이내 응답",
+				"label": "③",
 				"answer": "성능"
 			}
 		],
@@ -102,7 +116,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "정보보호 관리체계의 영문 약자는?",
+		"question": "다음 설명에 해당하는 용어를 영문 약자로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 정보보호 관리체계를 뜻한다.\n• 조직의 정보 자산을 보호하기 위한 정책, 절차, 통제를 체계적으로 수립하고 운영한다.\n• 국내에서는 한국인터넷진흥원(KISA)이 인증한다."
+			}
+		],
 		"choices": [
 			"ESM",
 			"SIEM",
@@ -122,7 +142,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "HDLC의 사용자 데이터·감독·링크 설정 프레임과, 동등한 국 간 모드·종국의 자발적 응답 모드를 쓰시오.",
+		"question": "HDLC에 대한 다음 설명에 해당하는 용어를 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 사용자 데이터를 전달하는 프레임\n② 흐름 제어와 오류 제어를 위한 감독용 프레임\n③ 링크의 설정·해제 등 제어를 위한 프레임\n④ 모든 국이 대등한 관계에서 통신하는 동작 모드\n⑤ 종국이 주국의 허락 없이 자발적으로 응답할 수 있는 동작 모드"
+			}
+		],
 		"choices": [
 			"정보(I)",
 			"정규 응답(NRM)",
@@ -133,23 +159,23 @@
 		],
 		"blanks": [
 			{
-				"label": "데이터 프레임",
+				"label": "①",
 				"answer": "정보(I)"
 			},
 			{
-				"label": "감독 프레임",
+				"label": "②",
 				"answer": "감독(S)"
 			},
 			{
-				"label": "링크 설정 프레임",
+				"label": "③",
 				"answer": "비번호(U)"
 			},
 			{
-				"label": "대등 국 간 모드",
+				"label": "④",
 				"answer": "비동기 균형(ABM)"
 			},
 			{
-				"label": "종국 자발 응답 모드",
+				"label": "⑤",
 				"answer": "비동기 응답(ARM)"
 			}
 		],
@@ -161,7 +187,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java의 A 타입 참조가 실제 B 객체를 가리킬 때 A.g() 안의 f(\"a\")가 컴파일 타임에 f(Object)로 정해지고 B가 이를 재정의해 2를 반환한다. 출력은?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "class A {\n    int f(Object o) { return 1; }\n    int g() { return f(\"a\"); }\n}\nclass B extends A {\n    int f(Object o) { return 2; }\n    int f(String s) { return 3; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        A obj = new B();\n        System.out.print(obj.g());\n    }\n}",
+		"language": "java",
 		"choices": [
 			"0",
 			"1",
@@ -181,7 +209,9 @@
 		"subjectId": 9,
 		"subjectName": "Python",
 		"type": "text",
-		"question": "Python 문자열 \"HumanDev\"를 뒤집은 뒤 문자 o, n, g를 각각 모두 제거하면?",
+		"question": "다음 Python 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "s = \"HumanDev\"[::-1]\nfor c in \"ong\":\n    s = s.replace(c, \"\")\nprint(s)",
+		"language": "python",
 		"choices": [
 			"veDamuH",
 			"veamuH",
@@ -201,7 +231,9 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "학과별 학생 수가 50, 100, 50일 때 각 쿼리의 반환 행·값은?",
+		"question": "<학생> 테이블에는 학과(DEPT)별로 컴퓨터 50명, 전자 100명, 기계 50명이 저장되어 있다. 각 SQL의 결과(행 수 또는 값)를 쓰시오.",
+		"codeSnippet": "① SELECT DEPT FROM 학생;\n② SELECT DISTINCT DEPT FROM 학생;\n③ SELECT COUNT(DISTINCT DEPT) FROM 학생 WHERE DEPT = '컴퓨터';",
+		"language": "sql",
 		"choices": [
 			"200행",
 			"값 1",
@@ -213,15 +245,15 @@
 		],
 		"blanks": [
 			{
-				"label": "SELECT DEPT",
+				"label": "①",
 				"answer": "200행"
 			},
 			{
-				"label": "SELECT DISTINCT DEPT",
+				"label": "②",
 				"answer": "3행"
 			},
 			{
-				"label": "COUNT(DISTINCT DEPT) WHERE 한 학과",
+				"label": "③",
 				"answer": "값 1"
 			}
 		],
@@ -233,7 +265,9 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "PLAYER의 TEAM_ID를 TEAM의 TEAM_ID2에 대한 외래키로 지정하면서 제약조건 이름을 TEAM_TF로 하려고 한다. 아래 SQL의 빈칸(①~⑤)을 채우시오.\nALTER TABLE PLAYER ADD ( ① ) TEAM_TF ( ② ) KEY (( ③ )) ( ④ ) TEAM (( ⑤ ));",
+		"question": "PLAYER 테이블의 TEAM_ID를 TEAM 테이블의 TEAM_ID2를 참조하는 외래키로 지정하고, 제약조건 이름을 TEAM_TF로 하려고 한다. SQL의 괄호(①~⑤)에 들어갈 내용을 쓰시오.",
+		"codeSnippet": "ALTER TABLE PLAYER\nADD ( ① ) TEAM_TF\n( ② ) KEY (( ③ ))\n( ④ ) TEAM (( ⑤ ));",
+		"language": "sql",
 		"choices": [
 			"FOREIGN",
 			"CONSTRAINT",
@@ -274,7 +308,13 @@
 		"subjectId": 6,
 		"subjectName": "OS·네트워크·신기술",
 		"type": "text",
-		"question": "192.168.11.20과 192.168.12.200의 마스크가 255.255.254.0일 때 각각의 CIDR 네트워크 주소는?",
+		"question": "다음 두 IP 주소의 서브넷 마스크가 255.255.254.0일 때, 각 주소가 속한 네트워크 주소를 CIDR 표기로 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 192.168.11.20\n② 192.168.12.200"
+			}
+		],
 		"choices": [
 			"192.168.10.0/23",
 			"192.168.12.0/23",
@@ -284,11 +324,11 @@
 		],
 		"blanks": [
 			{
-				"label": "192.168.11.20",
+				"label": "①",
 				"answer": "192.168.10.0/23"
 			},
 			{
-				"label": "192.168.12.200",
+				"label": "②",
 				"answer": "192.168.12.0/23"
 			}
 		],
@@ -300,7 +340,9 @@
 		"subjectId": 7,
 		"subjectName": "C 언어",
 		"type": "text",
-		"question": "C 함수 포인터가 배열의 시작 주소보다 한 칸 뒤를 반환하고 해당 값이 십진수 32일 때 printf(\"%x\") 결과는?",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "#include <stdio.h>\nint* next(int* p) {\n    return p + 1;\n}\nint main() {\n    int n[3] = {16, 32, 48};\n    int* (*fp)(int*) = next;\n    printf(\"%x\", *fp(n));\n    return 0;\n}",
+		"language": "c",
 		"choices": [
 			"20",
 			"1f",
@@ -320,7 +362,9 @@
 		"subjectId": 9,
 		"subjectName": "Python",
 		"type": "text",
-		"question": "Python list(range(10))[::-2]의 각 원소를 end=\"A\"로 출력하면?",
+		"question": "다음 Python 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "for i in list(range(10))[::-2]:\n    print(i, end=\"A\")",
+		"language": "python",
 		"choices": [
 			"9A7A5A3A1",
 			"1A3A5A7A9A",
@@ -340,7 +384,9 @@
 		"subjectId": 9,
 		"subjectName": "Python",
 		"type": "text",
-		"question": "Python 중첩 리스트 [[1],[2],[3],[4]]를 얕은 복사하고 뒤 원소에 앞 원소를 +=로 누적한 결과, 각 내부 리스트 길이의 합은?",
+		"question": "다음 Python 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "a = [[1], [2], [3], [4]]\nb = a[:]\nfor i in range(1, 4):\n    b[i] += b[i - 1]\nprint(sum(len(x) for x in a))",
+		"language": "python",
 		"choices": [
 			"4",
 			"7",
@@ -360,7 +406,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "공격자가 임시 파일 자리에 다른 파일 경로를 가리키는 특수 파일을 놓아 원치 않는 파일 접근을 유도한다. 그 특수 파일은?",
+		"question": "다음 설명에서 공격에 이용되는 특수 파일을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 다른 파일의 경로를 가리키는 특수한 파일(바로가기)이다.\n• 공격자는 프로그램이 만들 임시 파일 자리에 이 파일을 미리 만들어 두어, 프로그램이 중요한 파일을 대신 열거나 덮어쓰게 만든다."
+			}
+		],
 		"choices": [
 			"파이프(Pipe)",
 			"하드 링크(Hard Link)",
@@ -380,7 +432,13 @@
 		"subjectId": 5,
 		"subjectName": "정보 보안",
 		"type": "text",
-		"question": "표적이 자주 방문하는 정상 사이트에 악성 코드를 심고, 방문할 때 감염시키는 공격은?",
+		"question": "다음 설명에 해당하는 공격 기법을 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 공격 대상이 자주 방문하는 정상 웹사이트를 미리 감염시킨다.\n• 대상이 그 사이트에 방문하면 악성코드에 감염된다.\n• 사자가 물웅덩이에서 먹잇감을 기다리는 모습에 빗댄 이름이다."
+			}
+		],
 		"choices": [
 			"파밍(Pharming)",
 			"스피어 피싱(Spear Phishing)",
@@ -400,7 +458,9 @@
 		"subjectId": 8,
 		"subjectName": "Java",
 		"type": "text",
-		"question": "Java 오버로드 func(4,5)=9, func('A','C')=2, func('3')=문자 3일 때 9+2+\"2\"+'3'의 출력은?",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 쓰시오.",
+		"codeSnippet": "public class Main {\n    static int func(int a, int b) { return a + b; }\n    static int func(char a, char b) { return b - a; }\n    static char func(char c) { return c; }\n\n    public static void main(String[] args) {\n        System.out.print(func(4, 5) + func('A', 'C') + \"2\" + func('3'));\n    }\n}",
+		"language": "java",
 		"choices": [
 			"14",
 			"1123",
@@ -420,7 +480,59 @@
 		"subjectId": 2,
 		"subjectName": "데이터베이스",
 		"type": "text",
-		"question": "dept 예산 [100,300,200] 중 평균 예산을 초과하는 부서가 부서 20뿐이며, 이 부서 직원이 2명이다. JOIN 후 필터링한 COUNT(*)는?",
+		"question": "다음 두 테이블에 대해 SQL을 실행했을 때 출력되는 값을 쓰시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "<dept>",
+				"headers": [
+					"dept_id",
+					"budget"
+				],
+				"rows": [
+					[
+						"10",
+						"100"
+					],
+					[
+						"20",
+						"300"
+					],
+					[
+						"30",
+						"200"
+					]
+				]
+			},
+			{
+				"type": "table",
+				"caption": "<emp>",
+				"headers": [
+					"emp_id",
+					"dept_id"
+				],
+				"rows": [
+					[
+						"1",
+						"10"
+					],
+					[
+						"2",
+						"20"
+					],
+					[
+						"3",
+						"20"
+					],
+					[
+						"4",
+						"30"
+					]
+				]
+			}
+		],
+		"codeSnippet": "SELECT COUNT(*)\nFROM emp e JOIN dept d ON e.dept_id = d.dept_id\nWHERE d.budget > (SELECT AVG(budget) FROM dept);",
+		"language": "sql",
 		"choices": [
 			"1",
 			"2",
@@ -440,7 +552,13 @@
 		"subjectId": 4,
 		"subjectName": "애플리케이션 테스트",
 		"type": "text",
-		"question": "하향식 통합 테스트에서 아직 없는 하위 모듈을 대신하는 것과, 상향식에서 상위 호출자를 대신하는 것은?",
+		"question": "통합 테스트에 대한 다음 설명에서 괄호(①, ②)에 들어갈 용어를 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "• 하향식 통합 테스트에서는 아직 개발되지 않은 하위 모듈 대신 ( ① )을(를) 사용한다.\n• 상향식 통합 테스트에서는 하위 모듈을 호출할 상위 모듈 대신 ( ② )을(를) 사용한다."
+			}
+		],
 		"choices": [
 			"하네스(Harness)",
 			"클러스터(Cluster)",
@@ -449,11 +567,11 @@
 		],
 		"blanks": [
 			{
-				"label": "하향식: 하위 모듈 대신",
+				"label": "①",
 				"answer": "스텁(Stub)"
 			},
 			{
-				"label": "상향식: 상위 호출자 대신",
+				"label": "②",
 				"answer": "드라이버(Driver)"
 			}
 		],
@@ -465,7 +583,13 @@
 		"subjectId": 1,
 		"subjectName": "소프트웨어 설계",
 		"type": "text",
-		"question": "순서에 맞춰 기능이 이어지는 응집도 / 동일 데이터를 쓰는 여러 활동을 묶은 응집도 / 하나의 뚜렷한 기능만 수행하는 응집도는?",
+		"question": "다음 설명에 해당하는 응집도를 각각 쓰시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "① 모듈 안의 요소들이 정해진 순서에 따라 차례로 수행된다.\n② 같은 입력 또는 출력 데이터를 사용하는 활동들을 모아 놓았다.\n③ 모듈 안의 모든 요소가 하나의 기능만을 수행한다."
+			}
+		],
 		"choices": [
 			"절차적 응집도",
 			"기능적 응집도",
@@ -476,15 +600,15 @@
 		],
 		"blanks": [
 			{
-				"label": "순서대로 이어짐",
+				"label": "①",
 				"answer": "절차적 응집도"
 			},
 			{
-				"label": "동일 데이터 사용",
+				"label": "②",
 				"answer": "교환적(통신적) 응집도"
 			},
 			{
-				"label": "단일 기능",
+				"label": "③",
 				"answer": "기능적 응집도"
 			}
 		],
