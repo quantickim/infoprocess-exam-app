@@ -48,10 +48,10 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 			tab: "quiz",
 			icon: <Sparkles size={32} />,
 			title: "유형별 문제풀이",
-			description: "키워드, 제어문, 포인터, Java, Python 등 유형을 골라 차례대로 풀어보세요.",
+			description: "키워드·코드 유형이나 2025~2026년 회차를 골라 차례대로 풀어보세요.",
 			color: "linear-gradient(135deg, #6366f1, #4f46e5)",
 			glow: "rgba(99, 102, 241, 0.35)",
-			stat: `${sessionCount}개 유형`,
+			stat: `${sessionCount}개 유형·회차`,
 		},
 		{
 			tab: "subject",
@@ -111,7 +111,7 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 						}}
 					>
 						<BookOpen size={15} />
-						정보처리기사 실기 유형별 기출 {questions.length}문제
+						정보처리기사 실기 유형별·회차별 {questions.length}문제
 					</div>
 				</div>
 

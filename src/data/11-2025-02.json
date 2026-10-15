@@ -1,0 +1,421 @@
+[
+	{
+		"id": "2025-2-01",
+		"session": "2025년 2회",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "키와 레코드 위치 포인터의 쌍으로 빠른 검색을 돕는 파일 접근 방식을 무엇이라 하는가?",
+		"choices": [
+			"클러스터(Cluster) 접근",
+			"순차(Sequential) 접근",
+			"인덱스(Index) 접근",
+			"해싱(Hashing) 접근"
+		],
+		"blanks": [
+			{
+				"answer": "인덱스(Index) 접근"
+			}
+		],
+		"explanation": "키 → 주소 참조 정보를 사용해 순차 탐색보다 원하는 레코드를 빨리 찾는다."
+	},
+	{
+		"id": "2025-2-02",
+		"session": "2025년 2회",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "관계형 데이터베이스에서 한 열이 나타내는 데이터 항목의 성질을 영어로 쓰시오.",
+		"choices": [
+			"Tuple",
+			"Attribute",
+			"Degree",
+			"Domain"
+		],
+		"blanks": [
+			{
+				"answer": "Attribute"
+			}
+		],
+		"explanation": "속성 = 열이고 Tuple = 행이다. Degree는 열 수, Cardinality는 행 수다."
+	},
+	{
+		"id": "2025-2-03",
+		"session": "2025년 2회",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "암호화된 원격 셸 접근을 제공하고 기본 TCP 포트가 22인 프로토콜은?",
+		"choices": [
+			"SSL",
+			"Telnet",
+			"SSH",
+			"FTP"
+		],
+		"blanks": [
+			{
+				"answer": "SSH"
+			}
+		],
+		"explanation": "SSH(Secure Shell)는 Telnet과 달리 원격 명령·인증·통신을 암호화한다."
+	},
+	{
+		"id": "2025-2-04",
+		"session": "2025년 2회",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "실행 시간이 가장 짧은 작업을 먼저 선택하는 비선점 스케줄링과, 남은 실행 시간이 더 짧은 작업이 오면 선점하는 방식은?",
+		"choices": [
+			"SJF",
+			"SRT",
+			"FCFS",
+			"HRN",
+			"RR"
+		],
+		"blanks": [
+			{
+				"label": "비선점",
+				"answer": "SJF"
+			},
+			{
+				"label": "선점",
+				"answer": "SRT"
+			}
+		],
+		"explanation": "SJF = Shortest Job First, SRT = Shortest Remaining Time(선점형 SJF)이다."
+	},
+	{
+		"id": "2025-2-05",
+		"session": "2025년 2회",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "Java에서 배열 data[0]과 문자열 지역변수 s가 각각 \"B\"다. 메서드가 data[0]=s 후 지역 매개변수 s=\"Z\"로 바꿀 때 data[0]+호출자 s의 출력은?",
+		"choices": [
+			"BZ",
+			"ZB",
+			"BB",
+			"ZZ"
+		],
+		"blanks": [
+			{
+				"answer": "BB"
+			}
+		],
+		"explanation": "배열의 내부 변경은 호출자도 보지만, 매개변수 참조 변수를 재할당해도 호출자의 s는 바뀌지 않는다."
+	},
+	{
+		"id": "2025-2-06",
+		"session": "2025년 2회",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "223.13.234.132의 서브넷 마스크가 255.255.255.192일 때 네트워크 주소 마지막 옥텟과 사용 가능한 호스트 수는?",
+		"choices": [
+			"62",
+			"64",
+			"128",
+			"132",
+			"192"
+		],
+		"blanks": [
+			{
+				"label": "네트워크 주소 마지막 옥텟",
+				"answer": "128"
+			},
+			{
+				"label": "호스트 수",
+				"answer": "62"
+			}
+		],
+		"explanation": "/26은 64개 주소 블록이고 132는 128~191에 속한다. 할당 가능한 호스트는 64 − 2 = 62다."
+	},
+	{
+		"id": "2025-2-07",
+		"session": "2025년 2회",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "실제 객체 앞에 대리 객체를 두어 접근 제어·지연 생성·로그 기능을 붙이는 디자인 패턴은?",
+		"choices": [
+			"Adapter 패턴",
+			"Facade 패턴",
+			"Composite 패턴",
+			"Proxy 패턴"
+		],
+		"blanks": [
+			{
+				"answer": "Proxy 패턴"
+			}
+		],
+		"explanation": "Proxy는 원본을 감싼 대리 객체를 통해 접근을 중개한다. Adapter는 인터페이스 변환이다."
+	},
+	{
+		"id": "2025-2-08",
+		"session": "2025년 2회",
+		"subjectId": 3,
+		"subjectName": "인터페이스·UI",
+		"type": "text",
+		"question": "페이지 전체를 다시 로드하지 않고 JavaScript로 서버와 비동기 통신하여 일부분만 갱신하는 기법의 약자는?",
+		"choices": [
+			"JSON",
+			"SOAP",
+			"AJAX",
+			"REST"
+		],
+		"blanks": [
+			{
+				"answer": "AJAX"
+			}
+		],
+		"explanation": "Asynchronous JavaScript and XML. 오늘날에는 XML보다 JSON을 많이 사용한다."
+	},
+	{
+		"id": "2025-2-09",
+		"session": "2025년 2회",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "Java 함수형 인터페이스 호출에서 첫 람다는 예외로 catch의 7을 반환하고 두 번째 람다는 3+9를 반환했다. 두 값의 합은?",
+		"choices": [
+			"7",
+			"12",
+			"15",
+			"19"
+		],
+		"blanks": [
+			{
+				"answer": "19"
+			}
+		],
+		"explanation": "첫 결과 7, 둘째 12이므로 19다. 예외 발생 시 catch의 반환 경로가 실행된다."
+	},
+	{
+		"id": "2025-2-10",
+		"session": "2025년 2회",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "Java Parent형 참조가 Child 객체를 가리킨다. x(int)는 Child가 재정의해 5를 반환하고 static id()는 Parent에서 \"P\"를 반환하면 이어 붙인 출력은?",
+		"choices": [
+			"5P",
+			"P5",
+			"5C",
+			"PP"
+		],
+		"blanks": [
+			{
+				"answer": "5P"
+			}
+		],
+		"explanation": "인스턴스 메서드는 동적 바인딩되지만 static 메서드는 참조 타입 기준으로 숨김 처리된다."
+	},
+	{
+		"id": "2025-2-11",
+		"session": "2025년 2회",
+		"subjectId": 4,
+		"subjectName": "애플리케이션 테스트",
+		"type": "text",
+		"question": "제어 흐름 그래프에서 조건 분기가 2번(2→3/4)과 6번(6→1/7)에 있다. 결정 노드 두 개와 분기 커버리지 대상 간선 수는?",
+		"choices": [
+			"4개",
+			"1, 2",
+			"2개",
+			"3, 7",
+			"2, 6",
+			"8개"
+		],
+		"blanks": [
+			{
+				"label": "결정 노드",
+				"answer": "2, 6"
+			},
+			{
+				"label": "분기 간선 수",
+				"answer": "4개"
+			}
+		],
+		"explanation": "각 결정의 참·거짓 양쪽 경로를 적어도 한 번씩 실행하므로 2 × 2 = 4개 분기다."
+	},
+	{
+		"id": "2025-2-12",
+		"session": "2025년 2회",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "원형 큐에 1, 2를 넣고 하나를 꺼낸 뒤 3을 넣는다. 이후 연달아 두 번 꺼내면?",
+		"choices": [
+			"1, 2",
+			"3, 2",
+			"1, 3",
+			"2, 3"
+		],
+		"blanks": [
+			{
+				"answer": "2, 3"
+			}
+		],
+		"explanation": "큐는 FIFO라 먼저 남아 있던 2를 꺼내고 이어 3을 꺼낸다."
+	},
+	{
+		"id": "2025-2-13",
+		"session": "2025년 2회",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "P1(도착0, 실행8), P2(1,4), P3(2,9), P4(3,5)를 RR 할당량 4ms로 실행할 때 평균 대기시간은?",
+		"choices": [
+			"6.5ms",
+			"12.5ms",
+			"10.25ms",
+			"11.75ms"
+		],
+		"blanks": [
+			{
+				"answer": "11.75ms"
+			}
+		],
+		"explanation": "완료 시각은 20, 8, 26, 25이다. 대기시간 = 완료 − 도착 − 실행이므로 12, 3, 15, 17의 평균은 11.75ms다."
+	},
+	{
+		"id": "2025-2-14",
+		"session": "2025년 2회",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "C 구조체 배열 a를 가리키는 이중 포인터에서 (*pptr)[1]=(*pptr)[2]를 실행했다. a[2]가 {x:5, y:6}이었다면 a[1]의 두 멤버(x, y)는?",
+		"choices": [
+			"5, 0",
+			"5, 6",
+			"0, 0",
+			"3, 4"
+		],
+		"blanks": [
+			{
+				"answer": "5, 6"
+			}
+		],
+		"explanation": "구조체 대입은 포인터만 옮기는 것이 아니라 구조체 멤버 값을 복사한다."
+	},
+	{
+		"id": "2025-2-15",
+		"session": "2025년 2회",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "Java 배열의 세 객체 참조 a, b, c 중 arr[0]과 arr[2]를 바꾼 뒤 arr[1].v=arr[0].v를 실행했다. 최초 값 a=1, b=2, c=3일 때 a, b, c의 v는?",
+		"choices": [
+			"1, 2, 3",
+			"3, 3, 1",
+			"1, 3, 3",
+			"3, 2, 1"
+		],
+		"blanks": [
+			{
+				"answer": "1, 3, 3"
+			}
+		],
+		"explanation": "참조 교환 후 arr[0]은 c, arr[1]은 b이므로 b.v에 3이 대입된다. a.v는 그대로 1이다. (복원 출력 1a3b3)"
+	},
+	{
+		"id": "2025-2-16",
+		"session": "2025년 2회",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "C 노드 세 개 a(p=1), b(p=2), c(p=3)를 c→a→b로 연결하고 head=c에서 세 값을 출력하면?",
+		"choices": [
+			"3 2 1",
+			"3 1 2",
+			"2 1 3",
+			"1 2 3"
+		],
+		"blanks": [
+			{
+				"answer": "3 1 2"
+			}
+		],
+		"explanation": "최종 포인터 연결 c.n=&a, a.n=&b, b.n=NULL을 순서대로 따라간다."
+	},
+	{
+		"id": "2025-2-17",
+		"session": "2025년 2회",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "text",
+		"question": "Python에서 리스트 [1,2,3]으로 {1:2,2:4,3:6} 딕셔너리와 {2,4,6} 집합을 만들고 dict[2]=7, 집합에 99를 추가했다. 두 값 집합 교집합의 크기는?",
+		"choices": [
+			"1",
+			"2",
+			"3",
+			"4"
+		],
+		"blanks": [
+			{
+				"answer": "2"
+			}
+		],
+		"explanation": "딕셔너리 값 집합은 {2,7,6}, 기존 집합은 {2,4,6,99}이므로 교집합 {2,6}의 크기는 2다."
+	},
+	{
+		"id": "2025-2-18",
+		"session": "2025년 2회",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "문자열 \"BEST\"를 왼쪽부터 읽어 매 문자마다 연결 리스트 머리에 새 노드를 추가한 다음 순회 출력하면?",
+		"choices": [
+			"TSBE",
+			"BEST",
+			"TSEB",
+			"BTSE"
+		],
+		"blanks": [
+			{
+				"answer": "TSEB"
+			}
+		],
+		"explanation": "머리 삽입은 입력 순서를 역전한다: T → S → E → B."
+	},
+	{
+		"id": "2025-2-19",
+		"session": "2025년 2회",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "TCP 3-way handshake의 마지막 ACK를 보내지 않고 SYN을 대량 전송해 서버의 반열림 연결 큐를 채우는 공격은?",
+		"choices": [
+			"SYN Flooding",
+			"Smurfing",
+			"LAND Attack",
+			"Ping of Death"
+		],
+		"blanks": [
+			{
+				"answer": "SYN Flooding"
+			}
+		],
+		"explanation": "SYN 요청을 대량으로 보내 서버의 연결 대기 자원을 고갈시키는 서비스 거부 공격이다."
+	},
+	{
+		"id": "2025-2-20",
+		"session": "2025년 2회",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "직책 열의 값이 [부장, 대리, 과장, 차장, 대리]일 때 관계대수 투영 π직책(R)의 결과는?",
+		"choices": [
+			"부장, 대리, 과장, 차장",
+			"부장, 대리, 과장, 차장, 대리",
+			"부장, 과장, 차장",
+			"대리"
+		],
+		"blanks": [
+			{
+				"answer": "부장, 대리, 과장, 차장"
+			}
+		],
+		"explanation": "관계대수의 투영 결과는 집합이므로 중복된 대리는 한 번만 남는다."
+	}
+]

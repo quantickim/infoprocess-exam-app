@@ -1,0 +1,451 @@
+[
+	{
+		"id": "2025-1-01",
+		"session": "2025년 1회",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "인증된 사용자의 TCP 연결을 가로채 세션 번호 등을 조작하고 사용자 권한을 탈취하는 공격을 무엇이라 하는가?",
+		"choices": [
+			"세션 하이재킹(Session Hijacking)",
+			"파밍(Pharming)",
+			"스푸핑(Spoofing)",
+			"스니핑(Sniffing)"
+		],
+		"blanks": [
+			{
+				"answer": "세션 하이재킹(Session Hijacking)"
+			}
+		],
+		"explanation": "세션이 이미 맺어진 뒤 이를 도용한다. 패킷 관찰만 하는 스니핑, 주소를 속이는 스푸핑과 구별한다."
+	},
+	{
+		"id": "2025-1-02",
+		"session": "2025년 1회",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "값의 허용 범위 제한, 기본키의 NULL·중복 금지, 외래키의 참조 일관성을 각각 무슨 무결성이라고 하는가?",
+		"choices": [
+			"참조 무결성",
+			"사용자 정의 무결성",
+			"개체 무결성",
+			"도메인 무결성",
+			"정보 무결성"
+		],
+		"blanks": [
+			{
+				"label": "값의 허용 범위",
+				"answer": "도메인 무결성"
+			},
+			{
+				"label": "기본키 규칙",
+				"answer": "개체 무결성"
+			},
+			{
+				"label": "외래키 참조",
+				"answer": "참조 무결성"
+			}
+		],
+		"explanation": "도메인은 열의 값 규칙, 개체는 기본키 규칙, 참조는 외래키와 부모키 사이의 규칙이다."
+	},
+	{
+		"id": "2025-1-03",
+		"session": "2025년 1회",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "송수신 양측이 생성 다항식을 이용해 나눗셈의 나머지로 전송 오류를 확인하는 기법의 약자는?",
+		"choices": [
+			"FEC",
+			"Hamming",
+			"ARQ",
+			"CRC"
+		],
+		"blanks": [
+			{
+				"answer": "CRC"
+			}
+		],
+		"explanation": "CRC(Cyclic Redundancy Check)는 다항식 나눗셈으로 검사값을 만든다. 오류 검출 기술이며 정정 기술은 아니다."
+	},
+	{
+		"id": "2025-1-04",
+		"session": "2025년 1회",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "가짜 악성코드 경고를 보여 주고 불안감을 조성해 결제·설치를 유도하는 소프트웨어를 무엇이라 하는가?",
+		"choices": [
+			"랜섬웨어(Ransomware)",
+			"애드웨어(Adware)",
+			"스파이웨어(Spyware)",
+			"스캐어웨어(Scareware)"
+		],
+		"blanks": [
+			{
+				"answer": "스캐어웨어(Scareware)"
+			}
+		],
+		"explanation": "Scare는 겁을 준다는 뜻이다. 정상 광고 중심의 애드웨어와 구별한다."
+	},
+	{
+		"id": "2025-1-05",
+		"session": "2025년 1회",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "Java에서 5/0 정수 나눗셈을 try 안에서 수행하고 ArithmeticException을 잡아 \"출력1\", finally에서 \"출력5\"를 이어서 출력한다. 결과는?",
+		"choices": [
+			"출력1출력5",
+			"출력1",
+			"출력5출력1",
+			"출력5"
+		],
+		"blanks": [
+			{
+				"answer": "출력1출력5"
+			}
+		],
+		"explanation": "0으로 정수 나누기를 하면 ArithmeticException이 발생한다. 일치하는 catch 이후 finally가 반드시 실행된다."
+	},
+	{
+		"id": "2025-1-06",
+		"session": "2025년 1회",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "IPv4 주소로 MAC 주소를 알아내는 기술과 MAC 주소를 통해 IPv4 주소를 구하던 옛 기술의 약자를 쓰시오.",
+		"choices": [
+			"ICMP",
+			"RARP",
+			"NAT",
+			"ARP",
+			"DHCP"
+		],
+		"blanks": [
+			{
+				"label": "IP → MAC",
+				"answer": "ARP"
+			},
+			{
+				"label": "MAC → IP",
+				"answer": "RARP"
+			}
+		],
+		"explanation": "ARP는 IP → MAC이고 RARP는 MAC → IP다. RARP는 현재 주로 다른 주소 설정 기술로 대체되었다."
+	},
+	{
+		"id": "2025-1-07",
+		"session": "2025년 1회",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "직원 (1,이순신),(2,강감찬),(3,김유신)과 수당 (1,1000),(2,300),(3,450)을 id로 INNER JOIN하고 수당 500 이상만 남긴다면?",
+		"choices": [
+			"이순신 1000, 김유신 450",
+			"결과 없음",
+			"강감찬 300",
+			"이순신 1000"
+		],
+		"blanks": [
+			{
+				"answer": "이순신 1000"
+			}
+		],
+		"explanation": "id로 결합하면 세 행이 되지만 수당 >= 500 조건에 맞는 행은 id 1뿐이다."
+	},
+	{
+		"id": "2025-1-08",
+		"session": "2025년 1회",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "릴레이션의 속성 수, 튜플 수, 다른 테이블 키를 참조하는 키, 열에서 허용되는 값의 집합을 각각 영어로 쓰시오.",
+		"choices": [
+			"Foreign Key",
+			"Degree",
+			"Cardinality",
+			"Tuple",
+			"Attribute",
+			"Domain",
+			"Primary Key"
+		],
+		"blanks": [
+			{
+				"label": "속성 수",
+				"answer": "Degree"
+			},
+			{
+				"label": "튜플 수",
+				"answer": "Cardinality"
+			},
+			{
+				"label": "참조하는 키",
+				"answer": "Foreign Key"
+			},
+			{
+				"label": "값의 집합",
+				"answer": "Domain"
+			}
+		],
+		"explanation": "Degree = 열 개수, Cardinality = 행 개수, Foreign Key = 외래키, Domain = 값의 범위다."
+	},
+	{
+		"id": "2025-1-09",
+		"session": "2025년 1회",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "호스트 192.168.35.10/22와 같은 네트워크에 속하는 주소를 고르시오: 192.168.34.1, 192.168.32.19, 192.168.35.200, 192.168.33.138, 192.168.35.50",
+		"choices": [
+			"192.168.34.1, 192.168.35.200, 192.168.35.50 세 개",
+			"192.168.32.19를 제외한 4개",
+			"192.168.35.200, 192.168.35.50 두 개뿐",
+			"제시된 5개 모두"
+		],
+		"blanks": [
+			{
+				"answer": "제시된 5개 모두"
+			}
+		],
+		"explanation": "/22의 마스크는 255.255.252.0이고, 세 번째 옥텟이 32~35인 주소가 같은 블록에 속한다."
+	},
+	{
+		"id": "2025-1-10",
+		"session": "2025년 1회",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "C에서 문자 코드 차이 'E'-'A'를 출력한 뒤 문자 배열 삽입 처리로 BACDE를 만들었다. 표시되는 두 결과는?",
+		"choices": [
+			"ABCDE",
+			"69",
+			"4",
+			"BACDE",
+			"5"
+		],
+		"blanks": [
+			{
+				"label": "'E'-'A'",
+				"answer": "4"
+			},
+			{
+				"label": "배열 결과",
+				"answer": "BACDE"
+			}
+		],
+		"explanation": "'E'-'A' = 69 − 65 = 4이다. 배열에서 삽입 위치 뒤 요소를 이동시켜 B, A, C, D, E가 된다. (복원 자료의 코드 연산을 요약한 문제)"
+	},
+	{
+		"id": "2025-1-11",
+		"session": "2025년 1회",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "C의 3×3 배열이 행 순서대로 [9,5,2],[7,4,1],[8,3,6]일 때 왼쪽부터 순회하면서 +, -, +, -를 번갈아 적용한 합은?",
+		"choices": [
+			"-13",
+			"7",
+			"13",
+			"45"
+		],
+		"blanks": [
+			{
+				"answer": "13"
+			}
+		],
+		"explanation": "9 − 5 + 2 − 7 + 4 − 1 + 8 − 3 + 6 = 13이다."
+	},
+	{
+		"id": "2025-1-12",
+		"session": "2025년 1회",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "다른 모듈 내부를 직접 접근하는 경우, 구조체를 매개변수로 넘기는 경우, 전역 변수를 공유하는 경우의 결합도 이름은?",
+		"choices": [
+			"내용 결합도",
+			"제어 결합도",
+			"자료 결합도",
+			"공통 결합도",
+			"스탬프 결합도",
+			"외부 결합도"
+		],
+		"blanks": [
+			{
+				"label": "내부 직접 접근",
+				"answer": "내용 결합도"
+			},
+			{
+				"label": "구조체 전달",
+				"answer": "스탬프 결합도"
+			},
+			{
+				"label": "전역 변수 공유",
+				"answer": "공통 결합도"
+			}
+		],
+		"explanation": "내용은 내부 침범, 스탬프는 자료구조 전달, 공통은 공유 전역 데이터 사용이다."
+	},
+	{
+		"id": "2025-1-13",
+		"session": "2025년 1회",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "Java 부모 생성자에서 자식의 오버라이딩 메서드가 호출되는 프로그램이 있다. total은 2→6→18→54로 갱신된다. 최종 출력은?",
+		"choices": [
+			"2",
+			"6",
+			"18",
+			"54"
+		],
+		"blanks": [
+			{
+				"answer": "54"
+			}
+		],
+		"explanation": "생성자 내부의 오버라이딩 메서드도 동적 바인딩된다. 복원 계산 순서는 부모 초기화 후 show, 자식 필드·생성자 처리 후 show다."
+	},
+	{
+		"id": "2025-1-14",
+		"session": "2025년 1회",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "인터페이스가 다른 기존 클래스를 래핑해 클라이언트가 원하는 인터페이스처럼 쓰게 하는 디자인 패턴은?",
+		"choices": [
+			"Composite(컴포지트) 패턴",
+			"Adapter(어댑터) 패턴",
+			"Bridge(브리지) 패턴",
+			"Facade(퍼사드) 패턴"
+		],
+		"blanks": [
+			{
+				"answer": "Adapter(어댑터) 패턴"
+			}
+		],
+		"explanation": "Adapter는 인터페이스 호환을 담당하는 구조 패턴이다."
+	},
+	{
+		"id": "2025-1-15",
+		"session": "2025년 1회",
+		"subjectId": 4,
+		"subjectName": "애플리케이션 테스트",
+		"type": "text",
+		"question": "흐름 그래프에서 ①초기화 → ②while 조건 → ③if 조건 → ④본문 → ⑤증가 → ②while 재검사(거짓) → ⑥종료 순서로 한 번 반복했다. 방문 문장 순서는?",
+		"choices": [
+			"① → ③ → ④ → ⑤ → ② → ⑥",
+			"① → ② → ③ → ④ → ⑤ → ② → ⑥",
+			"① → ② → ③ → ④ → ⑤ → ⑥",
+			"① → ② → ③ → ④ → ② → ⑤ → ⑥"
+		],
+		"blanks": [
+			{
+				"answer": "① → ② → ③ → ④ → ⑤ → ② → ⑥"
+			}
+		],
+		"explanation": "while 조건은 반복문에 들어가기 전과 빠져나올 때 모두 검사된다."
+	},
+	{
+		"id": "2025-1-16",
+		"session": "2025년 1회",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "Java 재귀 함수 func(a,0,4)에서 중간 a[2]=8을 더하고 양옆 재귀의 최댓값을 선택한다. 좌측 반환 8, 우측 반환 12면?",
+		"choices": [
+			"8",
+			"12",
+			"16",
+			"20"
+		],
+		"blanks": [
+			{
+				"answer": "20"
+			}
+		],
+		"explanation": "8 + max(8, 12) = 20이다. 복원된 재귀 계산 과정에 따른 출력이다."
+	},
+	{
+		"id": "2025-1-17",
+		"session": "2025년 1회",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "text",
+		"question": "완전이진트리를 배열로 저장했을 때 깊이가 홀수인 노드(루트 깊이 0)의 값이 5, 8이라면 그 합은?",
+		"choices": [
+			"5",
+			"8",
+			"13",
+			"18"
+		],
+		"blanks": [
+			{
+				"answer": "13"
+			}
+		],
+		"explanation": "루트는 제외하고 깊이 1인 두 노드 5 + 8만 더한다. 부모 인덱스는 (i−1)//2다."
+	},
+	{
+		"id": "2025-1-18",
+		"session": "2025년 1회",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "C 단일 연결 리스트에 1~5를 머리에 삽입한 뒤 값 3인 노드를 맨 앞으로 재연결하고 순회 출력하면?",
+		"choices": [
+			"12345",
+			"35421",
+			"53421",
+			"54321"
+		],
+		"blanks": [
+			{
+				"answer": "35421"
+			}
+		],
+		"explanation": "처음 순서 5→4→3→2→1에서 3을 떼어 맨 앞으로 옮기면 3→5→4→2→1이다."
+	},
+	{
+		"id": "2025-1-19",
+		"session": "2025년 1회",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "C에서 {0xA0,0xA5,0xDB}와 {0xA0,0xED,0x81} 두 묶음의 각 원소에 0xA5를 비트 AND한 결과를 모두 더하면?",
+		"choices": [
+			"454",
+			"810",
+			"908",
+			"1816"
+		],
+		"blanks": [
+			{
+				"answer": "908"
+			}
+		],
+		"explanation": "각 묶음이 160, 165, 129로 바뀌어 합계 454이고, 두 묶음 총합은 908이다."
+	},
+	{
+		"id": "2025-1-20",
+		"session": "2025년 1회",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "Java 오버로딩에서 문자열 \"5\"는 calc(String)을 호출한다. 이 메서드가 피보나치형 calc(int)의 calc(4)+calc(2)를 반환하며 값이 3, 1이면?",
+		"choices": [
+			"3",
+			"4",
+			"5",
+			"8"
+		],
+		"blanks": [
+			{
+				"answer": "4"
+			}
+		],
+		"explanation": "문자열 인자로 인해 String 오버로드가 선택되고 3 + 1 = 4를 반환한다."
+	}
+]

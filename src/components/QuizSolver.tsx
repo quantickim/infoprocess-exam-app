@@ -124,7 +124,7 @@ export default function QuizSolver({ questions, userAnswers, bookmarks, onSubmit
 				<div className="glass-card" style={{ padding: "60px", textAlign: "center" }}>
 					<ListChecks size={48} style={{ color: "var(--text-muted)", marginBottom: "16px" }} />
 					<h3 style={{ fontSize: "1.3rem", marginBottom: "8px" }}>문제 유형을 선택해주세요</h3>
-					<p style={{ color: "var(--text-muted)" }}>상단에서 키워드 또는 코드 유형을 선택하면 문제풀이가 시작됩니다.</p>
+					<p style={{ color: "var(--text-muted)" }}>상단에서 키워드·코드 유형 또는 회차를 선택하면 문제풀이가 시작됩니다.</p>
 				</div>
 			</div>
 		);
