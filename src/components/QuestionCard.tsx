@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Bookmark, CheckCircle2, XCircle, HelpCircle, Code2, PenLine, ThumbsUp, ThumbsDown, BadgeCheck } from "lucide-react";
 import { ContentBlock, Question, UserAnswerRecord } from "../types";
-import { gradeAnswer } from "../utils/grading";
+import { formatScore, gradeAnswer, scoreAnswer } from "../utils/grading";
 import ChoiceAnswer, { choiceText } from "./ChoiceAnswer";
 
 interface QuestionCardProps {
@@ -162,9 +162,14 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 
 	let resultBadge: React.ReactNode = <span className="badge badge-session" style={{ marginLeft: "auto" }}>✍️ 스스로 채점해 보세요</span>;
 	if (hasAnswered) {
+		// 빈칸 여러 개 중 일부만 맞힌 경우 부분 점수 표시
+		const partial = userAnswer.isCorrect ? 0 : scoreAnswer(question, userAnswer) * question.blanks.length;
+		let badgeText = "❌ 틀렸습니다";
+		if (userAnswer.isCorrect) badgeText = userAnswer.manual ? "⭕ 정답 처리" : "⭕ 정답입니다!";
+		else if (partial > 0) badgeText = `🔺 부분 정답 (${formatScore(partial)}/${question.blanks.length})`;
 		resultBadge = (
 			<span className={`badge ${userAnswer.isCorrect ? "badge-subject" : "badge-session"}`} style={{ marginLeft: "auto" }}>
-				{userAnswer.isCorrect ? (userAnswer.manual ? "⭕ 정답 처리" : "⭕ 정답입니다!") : "❌ 틀렸습니다"}
+				{badgeText}
 			</span>
 		);
 	}

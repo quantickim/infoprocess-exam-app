@@ -1,4 +1,4 @@
-import { AnswerBlank, Question } from "../types";
+import { AnswerBlank, Question, UserAnswerRecord } from "../types";
 
 export interface GradeResult {
 	isCorrect: boolean;
@@ -97,3 +97,18 @@ export const gradeChoice = (question: Question, inputs: string[]): GradeResult =
 	const blankResults = blanks.map((blank, i) => isAccepted(inputs[i] ?? "", blank));
 	return { isCorrect: blankResults.every(Boolean), blankResults };
 };
+
+// 문항 점수(0~1): 빈칸이 여러 개인 문제는 맞힌 칸 비율만큼 부분 점수를 준다.
+// '모두 고르기'에서 정답보다 많이 고른 보기는 하나당 한 칸씩 감점한다.
+export const scoreAnswer = (question: Question, record: UserAnswerRecord): number => {
+	if (record.isCorrect) return 1;
+	if (record.manual || question.blanks.length < 2) return 0;
+	const inputs = record.inputs;
+	const { blankResults } = question.choices?.length ? gradeChoice(question, inputs) : gradeAnswer(question, inputs);
+	const matched = blankResults.filter(Boolean).length;
+	const extra = question.unordered ? Math.max(0, inputs.filter((v) => v.trim() !== "").length - question.blanks.length) : 0;
+	return Math.max(0, matched - extra) / question.blanks.length;
+};
+
+// 부분 점수 표시용 (예: 2.67 → "2.7", 3 → "3")
+export const formatScore = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));

@@ -3,6 +3,7 @@ import { Award, BarChart3, Target, RotateCcw, Trash2, ChevronLeft, PlayCircle } 
 import { Question, UserAnswersMap, SubjectStat } from "../types";
 import CustomConfirmModal from "./CustomConfirmModal";
 import { SUBJECTS } from "../utils/storage";
+import { formatScore, scoreAnswer } from "../utils/grading";
 
 interface QuizResultProps {
 	questions: Question[];
@@ -52,11 +53,11 @@ export default function QuizResult({ questions, userAnswers, wrongAnswers, onRet
 			const ans = userAnswers[q.id];
 			if (ans) {
 				sess.answered++;
-				if (ans.isCorrect) {
-					sess.correct++;
-					if (sess.subjectStats[q.subjectId]) {
-						sess.subjectStats[q.subjectId].correct++;
-					}
+				// 빈칸이 여러 개인 문제는 맞힌 칸 비율만큼 부분 점수 반영
+				const point = scoreAnswer(q, ans);
+				sess.correct += point;
+				if (sess.subjectStats[q.subjectId]) {
+					sess.subjectStats[q.subjectId].correct += point;
 				}
 			}
 		});
@@ -247,7 +248,7 @@ export default function QuizResult({ questions, userAnswers, wrongAnswers, onRet
 									<div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", alignItems: "center" }}>
 										<div style={{ fontWeight: 600, fontSize: "0.95rem" }}>{st.name}</div>
 										<div style={{ fontWeight: 700, color: subScore >= 60 ? "var(--correct)" : "var(--warning)" }}>
-											{subScore}점 ({st.correct}/{st.total})
+											{subScore}점 ({formatScore(st.correct)}/{st.total})
 										</div>
 									</div>
 
