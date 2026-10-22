@@ -1,0 +1,420 @@
+[
+	{
+		"id": "2024-1-01",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "class Box {\n    static Box instance = new Box();\n    int n = 0;\n    static Box get() { return instance; }\n    void add() { n++; }\n}\nclass Main {\n    public static void main(String[] args) {\n        Box a = Box.get(), b = Box.get();\n        a.add(); b.add(); a.add();\n        System.out.print(b.n);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"1",
+			"3",
+			"0",
+			"2"
+		],
+		"blanks": [
+			{
+				"answer": "3"
+			}
+		],
+		"explanation": "핵심: 변수의 개수와 객체의 개수는 다르다. Box.get()은 static 필드 instance에 저장된 같은 객체를 돌려준다.\n\n실행 순서\n① a와 b가 모두 같은 Box 객체를 가리킨다. n의 초깃값은 0이다.\n② a.add(): n이 1이 된다.\n③ b.add(): 같은 객체의 n이 2가 된다.\n④ a.add(): n이 3이 된다.\n⑤ b.n도 그 객체의 값을 읽으므로 3을 출력한다.\n\n주의: a와 b에 서로 다른 n이 생기는 것이 아니다. new Box()로 각각 객체를 만들었을 때와 구별한다."
+	},
+	{
+		"id": "2024-1-02",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\nint main(void) {\n    int x=0, y=12, z=6;\n    if (x ? y : x) y = y << 1;\n    else z = z << 2;\n    printf(\"%d\", z);\n}",
+		"language": "c",
+		"choices": [
+			"12",
+			"6",
+			"24",
+			"48"
+		],
+		"blanks": [
+			{
+				"answer": "24"
+			}
+		],
+		"explanation": "조건 연산자 조건 ? 참일 때 값 : 거짓일 때 값은 조건에 따라 한쪽 값만 선택한다. C의 if에서는 0이 거짓이다.\n\n계산 순서\n① x=0이므로 x ? y : x는 뒤쪽 x, 즉 0이다.\n② if가 거짓이어서 y를 바꾸는 문장은 실행하지 않는다.\n③ else에서 z = 6 << 2를 계산한다. 양수 6을 왼쪽으로 2비트 이동하면 6 × 2² = 24이다.\n④ 출력 대상은 y가 아니라 z이므로 24이다.\n\n주의: << 2는 2를 더하거나 2배 하는 연산이 아니다. 이 값에서는 4배가 된다."
+	},
+	{
+		"id": "2024-1-03",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "text",
+		"question": "다음 Python 코드를 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "items = [\"Code\", \"Note\", \"Data\"]\ns = \"F\"\nfor item in items:\n    s += item[-2]\nprint(s)",
+		"language": "python",
+		"choices": [
+			"Fdta",
+			"Foea",
+			"Fdtt",
+			"Feed"
+		],
+		"blanks": [
+			{
+				"answer": "Fdtt"
+			}
+		],
+		"explanation": "Python에서 -1은 마지막 문자, -2는 뒤에서 두 번째 문자이다. 반복할 때마다 해당 문자를 s 뒤에 이어 붙인다.\n\n문자열 변화\n① 시작: F\n② Code[-2] = d → Fd\n③ Note[-2] = t → Fdt\n④ Data[-2] = t → Fdtt\n\n주의: 음수 인덱스는 앞에서 두 번째 문자를 뜻하지 않는다. print는 따옴표를 표시하지 않으므로 출력은 Fdtt이다."
+	},
+	{
+		"id": "2024-1-04",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "링크 상태 정보와 다익스트라 알고리즘을 이용하는 대표적인 내부 라우팅 프로토콜을 고르시오.",
+		"choices": [
+			"OSPF",
+			"RIP",
+			"BGP",
+			"ARP"
+		],
+		"blanks": [
+			{
+				"answer": "OSPF"
+			}
+		],
+		"explanation": "정답 단서인 «링크 상태»와 «다익스트라»를 함께 만족하는 것은 OSPF이다. OSPF는 AS 내부에서 경로를 찾는 IGP에 속한다.\n\n동작 이해\n주변 링크 정보를 교환해 네트워크 구조를 파악한 뒤, 다익스트라 알고리즘으로 목적지까지의 최단 경로를 계산한다.\n\n오답 구분\n• RIP: 거리 벡터 방식이며 홉 수를 기준으로 경로를 선택한다.\n• BGP: AS 사이의 경로 정보를 교환한다.\n• ARP: 같은 링크에서 IP 주소에 대응하는 MAC 주소를 알아낸다. 라우팅 경로 계산용이 아니다."
+	},
+	{
+		"id": "2024-1-05",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "member(id, name)의 모든 행을 backup(id, name)에 삽입하는 SQL을 고르시오.",
+		"language": "sql",
+		"choices": [
+			"INSERT INTO member(id, name) SELECT id, name FROM backup;",
+			"INSERT INTO backup(id, name) VALUES (id, name) FROM member;",
+			"INSERT INTO backup(id, name) SELECT id, name FROM member;",
+			"UPDATE backup SET id = member.id, name = member.name;"
+		],
+		"blanks": [
+			{
+				"answer": "INSERT INTO backup(id, name) SELECT id, name FROM member;"
+			}
+		],
+		"explanation": "이미 있는 테이블의 조회 결과를 다른 테이블에 넣을 때는 INSERT INTO ... SELECT를 사용한다.\n\n구문 읽기\n① INSERT INTO backup(id, name): 데이터를 받을 대상과 열 순서이다.\n② SELECT id, name FROM member: 복사할 원본 행을 조회한다.\n③ WHERE가 없으므로 member의 모든 행이 삽입 대상이다.\n\n오답 구분\n• 테이블 방향을 반대로 쓰면 backup을 읽어 member에 넣는다.\n• VALUES는 직접 나열한 값을 삽입할 때 사용한다.\n• UPDATE는 기존 행 수정이며 새 행 삽입이 아니다.\n대상 열과 조회 열은 개수와 자료형이 호환되어야 한다."
+	},
+	{
+		"id": "2024-1-06",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "기본키에 NULL이 들어간 레코드가 존재한다면 어떤 무결성 규칙을 위반한 것인지 고르시오.",
+		"choices": [
+			"참조 무결성",
+			"개체 무결성",
+			"사용자 정의 무결성",
+			"도메인 무결성"
+		],
+		"blanks": [
+			{
+				"answer": "개체 무결성"
+			}
+		],
+		"explanation": "기본키는 각 행을 확실하게 식별해야 하므로 NULL을 가질 수 없고 중복되어서도 안 된다. 이 두 조건이 개체 무결성이다.\n\n문제 적용\n기본키에 NULL이 들어가면 그 행의 식별값이 없다는 뜻이므로 개체 무결성을 위반한다. 기본키에 같은 값이 두 번 나타나는 경우도 같은 규칙 위반이다.\n\n오답 구분\n• 참조 무결성: 외래키가 가리키는 대상이 유효한지 확인한다.\n• 도메인 무결성: 나이·성별 등 속성의 허용 범위나 형식을 제한한다.\n• 사용자 정의 무결성: 업무에서 별도로 정한 제약이다."
+	},
+	{
+		"id": "2024-1-07",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "text",
+		"question": "다음 Python 코드를 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "a = \"7\"\nb = [1, 2, 3]\nc = 3\nprint(len(a) + len(b) + c * 2)",
+		"language": "python",
+		"choices": [
+			"7",
+			"12",
+			"10",
+			"16"
+		],
+		"blanks": [
+			{
+				"answer": "10"
+			}
+		],
+		"explanation": "계산 전에 각 변수의 자료형을 구분한다. a는 문자열, b는 리스트, c는 정수이다.\n\n항별 계산\n① len(\"7\") = 1: 숫자 7이 아니라 문자 한 개의 길이이다.\n② len([1, 2, 3]) = 3: 리스트의 원소 개수이다.\n③ c * 2 = 3 * 2 = 6이다.\n④ 1 + 3 + 6 = 10을 출력한다.\n\n주의: 리스트의 원소를 더하는 것이 아니다. len(b)는 1+2+3이 아니라 원소 수 3을 반환한다."
+	},
+	{
+		"id": "2024-1-08",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "class Base { int value() { return 4; } }\nclass Sub extends Base { int value() { return 12; } }\nclass Main {\n    public static void main(String[] args) {\n        Base p = new Sub();\n        System.out.print(p.value());\n    }\n}",
+		"language": "java",
+		"choices": [
+			"12",
+			"4",
+			"16",
+			"8"
+		],
+		"blanks": [
+			{
+				"answer": "12"
+			}
+		],
+		"explanation": "오버라이딩한 인스턴스 메서드는 참조 변수의 선언 타입보다 실제 객체의 타입에 따라 선택된다.\n\n실행 순서\n① Base p는 변수를 Base 타입으로 선언한 것이다.\n② new Sub()로 만든 실제 객체는 Sub이다.\n③ p.value()를 호출하면 Sub이 재정의한 value()가 실행된다.\n④ 그 메서드는 12를 반환하므로 12를 출력한다.\n\n오답 구분: 4는 Base.value()의 반환값이다. 부모와 자식 메서드를 둘 다 실행하거나 두 반환값을 더하지 않는다."
+	},
+	{
+		"id": "2024-1-09",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\nint main(void) {\n    int arr[] = {3, 4, 6};\n    int *p = arr;\n    printf(\"%d\", *(p+2) + *p);\n}",
+		"language": "c",
+		"choices": [
+			"6",
+			"9",
+			"7",
+			"10"
+		],
+		"blanks": [
+			{
+				"answer": "9"
+			}
+		],
+		"explanation": "배열 이름 arr로 포인터를 초기화하면 p는 첫 원소 arr[0]을 가리킨다. *(p+i)는 arr[i]와 같은 원소를 읽는다.\n\n식 해석\n① *(p+2) = arr[2] = 6이다.\n② *p = arr[0] = 3이다.\n③ 출력 식은 6 + 3 = 9이다.\n\n주의: p+2는 값 3에 2를 더하는 연산이 아니라 int 원소 두 개만큼 주소를 이동하는 연산이다. 원소 번호는 0부터 센다."
+	},
+	{
+		"id": "2024-1-10",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "후보키가 A이고 함수 종속 A → B, B → C가 있는 테이블에서, 비주요 속성 사이의 종속 B → C로 발생하는 이행 종속을 제거하는 정규형을 고르시오.",
+		"choices": [
+			"제2정규형(2NF)",
+			"제1정규형(1NF)",
+			"제3정규형(3NF)",
+			"제4정규형(4NF)"
+		],
+		"blanks": [
+			{
+				"answer": "제3정규형(3NF)"
+			}
+		],
+		"explanation": "A → B, B → C이면 A를 통해 B를 알고 다시 C를 알 수 있다. 비주요 속성 B를 거쳐 C가 키 A에 간접적으로 종속되는 것이 이행 함수 종속이다.\n\n정규화 과정\n① A가 후보키이고 B·C가 비주요 속성임을 확인한다.\n② B → C 때문에 키가 아닌 속성에 다른 비주요 속성이 매달려 있다.\n③ 보통 R1(A, B)와 R2(B, C)로 분리해 이행 종속을 제거한다. 이 단계가 제3정규형이다.\n\n단계 구분\n1NF: 속성 값을 원자 값으로 만든다.\n2NF: 비주요 속성의 부분 함수 종속을 제거한다.\n3NF: 비주요 속성의 이행 함수 종속을 제거한다."
+	},
+	{
+		"id": "2024-1-11",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "데이터를 암호화하고 복구 비용을 요구하는 악성 소프트웨어를 고르시오.",
+		"choices": [
+			"랜섬웨어(Ransomware)",
+			"스파이웨어(Spyware)",
+			"스캐어웨어(Scareware)",
+			"애드웨어(Adware)"
+		],
+		"blanks": [
+			{
+				"answer": "랜섬웨어(Ransomware)"
+			}
+		],
+		"explanation": "«데이터 암호화»와 «복구 대가로 금전 요구»가 함께 나오면 랜섬웨어이다. ransom은 몸값을 뜻한다.\n\n공격 흐름\n파일이나 시스템에 대한 접근을 막은 뒤 복호화·복구를 조건으로 돈을 요구한다. 단순한 광고 표시나 정보 수집이 핵심인 악성코드와 구별해야 한다.\n\n오답 구분\n• 스파이웨어: 사용자의 정보나 활동을 몰래 수집한다.\n• 애드웨어: 광고를 표시한다.\n• 스캐어웨어: 가짜 감염 경고 등으로 불안감을 주어 결제·설치를 유도한다."
+	},
+	{
+		"id": "2024-1-12",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 4,
+		"subjectName": "애플리케이션 테스트",
+		"type": "text",
+		"question": "모든 분기문의 참·거짓 결과를 각각 최소 한 번 실행하는 테스트 커버리지를 고르시오.",
+		"choices": [
+			"문장 커버리지",
+			"조건 커버리지",
+			"결정(분기) 커버리지",
+			"경로 커버리지"
+		],
+		"blanks": [
+			{
+				"answer": "결정(분기) 커버리지"
+			}
+		],
+		"explanation": "결정(분기) 커버리지는 각 분기에서 참인 결과와 거짓인 결과를 모두 실행했는지 보는 기준이다.\n\n예시\nif (x > 0)이 있다면 x=1로 참 분기를, x=0으로 거짓 분기를 실행해야 한다. 참 분기만 여러 번 실행해서는 충족되지 않는다.\n\n오답 구분\n• 문장 커버리지: 각 명령문을 실행했는가?\n• 조건 커버리지: 복합식의 개별 조건이 각각 참·거짓이 되었는가?\n• 경로 커버리지: 실행 가능한 경로를 실행했는가?\n문제의 «분기 결과 양쪽»이라는 표현이 결정 커버리지의 단서이다."
+	},
+	{
+		"id": "2024-1-13",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "class Main {\n    public static void main(String[] args) {\n        String a = new String(\"hi\");\n        String b = new String(\"hi\");\n        System.out.print((a == b) + \" \" + a.equals(b));\n    }\n}",
+		"language": "java",
+		"choices": [
+			"true false",
+			"false true",
+			"false false",
+			"true true"
+		],
+		"blanks": [
+			{
+				"answer": "false true"
+			}
+		],
+		"explanation": "Java 문자열에서는 ==와 equals()가 무엇을 비교하는지 구분해야 한다.\n\n비교 순서\n① new String(\"hi\")를 두 번 실행하므로 a와 b는 별도 객체이다.\n② a == b: 같은 객체를 가리키는지 비교하므로 false이다.\n③ a.equals(b): String의 내용 hi가 같은지 비교하므로 true이다.\n④ 가운데 공백을 포함해 false true를 출력한다.\n\n주의: 내용이 같다는 이유로 참조까지 같아지는 것은 아니다. 두 문자열 모두 new로 만들었다는 점이 중요하다."
+	},
+	{
+		"id": "2024-1-14",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\nint main(void) {\n    int t[2][3] = {{2,3,4},{6,7,8}};\n    printf(\"%d\", t[1][1]);\n}",
+		"language": "c",
+		"choices": [
+			"7",
+			"3",
+			"8",
+			"6"
+		],
+		"blanks": [
+			{
+				"answer": "7"
+			}
+		],
+		"explanation": "2차원 배열 t[행][열]의 두 인덱스는 모두 0부터 시작한다.\n\n위치 찾기\n① t[0]은 첫째 행 {2, 3, 4}이다.\n② t[1]은 둘째 행 {6, 7, 8}이다.\n③ t[1][1]은 둘째 행의 둘째 열이므로 7이다.\n\n오답 구분: 3은 t[0][1], 6은 t[1][0], 8은 t[1][2]이다. 숫자 1을 첫째 행·첫째 열이라고 해석하면 안 된다."
+	},
+	{
+		"id": "2024-1-15",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "발행자가 자신의 상태 변화를 등록된 여러 구독자에게 자동으로 알려 주는 디자인 패턴을 고르시오.",
+		"choices": [
+			"싱글턴(Singleton) 패턴",
+			"전략(Strategy) 패턴",
+			"옵서버(Observer) 패턴",
+			"어댑터(Adapter) 패턴"
+		],
+		"blanks": [
+			{
+				"answer": "옵서버(Observer) 패턴"
+			}
+		],
+		"explanation": "옵서버는 한 객체의 상태가 바뀌면 등록된 여러 객체에게 그 사실을 알리는 행위 패턴이다. 문제의 발행자와 구독자는 각각 주체와 관찰자에 대응한다.\n\n예시\n뉴스 발행자에 여러 구독자가 등록해 두면 새 뉴스가 생겼을 때 등록된 구독자들에게 통지한다. 한 주체와 여러 관찰자 사이의 일대다 관계가 핵심이다.\n\n오답 구분\n• 전략: 실행할 알고리즘을 바꿔 끼운다.\n• 어댑터: 맞지 않는 인터페이스를 변환한다.\n• 싱글턴: 인스턴스를 하나로 제한해 공유한다."
+	},
+	{
+		"id": "2024-1-16",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "orders(category, price)에서 category별 총액이 100 이상인 카테고리와 합계를 조회하는 SQL을 고르시오.",
+		"language": "sql",
+		"choices": [
+			"SELECT category, SUM(price) FROM orders GROUP BY category HAVING SUM(price) > 100;",
+			"SELECT category, SUM(price) FROM orders GROUP BY category HAVING SUM(price) >= 100;",
+			"SELECT category, SUM(price) FROM orders GROUP BY price HAVING SUM(price) >= 100;",
+			"SELECT category, SUM(price) FROM orders WHERE price >= 100 GROUP BY category;"
+		],
+		"blanks": [
+			{
+				"answer": "SELECT category, SUM(price) FROM orders GROUP BY category HAVING SUM(price) >= 100;"
+			}
+		],
+		"explanation": "개별 주문의 가격이 아니라 카테고리별 합계를 조건으로 거르므로 GROUP BY와 HAVING을 사용한다.\n\n처리 흐름\n① orders에서 행을 읽는다.\n② GROUP BY category로 같은 카테고리끼리 묶는다.\n③ SUM(price)로 각 그룹의 총액을 구한다.\n④ HAVING SUM(price) >= 100으로 조건에 맞는 그룹을 남긴다.\n⑤ category와 총액을 조회한다.\n\n오답 구분: 40원·60원 주문은 합계가 100이라 포함되어야 한다. WHERE price >= 100으로 먼저 거르면 두 행이 모두 사라진다. 또한 «이상»이므로 >가 아니라 >=이다."
+	},
+	{
+		"id": "2024-1-17",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "트랜잭션 수행 중 오류가 나면 일부만 반영하지 않고 전부 취소하거나 전부 반영해야 하는 특성을 고르시오.",
+		"choices": [
+			"원자성(Atomicity)",
+			"격리성(Isolation)",
+			"지속성(Durability)",
+			"일관성(Consistency)"
+		],
+		"blanks": [
+			{
+				"answer": "원자성(Atomicity)"
+			}
+		],
+		"explanation": "원자성은 트랜잭션의 작업을 전부 반영하거나 전부 취소해야 한다는 특성이다. 일부만 성공한 상태를 남기지 않는다.\n\n예시\n계좌 이체에서 출금은 반영됐는데 입금은 실패했다면 전체 작업을 취소해야 한다. 출금만 남겨 두는 것은 원자성을 어긴 것이다.\n\nACID 구분\n• 원자성: 전부 성공 또는 전부 취소\n• 일관성: 제약 조건을 만족하는 상태 유지\n• 격리성: 동시에 실행되는 작업 간 간섭 제어\n• 지속성: 커밋한 결과를 장애 뒤에도 보존"
+	},
+	{
+		"id": "2024-1-18",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "두 프로세스가 각각 자원 하나를 보유하고 상대방 자원을 기다리며 진행하지 못하는 상태를 고르시오.",
+		"choices": [
+			"문맥 교환(Context Switching)",
+			"스래싱(Thrashing)",
+			"교착상태(Deadlock)",
+			"기아 상태(Starvation)"
+		],
+		"blanks": [
+			{
+				"answer": "교착상태(Deadlock)"
+			}
+		],
+		"explanation": "교착상태는 프로세스들이 상대방이 보유한 자원을 기다려 더 이상 진행할 수 없는 상태이다.\n\n문제 적용\nP1은 자원 A를 보유한 채 B를 기다리고, P2는 B를 보유한 채 A를 기다린다. 서로 기다리는 고리가 생겨 어느 쪽도 작업을 끝내고 자원을 돌려주지 못한다.\n\n필요 조건은 상호 배제, 점유와 대기, 비선점, 환형 대기이다.\n오답 구분: 기아는 특정 작업이 계속 자원을 배정받지 못하는 현상, 스래싱은 지나친 페이지 교체, 문맥 교환은 CPU 실행 대상을 바꾸는 과정이다."
+	},
+	{
+		"id": "2024-1-19",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "IPv4 주소의 프리픽스 길이가 /26일 때의 서브넷 마스크를 고르시오.",
+		"choices": [
+			"255.255.255.0",
+			"255.255.255.128",
+			"255.255.255.224",
+			"255.255.255.192"
+		],
+		"blanks": [
+			{
+				"answer": "255.255.255.192"
+			}
+		],
+		"explanation": "프리픽스 /26은 서브넷 마스크의 왼쪽 26비트가 1이라는 뜻이다. IPv4 주소는 8비트씩 네 옥텟으로 나눈다.\n\n계산\n① 26 = 8 + 8 + 8 + 2이다.\n② 앞 세 옥텟은 11111111이므로 각각 255이다.\n③ 마지막 옥텟은 11000000이므로 128+64=192이다.\n④ 따라서 255.255.255.192이다.\n\n보기 구분: 마지막 옥텟이 0이면 /24, 128이면 /25, 224이면 /27이다. /26에서는 마지막 옥텟의 상위 두 비트만 1로 만든다."
+	},
+	{
+		"id": "2024-1-20",
+		"session": "2024년 1회 (연습)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "원격 저장소의 변경 커밋을 가져와 현재 브랜치에 통합하는 대표적인 Git 명령어를 고르시오.",
+		"choices": [
+			"git commit",
+			"git push",
+			"git fetch",
+			"git pull"
+		],
+		"blanks": [
+			{
+				"answer": "git pull"
+			}
+		],
+		"explanation": "문제는 원격 커밋을 «가져오기»뿐 아니라 현재 브랜치에 «통합»하는 명령을 묻는다. 두 작업을 묶어서 수행하는 것이 git pull이다.\n\n동작 이해\ngit pull은 먼저 fetch로 원격 변경을 가져온 뒤 설정·옵션에 따라 merge 또는 rebase로 통합한다. 충돌이 있으면 사용자가 해결해야 할 수 있다.\n\n오답 구분\n• git fetch: 원격 변경을 가져오되 현재 브랜치에 자동 통합하지 않는다.\n• git push: 로컬 커밋을 원격으로 보낸다.\n• git commit: 로컬 변경을 커밋으로 기록한다."
+	}
+]

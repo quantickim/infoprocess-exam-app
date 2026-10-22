@@ -1,0 +1,448 @@
+[
+	{
+		"id": "2024-3-01",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "class A { int n=3; int calc() { return 5; } }\nclass B extends A { int n=7; int calc() { return 11; } }\nclass Main {\n    public static void main(String[] args) {\n        A p = new B();\n        System.out.print(p.n + p.calc());\n    }\n}",
+		"language": "java",
+		"choices": [
+			"8",
+			"14",
+			"12",
+			"18"
+		],
+		"blanks": [
+			{
+				"answer": "14"
+			}
+		],
+		"explanation": "같은 객체를 사용해도 필드와 오버라이딩 메서드를 선택하는 기준은 서로 다르다.\n\n항별 계산\n① p의 선언 타입은 A이므로 p.n은 A의 필드 n=3이다.\n② 실제 객체는 B이므로 p.calc()는 B가 재정의한 메서드를 실행해 11을 반환한다.\n③ 최종 출력은 3+11=14이다.\n\n오답 구분\n8 = 부모 필드 3 + 부모 메서드 5\n18 = 자식 필드 7 + 자식 메서드 11\n둘 중 한 타입으로 모든 항을 계산하면 틀린다. 필드는 선언 타입, 재정의한 인스턴스 메서드는 실제 객체 타입을 확인한다."
+	},
+	{
+		"id": "2024-3-02",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "고정 기지국 없이 이동 단말끼리 직접 연결해 스스로 구성하는 네트워크를 고르시오.",
+		"choices": [
+			"애드혹(Ad hoc) 네트워크",
+			"SAN",
+			"VLAN",
+			"인프라스트럭처(Infrastructure) 네트워크"
+		],
+		"blanks": [
+			{
+				"answer": "애드혹(Ad hoc) 네트워크"
+			}
+		],
+		"explanation": "애드혹 네트워크는 고정 기지국이나 기존 기반 시설 없이 단말들이 필요에 따라 직접 구성하는 네트워크이다.\n\n판별 단서\n중앙 액세스 포인트 없이 연결을 만들고, 상황에 따라 단말이 다른 단말의 데이터를 중계할 수도 있다. 임시 현장 통신이나 재난·긴급 통신과 연결해 이해할 수 있다.\n\n오답 구분\n• 인프라스트럭처: 액세스 포인트 같은 기반 시설을 이용한다.\n• VLAN: 하나의 물리 네트워크를 논리적으로 분리한다.\n• SAN: 서버와 저장장치 등을 연결하는 저장장치용 네트워크이다."
+	},
+	{
+		"id": "2024-3-03",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "class Main {\n    public static void main(String[] args) {\n        String a=\"go\", b=new String(\"go\");\n        System.out.print(a.equals(b) + \" \" + (a==b));\n    }\n}",
+		"language": "java",
+		"choices": [
+			"false false",
+			"true false",
+			"true true",
+			"false true"
+		],
+		"blanks": [
+			{
+				"answer": "true false"
+			}
+		],
+		"explanation": "두 비교의 대상이 다르므로 계산 순서를 분리한다. String.equals()는 내용, ==는 객체 참조를 비교한다.\n\n① a.equals(b): 두 문자열의 내용이 모두 go이므로 true이다.\n② a==b: b는 new String(\"go\")로 생성한 별도 객체이므로 false이다.\n③ 코드의 출력 순서는 equals 결과가 먼저이므로 true false이다.\n\n주의: ==를 먼저 출력했던 다른 문제와 순서를 혼동하지 않는다. 결과를 외우지 말고 출력 식의 왼쪽부터 각 비교를 계산한다."
+	},
+	{
+		"id": "2024-3-04",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "클래스 사이의 is-a 관계를 나타내며, 실선 끝에 빈 삼각형 화살표를 사용하는 UML 관계를 고르시오.",
+		"choices": [
+			"의존(Dependency)",
+			"실체화(Realization)",
+			"합성(Composition)",
+			"일반화(Generalization)"
+		],
+		"blanks": [
+			{
+				"answer": "일반화(Generalization)"
+			}
+		],
+		"explanation": "일반화는 자식 클래스가 부모 클래스의 한 종류인 is-a 관계, 즉 상속을 나타낸다.\n\n표기 읽기\n실선 끝의 빈 삼각형은 부모 방향을 가리킨다. 예를 들어 버스 → 자동차 관계에서는 자동차 쪽에 빈 삼각형을 둔다.\n\n오답 구분\n• 실체화: 점선 + 빈 삼각형\n• 의존: 점선 + 일반 화살표\n• 합성: 전체 쪽의 채운 마름모\n삼각형인지 마름모인지, 실선인지 점선인지를 함께 확인해야 한다."
+	},
+	{
+		"id": "2024-3-05",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "employee(dept, score)에서 평균 점수가 80 이상인 부서의 dept만 조회하는 SQL을 고르시오.",
+		"language": "sql",
+		"choices": [
+			"SELECT dept FROM employee WHERE score >= 80 GROUP BY dept;",
+			"SELECT dept FROM employee GROUP BY dept HAVING AVG(score) >= 80;",
+			"SELECT dept FROM employee GROUP BY dept HAVING SUM(score) >= 80;",
+			"SELECT dept FROM employee GROUP BY dept HAVING AVG(score) > 80;"
+		],
+		"blanks": [
+			{
+				"answer": "SELECT dept FROM employee GROUP BY dept HAVING AVG(score) >= 80;"
+			}
+		],
+		"explanation": "문제의 조건은 직원 개인의 점수가 아니라 부서 전체의 평균이다. 그룹을 만든 뒤 평균으로 걸러야 한다.\n\n처리 순서\n① GROUP BY dept: 같은 부서의 직원들을 묶는다.\n② AVG(score): 각 부서의 평균을 계산한다.\n③ HAVING AVG(score) >= 80: 평균이 80 이상인 부서를 남긴다.\n④ SELECT dept: 해당 부서명만 조회한다.\n\n오답 구분: 점수가 70·90인 부서는 평균 80으로 포함된다. WHERE score>=80을 먼저 적용하면 70인 직원을 빼고 평균을 계산하게 된다. SUM은 합계이며, >80은 정확히 80인 부서를 제외한다."
+	},
+	{
+		"id": "2024-3-06",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "유일성은 만족하지만 식별에 불필요한 속성이 추가되어 최소성은 만족하지 않는 키를 고르시오.",
+		"choices": [
+			"기본키(Primary Key)",
+			"슈퍼키(Super Key)",
+			"후보키(Candidate Key)",
+			"대체키(Alternate Key)"
+		],
+		"blanks": [
+			{
+				"answer": "슈퍼키(Super Key)"
+			}
+		],
+		"explanation": "유일성은 각 행을 구별할 수 있다는 뜻이고, 최소성은 구별에 불필요한 속성이 하나도 없다는 뜻이다.\n\n예시\n학번만으로 학생을 구별할 수 있다면 {학번, 이름}도 유일하지만 이름은 불필요하다. 따라서 이 집합은 슈퍼키이지만 후보키는 아니다.\n\n키 구분\n• 슈퍼키: 유일성 만족, 최소성은 필수 아님\n• 후보키: 유일성과 최소성 모두 만족\n• 기본키: 후보키 중 대표로 선택한 키\n• 대체키: 기본키로 선택되지 않은 후보키\n슈퍼키가 항상 최소성을 위반하는 것은 아니라는 점도 주의한다."
+	},
+	{
+		"id": "2024-3-07",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "text",
+		"question": "다음 Python 코드를 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "def score(x):\n    if type(x) is int: return x * 2\n    return len(x)\nprint(score(2) + score(\"abc\") + score([4, 5]))",
+		"language": "python",
+		"choices": [
+			"8",
+			"7",
+			"9",
+			"10"
+		],
+		"blanks": [
+			{
+				"answer": "9"
+			}
+		],
+		"explanation": "score는 입력이 정확히 int이면 두 배를 반환하고, 아니면 len(x)를 반환한다. 세 호출을 각각 계산한다.\n\n① score(2): 정수이므로 2*2=4\n② score(\"abc\"): 문자열이므로 길이 3\n③ score([4, 5]): 리스트이므로 원소 수 2\n④ 4+3+2=9를 출력한다.\n\n주의: 리스트 [4, 5]의 값을 합쳐 9를 반환하는 것이 아니다. len은 문자열의 문자 수 또는 컨테이너의 원소 수를 센다."
+	},
+	{
+		"id": "2024-3-08",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "주문 테이블에서 기본키인 주문번호를 서로 다른 두 행이 같은 값으로 가지고 있다면 어떤 무결성 규칙을 위반한 것인지 고르시오.",
+		"choices": [
+			"사용자 정의 무결성",
+			"도메인 무결성",
+			"개체 무결성",
+			"참조 무결성"
+		],
+		"blanks": [
+			{
+				"answer": "개체 무결성"
+			}
+		],
+		"explanation": "기본키인 주문번호는 주문 한 행을 유일하게 식별해야 한다. 서로 다른 두 행의 주문번호가 같으면 개체 무결성 위반이다.\n\n판단 순서\n① 문제가 지목한 속성이 기본키인지 확인한다.\n② 기본키의 중복 또는 NULL이 있으면 개체 무결성을 적용한다.\n여기서는 중복 때문에 유일성이 깨졌다.\n\n오답 구분: 참조 무결성은 외래키가 참조하는 행의 존재 여부와 관련된다. 도메인 무결성은 속성의 형식·범위, 사용자 정의 무결성은 별도의 업무 규칙과 관련된다."
+	},
+	{
+		"id": "2024-3-09",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "class Main {\n    public static void main(String[] args) {\n        int x=3;\n        try {\n            throw new IllegalArgumentException();\n        } catch (IllegalArgumentException e) {\n            x *= 4;\n        } finally { x += 5; }\n        System.out.print(x);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"3",
+			"8",
+			"17",
+			"12"
+		],
+		"blanks": [
+			{
+				"answer": "17"
+			}
+		],
+		"explanation": "예외가 발생하면 일치하는 catch로 이동하고, 처리 후 finally도 실행된다.\n\nx의 변화\n① 초기값: 3\n② try에서 IllegalArgumentException 발생\n③ 일치하는 catch에서 x*=4 → 12\n④ finally에서 x+=5 → 17\n⑤ try/catch/finally 밖의 출력문에서 17 출력\n\n오답 구분: 12는 catch 직후의 중간값이고 8은 catch를 건너뛰고 finally만 적용한 값이다. 이 코드에서는 catch와 finally가 모두 실행된다."
+	},
+	{
+		"id": "2024-3-10",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "참조한 페이지가 메모리에 없어 보조기억장치에서 가져와야 하는 현상을 고르시오.",
+		"choices": [
+			"페이지 부재(Page Fault)",
+			"내부 단편화(Internal Fragmentation)",
+			"스래싱(Thrashing)",
+			"페이지 적중(Page Hit)"
+		],
+		"blanks": [
+			{
+				"answer": "페이지 부재(Page Fault)"
+			}
+		],
+		"explanation": "페이지 부재는 참조한 가상 페이지가 현재 물리 메모리에 없는 상황이다. 페이지 번호가 유효하더라도 아직 적재되지 않았다면 발생할 수 있다.\n\n처리 흐름\n① 메모리에 해당 페이지가 없음을 확인한다.\n② 운영체제가 필요하면 다른 페이지를 교체하고 요구 페이지를 불러온다.\n③ 페이지 테이블을 갱신하고 중단된 명령을 다시 진행한다.\n\n오답 구분\n• 페이지 적중: 필요한 페이지가 이미 메모리에 있음\n• 스래싱: 페이지 교체가 과도해 실제 작업을 거의 못 함\n• 내부 단편화: 할당 영역 안에 쓰지 않는 공간이 남음"
+	},
+	{
+		"id": "2024-3-11",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\nstruct Pair { int x, y; };\nint main(void) {\n    struct Pair p = {7, 8};\n    struct Pair *ptr = &p;\n    printf(\"%d\", ptr->x + ptr->y);\n}",
+		"language": "c",
+		"choices": [
+			"7",
+			"15",
+			"56",
+			"8"
+		],
+		"blanks": [
+			{
+				"answer": "15"
+			}
+		],
+		"explanation": "구조체 포인터의 멤버는 ->로 접근한다. ptr->x는 (*ptr).x와 같은 의미이다.\n\n값 추적\n① p는 x=7, y=8인 구조체이다.\n② ptr=&p이므로 ptr은 p를 가리킨다.\n③ ptr->x는 7, ptr->y는 8이다.\n④ 덧셈 결과 7+8=15를 출력한다.\n\n오답 구분: 7 또는 8은 멤버 하나만 읽은 값이고 56은 두 멤버를 곱한 값이다. 이 코드의 연산자는 +이다."
+	},
+	{
+		"id": "2024-3-12",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "테이블 t에 다음 세 행이 있을 때, SQL 결과의 COUNT(*)와 COUNT(a) 값을 각각 고르시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "<t>",
+				"headers": [
+					"a"
+				],
+				"rows": [
+					[
+						"1"
+					],
+					[
+						"NULL"
+					],
+					[
+						"3"
+					]
+				]
+			}
+		],
+		"codeSnippet": "SELECT COUNT(*), COUNT(a) FROM t;",
+		"language": "sql",
+		"choices": [
+			"1",
+			"2",
+			"3",
+			"0",
+			"4"
+		],
+		"blanks": [
+			{
+				"label": "COUNT(*)",
+				"answer": "3"
+			},
+			{
+				"label": "COUNT(a)",
+				"answer": "2"
+			}
+		],
+		"explanation": "COUNT(*)는 행 자체를 세고, COUNT(열)은 그 열이 NULL이 아닌 행만 센다.\n\n세 행에 적용\n• a=1: COUNT(*)와 COUNT(a)에 모두 포함\n• a=NULL: COUNT(*)에만 포함\n• a=3: 두 집계에 모두 포함\n따라서 COUNT(*)=3, COUNT(a)=2이다.\n\n주의: COUNT(a)는 a의 값을 더하는 연산도, 중복을 자동 제거하는 연산도 아니다. 서로 다른 값의 수를 세려면 COUNT(DISTINCT a)처럼 명시해야 한다."
+	},
+	{
+		"id": "2024-3-13",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "객체 생성 과정을 캡슐화하고 구체적으로 어떤 클래스의 객체를 만들지 하위 클래스에서 정하게 하는 생성 패턴을 고르시오.",
+		"choices": [
+			"빌더(Builder) 패턴",
+			"싱글턴(Singleton) 패턴",
+			"프로토타입(Prototype) 패턴",
+			"팩터리 메서드(Factory Method) 패턴"
+		],
+		"blanks": [
+			{
+				"answer": "팩터리 메서드(Factory Method) 패턴"
+			}
+		],
+		"explanation": "팩터리 메서드는 생성 메서드의 인터페이스를 두고 하위 클래스가 실제로 만들 객체의 타입을 정하도록 하는 생성 패턴이다.\n\n문제의 단서\n«구체적인 생성 클래스를 하위 클래스에서 결정»한다는 부분이 중요하다. 호출자는 생성 과정의 세부 클래스에 덜 의존할 수 있다.\n\n오답 구분\n• 싱글턴: 인스턴스 하나를 유지·공유\n• 빌더: 복잡한 객체를 단계적으로 조립\n• 프로토타입: 기존 객체를 복제해 생성\n추상 팩토리는 관련된 여러 제품군의 생성 인터페이스를 제공한다는 점에서 구별된다."
+	},
+	{
+		"id": "2024-3-14",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\nint main(void) {\n    int a[] = {4, 10, 17};\n    int *p = a;\n    ++p;\n    printf(\"%d\", *p);\n}",
+		"language": "c",
+		"choices": [
+			"4",
+			"10",
+			"17",
+			"5"
+		],
+		"blanks": [
+			{
+				"answer": "10"
+			}
+		],
+		"explanation": "포인터에 1을 더하면 가리키는 자료형의 원소 한 개만큼 이동한다. int 포인터를 증가시키는 것은 정수 값 자체를 증가시키는 것과 다르다.\n\n실행 순서\n① p=a로 p는 a[0]의 값 4가 있는 위치를 가리킨다.\n② ++p로 다음 int 원소인 a[1] 위치로 이동한다.\n③ *p는 a[1]의 값 10을 읽으므로 10이 출력된다.\n\n주의: ++p와 ++(*p)를 구분한다. 앞의 것은 포인터 이동이고 뒤의 것은 포인터가 가리키는 값의 증가이다."
+	},
+	{
+		"id": "2024-3-15",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "임의 길이의 입력을 고정 길이의 다이제스트로 바꾸어 무결성 검증 등에 사용하는 함수를 고르시오.",
+		"choices": [
+			"공개키 암호화 함수",
+			"암호학적 해시 함수",
+			"키 교환 함수",
+			"대칭키 암호화 함수"
+		],
+		"blanks": [
+			{
+				"answer": "암호학적 해시 함수"
+			}
+		],
+		"explanation": "암호학적 해시 함수는 길이가 다양한 입력을 고정 길이 다이제스트로 바꾼다. 입력의 변경 여부를 확인하는 무결성 검증 등에 사용한다.\n\n예시\nSHA-256은 입력 파일 크기와 관계없이 256비트 해시값을 만든다. 원본과 받은 파일의 해시를 비교해 변조·손상 여부를 확인할 수 있다.\n\n오답 구분: 대칭키·공개키 암호화는 복호화를 전제로 데이터를 암호문으로 바꾼다. 해시는 원문 복원을 어렵게 설계한 일방향 변환이다. 입력 공간보다 출력 공간이 작으므로 충돌 가능성이 완전히 사라지는 것은 아니다."
+	},
+	{
+		"id": "2024-3-16",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "text",
+		"question": "다음 Python 코드를 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "nums = [1, 2, 3, 4]\nnums.reverse()\nprint(nums)",
+		"language": "python",
+		"choices": [
+			"[1, 2, 3, 4]",
+			"None",
+			"[2, 1, 4, 3]",
+			"[4, 3, 2, 1]"
+		],
+		"blanks": [
+			{
+				"answer": "[4, 3, 2, 1]"
+			}
+		],
+		"explanation": "list.reverse()는 새 리스트를 반환하는 대신 원래 리스트의 순서를 제자리에서 뒤집는다.\n\n실행 순서\n① nums=[1, 2, 3, 4]\n② nums.reverse() 실행 후 nums=[4, 3, 2, 1]\n③ print(nums)는 바뀐 리스트를 출력하므로 [4, 3, 2, 1]이다.\n\n오답 구분: reverse() 자체의 반환값은 None이다. print(nums.reverse())였다면 None을 출력하지만, 이 코드는 reverse() 실행 후 별도로 nums를 출력한다."
+	},
+	{
+		"id": "2024-3-17",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "객체 사이에서 시간 순서에 따라 교환하는 메시지를 수직 생명선과 화살표로 표시하는 UML 다이어그램을 고르시오.",
+		"choices": [
+			"클래스(Class) 다이어그램",
+			"배치(Deployment) 다이어그램",
+			"유스케이스(Use Case) 다이어그램",
+			"시퀀스(Sequence) 다이어그램"
+		],
+		"blanks": [
+			{
+				"answer": "시퀀스(Sequence) 다이어그램"
+			}
+		],
+		"explanation": "시퀀스 다이어그램은 객체 사이의 메시지 교환을 시간 순서대로 나타내는 UML 다이어그램이다.\n\n읽는 방법\n객체마다 세로 생명선이 있고, 생명선 사이의 화살표는 메시지 전달을 뜻한다. 일반적으로 위에서 아래로 내려가며 호출과 응답의 순서를 읽는다.\n\n오답 구분\n• 클래스: 클래스·속성·메서드와 정적 관계\n• 유스케이스: 사용자와 시스템 기능의 관계\n• 배치: 실행 노드와 소프트웨어의 배치\n«시간 순서·생명선·메시지» 세 단서가 시퀀스를 가리킨다."
+	},
+	{
+		"id": "2024-3-18",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "공중망을 통해 사설 네트워크처럼 안전하게 연결하는 기술의 영문 약어를 고르시오.",
+		"choices": [
+			"VPN",
+			"VLAN",
+			"NAT",
+			"DNS"
+		],
+		"blanks": [
+			{
+				"answer": "VPN"
+			}
+		],
+		"explanation": "VPN은 Virtual Private Network의 약자로, 공중망 위에서 사설망과 같은 논리적 연결을 제공한다.\n\n동작 이해\n터널링으로 연결 구간을 구성하고 보안 VPN에서는 암호화·인증 등을 적용한다. IPsec VPN과 SSL/TLS VPN은 구현 방식의 예이다.\n\n오답 구분\n• VLAN: LAN을 논리적으로 분리\n• NAT: IP 주소 변환\n• DNS: 이름과 IP 주소 등의 대응 정보 제공\n문제는 이름 변환이나 주소 변환이 아니라 공중망을 통한 사설 연결을 묻는다."
+	},
+	{
+		"id": "2024-3-19",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\nint f(void) { static int x=0; x+=2; return x; }\nint main(void) {\n    int a = f();\n    int b = f();\n    printf(\"%d\", a+b);\n}",
+		"language": "c",
+		"choices": [
+			"2",
+			"4",
+			"6",
+			"8"
+		],
+		"blanks": [
+			{
+				"answer": "6"
+			}
+		],
+		"explanation": "static 지역 변수는 함수가 끝나도 값을 유지한다. 선언문의 초기화는 한 번만 수행된다.\n\n호출별 추적\n① 첫 f(): x가 0에서 2가 되고 2를 반환 → a=2\n② 둘째 f(): 이전 값 2에서 4가 되고 4를 반환 → b=4\n③ a+b=2+4=6을 출력한다.\n\n오답 구분: 일반 지역 변수처럼 매번 0으로 초기화된다고 생각하면 2+2=4로 잘못 계산한다. 두 호출에서 같은 static 변수의 값이 누적됨을 표시하며 푼다."
+	},
+	{
+		"id": "2024-3-20",
+		"session": "2024년 3회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "student(name, score)에서 점수가 높은 순으로, 동점이면 이름의 오름차순으로 이름과 점수를 조회하는 SQL을 고르시오.",
+		"language": "sql",
+		"choices": [
+			"SELECT name, score FROM student ORDER BY score ASC, name ASC;",
+			"SELECT name, score FROM student ORDER BY score DESC, name ASC;",
+			"SELECT name, score FROM student ORDER BY name ASC, score DESC;",
+			"SELECT name, score FROM student ORDER BY score DESC, name DESC;"
+		],
+		"blanks": [
+			{
+				"answer": "SELECT name, score FROM student ORDER BY score DESC, name ASC;"
+			}
+		],
+		"explanation": "ORDER BY의 정렬 기준은 왼쪽부터 적용된다. 먼저 점수 내림차순, 점수가 같을 때만 이름 오름차순을 적용해야 한다.\n\n구문 해석\n① score DESC: 높은 점수부터 배치한다.\n② name ASC: 동점인 행들 안에서 이름을 오름차순으로 배치한다.\n예를 들어 Alice=90, Bob=90, Zoe=100이면 Zoe → Alice → Bob 순이다.\n\n오답 구분: name을 앞에 쓰면 이름이 최우선 정렬 기준이 된다. score ASC는 낮은 점수부터, name DESC는 동점자를 이름 역순으로 정렬한다."
+	}
+]

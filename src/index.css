@@ -319,7 +319,8 @@ body {
 
 .code-box pre {
 	margin: 0;
-	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
 	font-family: var(--font-mono);
 	font-variant-ligatures: none; /* >=, == 등이 ≥, ═ 기호로 합쳐져 보이지 않도록 */
 	font-size: 0.9rem;
@@ -922,7 +923,7 @@ textarea.answer-input {
 	}
 
 	.code-box pre {
-		font-size: 0.78rem;
+		font-size: 0.82rem;
 	}
 
 	.answer-actions .answer-submit {

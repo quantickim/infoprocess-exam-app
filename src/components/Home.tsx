@@ -48,7 +48,7 @@ export default function Home({ setActiveTab, questions, userAnswers, bookmarkCou
 			tab: "quiz",
 			icon: <Sparkles size={32} />,
 			title: "유형별 문제풀이",
-			description: "키워드·코드 유형이나 2025~2026년 회차를 골라 차례대로 풀어보세요.",
+			description: "키워드·코드 유형이나 2024~2026년 회차별 학습 문제를 골라 풀어보세요.",
 			color: "linear-gradient(135deg, #6366f1, #4f46e5)",
 			glow: "rgba(99, 102, 241, 0.35)",
 			stat: `${sessionCount}개 유형·회차`,

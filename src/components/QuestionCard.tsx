@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Bookmark, CheckCircle2, XCircle, HelpCircle, Code2, PenLine, ThumbsUp, ThumbsDown, BadgeCheck } from "lucide-react";
 import { ContentBlock, Question, UserAnswerRecord } from "../types";
 import { formatScore, gradeAnswer, scoreAnswer } from "../utils/grading";
+import { formatCodeForDisplay } from "../utils/codeDisplay";
 import ChoiceAnswer, { choiceText } from "./ChoiceAnswer";
 
 interface QuestionCardProps {
@@ -222,7 +223,7 @@ export default function QuestionCard({ question, currentIndex, totalCount, userA
 					<div className="code-box-header">
 						<Code2 size={14} /> {question.language ? LANGUAGE_LABEL[question.language] : "코드"}
 					</div>
-					<pre>{question.codeSnippet}</pre>
+					<pre>{formatCodeForDisplay(question.codeSnippet, question.language)}</pre>
 				</div>
 			)}
 

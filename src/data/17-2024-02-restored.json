@@ -1,0 +1,589 @@
+[
+	{
+		"id": "2024-2-restored-01",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "내용이 같아도 별도로 만든 배열들을 비교하는 다음 Java 코드의 출력 결과를 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "class Main {\n    static void compare(int[] left, int[] right) {\n        System.out.print(left == right ? \"O\" : \"N\");\n    }\n    public static void main(String[] args) {\n        int[] first = {1, 2, 3, 4};\n        int[] second = {1, 2, 3, 4};\n        int[] third = {1, 2, 3};\n        compare(first, second);\n        compare(first, third);\n        compare(second, third);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"OOO",
+			"NNO",
+			"NNN",
+			"ONN"
+		],
+		"blanks": [
+			{
+				"answer": "NNN"
+			}
+		],
+		"explanation": "Java 배열의 ==는 배열 길이나 원소의 값이 아니라 객체 참조의 동일성을 비교한다.\n\n비교 순서\n① first와 second: 내용은 {1,2,3,4}로 같지만 별도 배열 → N\n② first와 third: 별도 배열 → N\n③ second와 third: 별도 배열 → N\n구분 공백 없이 이어 출력하므로 NNN이다.\n\n주의: 길이가 같고 모든 원소가 같아도 같은 객체라는 뜻은 아니다. 비교 대상 중 하나를 다른 참조에 대입한 코드가 있는지 확인한다. 이 문제에는 그런 참조 공유가 없다."
+	},
+	{
+		"id": "2024-2-restored-02",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "조회 성능 개선을 위해 정규화로 나눈 데이터를 다시 합치거나 중복 저장하는 설계 기법을 고르시오.",
+		"choices": [
+			"반정규화(역정규화)",
+			"정규화",
+			"인덱스 삭제",
+			"파티셔닝"
+		],
+		"blanks": [
+			{
+				"answer": "반정규화(역정규화)"
+			}
+		],
+		"explanation": "반정규화는 정규화된 테이블을 합치거나 데이터를 중복 저장하여 조회 성능 등을 개선하려는 설계 기법이다. 역정규화라고도 부른다.\n\n판단 이유\n정규화는 데이터 중복과 갱신 이상을 줄이기 위한 분리이고, 반정규화는 그 구조를 일부 완화한다. 조인 횟수 등이 줄 수 있는 대신 중복 데이터의 일관성을 직접 관리할 부담이 커진다.\n\n오답 구분: 파티셔닝은 테이블을 기준에 따라 나누는 방법이다. 인덱스를 삭제하는 행위 자체도 반정규화의 정의가 아니다. «다시 합치거나 중복 저장»이라는 설명을 기준으로 고른다."
+	},
+	{
+		"id": "2024-2-restored-03",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "SQL의 빈칸 ①~④에 들어갈 키워드를 순서대로 고르시오.",
+		"codeSnippet": "-- staff(id, name), archive(id, name)이 존재한다고 가정한다.\nINSERT INTO staff(id, name) ( ① ) (1, 'Kim');\nINSERT INTO archive(id, name) ( ② ) id, name FROM staff;\nSELECT * ( ③ ) staff;\nUPDATE staff ( ④ ) name = 'Lee' WHERE id = 1;",
+		"language": "sql",
+		"choices": [
+			"VALUES",
+			"WHERE",
+			"SET",
+			"UPDATE",
+			"FROM",
+			"GROUP BY",
+			"SELECT",
+			"INTO"
+		],
+		"blanks": [
+			{
+				"label": "①",
+				"answer": "VALUES"
+			},
+			{
+				"label": "②",
+				"answer": "SELECT"
+			},
+			{
+				"label": "③",
+				"answer": "FROM"
+			},
+			{
+				"label": "④",
+				"answer": "SET"
+			}
+		],
+		"explanation": "네 빈칸은 각각 값을 직접 넣기, 조회 결과 넣기, 조회 대상 지정, 수정할 값 지정에 대응한다.\n\n① VALUES\nINSERT INTO staff(id, name) VALUES (1, 'Kim');\n직접 나열한 값으로 staff에 행을 넣는다.\n\n② SELECT\nINSERT INTO archive(id, name) SELECT id, name FROM staff;\nstaff를 조회한 결과를 archive에 삽입한다.\n\n③ FROM\nSELECT * FROM staff;\n조회할 테이블을 지정한다.\n\n④ SET\nUPDATE staff SET name='Lee' WHERE id=1;\n변경할 열과 값을 지정하고 WHERE는 변경 대상을 제한한다.\n\n주의: VALUES와 SELECT는 둘 다 INSERT에 등장할 수 있지만 뒤에 직접 값 목록이 오는지, 조회 구문이 오는지에 따라 고른다."
+	},
+	{
+		"id": "2024-2-restored-04",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "튜플 5개와 속성 4개로 이루어진 릴레이션의 카디널리티와 차수를 각각 고르시오.",
+		"choices": [
+			"3",
+			"4",
+			"9",
+			"5",
+			"6"
+		],
+		"blanks": [
+			{
+				"label": "카디널리티",
+				"answer": "5"
+			},
+			{
+				"label": "차수",
+				"answer": "4"
+			}
+		],
+		"explanation": "관계형 데이터베이스에서 행 하나는 튜플, 열 하나는 속성이라고 부른다. 행 수와 열 수의 이름을 구분하는 문제이다.\n\n① 카디널리티(Cardinality)\n릴레이션에 들어 있는 튜플의 수이다. 튜플이 5개이므로 5이다.\n\n② 차수(Degree)\n릴레이션을 구성하는 속성의 수이다. 속성이 4개이므로 4이다.\n\n주의: 이 문항에서 카디널리티는 릴레이션의 행 수라는 뜻이다. 키 값의 합이나 셀 전체 개수 5×4=20을 구하는 것이 아니며, 요구 순서도 카디널리티가 먼저이다."
+	},
+	{
+		"id": "2024-2-restored-05",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "IP 계층에서 AH와 ESP를 이용해 IP 패킷의 인증·암호화 등을 제공하는 보안 체계를 고르시오.",
+		"choices": [
+			"TLS",
+			"HTTPS",
+			"SSH",
+			"IPsec"
+		],
+		"blanks": [
+			{
+				"answer": "IPsec"
+			}
+		],
+		"explanation": "Network layer, IP 패킷 보호, AH·ESP라는 단서가 모두 IPsec을 가리킨다. 보안 기능을 제공하는 프로토콜 모음이며 VPN 구성에 활용한다.\n\n역할 구분\nAH는 인증·무결성 등을 제공하지만 암호화로 내용을 숨기지는 않는다. ESP는 암호화를 통한 기밀성 등을 제공한다. 따라서 AH와 ESP의 역할을 같은 것으로 외우면 안 된다.\n\n오답 구분: TLS는 응용 통신을 보호하는 데 사용되고 HTTPS는 HTTP에 TLS를 적용한 방식이다. SSH는 보안 원격 접속 등에 사용된다. 이들은 IPsec의 AH·ESP 체계가 아니다."
+	},
+	{
+		"id": "2024-2-restored-06",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "code",
+		"question": "다음 Python 코드의 출력 결과를 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "def occurrences(source, part):\n    total = 0\n    for start in range(len(source)):\n        if source[start:start + len(part)] == part:\n            total += 1\n    return total\n\nvalue = \"abdcabcabca\"\nprint(f\"ab{occurrences(value, 'ab')}ca{occurrences(value, 'ca')}\")",
+		"language": "python",
+		"choices": [
+			"ab3ca2",
+			"ab2ca3",
+			"ab2ca2",
+			"ab3ca3"
+		],
+		"blanks": [
+			{
+				"answer": "ab3ca3"
+			}
+		],
+		"explanation": "occurrences는 문자열의 모든 시작 인덱스에서 길이가 같은 슬라이스를 꺼내 part와 비교한다. 같은 부분 문자열을 찾을 때마다 total을 1씩 더한다.\n\n출현 위치 (인덱스는 0부터)\n원문: abdcabcabca\n• ab: 0~1, 4~5, 7~8 → 3회\n• ca: 3~4, 6~7, 9~10 → 3회\n\n문자열 조합\nf-string에 두 횟수를 넣으면 ab + 3 + ca + 3의 형식이 되어 ab3ca3을 출력한다.\n\n주의: 각 글자의 수를 세는 것이 아니라 ab와 ca라는 연속된 두 글자를 센다. 이 구현은 시작 위치를 한 칸씩 옮기므로 겹치는 출현도 검사한다."
+	},
+	{
+		"id": "2024-2-restored-07",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "블록 크기가 128비트이고 키 길이로 128·192·256비트를 지원하는 대칭키 블록 암호 표준을 고르시오.",
+		"choices": [
+			"AES",
+			"SHA-256",
+			"DES",
+			"RSA"
+		],
+		"blanks": [
+			{
+				"answer": "AES"
+			}
+		],
+		"explanation": "128비트 블록과 128·192·256비트 키를 지원하는 대칭 블록 암호라는 조합이 AES이다.\n\n개념 구분\n블록 크기는 한 번에 처리하는 데이터 단위이고, 키 길이는 암호화에 쓰는 키의 비트 수이다. AES의 블록 크기는 키 길이를 바꿔도 128비트이다.\n\n오답 구분\n• DES: 블록 64비트, 유효 키 56비트\n• RSA: 공개키와 개인키를 사용하는 비대칭키 암호\n• SHA-256: 256비트 해시값을 만드는 함수\n이름에 숫자가 있다고 그 숫자가 모두 암호 키 길이를 뜻하는 것은 아니다."
+	},
+	{
+		"id": "2024-2-restored-08",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "패킷 교환의 연결형 전송과 비연결형 전송에 해당하는 방식을 각각 고르시오.",
+		"choices": [
+			"메시지 교환",
+			"회선 교환",
+			"가상회선",
+			"데이터그램"
+		],
+		"blanks": [
+			{
+				"label": "① 연결형",
+				"answer": "가상회선"
+			},
+			{
+				"label": "② 비연결형",
+				"answer": "데이터그램"
+			}
+		],
+		"explanation": "패킷 교환은 연결을 미리 설정하는지에 따라 가상회선과 데이터그램으로 나눠 이해한다.\n\n① 연결형 = 가상회선\n데이터를 보내기 전에 논리적 경로를 설정하고 패킷들이 그 연결을 따라 전달된다.\n\n② 비연결형 = 데이터그램\n미리 연결하지 않고 패킷마다 독립적으로 목적지까지 전달한다. 서로 다른 경로를 갈 수 있어 도착 순서가 달라질 수도 있다.\n\n오답 구분: 회선 교환은 전용 회선을 확보하는 별도의 교환 방식이고, 메시지 교환은 메시지 단위의 저장·전달 방식이다. 문제는 «패킷 교환 안의 두 방식»을 묻는다."
+	},
+	{
+		"id": "2024-2-restored-09",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "앞 기능의 출력이 다음 기능의 입력이 되도록 기능들을 묶은 모듈의 응집도를 고르시오.",
+		"choices": [
+			"교환적(통신적) 응집도",
+			"순차적 응집도",
+			"시간적 응집도",
+			"절차적 응집도"
+		],
+		"blanks": [
+			{
+				"answer": "순차적 응집도"
+			}
+		],
+		"explanation": "앞 기능의 출력이 뒤 기능의 입력으로 이어지므로 순차적 응집도이다. 단순히 정해진 순서가 있다는 것보다 데이터가 연쇄적으로 전달된다는 점이 중요하다.\n\n예시\n파일 읽기 → 읽은 데이터 정제 → 정제한 결과 저장처럼 앞 단계의 결과를 다음 단계가 사용한다.\n\n오답 구분\n• 절차적: 실행 순서가 관련된 기능들의 모음\n• 시간적: 비슷한 시점에 실행하는 작업들의 모음\n• 통신적: 동일한 입력·출력 데이터를 사용하는 기능들의 모음\n«출력이 다음 입력»이라는 문장을 발견하면 순차적을 우선 판단한다."
+	},
+	{
+		"id": "2024-2-restored-10",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "컬렉션의 내부 구조를 공개하지 않고 요소들을 차례대로 접근하게 하는 행위 패턴을 고르시오.",
+		"choices": [
+			"어댑터(Adapter)",
+			"팩터리 메서드(Factory Method)",
+			"컴포지트(Composite)",
+			"이터레이터(Iterator)"
+		],
+		"blanks": [
+			{
+				"answer": "이터레이터(Iterator)"
+			}
+		],
+		"explanation": "이터레이터는 컬렉션의 내부 저장 방식을 드러내지 않고 원소를 차례대로 접근하도록 하는 행위 패턴이다.\n\n동작 이해\n클라이언트는 다음 원소를 얻는 공통 순회 인터페이스를 사용한다. 실제 자료구조가 배열인지 연결 리스트인지에 덜 의존하도록 순회 방법을 캡슐화한다.\n\n오답 구분\n• 어댑터: 인터페이스 호환성 해결\n• 팩터리 메서드: 객체 생성 타입 결정\n• 컴포지트: 부분과 전체를 트리 구조로 표현\n«내부 구조를 노출하지 않는 순차 접근»이 이터레이터의 핵심이다."
+	},
+	{
+		"id": "2024-2-restored-11",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "아래 연결 관계에서 RIP의 홉 수 기준으로 A에서 F까지의 최단 경로를 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "복원 네트워크 그림을 연결 표로 옮겼습니다. 링크는 모두 양방향입니다. RIP에서는 아래 링크 비용 값을 합산하지 않고 링크 하나를 1홉으로 셉니다."
+			},
+			{
+				"type": "table",
+				"caption": "네트워크 연결",
+				"headers": [
+					"노드 1",
+					"노드 2",
+					"그림에 표시된 링크 비용"
+				],
+				"rows": [
+					[
+						"A",
+						"B",
+						"2"
+					],
+					[
+						"A",
+						"D",
+						"1"
+					],
+					[
+						"B",
+						"D",
+						"2"
+					],
+					[
+						"D",
+						"C",
+						"2"
+					],
+					[
+						"C",
+						"E",
+						"1"
+					],
+					[
+						"C",
+						"F",
+						"5"
+					],
+					[
+						"E",
+						"F",
+						"2"
+					]
+				]
+			}
+		],
+		"choices": [
+			"A → D → C → F",
+			"A → D → E → F",
+			"A → D → C → E → F",
+			"A → B → D → C → F"
+		],
+		"blanks": [
+			{
+				"answer": "A → D → C → F"
+			}
+		],
+		"explanation": "RIP의 경로 선택 기준은 홉 수이다. 이 문항에서는 표시된 비용 숫자와 관계없이 링크 하나를 지날 때마다 1홉으로 센다.\n\n경로 비교\n• A → D → C → F: 3홉\n• A → D → C → E → F: 4홉\n• A → B → D → C → F: 4홉\n• A → D → E → F: D-E 링크가 없어 성립하지 않는 경로\n\n따라서 유효한 보기 중 가장 짧은 3홉 경로 A → D → C → F를 고른다.\n\n주의: 링크 비용 합을 계산하면 A-D-C-F는 1+2+5=8이고 E를 거친 경로는 1+2+1+2=6이다. 비용 합이 더 작아도 RIP의 홉 수 비교에서는 4홉 경로가 정답이 아니다."
+	},
+	{
+		"id": "2024-2-restored-12",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "처음에는 CPU가 비어 있고 문맥 교환 비용은 없을 때, SRT(선점형 SJF) 스케줄링의 평균 대기시간을 고르시오.",
+		"blocks": [
+			{
+				"type": "table",
+				"caption": "프로세스",
+				"headers": [
+					"이름",
+					"도착 시간",
+					"실행 시간"
+				],
+				"rows": [
+					[
+						"A",
+						"0",
+						"8"
+					],
+					[
+						"B",
+						"1",
+						"4"
+					],
+					[
+						"C",
+						"2",
+						"9"
+					],
+					[
+						"D",
+						"3",
+						"5"
+					]
+				]
+			}
+		],
+		"choices": [
+			"6.5",
+			"8.25",
+			"5.5",
+			"7"
+		],
+		"blanks": [
+			{
+				"answer": "6.5"
+			}
+		],
+		"explanation": "SRT는 도착해 있는 프로세스 중 남은 실행시간이 가장 짧은 것을 실행한다. 더 짧은 프로세스가 도착하면 실행 중인 작업을 선점할 수 있다.\n\n실행 구간\n0~1: A 실행, 남은 시간 7\n1~5: B 실행. C와 D가 도착해도 B의 남은 시간이 더 짧아 계속 실행\n5~10: D 실행 (5 < A의 7 < C의 9)\n10~17: 남은 A 실행\n17~26: C 실행\n\n대기시간 = 완료시간 - 도착시간 - 실행시간\nA: 17-0-8=9\nB: 5-1-4=0\nC: 26-2-9=15\nD: 10-3-5=2\n\n평균 = (9+0+15+2)/4 = 26/4 = 6.5이다. 완료-도착만 계산하면 대기시간이 아니라 반환시간이다. A는 선점된 뒤 기다린 시간도 포함해야 한다."
+	},
+	{
+		"id": "2024-2-restored-13",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C 코드의 출력 결과를 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "#include <stdio.h>\nint main(void) {\n    int values[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};\n    int *rows[] = {values[1], values[2]};\n    printf(\"%d\", rows[1][1] + *(rows[1] + 2) + **rows);\n    return 0;\n}",
+		"language": "c",
+		"choices": [
+			"12",
+			"18",
+			"21",
+			"24"
+		],
+		"blanks": [
+			{
+				"answer": "21"
+			}
+		],
+		"explanation": "포인터 배열 rows의 각 원소가 values의 어느 행을 가리키는지 먼저 표시한다.\n\n행 연결\nrows[0] → values[1] = {4,5,6}\nrows[1] → values[2] = {7,8,9}\n\n각 항 계산\n① rows[1][1] = 8\n② *(rows[1]+2) = rows[1][2] = 9\n③ **rows = *(rows[0]) = 4\n따라서 8+9+4=21이다.\n\n주의: **rows는 원본 배열 전체의 첫 원소 1이 아니다. rows의 첫 포인터가 두 번째 행을 가리키므로 그 행의 첫 값 4를 읽는다."
+	},
+	{
+		"id": "2024-2-restored-14",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java 코드가 출력하는 홀수 합과 짝수 합을 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "interface ParitySum {\n    int sum(int[] values, boolean odd);\n}\nclass Calculator implements ParitySum {\n    public int sum(int[] values, boolean odd) {\n        int total = 0;\n        for (int value : values) {\n            if ((value % 2 != 0) == odd) total += value;\n        }\n        return total;\n    }\n}\nclass Main {\n    public static void main(String[] args) {\n        int[] values = {1,2,3,4,5,6,7,8,9};\n        ParitySum calculator = new Calculator();\n        System.out.print(calculator.sum(values, true) + \", \" + calculator.sum(values, false));\n    }\n}",
+		"language": "java",
+		"choices": [
+			"25, 20",
+			"20, 25",
+			"25, 25",
+			"20, 20"
+		],
+		"blanks": [
+			{
+				"answer": "25, 20"
+			}
+		],
+		"explanation": "Calculator는 ParitySum 인터페이스의 sum을 구현한다. odd 인수가 true이면 홀수, false이면 짝수를 누적한다.\n\n두 호출 계산\n① sum(values, true)\n1+3+5+7+9 = 25\n② sum(values, false)\n2+4+6+8 = 20\n③ 가운데 쉼표와 공백을 넣어 25, 20을 출력한다.\n\n주의: 조건 (value % 2 != 0) == odd를 읽을 때 odd=false이면 나머지가 0인 값이 선택된다. 홀수·짝수 출력 순서를 바꾸거나 9를 범위에서 빼지 않는다."
+	},
+	{
+		"id": "2024-2-restored-15",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 C 코드의 출력 결과를 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "#include <stdio.h>\nvoid copy_text(char *target, const char *source) {\n    while (*source != '\\0') {\n        *target++ = *source++;\n    }\n    *target = '\\0';\n}\nint main(void) {\n    char buffer[50] = \"teststring\";\n    copy_text(buffer, \"first\");\n    int total = 0;\n    for (int i = 0; buffer[i] != '\\0'; ++i) total += i;\n    printf(\"%d\", total);\n    return 0;\n}",
+		"language": "c",
+		"choices": [
+			"45",
+			"5",
+			"10",
+			"15"
+		],
+		"blanks": [
+			{
+				"answer": "10"
+			}
+		],
+		"explanation": "문자 복사 후 널 종료 문자를 어디에 쓰는지가 문자열의 최종 길이를 결정한다.\n\n실행 순서\n① buffer에는 처음 teststring이 들어 있다.\n② copy_text가 first의 다섯 문자를 앞부분에 복사한다.\n③ 바로 뒤 buffer[5]에 \\0을 넣어 문자열을 끝낸다.\n④ 반복문은 인덱스 0~4까지만 돌며 i를 더한다.\n⑤ 0+1+2+3+4=10이다.\n\n주의: 기존 teststring의 남은 바이트가 뒤에 있어도 \\0 뒤는 현재 문자열에 포함되지 않는다. 더하는 것은 문자 코드나 길이 5가 아니라 각 인덱스이다."
+	},
+	{
+		"id": "2024-2-restored-16",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "다른 모듈의 내부 처리 흐름을 선택하도록 제어 플래그를 전달하는 결합도를 고르시오.",
+		"choices": [
+			"공통 결합도(Common Coupling)",
+			"제어 결합도(Control Coupling)",
+			"내용 결합도(Content Coupling)",
+			"자료 결합도(Data Coupling)"
+		],
+		"blanks": [
+			{
+				"answer": "제어 결합도(Control Coupling)"
+			}
+		],
+		"explanation": "제어 결합도는 다른 모듈의 내부 처리 흐름을 선택하도록 제어 정보를 전달하는 경우이다.\n\n예시\n한 모듈이 save 또는 delete를 선택하는 플래그를 넘겨 상대 모듈이 분기하게 한다. 전달 정보가 계산에 쓸 값인지, 실행할 처리를 지시하는 값인지 구분해야 한다.\n\n오답 구분\n• 자료 결합도: 필요한 단순 데이터 전달\n• 공통 결합도: 전역 데이터 영역 공유\n• 내용 결합도: 다른 모듈 내부 코드·데이터를 직접 참조하거나 수정\n이 문제는 직접 내부를 수정하는 것이 아니라 플래그로 실행을 제어한다."
+	},
+	{
+		"id": "2024-2-restored-17",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 재귀 함수가 반환하여 출력하는 문자열을 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "class Main {\n    static String unique(String value, int index, boolean[] used) {\n        if (index < 0) return \"\";\n        char current = value.charAt(index);\n        String prefix = unique(value, index - 1, used);\n        if (used[current]) return prefix;\n        used[current] = true;\n        return current + prefix;\n    }\n    public static void main(String[] args) {\n        String value = \"abacabcd\";\n        System.out.print(unique(value, value.length() - 1, new boolean[256]));\n    }\n}",
+		"language": "java",
+		"choices": [
+			"abcd",
+			"dcbacaba",
+			"dcba",
+			"abacabcd"
+		],
+		"blanks": [
+			{
+				"answer": "dcba"
+			}
+		],
+		"explanation": "재귀 함수에서 문자를 읽는 시점과 used에 방문 표시하는 시점은 다르다. 먼저 index-1을 호출하고, 그 호출이 돌아온 뒤 현재 문자의 중복 여부를 검사한다.\n\n반환 단계 추적\nindex 0의 a: 처음 등장 → a\nindex 1의 b: 처음 등장 → ba\nindex 2의 a: 이미 사용 → ba\nindex 3의 c: 처음 등장 → cba\nindex 4의 a: 이미 사용 → cba\nindex 5의 b: 이미 사용 → cba\nindex 6의 c: 이미 사용 → cba\nindex 7의 d: 처음 등장 → dcba\n\n따라서 dcba이다. 중복이 아닌 문자를 결과 뒤가 아니라 앞에 붙이는 current + prefix가 핵심이다. 오른쪽에서 시작한다는 이유만으로 방문 표시도 오른쪽부터라고 가정하면 안 된다."
+	},
+	{
+		"id": "2024-2-restored-18",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "값 전달과 switch의 fall-through에 주의하여 다음 C 코드의 출력 결과를 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "#include <stdio.h>\nvoid swap(int left, int right) {\n    int saved = left;\n    left = right;\n    right = saved;\n}\nint main(void) {\n    int a = 11, b = 19;\n    swap(a, b);\n    switch (a) {\n        case 1: b += 1;\n        case 11: b += 2;\n        default: b += 3; break;\n    }\n    printf(\"%d\", a - b);\n    return 0;\n}",
+		"language": "c",
+		"choices": [
+			"-8",
+			"-10",
+			"-13",
+			"8"
+		],
+		"blanks": [
+			{
+				"answer": "-13"
+			}
+		],
+		"explanation": "먼저 swap의 효과를 판단하고, 그 뒤 switch를 실행해야 한다.\n\n① 값 전달\nswap의 left·right는 a·b의 복사본이다. 함수 안에서 두 값을 바꿔도 main의 a=11, b=19는 그대로이다.\n\n② switch 실행\na가 11이므로 case 1은 건너뛰고 case 11에서 시작한다. b+=2로 21이 된다. break가 없어 default까지 내려가 b+=3을 적용하므로 b=24이다.\n\n③ 출력\na-b = 11-24 = -13이다.\n\n주의: default는 어떤 case도 맞지 않을 때만 실행되는 것은 아니다. 앞 case에서 break 없이 내려오면 실행될 수 있다. -10은 default를 빠뜨린 중간 계산값이다."
+	},
+	{
+		"id": "2024-2-restored-19",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "code",
+		"question": "다음 단일 연결 리스트에서 출력되는 값을 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "#include <stdio.h>\nstruct Node { int value; struct Node *next; };\nint main(void) {\n    struct Node third = {30, NULL};\n    struct Node second = {20, &third};\n    struct Node first = {10, &second};\n    struct Node *head = &first;\n    printf(\"%d\", head->next->value);\n    return 0;\n}",
+		"language": "c",
+		"choices": [
+			"20",
+			"30",
+			"10",
+			"0"
+		],
+		"blanks": [
+			{
+				"answer": "20"
+			}
+		],
+		"explanation": "연결 리스트에서는 next를 따라갈 때마다 다음 노드 하나로 이동한다. value는 도착한 노드의 데이터이다.\n\n포인터 추적\n① head → first (값 10)\n② head->next → second (값 20)\n③ head->next->value → second.value = 20\n\n오답 구분: 10은 head->value, 30은 head->next->next->value이다. next를 한 번 따라갔는지 두 번 따라갔는지 세면서 푼다. 노드의 주소를 출력하는 코드가 아니라 정수 필드 값을 출력한다."
+	},
+	{
+		"id": "2024-2-restored-20",
+		"session": "2024년 2회 (복원)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "code",
+		"question": "다음 Java 코드의 출력 결과를 고르시오.",
+		"blocks": [
+			{
+				"type": "text",
+				"text": "제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."
+			}
+		],
+		"codeSnippet": "class Main {\n    public static void main(String[] args) {\n        String text = \"ITISTESTSTRING\";\n        String[] parts = text.split(\"T\");\n        System.out.print(parts[3]);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"S",
+			"RING",
+			"ES",
+			"IS"
+		],
+		"blanks": [
+			{
+				"answer": "S"
+			}
+		],
+		"explanation": "String.split(\"T\")는 대문자 T를 구분자로 사용한다. 구분자 T 자체는 결과 원소에 들어가지 않는다.\n\n분리 결과와 인덱스\n0: I\n1: IS\n2: ES\n3: S\n4: RING\n\n코드는 parts[3]을 출력하므로 네 번째 문자열 S가 정답이다. ES는 인덱스 2이고 RING은 인덱스 4이다. 원본 문자열의 문자 인덱스 3을 찾는 문제와 혼동하지 않는다."
+	}
+]

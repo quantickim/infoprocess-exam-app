@@ -1,0 +1,431 @@
+[
+	{
+		"id": "2024-2-01",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "class Main {\n    public static void main(String[] args) {\n        int[] a = {2, 5}, b = {2, 5};\n        int[] c = a;\n        System.out.print((a == b) + \" \" + (a == c));\n    }\n}",
+		"language": "java",
+		"choices": [
+			"true false",
+			"false false",
+			"true true",
+			"false true"
+		],
+		"blanks": [
+			{
+				"answer": "false true"
+			}
+		],
+		"explanation": "배열에 대한 ==는 원소가 같은지가 아니라 같은 배열 객체를 가리키는지를 비교한다.\n\n참조 관계\n① a와 b는 각각 {2, 5}로 생성한 별도 배열이다. 내용이 같아도 a == b는 false이다.\n② c = a는 배열을 복사하지 않고 a의 참조를 대입한다. 따라서 a == c는 true이다.\n③ 공백을 사이에 두고 false true를 출력한다.\n\n주의: 같은 배열인지 확인하는 비교와 배열의 내용을 비교하는 작업은 다르다. 참조 대입만으로 새 배열이 만들어지지 않는다."
+	},
+	{
+		"id": "2024-2-02",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "조회 속도를 높이기 위해 정규화된 테이블을 합치거나 중복 속성을 추가하는 기법을 고르시오.",
+		"choices": [
+			"정규화(Normalization)",
+			"인덱싱(Indexing)",
+			"반정규화(Denormalization)",
+			"파티셔닝(Partitioning)"
+		],
+		"blanks": [
+			{
+				"answer": "반정규화(Denormalization)"
+			}
+		],
+		"explanation": "반정규화는 성능 등을 위해 정규화된 구조를 일부 완화하는 설계이다. 테이블 병합이나 중복 속성 추가가 대표적인 단서이다.\n\n예시\n주문 화면에서 고객 이름을 자주 읽을 때 매번 고객 테이블을 조인하는 대신 주문에 이름을 중복 저장할 수 있다. 조회 비용을 줄일 수 있지만 이름 변경 시 여러 곳을 함께 수정해야 한다.\n\n오답 구분\n• 정규화: 중복과 갱신 이상을 줄이도록 종속 관계를 정리한다.\n• 인덱싱: 검색을 돕는 별도 접근 구조를 만든다.\n• 파티셔닝: 큰 테이블을 기준에 따라 나누어 관리한다."
+	},
+	{
+		"id": "2024-2-03",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "users(id, grade)에 id=9, grade='B'를 삽입하는 SQL과, id=9인 행의 grade를 'A'로 변경하는 SQL을 각각 고르시오.",
+		"language": "sql",
+		"choices": [
+			"UPDATE users SET grade='A' WHERE id=9;",
+			"INSERT INTO users(id, grade) VALUES (9, 'A');",
+			"UPDATE users SET grade='B' WHERE id=9;",
+			"UPDATE users SET grade='A';",
+			"DELETE FROM users WHERE id=9;",
+			"INSERT INTO users(id, grade) VALUES (9, 'B');"
+		],
+		"blanks": [
+			{
+				"label": "① 삽입",
+				"answer": "INSERT INTO users(id, grade) VALUES (9, 'B');"
+			},
+			{
+				"label": "② 변경",
+				"answer": "UPDATE users SET grade='A' WHERE id=9;"
+			}
+		],
+		"explanation": "첫 작업은 새 행 삽입이고 두 번째는 기존 행 수정이므로 서로 다른 SQL 명령이 필요하다.\n\n① 삽입\nINSERT INTO users(id, grade) VALUES (9, 'B');\n열 순서 id, grade에 맞춰 9와 B를 넣는다. 삽입 직후 상태는 (9, B)이다.\n\n② 변경\nUPDATE users SET grade='A' WHERE id=9;\nid가 9인 행만 찾아 등급을 A로 바꾼다. 최종 상태는 (9, A)이다.\n\n주의: 처음부터 A를 넣는 것은 첫 단계의 요구와 다르다. WHERE를 뺀 UPDATE는 다른 사용자의 등급까지 바꾸고, DELETE는 행을 삭제한다."
+	},
+	{
+		"id": "2024-2-04",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "호출 모듈이 플래그 값을 전달하여 피호출 모듈의 내부 실행 분기를 선택하는 결합도를 고르시오.",
+		"choices": [
+			"스탬프 결합도(Stamp Coupling)",
+			"제어 결합도(Control Coupling)",
+			"자료 결합도(Data Coupling)",
+			"공통 결합도(Common Coupling)"
+		],
+		"blanks": [
+			{
+				"answer": "제어 결합도(Control Coupling)"
+			}
+		],
+		"explanation": "단순 데이터가 아니라 «어떤 처리를 실행할지» 결정하는 플래그를 넘기므로 제어 결합도이다.\n\n예시\n호출자가 mode=1이면 저장, mode=2이면 삭제를 하도록 피호출 모듈에 값을 전달한다. 이 값은 계산 재료가 아니라 상대 모듈의 실행 흐름을 선택하는 정보이다.\n\n오답 구분\n• 자료 결합도: 필요한 단순 데이터 값 전달\n• 스탬프 결합도: 배열·구조체 등 자료구조 전달\n• 공통 결합도: 여러 모듈이 전역 데이터 공유\n플래그라는 이름보다 실제로 제어에 사용되는지가 중요하다."
+	},
+	{
+		"id": "2024-2-05",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\nint main(void) {\n    int a[2][3] = {{5,6,7},{7,8,9}};\n    int *ptr[2] = {a[0], a[1]};\n    printf(\"%d\", ptr[1][2] + ptr[0][1]);\n}",
+		"language": "c",
+		"choices": [
+			"13",
+			"15",
+			"14",
+			"16"
+		],
+		"blanks": [
+			{
+				"answer": "15"
+			}
+		],
+		"explanation": "int *ptr[2]는 정수 포인터 두 개를 담는 배열이다. 각 포인터가 2차원 배열의 한 행을 가리킨다.\n\n주소를 행·열로 바꾸기\n① ptr[0] = a[0] → 첫 행 {5, 6, 7}\n② ptr[1] = a[1] → 둘째 행 {7, 8, 9}\n③ ptr[1][2] = 9이고 ptr[0][1] = 6이다.\n④ 출력은 9 + 6 = 15이다.\n\n주의: 인덱스 2는 세 번째 원소이다. ptr[1]을 첫 행이라고 해석하거나 포인터 값 자체를 더하지 않는다."
+	},
+	{
+		"id": "2024-2-06",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "128비트 블록을 사용하고 128·192·256비트 키를 지원하는 대표적인 대칭키 블록 암호 표준을 고르시오.",
+		"choices": [
+			"DES",
+			"AES",
+			"RSA",
+			"SHA-256"
+		],
+		"blanks": [
+			{
+				"answer": "AES"
+			}
+		],
+		"explanation": "AES는 블록 크기가 128비트로 고정되고, 키 길이는 128·192·256비트 중에서 사용하는 대칭키 블록 암호이다.\n\n판별 순서\n① 암호화·복호화에 같은 비밀키를 쓰는 대칭키 방식인가?\n② 한 블록이 128비트인가?\n③ 세 가지 키 길이를 지원하는가?\n세 조건을 함께 만족하는 보기가 AES이다.\n\n오답 구분\n• DES: 블록 64비트, 유효 키 56비트\n• RSA: 공개키·개인키를 쓰는 비대칭키 암호\n• SHA-256: 암호화가 아니라 해시 함수\n블록 길이와 키 길이를 서로 바꾸어 외우지 않는다."
+	},
+	{
+		"id": "2024-2-07",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\nint main(void) {\n    int result = 0;\n    for (int i=1; i<=3; i++) result += i*2;\n    printf(\"%d\", result);\n}",
+		"language": "c",
+		"choices": [
+			"6",
+			"10",
+			"14",
+			"12"
+		],
+		"blanks": [
+			{
+				"answer": "12"
+			}
+		],
+		"explanation": "for문의 범위는 i=1부터 i<=3까지이다. result에는 i 자체가 아니라 i*2를 더한다.\n\n반복 추적\n초기 result=0\ni=1: 0+2=2\ni=2: 2+4=6\ni=3: 6+6=12\ni=4: 조건이 거짓이 되어 종료\n따라서 12를 출력한다.\n\n오답 구분: 6은 i만 더한 1+2+3의 값이기도 하고 두 번째 반복 직후의 값이기도 하다. 곱하기 2와 <= 조건을 함께 확인한다."
+	},
+	{
+		"id": "2024-2-08",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "같은 클래스 안에서 메서드 이름은 같게 두고 매개변수의 개수 또는 자료형을 다르게 정의하는 것을 고르시오.",
+		"choices": [
+			"오버라이딩(Overriding)",
+			"캡슐화(Encapsulation)",
+			"오버로딩(Overloading)",
+			"추상화(Abstraction)"
+		],
+		"blanks": [
+			{
+				"answer": "오버로딩(Overloading)"
+			}
+		],
+		"explanation": "오버로딩은 같은 이름의 메서드를 매개변수 목록이 다르게 정의하는 것이다.\n\n예시\nprint(int x)와 print(String x)는 매개변수 타입이 다르므로 오버로딩할 수 있다. print(int x, int y)처럼 개수를 다르게 해도 된다.\n\n오답 구분\n• 오버라이딩: 자식 클래스가 상속받은 메서드를 같은 시그니처로 재정의한다.\n• 캡슐화: 데이터와 기능을 묶고 접근을 제한한다.\n• 추상화: 공통적이고 중요한 특성을 뽑아 표현한다.\n반환형만 바꾸고 매개변수 목록이 같으면 오버로딩이 아니다."
+	},
+	{
+		"id": "2024-2-09",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "text",
+		"question": "다음 Python 코드를 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "s = \"A-BB-C\"\nprint(s.split(\"-\")[1])",
+		"language": "python",
+		"choices": [
+			"['A', 'BB', 'C']",
+			"C",
+			"BB",
+			"A"
+		],
+		"blanks": [
+			{
+				"answer": "BB"
+			}
+		],
+		"explanation": "split(\"-\")은 하이픈을 구분자로 사용해 문자열을 나눈다. 결과는 문자열이 아니라 문자열들의 리스트이다.\n\n순서대로 계산\n① \"A-BB-C\".split(\"-\") → ['A', 'BB', 'C']\n② 인덱스 0은 A, 1은 BB, 2는 C이다.\n③ [1]로 두 번째 원소를 꺼내므로 BB를 출력한다.\n\n주의: 전체 리스트를 출력하는 것이 아니다. print는 꺼낸 문자열의 따옴표를 붙이지 않는다."
+	},
+	{
+		"id": "2024-2-10",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "패킷을 보내기 전에 논리적 경로를 설정하고 패킷들을 같은 경로로 전달하는 패킷 교환 방식을 고르시오.",
+		"choices": [
+			"데이터그램(Datagram) 방식",
+			"메시지 교환(Message Switching) 방식",
+			"가상 회선(Virtual Circuit) 방식",
+			"회선 교환(Circuit Switching) 방식"
+		],
+		"blanks": [
+			{
+				"answer": "가상 회선(Virtual Circuit) 방식"
+			}
+		],
+		"explanation": "가상회선은 패킷을 보내기 전에 논리적인 연결 경로를 설정하는 패킷 교환 방식이다. 이후 패킷들은 설정한 경로를 따라간다.\n\n문제의 단서\n«패킷 교환»이면서 «미리 경로 설정»을 한다는 두 조건을 함께 읽어야 한다. 전용 물리 회선을 확보하는 회선 교환과는 구별된다.\n\n오답 구분\n• 데이터그램: 사전 연결 없이 각 패킷이 독립적으로 전달된다.\n• 회선 교환: 통신에 사용할 전용 회선을 설정한다.\n• 메시지 교환: 메시지 단위로 저장한 뒤 전달한다."
+	},
+	{
+		"id": "2024-2-11",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "최근 가장 오랫동안 사용되지 않은 페이지를 교체 대상으로 선택하는 알고리즘을 고르시오.",
+		"choices": [
+			"LRU(Least Recently Used)",
+			"OPT(Optimal)",
+			"FIFO(First In First Out)",
+			"LFU(Least Frequently Used)"
+		],
+		"blanks": [
+			{
+				"answer": "LRU(Least Recently Used)"
+			}
+		],
+		"explanation": "LRU는 Least Recently Used로, 마지막 참조 시점이 가장 오래된 페이지를 교체한다. 횟수가 아니라 «언제 마지막으로 썼는가»가 기준이다.\n\n예시\nA를 시각 1, B를 시각 4, C를 시각 7에 마지막으로 참조했다면 A가 교체 대상이다. A가 과거에 많이 사용됐더라도 가장 오래 쉬었으면 선택된다.\n\n오답 구분\n• FIFO: 가장 먼저 메모리에 들어온 페이지\n• LFU: 참조 횟수가 가장 적은 페이지\n• OPT: 앞으로 가장 오랫동안 쓰지 않을 페이지\n최근 사용은 LRU, 사용 빈도는 LFU로 구별한다."
+	},
+	{
+		"id": "2024-2-12",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 2,
+		"subjectName": "데이터베이스",
+		"type": "text",
+		"question": "customer(id, name)과 purchase(customer_id, amount)에서 구매 내역이 존재하는 고객의 이름과 구매액을 조회하는 SQL을 고르시오.",
+		"language": "sql",
+		"choices": [
+			"SELECT c.name, p.amount FROM customer c CROSS JOIN purchase p;",
+			"SELECT c.name, p.amount FROM customer c INNER JOIN purchase p ON c.id=p.customer_id;",
+			"SELECT c.name, p.amount FROM customer c LEFT JOIN purchase p ON c.id=p.customer_id;",
+			"SELECT c.name, p.amount FROM customer c INNER JOIN purchase p ON c.id<>p.customer_id;"
+		],
+		"blanks": [
+			{
+				"answer": "SELECT c.name, p.amount FROM customer c INNER JOIN purchase p ON c.id=p.customer_id;"
+			}
+		],
+		"explanation": "두 테이블을 고객 ID로 연결하되, 양쪽에 대응하는 행이 있는 경우만 원하므로 INNER JOIN이다.\n\n처리 흐름\n① customer를 c, purchase를 p라는 별칭으로 부른다.\n② ON c.id=p.customer_id로 같은 고객의 구매를 연결한다.\n③ c.name과 p.amount를 조회한다.\n한 고객의 구매가 세 건이면 그 고객 이름이 세 행에 나타날 수 있다.\n\n오답 구분\n• LEFT JOIN: 구매가 없는 고객도 NULL 구매액과 함께 남긴다.\n• CROSS JOIN: 고객과 구매의 모든 조합을 만든다.\n• <> 조건: 같은 고객이 아닌 구매를 연결하므로 목적과 다르다."
+	},
+	{
+		"id": "2024-2-13",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "하나의 모듈이 명확하게 정의된 단일 기능만 수행할 때의 응집도를 고르시오.",
+		"choices": [
+			"시간적 응집도",
+			"순차적 응집도",
+			"우연적 응집도",
+			"기능적 응집도"
+		],
+		"blanks": [
+			{
+				"answer": "기능적 응집도"
+			}
+		],
+		"explanation": "기능적 응집도는 모듈의 모든 요소가 명확한 하나의 기능을 수행하도록 모인 상태이다. 일반적으로 가장 높은 응집도이다.\n\n예시\n하나의 모듈이 주문 총액 계산만 책임지고, 내부 요소들이 모두 그 계산에 기여한다면 기능적 응집도로 볼 수 있다.\n\n오답 구분\n• 순차적: 앞 기능의 출력이 다음 기능의 입력이 된다.\n• 시간적: 초기화처럼 같은 시점에 수행하는 작업을 모은다.\n• 우연적: 뚜렷한 관련 없이 작업을 한데 모은다.\n단순히 실행 순서가 있다는 이유만으로 기능적이라고 판단하지 않는다."
+	},
+	{
+		"id": "2024-2-14",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 1,
+		"subjectName": "소프트웨어 설계",
+		"type": "text",
+		"question": "복잡한 하위 시스템에 통합된 단순 인터페이스를 제공하는 구조 패턴을 고르시오.",
+		"choices": [
+			"퍼사드(Facade) 패턴",
+			"브리지(Bridge) 패턴",
+			"어댑터(Adapter) 패턴",
+			"옵서버(Observer) 패턴"
+		],
+		"blanks": [
+			{
+				"answer": "퍼사드(Facade) 패턴"
+			}
+		],
+		"explanation": "퍼사드는 복잡한 하위 시스템 앞에 사용하기 쉬운 통합 창구를 제공하는 구조 패턴이다.\n\n예시\n결제·재고·배송 모듈을 각각 호출하는 대신 주문하기() 하나가 필요한 하위 호출을 묶어 제공한다. 클라이언트는 복잡한 내부 절차를 덜 알아도 된다.\n\n오답 구분\n• 어댑터: 기존 인터페이스를 원하는 형태로 변환한다.\n• 브리지: 추상화와 구현을 분리해 각각 확장한다.\n• 옵서버: 상태 변화가 생기면 구독자들에게 알린다.\n«복잡한 시스템에 단순한 인터페이스»가 퍼사드의 단서이다."
+	},
+	{
+		"id": "2024-2-15",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 7,
+		"subjectName": "C 언어",
+		"type": "text",
+		"question": "다음 C 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "#include <stdio.h>\n#include <string.h>\nint main(void) {\n    char s[] = \"abc\";\n    printf(\"%zu\", strlen(s));\n}",
+		"language": "c",
+		"choices": [
+			"4",
+			"2",
+			"0",
+			"3"
+		],
+		"blanks": [
+			{
+				"answer": "3"
+			}
+		],
+		"explanation": "C 문자열은 마지막에 널 종료 문자 \\0을 가진다. strlen은 종료 문자 앞에 있는 문자의 개수를 센다.\n\n메모리 구성\ns[0]=a, s[1]=b, s[2]=c, s[3]=\\0\n문자 세 개 뒤에서 문자열이 끝나므로 strlen(s)는 3을 반환한다.\n\n오답 구분: 배열 자체의 크기 sizeof(s)는 종료 문자까지 포함해 4바이트이다. strlen과 sizeof가 무엇을 세는지 구별한다. printf의 %zu는 size_t 값을 출력하는 지정자이다."
+	},
+	{
+		"id": "2024-2-16",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 5,
+		"subjectName": "정보 보안",
+		"type": "text",
+		"question": "네트워크 계층에서 AH와 ESP를 활용해 IP 패킷을 보호하는 기술을 고르시오.",
+		"choices": [
+			"IPSec",
+			"SSH",
+			"HTTPS",
+			"TLS"
+		],
+		"blanks": [
+			{
+				"answer": "IPSec"
+			}
+		],
+		"explanation": "IPsec은 네트워크 계층의 IP 패킷을 보호하는 보안 프로토콜 모음이다. AH·ESP가 함께 나오면 IPsec을 떠올린다.\n\n구성 구분\n• AH: 데이터 무결성·송신자 인증 등을 제공하며 암호화 자체는 제공하지 않는다.\n• ESP: 암호화를 통한 기밀성 등을 제공한다.\nIPsec은 VPN을 구현하는 데 활용된다.\n\n오답 구분: TLS는 보안 통신에, SSH는 원격 접속 등에 사용된다. HTTPS는 HTTP에 TLS를 적용한 방식이다. 이들은 AH·ESP를 구성 요소로 사용하는 체계가 아니다."
+	},
+	{
+		"id": "2024-2-17",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 8,
+		"subjectName": "Java",
+		"type": "text",
+		"question": "다음 Java 프로그램을 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "class P { int n = 1; }\nclass Main {\n    public static void main(String[] args) {\n        P a = new P();\n        P b = a;\n        b.n = 11;\n        System.out.print(a.n);\n    }\n}",
+		"language": "java",
+		"choices": [
+			"12",
+			"2",
+			"11",
+			"1"
+		],
+		"blanks": [
+			{
+				"answer": "11"
+			}
+		],
+		"explanation": "Java에서 객체 변수를 대입하면 객체 자체가 복사되는 것이 아니라 참조가 복사된다.\n\n실행 순서\n① new P()로 객체 하나를 만들고 a가 가리킨다. n은 1이다.\n② P b=a로 b도 같은 객체를 가리킨다. 새 객체는 생기지 않는다.\n③ b.n=11은 그 공유 객체의 필드를 바꾼다.\n④ a.n을 읽어도 11이 나온다.\n\n주의: a와 b가 변수 두 개라는 이유로 객체도 두 개라고 세면 안 된다. 실제 객체 생성 지점인 new의 횟수를 확인한다."
+	},
+	{
+		"id": "2024-2-18",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 6,
+		"subjectName": "OS·네트워크·신기술",
+		"type": "text",
+		"question": "웹 페이지 전송에 사용하는 응용 계층 프로토콜과 TLS로 보호하는 버전을 각각 고르시오.",
+		"choices": [
+			"SSH",
+			"HTTP",
+			"SMTP",
+			"HTTPS",
+			"FTP"
+		],
+		"blanks": [
+			{
+				"label": "① 기본 프로토콜",
+				"answer": "HTTP"
+			},
+			{
+				"label": "② TLS 적용 버전",
+				"answer": "HTTPS"
+			}
+		],
+		"explanation": "웹의 요청·응답에 사용하는 기본 프로토콜은 HTTP이고, 여기에 TLS 보안을 적용한 방식은 HTTPS이다.\n\n각 빈칸\n① HTTP: Hypertext Transfer Protocol\n② HTTPS: HTTP 통신을 TLS로 보호한 방식\n일반적인 기본 포트는 각각 80과 443이다.\n\n오답 구분\n• FTP: 파일 전송\n• SMTP: 전자우편 전송\n• SSH: 보안 원격 접속\nHTTPS의 단서는 웹 통신과 TLS가 함께 제시된다는 점이다."
+	},
+	{
+		"id": "2024-2-19",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 9,
+		"subjectName": "Python",
+		"type": "text",
+		"question": "다음 Python 코드를 실행했을 때의 출력 결과를 고르시오.",
+		"codeSnippet": "arr = [4, 5, 6, 7, 8]\nprint(arr[::-2])",
+		"language": "python",
+		"choices": [
+			"[7, 5]",
+			"[8, 6, 4]",
+			"[8, 7, 6, 5, 4]",
+			"[4, 6, 8]"
+		],
+		"blanks": [
+			{
+				"answer": "[8, 6, 4]"
+			}
+		],
+		"explanation": "슬라이스 [시작:끝:간격]에서 간격이 -2이면 뒤에서 앞으로 두 칸씩 이동한다. 시작과 끝을 비워 역방향 전체 범위를 사용한다.\n\n인덱스 추적\n원본: [4, 5, 6, 7, 8]\n인덱스: 0, 1, 2, 3, 4\n선택 순서: 4 → 2 → 0\n선택한 값: 8 → 6 → 4\n따라서 [8, 6, 4]이다.\n\n오답 구분: [4, 6, 8]은 [::2], 전체 역순은 [::-1]이다. [::-2]는 원본 리스트를 제자리에서 바꾸지 않고 새 리스트를 만든다."
+	},
+	{
+		"id": "2024-2-20",
+		"session": "2024년 2회 (연습)",
+		"subjectId": 4,
+		"subjectName": "애플리케이션 테스트",
+		"type": "text",
+		"question": "입력값을 유효·무효 집합으로 나누고 각 집합의 대표값을 선정하는 블랙박스 테스트 기법을 고르시오.",
+		"choices": [
+			"결정 테이블(Decision Table) 테스트",
+			"경곗값 분석(Boundary Value Analysis)",
+			"원인·결과 그래프(Cause-Effect Graph)",
+			"동등 분할(Equivalence Partitioning)"
+		],
+		"blanks": [
+			{
+				"answer": "동등 분할(Equivalence Partitioning)"
+			}
+		],
+		"explanation": "동등 분할은 비슷한 동작을 낼 것으로 보는 입력을 유효·무효 집합으로 나눈 뒤, 각 집합에서 대표값을 골라 검사하는 기법이다.\n\n예시\n허용 나이가 1~120이라면 1 미만, 1~120, 120 초과로 나누고 -1, 30, 150 같은 대표값을 고를 수 있다. 모든 입력을 검사하는 부담을 줄이는 목적이다.\n\n오답 구분\n• 경곗값 분석: 0·1·2 또는 119·120·121처럼 경계 주변에 집중한다.\n• 결정 테이블: 여러 조건의 조합과 동작을 표로 정리한다.\n• 원인·결과 그래프: 입력 조건과 결과의 논리 관계를 표현한다."
+	}
+]
