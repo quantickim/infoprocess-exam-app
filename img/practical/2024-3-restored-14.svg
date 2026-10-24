@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="390" viewBox="0 0 620 390" role="img" aria-labelledby="title description">
+  <title id="title">UML 클래스 관계 ①, ②, ③</title>
+  <desc id="description">① Class A와 Class B 사이의 실선. ② Class C에서 Class D를 향하는 실선과 빈 삼각형. ③ Class E에서 Class F를 향하는 점선과 열린 화살표.</desc>
+  <rect width="620" height="390" rx="14" fill="#fff"/>
+  <g fill="none" stroke="#dbe2ea" stroke-width="1">
+    <path d="M22 135H598M22 255H598"/>
+  </g>
+  <g font-family="Arial, 'Noto Sans KR', sans-serif" fill="#172033" text-anchor="middle">
+    <g transform="translate(0 26)">
+      <text x="34" y="51" font-size="30">①</text>
+      <g fill="#fff" stroke="#273449" stroke-width="2.5">
+        <path d="M78 0H256V84H78ZM78 38H256M78 61H256"/>
+        <path d="M390 0H568V84H390ZM390 38H568M390 61H568"/>
+        <path d="M256 42H390"/>
+      </g>
+      <text x="167" y="27" font-size="24">Class A</text>
+      <text x="479" y="27" font-size="24">Class B</text>
+    </g>
+    <g transform="translate(0 146)">
+      <text x="34" y="51" font-size="30">②</text>
+      <g fill="#fff" stroke="#273449" stroke-width="2.5">
+        <path d="M78 0H256V84H78ZM78 38H256M78 61H256"/>
+        <path d="M390 0H568V84H390ZM390 38H568M390 61H568"/>
+        <path d="M256 42H366"/>
+        <path d="M366 28L390 42L366 56Z"/>
+      </g>
+      <text x="167" y="27" font-size="24">Class C</text>
+      <text x="479" y="27" font-size="24">Class D</text>
+    </g>
+    <g transform="translate(0 266)">
+      <text x="34" y="51" font-size="30">③</text>
+      <g fill="#fff" stroke="#273449" stroke-width="2.5">
+        <path d="M78 0H256V84H78ZM78 38H256M78 61H256"/>
+        <path d="M390 0H568V84H390ZM390 38H568M390 61H568"/>
+        <path d="M256 42H390" stroke-dasharray="10 7"/>
+        <path d="M375 31L390 42L375 53" fill="none"/>
+      </g>
+      <text x="167" y="27" font-size="24">Class E</text>
+      <text x="479" y="27" font-size="24">Class F</text>
+    </g>
+  </g>
+</svg>
