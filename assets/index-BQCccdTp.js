@@ -3127,7 +3127,7 @@ git pull은 먼저 fetch로 원격 변경을 가져온 뒤 설정·옵션에 따
 • git commit: 로컬 변경을 커밋으로 기록한다.
 
 풀이 보강
-pull의 대상 원격과 브랜치는 인수 또는 현재 브랜치의 upstream 설정에 따라 결정된다. 가져온 변경이 현재 이력의 연장이라면 fast-forward로 반영할 수 있고, 이력이 갈라졌다면 설정·옵션에 따라 통합 방식이 달라진다. 충돌 해결이나 별도 통합을 직접 하려면 fetch 후 확인하는 흐름과 비교해 기억한다.`}],K1=Object.freeze(Object.defineProperty({__proto__:null,default:Q1},Symbol.toStringTag,{value:"Module"})),Y1=[{id:"2024-3-restored-01",session:"2024년 3회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Main {
+pull의 대상 원격과 브랜치는 인수 또는 현재 브랜치의 upstream 설정에 따라 결정된다. 가져온 변경이 현재 이력의 연장이라면 fast-forward로 반영할 수 있고, 이력이 갈라졌다면 설정·옵션에 따라 통합 방식이 달라진다. 충돌 해결이나 별도 통합을 직접 하려면 fetch 후 확인하는 흐름과 비교해 기억한다.`}],K1=Object.freeze(Object.defineProperty({__proto__:null,default:Q1},Symbol.toStringTag,{value:"Module"})),Y1=[{id:"2024-3-restored-01",session:"2024년 3회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",codeSnippet:`class Main {
     public static void main(String[] args) {
         String[] values = {"A", "A", new String("A")};
         for (int i = 0; i + 1 < values.length; ++i) {
@@ -3150,7 +3150,7 @@ OOAAA
 주의: equals를 ==로 오해하면 두 번째 비교를 거짓으로 판단해 ONAAA를 고르기 쉽다. 별도 객체여도 String.equals()는 내용이 같으면 참이다.
 
 풀이 보강
-첫 반복의 i는 0과 1뿐이라 인접한 문자열을 두 번 비교한다. 모두 내용 A가 같아 O가 두 번 나온 뒤 두 번째 반복이 A 세 개를 출력한다. 세 번째 원소가 new String으로 만들어졌어도 equals의 내용 비교 결과는 같다. 참조 비교 ==로 바뀌었을 때의 결과와 현재 코드의 결과를 섞지 않는다.`},{id:"2024-3-restored-02",session:"2024년 3회",subjectId:9,subjectName:"Python",type:"code",question:"다음 Python 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`values = [1, 2, 3, 4, 5, 6]
+첫 반복의 i는 0과 1뿐이라 인접한 문자열을 두 번 비교한다. 모두 내용 A가 같아 O가 두 번 나온 뒤 두 번째 반복이 A 세 개를 출력한다. 세 번째 원소가 new String으로 만들어졌어도 equals의 내용 비교 결과는 같다. 참조 비교 ==로 바뀌었을 때의 결과와 현재 코드의 결과를 섞지 않는다.`},{id:"2024-3-restored-02",session:"2024년 3회",subjectId:9,subjectName:"Python",type:"code",question:"다음 Python 코드의 출력 결과를 고르시오.",codeSnippet:`values = [1, 2, 3, 4, 5, 6]
 for i in range(len(values) // 2):
     values[i], values[-1 - i] = values[-1 - i], values[i]
 print(sum(values[::2]) - sum(values[1::2]))`,language:"python",choices:["0","21","-3","3"],blanks:[{answer:"3"}],explanation:`정답
@@ -3268,7 +3268,7 @@ GoF 패턴은 크게 생성·구조·행위로 나눈다. 제시된 세 패턴�
 오답 구분: 생성 패턴은 객체를 만드는 방식, 구조 패턴은 클래스·객체를 조합하는 구조에 초점을 둔다. 각 패턴 이름의 철자보다 무엇을 해결하는지로 분류한다.
 
 풀이 보강
-Observer는 변경 통지, Command는 요청의 객체화, Chain of Responsibility는 요청을 처리할 후보들에게 순차 전달하는 패턴이다. 셋 모두 객체의 역할·요청 처리·협력 방식을 정하므로 행위 분류다. 생성은 객체를 만드는 방법, 구조는 클래스·객체를 조합하는 방법이라는 분류 기준을 먼저 적용한다.`},{id:"2024-3-restored-07",session:"2024년 3회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+Observer는 변경 통지, Command는 요청의 객체화, Chain of Responsibility는 요청을 처리할 후보들에게 순차 전달하는 패턴이다. 셋 모두 객체의 역할·요청 처리·협력 방식을 정하므로 행위 분류다. 생성은 객체를 만드는 방법, 구조는 클래스·객체를 조합하는 방법이라는 분류 기준을 먼저 적용한다.`},{id:"2024-3-restored-07",session:"2024년 3회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 int next_value(void) {
     static int value = 0;
     value += 2;
@@ -3330,7 +3330,7 @@ URL은 scheme://authority/path?query#fragment 형태로 구역을 나눠 읽는�
 주의: 8080은 query가 아니라 authority에 들어 있는 포트이다. 구역을 왼쪽부터 그대로 1,2,3,4,5로 쓰지 않는다.
 
 풀이 보강
-구분자 ://, ?, # 자체와 각 구성 요소의 내용을 구분한다. authority에는 호스트뿐 아니라 포트도 포함하므로 localhost:8080 전체가 2번이다. query는 name=ferret, fragment는 nose이며 물음표·샵은 경계 표시다. URL에 쓰인 순서와 문제에서 요구한 query→path→scheme→authority→fragment 순서가 다르므로 번호를 재배열한다.`},{id:"2024-3-restored-10",session:"2024년 3회",subjectId:9,subjectName:"Python",type:"code",question:"다음 Python 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`def measure(value):
+구분자 ://, ?, # 자체와 각 구성 요소의 내용을 구분한다. authority에는 호스트뿐 아니라 포트도 포함하므로 localhost:8080 전체가 2번이다. query는 name=ferret, fragment는 nose이며 물음표·샵은 경계 표시다. URL에 쓰인 순서와 문제에서 요구한 query→path→scheme→authority→fragment 순서가 다르므로 번호를 재배열한다.`},{id:"2024-3-restored-10",session:"2024년 3회",subjectId:9,subjectName:"Python",type:"code",question:"다음 Python 코드의 출력 결과를 고르시오.",codeSnippet:`def measure(value):
     if type(value) is int:
         return 100
     if type(value) is str:
@@ -3351,7 +3351,7 @@ print(measure("100.0") + measure(100.0) + measure((100, 200)))`,language:"python
 합은 5+20+20=45이다. 문자열 "100.0"을 숫자 100으로 해석하거나, 튜플 길이 2를 반환한다고 생각하지 않는다. 이 함수가 len을 호출하는 대상은 문자열뿐이다.
 
 풀이 보강
-문자열 "100.0"은 다섯 글자라 5이고, 숫자 100.0은 float여서 int 분기에 들어가지 않아 20이다. 튜플 (100,200)도 str이나 int가 아니므로 마지막 return 20을 사용한다. 튜플 원소 합이나 길이를 구하라는 코드가 없다. 겉에 보이는 숫자보다 실제 타입과 선택되는 return을 먼저 찾는다.`},{id:"2024-3-restored-11",session:"2024년 3회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Base {
+문자열 "100.0"은 다섯 글자라 5이고, 숫자 100.0은 float여서 int 분기에 들어가지 않아 20이다. 튜플 (100,200)도 str이나 int가 아니므로 마지막 return 20을 사용한다. 튜플 원소 합이나 길이를 구하라는 코드가 없다. 겉에 보이는 숫자보다 실제 타입과 선택되는 return을 먼저 찾는다.`},{id:"2024-3-restored-11",session:"2024년 3회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",codeSnippet:`class Base {
     int x = 3;
     int getX() { return x * 2; }
 }
@@ -3382,7 +3382,7 @@ class Main {
 주의: a.getX() 안에서 쓰는 x는 실행된 Derived 메서드가 참조하는 Derived.x이다. a가 Base 타입이라는 이유로 그 메서드 안의 x까지 3으로 바꾸면 안 된다.
 
 풀이 보강
-항별로 a.getX()=21, a.x=3, b.getX()=21, b.x=7이다. 메서드는 둘 다 Derived의 구현을 쓰지만 필드는 변수의 선언 타입 Base·Derived에 따라 달라진다. Derived.getX 내부의 x는 Derived가 선언한 7을 읽는다. 네 항을 나란히 적어 21+3+21+7=52로 검산한다.`},{id:"2024-3-restored-12",session:"2024년 3회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 연결 리스트에서 앞의 두 노드 값을 한 번 교환한 뒤 출력한 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+항별로 a.getX()=21, a.x=3, b.getX()=21, b.x=7이다. 메서드는 둘 다 Derived의 구현을 쓰지만 필드는 변수의 선언 타입 Base·Derived에 따라 달라진다. Derived.getX 내부의 x는 Derived가 선언한 7을 읽는다. 네 항을 나란히 적어 21+3+21+7=52로 검산한다.`},{id:"2024-3-restored-12",session:"2024년 3회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 연결 리스트에서 앞의 두 노드 값을 한 번 교환한 뒤 출력한 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 struct Node { int value; struct Node *next; };
 int main(void) {
     struct Node first = {1, NULL};
@@ -3480,7 +3480,7 @@ UML 관계는 선 모양과 끝 기호를 함께 확인한다. 복원 그림의 
 주의: 복합키는 여러 속성으로 구성된 키라는 말로, 최소성을 만족하는지까지 정해 주지는 않는다.
 
 풀이 보강
-최소성은 속성 수가 다른 모든 키보다 가장 적다는 의미가 아니라, 그 키에서 어떤 속성도 빼면 유일성이 깨진다는 뜻이다. 예를 들어 학번과 이메일은 각각 후보키가 될 수 있고 둘 중 선택하지 않은 쪽은 대체키다. 두 속성으로 된 복합키도 불필요한 속성이 없다면 후보키가 될 수 있다.`},{id:"2024-3-restored-16",session:"2024년 3회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+최소성은 속성 수가 다른 모든 키보다 가장 적다는 의미가 아니라, 그 키에서 어떤 속성도 빼면 유일성이 깨진다는 뜻이다. 예를 들어 학번과 이메일은 각각 후보키가 될 수 있고 둘 중 선택하지 않은 쪽은 대체키다. 두 속성으로 된 복합키도 불필요한 속성이 없다면 후보키가 될 수 있다.`},{id:"2024-3-restored-16",session:"2024년 3회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 void update(int **values, int size) {
     for (int i = 0; i < size; ++i) {
         (*values)[i] = ((*values)[i] + i) % 5;
@@ -3525,7 +3525,7 @@ VPN은 Virtual Private Network이다. 공용망 위에 논리적 사설 연결�
 «공용망을 통한 사설 연결»과 «LAN 내부의 논리 분리»를 구분한다.
 
 풀이 보강
-VPN의 핵심은 공용 기반망 위의 논리적 사설 연결이다. 모든 VPN 기술이 정의상 암호화를 반드시 제공하는 것은 아니지만 인터넷 보안 VPN은 일반적으로 인증·암호화를 사용한다. VLAN은 로컬 네트워크의 논리적 분할, NAT는 주소 변환이므로 그 자체만으로 원격 구간의 보안 터널을 만드는 기술은 아니다.`},{id:"2024-3-restored-18",session:"2024년 3회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Main {
+VPN의 핵심은 공용 기반망 위의 논리적 사설 연결이다. 모든 VPN 기술이 정의상 암호화를 반드시 제공하는 것은 아니지만 인터넷 보안 VPN은 일반적으로 인증·암호화를 사용한다. VLAN은 로컬 네트워크의 논리적 분할, NAT는 주소 변환이므로 그 자체만으로 원격 구간의 보안 터널을 만드는 기술은 아니다.`},{id:"2024-3-restored-18",session:"2024년 3회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",codeSnippet:`class Main {
     public static void main(String[] args) {
         int sum = 0;
         try {
@@ -3554,7 +3554,7 @@ sum 추적
 오답 구분: 1은 finally를 빠뜨린 값이고 100은 catch를 빠뜨린 값이다. 이 코드에서는 두 블록이 모두 실행된다. 예외 발생 위치에서 try의 정상 흐름을 계속 진행한다고 생각하지 않는다.
 
 풀이 보강
-null은 문자열 "null"이 아니라 아무 객체도 가리키지 않는 참조다. 따라서 length() 호출에서 NullPointerException이 발생하고 catch에서 1, finally에서 100을 더한다. finally 이후 예외가 처리된 상태로 print에 도달해 101을 출력한다. 문자열 길이 0을 반환하는 빈 문자열과도 구별해야 한다.`},{id:"2024-3-restored-19",session:"2024년 3회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Printer {
+null은 문자열 "null"이 아니라 아무 객체도 가리키지 않는 참조다. 따라서 length() 호출에서 NullPointerException이 발생하고 catch에서 1, finally에서 100을 더한다. finally 이후 예외가 처리된 상태로 print에 도달해 101을 출력한다. 문자열 길이 0을 반환하는 빈 문자열과도 구별해야 한다.`},{id:"2024-3-restored-19",session:"2024년 3회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",codeSnippet:`class Printer {
     void print(Integer value) { System.out.print("A" + value); }
     void print(Object value) { System.out.print("B" + value); }
     void print(Number value) { System.out.print("C" + value); }
@@ -3600,7 +3600,7 @@ B0
 임시로 사용한다는 이유만이 아니라 연결 구성 방식이 기준이다.
 
 풀이 보강
-중앙 액세스 포인트가 없다는 것이 인터넷 연결 여부나 암호화 유무를 뜻하지는 않는다. 단말들이 직접 연결을 형성하며 필요에 따라 여러 홉으로 전달할 수도 있다. 이동성이 강조되는 MANET은 모바일 애드혹 네트워크다. VLAN은 기존 LAN의 논리 구분이므로 물리 인프라 없이 임시로 자가 구성한다는 단서와 다르다.`}],X1=Object.freeze(Object.defineProperty({__proto__:null,default:Y1},Symbol.toStringTag,{value:"Module"})),Z1=[{id:"2024-2-restored-01",session:"2024년 2회",subjectId:8,subjectName:"Java",type:"code",question:"내용이 같아도 별도로 만든 배열들을 비교하는 다음 Java 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Main {
+중앙 액세스 포인트가 없다는 것이 인터넷 연결 여부나 암호화 유무를 뜻하지는 않는다. 단말들이 직접 연결을 형성하며 필요에 따라 여러 홉으로 전달할 수도 있다. 이동성이 강조되는 MANET은 모바일 애드혹 네트워크다. VLAN은 기존 LAN의 논리 구분이므로 물리 인프라 없이 임시로 자가 구성한다는 단서와 다르다.`}],X1=Object.freeze(Object.defineProperty({__proto__:null,default:Y1},Symbol.toStringTag,{value:"Module"})),Z1=[{id:"2024-2-restored-01",session:"2024년 2회",subjectId:8,subjectName:"Java",type:"code",question:"내용이 같아도 별도로 만든 배열들을 비교하는 다음 Java 코드의 출력 결과를 고르시오.",codeSnippet:`class Main {
     static void compare(int[] left, int[] right) {
         System.out.print(left == right ? "O" : "N");
     }
@@ -3699,7 +3699,7 @@ AH는 인증·무결성 등을 제공하지만 암호화로 내용을 숨기지�
 오답 구분: TLS는 응용 통신을 보호하는 데 사용되고 HTTPS는 HTTP에 TLS를 적용한 방식이다. SSH는 보안 원격 접속 등에 사용된다. 이들은 IPsec의 AH·ESP 체계가 아니다.
 
 풀이 보강
-AH는 무결성·출처 인증 등을 담당하며 데이터 암호화 기능은 없다. ESP는 선택한 보안 설정에 따라 기밀성과 무결성·인증 등을 제공한다. 전송 모드는 원래 IP 패킷의 상위 계층 부분을, 터널 모드는 원래 IP 패킷 전체를 새 패킷 안에 넣어 보호한다. 두 모드 모두 IPsec 체계 안에서 구분하는 것이다.`},{id:"2024-2-restored-06",session:"2024년 2회",subjectId:9,subjectName:"Python",type:"code",question:"다음 Python 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`def occurrences(source, part):
+AH는 무결성·출처 인증 등을 담당하며 데이터 암호화 기능은 없다. ESP는 선택한 보안 설정에 따라 기밀성과 무결성·인증 등을 제공한다. 전송 모드는 원래 IP 패킷의 상위 계층 부분을, 터널 모드는 원래 IP 패킷 전체를 새 패킷 안에 넣어 보호한다. 두 모드 모두 IPsec 체계 안에서 구분하는 것이다.`},{id:"2024-2-restored-06",session:"2024년 2회",subjectId:9,subjectName:"Python",type:"code",question:"다음 Python 코드의 출력 결과를 고르시오.",codeSnippet:`def occurrences(source, part):
     total = 0
     for start in range(len(source)):
         if source[start:start + len(part)] == part:
@@ -3827,7 +3827,7 @@ D: 10-3-5=2
 평균 = (9+0+15+2)/4 = 26/4 = 6.5이다. 완료-도착만 계산하면 대기시간이 아니라 반환시간이다. A는 선점된 뒤 기다린 시간도 포함해야 한다.
 
 풀이 보강
-새 작업이 도착할 때는 원래 실행 시간이 아니라 현재 남은 시간을 비교한다. 시각 2에는 실행 중인 작업의 남은 시간이 3, 시각 3에는 2이므로 새 작업이 CPU를 빼앗지 못한다. 반환시간은 완료−도착, 대기시간은 반환시간−실행시간이다. 처음 CPU를 받기까지의 응답시간과 누적 대기시간을 구별한다.`},{id:"2024-2-restored-13",session:"2024년 2회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+새 작업이 도착할 때는 원래 실행 시간이 아니라 현재 남은 시간을 비교한다. 시각 2에는 실행 중인 작업의 남은 시간이 3, 시각 3에는 2이므로 새 작업이 CPU를 빼앗지 못한다. 반환시간은 완료−도착, 대기시간은 반환시간−실행시간이다. 처음 CPU를 받기까지의 응답시간과 누적 대기시간을 구별한다.`},{id:"2024-2-restored-13",session:"2024년 2회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 int main(void) {
     int values[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};
     int *rows[] = {values[1], values[2]};
@@ -3852,7 +3852,7 @@ rows[1] → values[2] = {7,8,9}
 주의: **rows는 원본 배열 전체의 첫 원소 1이 아니다. rows의 첫 포인터가 두 번째 행을 가리키므로 그 행의 첫 값 4를 읽는다.
 
 풀이 보강
-rows[0]은 values[1]={4,5,6}, rows[1]은 values[2]={7,8,9}를 가리킨다. 따라서 rows[1][1]=8, *(rows[1]+2)=9, **rows=rows[0][0]=4다. 합은 8+9+4=21이며, **rows가 첫 2차원 배열 원소 values[0][0]이 아니라 첫 행 포인터가 가리키는 값이라는 점을 확인한다.`},{id:"2024-2-restored-14",session:"2024년 2회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드가 출력하는 홀수 합과 짝수 합을 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`interface ParitySum {
+rows[0]은 values[1]={4,5,6}, rows[1]은 values[2]={7,8,9}를 가리킨다. 따라서 rows[1][1]=8, *(rows[1]+2)=9, **rows=rows[0][0]=4다. 합은 8+9+4=21이며, **rows가 첫 2차원 배열 원소 values[0][0]이 아니라 첫 행 포인터가 가리키는 값이라는 점을 확인한다.`},{id:"2024-2-restored-14",session:"2024년 2회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드가 출력하는 홀수 합과 짝수 합을 고르시오.",codeSnippet:`interface ParitySum {
     int sum(int[] values, boolean odd);
 }
 class Calculator implements ParitySum {
@@ -3886,7 +3886,7 @@ Calculator는 ParitySum 인터페이스의 sum을 구현한다. odd 인수가 tr
 주의: 조건 (value % 2 != 0) == odd를 읽을 때 odd=false이면 나머지가 0인 값이 선택된다. 홀수·짝수 출력 순서를 바꾸거나 9를 범위에서 빼지 않는다.
 
 풀이 보강
-odd=true이면 (value%2!=0)가 참인 값만, false이면 그 식이 거짓인 값만 합친다. 홀수는 1+3+5+7+9=25, 짝수는 2+4+6+8=20이다. 두 합을 더하면 전체 합 45가 되어 검산할 수 있다. 출력 순서는 true 호출 뒤 false 호출이며 가운데 문자열 ", "가 붙는다.`},{id:"2024-2-restored-15",session:"2024년 2회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+odd=true이면 (value%2!=0)가 참인 값만, false이면 그 식이 거짓인 값만 합친다. 홀수는 1+3+5+7+9=25, 짝수는 2+4+6+8=20이다. 두 합을 더하면 전체 합 45가 되어 검산할 수 있다. 출력 순서는 true 호출 뒤 false 호출이며 가운데 문자열 ", "가 붙는다.`},{id:"2024-2-restored-15",session:"2024년 2회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 void copy_text(char *target, const char *source) {
     while (*source != '\\0') {
         *target++ = *source++;
@@ -3932,7 +3932,7 @@ copy_text가 first 다섯 글자를 덮어쓴 뒤 buffer[5]에 널 문자를 넣
 이 문제는 직접 내부를 수정하는 것이 아니라 플래그로 실행을 제어한다.
 
 풀이 보강
-호출자가 피호출자의 내부 처리 종류를 알아야 하므로 변경 영향이 커질 수 있다. 같은 정수 인수라도 수량·금액처럼 계산에 쓰면 자료 전달이고, 1이면 저장·2이면 삭제처럼 분기를 지시하면 제어 전달이다. 매개변수의 자료형보다 역할을 기준으로 결합도를 판단하고, 전역 변수 사용 여부도 따로 확인한다.`},{id:"2024-2-restored-17",session:"2024년 2회",subjectId:8,subjectName:"Java",type:"code",question:"다음 재귀 함수가 반환하여 출력하는 문자열을 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Main {
+호출자가 피호출자의 내부 처리 종류를 알아야 하므로 변경 영향이 커질 수 있다. 같은 정수 인수라도 수량·금액처럼 계산에 쓰면 자료 전달이고, 1이면 저장·2이면 삭제처럼 분기를 지시하면 제어 전달이다. 매개변수의 자료형보다 역할을 기준으로 결합도를 판단하고, 전역 변수 사용 여부도 따로 확인한다.`},{id:"2024-2-restored-17",session:"2024년 2회",subjectId:8,subjectName:"Java",type:"code",question:"다음 재귀 함수가 반환하여 출력하는 문자열을 고르시오.",codeSnippet:`class Main {
     static String unique(String value, int index, boolean[] used) {
         if (index < 0) return "";
         char current = value.charAt(index);
@@ -3964,7 +3964,7 @@ index 7의 d: 처음 등장 → dcba
 따라서 dcba이다. 중복이 아닌 문자를 결과 뒤가 아니라 앞에 붙이는 current + prefix가 핵심이다. 오른쪽에서 시작한다는 이유만으로 방문 표시도 오른쪽부터라고 가정하면 안 된다.
 
 풀이 보강
-재귀 호출이 먼저 인덱스 -1까지 내려간 뒤 복귀하면서 a,b,a,c,a,b,c,d를 처리한다. 이미 본 문자는 건너뛰고 새 문자는 prefix 앞에 붙여 a→ba→cba→dcba가 된다. 앞에서부터 새 문자를 확인하지만 앞에 붙이기 때문에 출력 순서는 뒤집힌다. 뒤에서부터 중복을 제거한다고 단순히 설명하면 실제 실행 순서를 놓친다.`},{id:"2024-2-restored-18",session:"2024년 2회",subjectId:7,subjectName:"C 언어",type:"code",question:"값 전달과 switch의 fall-through에 주의하여 다음 C 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+재귀 호출이 먼저 인덱스 -1까지 내려간 뒤 복귀하면서 a,b,a,c,a,b,c,d를 처리한다. 이미 본 문자는 건너뛰고 새 문자는 prefix 앞에 붙여 a→ba→cba→dcba가 된다. 앞에서부터 새 문자를 확인하지만 앞에 붙이기 때문에 출력 순서는 뒤집힌다. 뒤에서부터 중복을 제거한다고 단순히 설명하면 실제 실행 순서를 놓친다.`},{id:"2024-2-restored-18",session:"2024년 2회",subjectId:7,subjectName:"C 언어",type:"code",question:"값 전달과 switch의 fall-through에 주의하여 다음 C 코드의 출력 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 void swap(int left, int right) {
     int saved = left;
     left = right;
@@ -3998,7 +3998,7 @@ a-b = 11-24 = -13이다.
 주의: default는 어떤 case도 맞지 않을 때만 실행되는 것은 아니다. 앞 case에서 break 없이 내려오면 실행될 수 있다. -10은 default를 빠뜨린 중간 계산값이다.
 
 풀이 보강
-swap은 정수의 복사본을 교환하므로 호출 뒤에도 a=11,b=19다. switch는 case 11에서 시작해 b=21이 되고 break가 없어 default까지 내려가 b=24가 된다. case 1은 위에 있어 실행하지 않는다. 따라서 11−24=−13이며, 함수를 참조 전달로 오해하거나 default를 무조건 제외하면 다른 보기가 나온다.`},{id:"2024-2-restored-19",session:"2024년 2회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 단일 연결 리스트에서 출력되는 값을 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+swap은 정수의 복사본을 교환하므로 호출 뒤에도 a=11,b=19다. switch는 case 11에서 시작해 b=21이 되고 break가 없어 default까지 내려가 b=24가 된다. case 1은 위에 있어 실행하지 않는다. 따라서 11−24=−13이며, 함수를 참조 전달로 오해하거나 default를 무조건 제외하면 다른 보기가 나온다.`},{id:"2024-2-restored-19",session:"2024년 2회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 단일 연결 리스트에서 출력되는 값을 고르시오.",codeSnippet:`#include <stdio.h>
 struct Node { int value; struct Node *next; };
 int main(void) {
     struct Node third = {30, NULL};
@@ -4021,7 +4021,7 @@ int main(void) {
 오답 구분: 10은 head->value, 30은 head->next->next->value이다. next를 한 번 따라갔는지 두 번 따라갔는지 세면서 푼다. 노드의 주소를 출력하는 코드가 아니라 정수 필드 값을 출력한다.
 
 풀이 보강
-head는 first이고 head->next는 second의 주소다. 그 뒤 ->value를 적용하면 second.value=20이다. head->value라면 10, head->next->next->value라면 30이므로 화살표 횟수를 세어 구별할 수 있다. next는 값 자체가 아니라 다음 노드의 포인터이므로 중간 주소와 최종 데이터를 따로 해석한다.`},{id:"2024-2-restored-20",session:"2024년 2회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Main {
+head는 first이고 head->next는 second의 주소다. 그 뒤 ->value를 적용하면 second.value=20이다. head->value라면 10, head->next->next->value라면 30이므로 화살표 횟수를 세어 구별할 수 있다. next는 값 자체가 아니라 다음 노드의 포인터이므로 중간 주소와 최종 데이터를 따로 해석한다.`},{id:"2024-2-restored-20",session:"2024년 2회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",codeSnippet:`class Main {
     public static void main(String[] args) {
         String text = "ITISTESTSTRING";
         String[] parts = text.split("T");
@@ -4043,7 +4043,7 @@ String.split("T")는 대문자 T를 구분자로 사용한다. 구분자 T 자�
 코드는 parts[3]을 출력하므로 네 번째 문자열 S가 정답이다. ES는 인덱스 2이고 RING은 인덱스 4이다. 원본 문자열의 문자 인덱스 3을 찾는 문제와 혼동하지 않는다.
 
 풀이 보강
-T 기준 분할 결과는 ["I","IS","ES","S","RING"]이다. 문자열 첫 글자가 T가 아니므로 맨 앞 빈 항목은 없으며 인덱스 3은 네 번째 조각 S다. split은 구분자를 결과에서 빼고 조각을 배열로 반환한다. 원래 문자열의 3번 문자나 세 번째 조각 ES를 선택하는 문제와 구별한다.`}],e0=Object.freeze(Object.defineProperty({__proto__:null,default:Z1},Symbol.toStringTag,{value:"Module"})),n0=[{id:"2024-1-restored-01",session:"2024년 1회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Connection {
+T 기준 분할 결과는 ["I","IS","ES","S","RING"]이다. 문자열 첫 글자가 T가 아니므로 맨 앞 빈 항목은 없으며 인덱스 3은 네 번째 조각 S다. split은 구분자를 결과에서 빼고 조각을 배열로 반환한다. 원래 문자열의 3번 문자나 세 번째 조각 ES를 선택하는 문제와 구별한다.`}],e0=Object.freeze(Object.defineProperty({__proto__:null,default:Z1},Symbol.toStringTag,{value:"Module"})),n0=[{id:"2024-1-restored-01",session:"2024년 1회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",codeSnippet:`class Connection {
     private static final Connection shared = new Connection();
     private int count;
     static Connection get() { return shared; }
@@ -4078,7 +4078,7 @@ get()을 여러 번 호출해도 shared에 들어 있는 Connection 객체는 �
 주의: 호출마다 새 객체가 생긴다고 생각하면 1로 오해하기 쉽다. 앞의 세 번만 세어 3이라고 답하지 말고 마지막 first.count()까지 확인한다.
 
 풀이 보강
-get을 세 번 호출해도 shared가 가리키는 같은 Connection 하나를 반환한다. count 호출은 first에서 두 번, second와 third에서 한 번씩 총 네 번이다. count는 인스턴스 필드지만 세 참조가 같은 객체를 공유해 누적된다. 생성자가 private이 아니므로 이 코드만으로 외부의 추가 인스턴스 생성까지 완전히 차단하는 것은 아니다.`},{id:"2024-1-restored-02",session:"2024년 1회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+get을 세 번 호출해도 shared가 가리키는 같은 Connection 하나를 반환한다. count 호출은 first에서 두 번, second와 third에서 한 번씩 총 네 번이다. count는 인스턴스 필드지만 세 참조가 같은 객체를 공유해 누적된다. 생성자가 private이 아니므로 이 코드만으로 외부의 추가 인스턴스 생성까지 완전히 차단하는 것은 아니다.`},{id:"2024-1-restored-02",session:"2024년 1회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 출력 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 int main(void) {
     int v1 = 0, v2 = 35, v3 = 29;
     if (v1 > v2 ? v2 : v1) {
@@ -4122,7 +4122,7 @@ int main(void) {
 전체 순서는 기능적 > 순차적 > 교환적(통신적) > 절차적 > 시간적 > 논리적 > 우연적이다. 보기의 네 가지만 남기면 기능적 → 교환적 → 시간적 → 우연적이다. 실행 순서를 묶는 절차적·순차적과 통신적을 혼동하지 않는다.
 
 풀이 보강
-전체 순서에서 요구한 네 항목만 골라 쓰면 기능적 > 교환적 > 시간적 > 우연적이다. 보기에 있는 순차적·절차적·논리적은 전체 응집도 분류에는 존재하지만 문제의 비교 대상 네 가지에는 없다. 가장 강한 것을 기준으로 배열하고, 단순히 전체 분류 순서를 앞에서 네 개 적는 실수를 피한다.`},{id:"2024-1-restored-04",session:"2024년 1회",subjectId:7,subjectName:"C 언어",type:"code",question:"문자열을 뒤집은 뒤 홀수 인덱스 문자를 출력하는 다음 C 코드의 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+전체 순서에서 요구한 네 항목만 골라 쓰면 기능적 > 교환적 > 시간적 > 우연적이다. 보기에 있는 순차적·절차적·논리적은 전체 응집도 분류에는 존재하지만 문제의 비교 대상 네 가지에는 없다. 가장 강한 것을 기준으로 배열하고, 단순히 전체 분류 순서를 앞에서 네 개 적는 실수를 피한다.`},{id:"2024-1-restored-04",session:"2024년 1회",subjectId:7,subjectName:"C 언어",type:"code",question:"문자열을 뒤집은 뒤 홀수 인덱스 문자를 출력하는 다음 C 코드의 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 #include <string.h>
 void reverse(char *s) {
     char *left = s;
@@ -4272,7 +4272,7 @@ LFU 판단
 결론: LRU 6회, LFU 6회이다. 두 알고리즘의 기준은 각각 최근성·빈도이며, 이번에 횟수가 같다고 알고리즘까지 같은 것은 아니다. 적중한 참조를 부재로 더하지 않는다.
 
 풀이 보강
-처음 들어오는 1·2·3, 뒤에 새로 들어오는 4·5·7에서 총 여섯 번 부재가 난다. 중간의 1·2 재참조는 적중이다. LRU는 최근 사용 시점, LFU는 현재 프레임의 참조 횟수를 기준으로 하지만 이 참조열에서는 부재 횟수가 우연히 같다. 횟수가 같다는 결과만으로 두 알고리즘이 같은 방식이라고 결론 내리지 않는다.`},{id:"2024-1-restored-10",session:"2024년 1회",subjectId:8,subjectName:"Java",type:"text",question:"⑤에서 시작할 때 번호가 붙은 지점의 실행 순서를 고르시오. 같은 번호는 한 번만 쓰시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Parent {
+처음 들어오는 1·2·3, 뒤에 새로 들어오는 4·5·7에서 총 여섯 번 부재가 난다. 중간의 1·2 재참조는 적중이다. LRU는 최근 사용 시점, LFU는 현재 프레임의 참조 횟수를 기준으로 하지만 이 참조열에서는 부재 횟수가 우연히 같다. 횟수가 같다는 결과만으로 두 알고리즘이 같은 방식이라고 결론 내리지 않는다.`},{id:"2024-1-restored-10",session:"2024년 1회",subjectId:8,subjectName:"Java",type:"text",question:"⑤에서 시작할 때 번호가 붙은 지점의 실행 순서를 고르시오. 같은 번호는 한 번만 쓰시오.",codeSnippet:`class Parent {
     int x, y;
     Parent(int x, int y) { // ①
         this.x = x;
@@ -4314,7 +4314,7 @@ class Main {
 따라서 ⑤ → ⑥ → ③ → ① → ⑦ → ②이다. ④ getT(int n)는 호출할 인수가 없어 실행되지 않는다. 재구성 코드의 부모 필드는 4와 3이어서 프로그램 출력 자체는 12이지만, 문제는 출력값이 아닌 번호 순서를 묻는다.
 
 풀이 보강
-Child.getT(int)는 매개변수가 있어 Parent.getT()를 재정의하지 않고 이름만 같은 오버로드다. parent.getT()는 인수 없이 호출되어 ②를 실행한다. 부모 생성자는 x=4,y=3을 저장하고 자식의 별도 x는 3이지만 ②는 부모 필드로 12를 계산한다. 이 값은 실행 순서를 검산하는 출력이지 문항의 직접 답은 아니다.`},{id:"2024-1-restored-11",session:"2024년 1회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드가 출력하는 계좌번호와 잔액을 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+Child.getT(int)는 매개변수가 있어 Parent.getT()를 재정의하지 않고 이름만 같은 오버로드다. parent.getT()는 인수 없이 호출되어 ②를 실행한다. 부모 생성자는 x=4,y=3을 저장하고 자식의 별도 x는 3이지만 ②는 부모 필드로 12를 계산한다. 이 값은 실행 순서를 검산하는 출력이지 문항의 직접 답은 아니다.`},{id:"2024-1-restored-11",session:"2024년 1회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드가 출력하는 계좌번호와 잔액을 고르시오.",codeSnippet:`#include <stdio.h>
 struct Account { int number; double balance; };
 int main(void) {
     struct Account account = {9981, 2200.0};
@@ -4343,7 +4343,7 @@ int main(void) {
 주의: 차감 전에 이자를 계산하거나 매년 최초 잔액의 10%만 더하면 달라진다. 출력에서는 끝의 0도 포함한다.
 
 풀이 보강
-출금 뒤 잔액은 2100이고 세 번의 곱셈으로 2310→2541→2795.1이 된다. 단리처럼 2100의 10%를 세 번 더하면 2730이 되어 다른 보기다. %.2f가 소수 둘째 자리까지 표시해 2795.10이 되고 계좌번호 9981은 수정하는 코드가 없어 그대로 출력된다.`},{id:"2024-1-restored-12",session:"2024년 1회",subjectId:9,subjectName:"Python",type:"code",question:"다음 Python 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`cities = ["Seoul", "Kyeonggi", "Incheon", "Daejun", "Daegu", "Pusan"]
+출금 뒤 잔액은 2100이고 세 번의 곱셈으로 2310→2541→2795.1이 된다. 단리처럼 2100의 10%를 세 번 더하면 2730이 되어 다른 보기다. %.2f가 소수 둘째 자리까지 표시해 2795.10이 되고 계좌번호 9981은 수정하는 코드가 없어 그대로 출력된다.`},{id:"2024-1-restored-12",session:"2024년 1회",subjectId:9,subjectName:"Python",type:"code",question:"다음 Python 코드의 출력 결과를 고르시오.",codeSnippet:`cities = ["Seoul", "Kyeonggi", "Incheon", "Daejun", "Daegu", "Pusan"]
 result = "S"
 for city in cities:
     result += city[1]
@@ -4410,7 +4410,7 @@ MC/DC는 각 원자 조건이 최종 결정 결과에 독립적으로 영향을 
 악성코드라는 공통점보다 문제에서 강조한 행위를 기준으로 고른다.
 
 풀이 보강
-루트킷의 판별 단서는 자신의 존재나 공격자의 활동을 숨기도록 파일·프로세스·시스템 호출 등의 관찰 결과에 개입한다는 점이다. 관리자 권한 유지와 은닉을 돕지만 루트킷이 반드시 커널 모드에서만 동작하는 것은 아니다. 암호화로 돈을 요구하는 랜섬웨어나 가짜 경고로 겁주는 스캐어웨어와 주된 역할이 다르다.`},{id:"2024-1-restored-16",session:"2024년 1회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`class Parent {
+루트킷의 판별 단서는 자신의 존재나 공격자의 활동을 숨기도록 파일·프로세스·시스템 호출 등의 관찰 결과에 개입한다는 점이다. 관리자 권한 유지와 은닉을 돕지만 루트킷이 반드시 커널 모드에서만 동작하는 것은 아니다. 암호화로 돈을 요구하는 랜섬웨어나 가짜 경고로 겁주는 스캐어웨어와 주된 역할이 다르다.`},{id:"2024-1-restored-16",session:"2024년 1회",subjectId:8,subjectName:"Java",type:"code",question:"다음 Java 코드의 출력 결과를 고르시오.",codeSnippet:`class Parent {
     int first = 2, second = 3;
     void print() { System.out.print(first + second); }
 }
@@ -4470,7 +4470,7 @@ SQL에서는 AND가 OR보다 먼저 결합된다. 조건은 (EMPNO>100 AND SAL>=
 COUNT(*)는 조건을 통과한 행을 세므로 결과는 1이다. 둘째 행이 OR 양쪽을 모두 만족해도 같은 행을 두 번 세지 않는다. >100은 100 자체를 포함하지 않고 >=3000은 3000을 포함한다.
 
 풀이 보강
-AND가 OR보다 우선하여 조건은 (EMPNO>100 AND SAL>=3000) OR EMPNO=200이다. 100번은 양쪽 모두 거짓, 200번은 참, 300번은 급여 조건이 거짓이라 제외된다. 200번이 양쪽 조건을 모두 만족해도 OR는 행을 복제하지 않아 한 번만 센다. 조건별 만족 횟수의 합이 아니라 남은 행 수를 구한다.`},{id:"2024-1-restored-19",session:"2024년 1회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 문자 변환 결과를 고르시오.",blocks:[{type:"text",text:"제공된 복원 요약의 수치와 연산을 바탕으로 재구성한 코드입니다."}],codeSnippet:`#include <stdio.h>
+AND가 OR보다 우선하여 조건은 (EMPNO>100 AND SAL>=3000) OR EMPNO=200이다. 100번은 양쪽 모두 거짓, 200번은 참, 300번은 급여 조건이 거짓이라 제외된다. 200번이 양쪽 조건을 모두 만족해도 OR는 행을 복제하지 않아 한 번만 센다. 조건별 만족 횟수의 합이 아니라 남은 행 수를 구한다.`},{id:"2024-1-restored-19",session:"2024년 1회",subjectId:7,subjectName:"C 언어",type:"code",question:"다음 C 코드의 문자 변환 결과를 고르시오.",codeSnippet:`#include <stdio.h>
 int main(void) {
     char value[] = "It is 8";
     for (int i = 0; value[i] != '\\0'; ++i) {
